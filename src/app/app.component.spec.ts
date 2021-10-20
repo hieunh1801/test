@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'spmed-portal-desktop'`, () => {
+  it(`should have as title 'spmed-portal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('spmed-portal-desktop');
+    expect(app.title).toEqual('spmed-portal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('spmed-portal-desktop app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('spmed-portal app is running!');
   });
 });

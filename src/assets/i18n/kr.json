@@ -1,0 +1,27 @@
+{
+  "layout": {
+    "header": {
+      "about-us": "KR - About us",
+      "contact": "KR - Contact",
+      "login": "KR - Login",
+      "news": "KR - News",
+      "register": "KR - Register",
+      "services": "KR - Services",
+      "services-option": {
+        "adme": {
+          "sub-title": "KR - Short description for ADME",
+          "title": "KR - ADME"
+        },
+        "genotyping-kit": {
+          "sub-title": "KR - Short description for Genotyping KIT",
+          "title": "KR - Genotyping KIT"
+        },
+        "pdss": {
+          "sub-title": "KR - Short description for PDSS",
+          "title": "KR - PDSS"
+        }
+      },
+      "spmed-logo": "KR - SPMED Logo"
+    }
+  }
+}

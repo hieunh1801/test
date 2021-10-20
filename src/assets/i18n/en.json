@@ -1,0 +1,27 @@
+{
+  "layout": {
+    "header": {
+      "about-us": "About us",
+      "contact": "Contact",
+      "login": "Login",
+      "news": "News",
+      "register": "Register",
+      "services": "Services",
+      "services-option": {
+        "adme": {
+          "sub-title": "Short description for ADME",
+          "title": "ADME"
+        },
+        "genotyping-kit": {
+          "sub-title": "Short description for Genotyping KIT",
+          "title": "Genotyping KIT"
+        },
+        "pdss": {
+          "sub-title": "Short description for PDSS",
+          "title": "PDSS"
+        }
+      },
+      "spmed-logo": "SPMED Logo"
+    }
+  }
+}

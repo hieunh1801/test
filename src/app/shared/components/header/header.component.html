@@ -1,0 +1,107 @@
+<header>
+  <mat-toolbar color="primary">
+    <div fxHide.gt-sm>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div fxFlex="20">
+      <button mat-button routerLink="/" translate>
+        <p translate>layout.header.spmed-logo</p>
+      </button>
+    </div>
+    <div fxFlex fxLayoutAlign="center" fxHide.lt-md>
+      <button mat-button [matMenuTriggerFor]="menuService">
+        <span translate>layout.header.services</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #menuService="matMenu" class="menu-service-container">
+        <!-- pdss -->
+        <div class="menu-service-item">
+          <div
+            matRipple
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            fxLayoutGap="10px"
+            routerLink="/pdss"
+          >
+            <mat-icon>trip_origin</mat-icon>
+            <div>
+              <b translate>layout.header.services-option.pdss.title</b>
+              <div translate>layout.header.services-option.pdss.sub-title</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- adme -->
+        <div class="menu-service-item">
+          <div
+            matRipple
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            fxLayoutGap="10px"
+            routerLink="/adme"
+          >
+            <mat-icon>my_location</mat-icon>
+            <div>
+              <b translate>layout.header.services-option.adme.title</b>
+              <div translate>layout.header.services-option.adme.sub-title</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- genotyping kit -->
+        <div class="menu-service-item">
+          <div
+            matRipple
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            fxLayoutGap="10px"
+            routerLink="/genotyping-kit"
+          >
+            <mat-icon>medical_services</mat-icon>
+            <div>
+              <b translate
+                >layout.header.services-option.genotyping-kit.title</b
+              >
+              <div translate>
+                layout.header.services-option.genotyping-kit.sub-title
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-menu>
+      <button mat-button routerLink="/about-us">
+        <span translate> layout.header.about-us </span>
+      </button>
+      <button mat-button routerLink="/news">
+        <span translate> layout.header.news </span>
+      </button>
+      <button mat-stroked-button routerLink="/contact">
+        <span translate> layout.header.contact </span>
+      </button>
+    </div>
+
+    <div fxFlex="20" fxLayoutAlign="end" fxHide.lt-md>
+      <mat-form-field>
+        <mat-select
+          [value]="languageService.currentLanguage"
+          (valueChange)="changeLanguage($event)"
+        >
+          <mat-option
+            *ngFor="let lang of languageService.languageOptions"
+            [value]="lang.value"
+          >
+            {{ lang.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button routerLink="/auth/login">
+        <span translate>layout.header.login</span>
+      </button>
+      <button mat-button routerLink="/auth/register">
+        <span translate>layout.header.register</span>
+      </button>
+    </div>
+  </mat-toolbar>
+</header>
