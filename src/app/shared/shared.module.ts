@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggingInterceptor } from './interceptors/logging-interceptor';
 
 const COMPONENTS = [
   FooterComponent,
@@ -16,8 +18,13 @@ const COMPONENTS = [
   HomeLayoutComponent,
 ];
 
+const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+];
+
 @NgModule({
   declarations: [...COMPONENTS],
+  providers: [httpInterceptorProviders],
   imports: [
     CommonModule,
     RouterModule,

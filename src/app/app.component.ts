@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from './shared/services/language.service';
+import { MaintainService } from './shared/services/maintain.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,13 @@ import { LanguageService } from './shared/services/language.service';
 export class AppComponent implements OnInit {
   title = 'SPMED';
 
-  constructor(private languageService: LanguageService) {
+  constructor(
+    private languageService: LanguageService,
+    private maintainService: MaintainService
+  ) {
     this.languageService.init();
+    this.maintainService.ping();
+    // this.maintainService.login();
   }
 
   ngOnInit(): void {
