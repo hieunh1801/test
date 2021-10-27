@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="login">
+  <app-page-loading [isShow]="pageLoading"></app-page-loading>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center stretch">
+    <div class="col" fxHide.lt-sm fxLayoutAlign="center center">
+      <h2>SPMED</h2>
+    </div>
+    <div class="col">
+      <h2 fxLayoutAlign="center">SPMED</h2>
+      <form
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        [formGroup]="loginForm"
+      >
+        <label>Username</label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="username" />
+        </mat-form-field>
+
+        <label>Password</label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="password" type="password" />
+        </mat-form-field>
+
+        <div
+          class="remember-me"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <mat-checkbox name="remember-me" formControlName="rememberMe"
+            >Remember me</mat-checkbox
+          >
+
+          <div>Forgot password?</div>
+        </div>
+
+        <button
+          class="btn-login"
+          mat-raised-button
+          color="primary"
+          (click)="login()"
+        >
+          Login
+        </button>
+        <button
+          class="btn-login-with-kakao"
+          mat-button
+          (click)="loginWithKakaoTalk()"
+        >
+          Login with KakaoTalk
+        </button>
+        <button
+          class="btn-login-with-naver"
+          mat-button
+          (click)="loginWithNaver()"
+        >
+          Login with Naver
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

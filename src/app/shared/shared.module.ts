@@ -10,12 +10,15 @@ import { MaterialModule } from '../material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptor } from './interceptors/logging-interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 
 const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
   AuthLayoutComponent,
   HomeLayoutComponent,
+  PageLoadingComponent,
 ];
 
 const httpInterceptorProviders = [
@@ -32,6 +35,12 @@ const httpInterceptorProviders = [
     MaterialModule,
     TranslateModule,
   ],
-  exports: [...COMPONENTS, MaterialModule, FlexLayoutModule, TranslateModule],
+  exports: [
+    ...COMPONENTS,
+    MaterialModule,
+    TranslateModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+  ],
 })
 export class SharedModule {}

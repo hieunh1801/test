@@ -18,13 +18,4 @@ export class MaintainService {
     const url = `${this.baseUrl}/ping`;
     this.httpClient.get(url).subscribe();
   }
-
-  login(): void {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/login`;
-    const body = {
-      username: 'tester01',
-      password: 123456,
-    };
-    this.httpClient.post(url, body).subscribe();
-  }
 }
