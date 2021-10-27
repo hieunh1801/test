@@ -1,27 +1,54 @@
 {
   "layout": {
     "header": {
-      "about-us": "KR - About us",
-      "contact": "KR - Contact",
-      "login": "KR - Login",
-      "news": "KR - News",
-      "register": "KR - Register",
-      "services": "KR - Services",
+      "about-us": "About us",
+      "contact": "Contact",
+      "login": "Login",
+      "news": "News",
+      "register": "Register",
+      "services": "Services",
       "services-option": {
         "adme": {
-          "sub-title": "KR - Short description for ADME",
-          "title": "KR - ADME"
+          "sub-title": "Short description for ADME",
+          "title": "ADME"
         },
         "genotyping-kit": {
-          "sub-title": "KR - Short description for Genotyping KIT",
-          "title": "KR - Genotyping KIT"
+          "sub-title": "Short description for Genotyping KIT",
+          "title": "Genotyping KIT"
         },
         "pdss": {
-          "sub-title": "KR - Short description for PDSS",
-          "title": "KR - PDSS"
+          "sub-title": "Short description for PDSS",
+          "title": "PDSS"
         }
       },
-      "spmed-logo": "KR - SPMED Logo"
+      "spmed-logo": "SPMED Logo"
+    }, 
+
+    "footer": {
+      "link" : {
+        "company-introduction" : "회사소개", 
+        "term-of-policy" : "이용약관",
+        "privacy-policy" : "개인정보보호정책"
+      },
+      "address" : {
+        "headquater" : "본사",
+        "headquater-address" : "부산광역시 북구 효열로 111, 6층 610,611,612,613,614호(금곡동, 부산지식산업센터)",
+        "seoul-branch" : "서울사무소",
+        "seoul-branch-address" : "서울특별시 영등포구 국제금융로6길 30, 709호"
+      },
+      "copyright": "spmed.kr 의 모든 컨텐츠들은 저작권법에 의거 보호받고 있습니다. 저작권자 또는 SPMED의 승인없이 컨텐츠의 일부 또는 전체를 복사하여 다른 매체(개인 미디어 포함)에 게재하는 행위는 저작권법에 의거 법적 조치에 처해질 수 있습니다."
+    }, 
+    "login": {
+      "button" : {
+        "title" : "로그인"        
+      }, 
+      "forgot" : {
+        "id" : "아이디 찾기",
+        "password" : "비밀번호 찾기"
+      }, 
+      "remember" : "아이디 저장",
+      "register-text" : "에스피메드 계정이 없으세요?",      
+      "register" : "회원가입"
     }
   }
 }

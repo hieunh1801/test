@@ -1,7 +1,9 @@
-header {
+header {  
+  order: 1;
+  
   .mat-toolbar.mat-primary {
     background: var(--primary-color);
-    color: black;
+    color: black;    
   }
 
   ::ng-deep .mat-form-field {
@@ -37,4 +39,11 @@ header {
 
 .menu-service-item:hover {
   background-color: #f2f2f2;
+}
+
+.logo {  
+  left: 2.5%;
+  right: 86.25%;
+  top: 18.75%;
+  bottom: 18.75%;  
 }

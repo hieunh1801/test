@@ -1,0 +1,73 @@
+mat-toolbar {
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #003F9E;
+}
+
+.login-title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 23px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.login-form {        
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.login-full-width {
+    width: 100%;
+}
+
+.login-comment {
+    padding-bottom:20px;
+
+}
+.right-align {
+    text-align:right;
+}
+
+.center-align {
+    text-align:center;    
+}
+.login-button {
+    margin-top:15px;
+    margin-right:5px;
+}
+
+.login-register {
+    padding:10px 0px;
+    font-size: 12px;
+}
+
+.forgot-password {
+    text-align:right;
+    font-weight : bold;
+    font-size: 12px;
+}
+
+mat-card-header {    
+    width: 100%;
+    display: block;
+    font-weight: 700;
+}
+mat-card-title {
+    font-size: 30px;    
+    margin: 0px;
+    padding-bottom:20px;  
+    text-align:center;
+}
+mat-stroked-button {
+    border: 1px solid currentColor;
+    line-height: 54px;
+    background: #FFF7FA;
+}

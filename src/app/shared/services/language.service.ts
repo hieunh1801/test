@@ -11,11 +11,11 @@ import krTranslation from '../../../assets/i18n/kr.json';
 export class LanguageService {
   public languageOptions = [
     {
-      title: 'Korea',
+      title: 'KR',
       value: LanguagesProvided.korea,
     },
     {
-      title: 'English',
+      title: 'EN',
       value: LanguagesProvided.english,
     },
   ];

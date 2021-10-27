@@ -1,3 +1,75 @@
-<p>home works!</p>
+<div id="mainContainer">     
+    <div>
+        <div id="mainImage">
+            <div class="mainImage-title">
+                SPMED, The Frontier Leader
+            </div>
+            <div class="mainImage-contents">
+                in personalized precision medicine
+            </div>
+            <div><button class="mainButton">Our Service</button>            
+        </div>        
+    </div>        
+    <div fxLayout="row" fxLayoutAlign="center" style="padding:10px;">
+        <mat-card>            
+            <img mat-card-image [src]="['../../assets/common/main/vision_img_en.jpg']">
+        </mat-card>        
+    </div> 
+    
+    <mat-toolbar>
+        <span class="product-title">ALL Product</span>
+    </mat-toolbar>                
 
-This is home page
+    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="15px" ngClass.gt-xs="ml-10" style="padding:10px;">
+        <mat-card fxFlex.sm="0 1 calc(50%-15px)" fxFlex.md="0 1 calc(33%-15px)" fxFlex.gt-md="0 1 calc(25%-15px)">            
+            <img mat-card-image src="../../assets/common/blank.png" class="image">
+            <mat-card-title>My Prescription(PDSS)</mat-card-title>
+            <mat-card-content>Primary card content. Intended for blocks of text</mat-card-content>            
+          </mat-card>
+          
+        <mat-card fxFlex.sm="0 1 calc(50%-15px)" fxFlex.md="0 1 calc(33%-15px)" fxFlex.gt-md="0 1 calc(25%-15px)">            
+            <img mat-card-image src="../../assets/common/blank.png" class="image">
+            <mat-card-title>ADME Service</mat-card-title>
+            <mat-card-content>Primary card content. Intended for blocks of text</mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex.sm="0 1 calc(50%-15px)" fxFlex.md="0 1 calc(33%-15px)" fxFlex.gt-md="0 1 calc(25%-15px)">            
+            <img mat-card-image src="../../assets/common/blank.png" class="image">
+            <mat-card-title>Genotyping KIT</mat-card-title>
+            <mat-card-content>Primary card content. Intended for blocks of text</mat-card-content>            
+        </mat-card>
+
+        <mat-card fxFlex.sm="0 1 calc(50%-15px)" fxFlex.md="0 1 calc(33%-15px)" fxFlex.gt-md="0 1 calc(25%-15px)">            
+            <img mat-card-image src="../../assets/common/blank.png" class="image">
+            <mat-card-title>Recombinant Enzymes</mat-card-title>
+            <mat-card-content>Primary card content. Intended for blocks of text</mat-card-content>            
+        </mat-card>
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-md="column" style="padding:10px">
+        <div fxFlex="60" fxHide.lt-md style="margin-left:35px;">
+            <img src="../../assets/common/blank.png">
+        </div>
+        <div fxFlex="40" fxLayoutAlign="center center">
+            <form class="qna-form">
+                <mat-card id="card">
+                    <mat-card-title>
+                        Contact Sale
+                    </mat-card-title>
+                
+                    <mat-card-content>            
+                        <mat-form-field class="qna-full-width" appearance="fill" >
+                            <input matInput placeholder="Your email">
+                        </mat-form-field><br/>
+                
+                        <mat-form-field class="qna-full-width" appearance="fill">
+                            <input matInput placeholder="Your telephone number">
+                        </mat-form-field><br/>                    
+                        <button mat-raised-button color="primary" class="qna-full-width" style="margin-right:5px;">Submit</button>                                        
+                
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</div>
