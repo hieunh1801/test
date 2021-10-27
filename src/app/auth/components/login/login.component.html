@@ -1,18 +1,24 @@
 <div fxLayout="column" fxLayoutAlign="center center" style="padding: 10px">
+  <app-page-loading [isShow]="pageLoading"></app-page-loading>
   <form class="login-form" [formGroup]="loginForm">
     <mat-card>
       <mat-card-title style="text-align: center"> SPMED Login </mat-card-title>
 
       <mat-card-content>
         <mat-form-field class="login-full-width" appearance="fill">
-          <input matInput placeholder="Your ID" />
+          <input matInput placeholder="Your ID" formControlName="username" />
         </mat-form-field>
         <mat-form-field class="login-full-width" appearance="fill">
-          <input matInput placeholder="Your Password" />
+          <input
+            matInput
+            placeholder="Your Password"
+            formControlName="password"
+            type="password"
+          />
         </mat-form-field>
         <div fxLayout="row" class="login-comment">
           <div fxFlex="50">
-            <mat-checkbox
+            <mat-checkbox formControlName="rememberMe"
               ><span translate>layout.login.remember</span></mat-checkbox
             >
           </div>
@@ -26,6 +32,7 @@
           mat-raised-button
           color="primary"
           class="login-full-width login-button"
+          (click)="login()"
         >
           <span translate>layout.login.button.title</span>
         </button>
@@ -34,6 +41,7 @@
           mat-raised-button
           class="login-full-width"
           style="margin-top: 40px; margin-right: 5px"
+          (click)="loginWithKakaoTalk()"
         >
           Login with Kakaotalk
         </button>
@@ -41,6 +49,7 @@
           mat-raised-button
           class="login-full-width"
           style="margin-top: 15px; margin-right: 5px"
+          (click)="loginWithNaver()"
         >
           Login with Naver
         </button>

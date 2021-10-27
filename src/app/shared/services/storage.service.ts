@@ -29,7 +29,11 @@ export class StorageService {
     const itemStr: string = this.storage.getItem(key);
 
     const item: T =
-      itemStr === 'undefined' ? undefined : (JSON.parse(itemStr) as T);
+      itemStr === 'undefined'
+        ? undefined
+        : itemStr === ''
+        ? null
+        : (JSON.parse(itemStr) as T);
 
     this.subjects.get(key).next(item);
     return this.subjects.get(key).asObservable();
@@ -41,7 +45,11 @@ export class StorageService {
    */
   get<T>(key: string): T {
     const itemStr = this.storage.getItem(key);
-    return itemStr === 'undefined' ? undefined : JSON.parse(itemStr);
+    return itemStr === 'undefined'
+      ? undefined
+      : itemStr === ''
+      ? null
+      : (JSON.parse(itemStr) as T);
   }
 
   /**
@@ -67,9 +75,15 @@ export class StorageService {
       this.subjects.get(key).complete();
       this.subjects.delete(key);
     }
+    console.log('removeItem', key);
     this.storage.removeItem(key);
   }
 
+  removes(keys: string[]): void {
+    for (const key of keys) {
+      this.remove(key);
+    }
+  }
   /**
    * Clear everything in storage
    */

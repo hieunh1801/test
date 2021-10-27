@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   ) {
     this.languageService.init();
     this.maintainService.ping();
-    // this.maintainService.login();
+    this.maintainService.signUp();
   }
 
   ngOnInit(): void {

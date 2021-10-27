@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 
@@ -5,7 +6,7 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class SessionStorageService extends StorageService {
-  constructor(@Inject('WINDOW') window: Window) {
-    super(window.sessionStorage);
+  constructor(@Inject(DOCUMENT) document: Document) {
+    super(document?.defaultView?.sessionStorage);
   }
 }

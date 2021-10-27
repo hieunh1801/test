@@ -1,23 +1,14 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-loading',
   templateUrl: './page-loading.component.html',
   styleUrls: ['./page-loading.component.scss'],
 })
-export class PageLoadingComponent implements OnInit, OnChanges {
+export class PageLoadingComponent implements OnInit {
   @Input() isShow = true;
 
   constructor() {}
 
   ngOnInit(): void {}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
 }

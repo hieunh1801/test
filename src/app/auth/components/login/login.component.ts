@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import { AuthService } from '../../auth.service';
-import { LoginRequest } from './login';
+import { LoginRequest, LoginResponse } from './login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,16 +14,30 @@ import { LoginRequest } from './login';
 })
 export class LoginComponent implements OnInit {
   pageLoading = false;
+  redirectToUrl = '#';
 
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
     rememberMe: [false, Validators.required],
   });
+
+  private subscription$ = new Subscription();
+
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private tokenStorageService: TokenStorageService,
+    private matSnackbarService: MatSnackbarService,
+    private activeRoute: ActivatedRoute
+  ) {
+    this.activeRoute.queryParams.subscribe((queryParams) => {
+      const url = queryParams?.url || '';
+      if (url && url.startsWith('http')) {
+        this.redirectToUrl = url;
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -27,20 +46,49 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       const formValue = this.loginForm.value;
+      const rememberMe = formValue.rememberMe;
+
       const loginRequest: LoginRequest = {
         username: formValue.username,
         password: formValue.password,
       };
       this.pageLoading = true;
-      this.authService.login(loginRequest).subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        complete: () => {
-          this.pageLoading = false;
-          console.log('this.authService.login done!!!');
-        },
-      });
+
+      this.tokenStorageService.rememberMe = rememberMe;
+
+      this.authService
+        .login(loginRequest)
+        .pipe(
+          finalize(() => {
+            this.pageLoading = false;
+          })
+        )
+        .subscribe({
+          next: (response: SpmedResponse) => {
+            const loginResponse: LoginResponse = response?.data?.items[0];
+            if (loginResponse == null) {
+              this.matSnackbarService.open(
+                'Username or Password incorrect',
+                'LOGIN'
+              );
+            } else {
+              this.tokenStorageService.accessToken = loginResponse.accessToken;
+              this.tokenStorageService.refreshToken =
+                loginResponse.refreshToken;
+              this.tokenStorageService.username = loginResponse.username;
+              this.tokenStorageService.authorities =
+                loginResponse?.authorities || [];
+
+              window.location.href = this.redirectToUrl;
+            }
+          },
+          complete: () => {
+            console.log('this.authService.login done!!!');
+          },
+          error: (error) => {
+            console.log(error.response);
+          },
+        });
     }
   }
 
