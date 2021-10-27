@@ -1,61 +1,60 @@
-<div class="login">
-  <app-page-loading [isShow]="pageLoading"></app-page-loading>
-  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center stretch">
-    <div class="col" fxHide.lt-sm fxLayoutAlign="center center">
-      <h2>SPMED</h2>
-    </div>
-    <div class="col">
-      <h2 fxLayoutAlign="center">SPMED</h2>
-      <form
-        fxLayout="column"
-        fxLayoutAlign="start start"
-        [formGroup]="loginForm"
-      >
-        <label>Username</label>
-        <mat-form-field appearance="outline">
-          <input matInput formControlName="username" />
+<div fxLayout="column" fxLayoutAlign="center center" style="padding: 10px">
+  <form class="login-form" [formGroup]="loginForm">
+    <mat-card>
+      <mat-card-title style="text-align: center"> SPMED Login </mat-card-title>
+
+      <mat-card-content>
+        <mat-form-field class="login-full-width" appearance="fill">
+          <input matInput placeholder="Your ID" />
         </mat-form-field>
-
-        <label>Password</label>
-        <mat-form-field appearance="outline">
-          <input matInput formControlName="password" type="password" />
+        <mat-form-field class="login-full-width" appearance="fill">
+          <input matInput placeholder="Your Password" />
         </mat-form-field>
-
-        <div
-          class="remember-me"
-          fxLayout="row"
-          fxLayoutAlign="space-between center"
-        >
-          <mat-checkbox name="remember-me" formControlName="rememberMe"
-            >Remember me</mat-checkbox
-          >
-
-          <div>Forgot password?</div>
+        <div fxLayout="row" class="login-comment">
+          <div fxFlex="50">
+            <mat-checkbox
+              ><span translate>layout.login.remember</span></mat-checkbox
+            >
+          </div>
+          <div fxFlex class="forgot-password">
+            <a routerLink="/auth/reset-password"
+              ><span translate>layout.login.forgot.password</span></a
+            >
+          </div>
         </div>
-
         <button
-          class="btn-login"
           mat-raised-button
           color="primary"
-          (click)="login()"
+          class="login-full-width login-button"
         >
-          Login
+          <span translate>layout.login.button.title</span>
+        </button>
+
+        <button
+          mat-raised-button
+          class="login-full-width"
+          style="margin-top: 40px; margin-right: 5px"
+        >
+          Login with Kakaotalk
         </button>
         <button
-          class="btn-login-with-kakao"
-          mat-button
-          (click)="loginWithKakaoTalk()"
-        >
-          Login with KakaoTalk
-        </button>
-        <button
-          class="btn-login-with-naver"
-          mat-button
-          (click)="loginWithNaver()"
+          mat-raised-button
+          class="login-full-width"
+          style="margin-top: 15px; margin-right: 5px"
         >
           Login with Naver
         </button>
-      </form>
-    </div>
-  </div>
+        <div class="login-register">
+          <span translate>layout.login.register-text</span>
+          <a routerLink="/auth/register"
+            ><span
+              style="padding-left: 5px; color: #003f9e; font-weight: bold"
+              translate
+              >layout.login.register</span
+            ></a
+          >
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
 </div>

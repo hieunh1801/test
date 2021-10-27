@@ -1,13 +1,15 @@
 <header>
   <mat-toolbar color="primary">
-    <div fxHide.gt-sm>
+    <div fxFlex="5" fxHide.gt-sm>
       <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div fxFlex="20">
+    <!--<div fxFlex="20">-->
+    <div fxFlex="10">    
       <button mat-button routerLink="/" translate>
-        <p translate>layout.header.spmed-logo</p>
+        <!--<p translate>layout.header.spmed-logo</p>-->        
+        <div class="logo"><img src='../../../../assets/common/logo.jpg' style="height:50px"></div>
       </button>
     </div>
     <div fxFlex fxLayoutAlign="center" fxHide.lt-md>
@@ -101,6 +103,27 @@
       </button>
       <button mat-button routerLink="/auth/register">
         <span translate>layout.header.register</span>
+      </button>
+    </div>
+
+    <div fxFlex fxLayoutAlign="center" fxHide.gt-sm>      
+    </div>
+    <div fxFlex="20" fxLayoutAlign="end" fxHide.gt-sm>
+      <mat-form-field>
+        <mat-select
+          [value]="languageService.currentLanguage"
+          (valueChange)="changeLanguage($event)"
+        >
+          <mat-option
+            *ngFor="let lang of languageService.languageOptions"
+            [value]="lang.value"
+          >
+            {{ lang.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button routerLink="/auth/login">
+        <span translate>layout.header.login</span>
       </button>
     </div>
   </mat-toolbar>

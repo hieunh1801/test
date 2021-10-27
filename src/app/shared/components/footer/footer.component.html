@@ -1,4 +1,69 @@
 <footer>
-  <mat-divider></mat-divider>
-  <div>This is footer of SPMED</div>
+  <mat-divider></mat-divider>  
+  
+  <div class="footer-box">
+    <div class="flex-container" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+      <div fxflex="40" fxLayout="column">
+        <div class="logo"><img src='../../../../assets/common/logo.jpg'></div>
+        <div class="footer-txt">        
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        </div>
+        <div class="sns" fxLayout="row" fxLayoutGap="15px">
+          <div>
+            <img src='../../../../assets/common/facebook_icon.png' style="height:20px">
+          </div>
+          <div>
+            <img src='../../../../assets/common/instagram_icon.png' style="height:20px">
+          </div>
+          <div>
+            <img src='../../../../assets/common/naver_icon.png' style="height:20px">
+          </div>
+          <div>
+            <img src='../../../../assets/common/kakaotalk_icon.png' style="height:20px">
+          </div>
+        </div>
+      </div>
+      <div fxflex="50" fxLayout="row" fxLayout.lt-md="column">
+        <div fxLayout="row" fxLayoutAlign="none"  class="footer-contents">
+          <div fxFlex="50">
+            <div class="footer-title">Service</div>
+            <div class="address"><a routerLink="/pdss">PDSS - My Prescription</a></div>            
+            <div class="address"><a routerLink="/adme">ADME service</a></div>
+            <div class="address"><a routerLink="/genotyping-kit">Genotyping Kit</a></div>            
+            <div class="address">Human Recombinant Enzymes</div>            
+          </div> 
+          <div fxFlex>
+            <div class="footer-title">Link</div>
+            <div class="address" translate>layout.footer.link.company-introduction</div>
+            <div class="address" translate>layout.footer.link.term-of-policy</div>
+            <div class="address" translate>layout.footer.link.privacy-policy</div>
+          </div> 
+        </div>
+        <div fxLayout="row" fxLayoutAlign="none" class="footer-contents">
+          <div fxFlex>
+            <div class="footer-title">Contact Us</div>
+            <div class="address">
+              Tel : +82)51-362-1101
+            </div>
+            <div class="address">
+              Email: help@spmed.kr
+            </div>
+            <div class="address">
+              Fax : +82)51-361-1102 
+            </div>
+          </div> 
+          <div fxFlex>
+            <div class="footer-title">Address</div> 
+            <div class="address-title" translate>layout.footer.address.headquater</div>
+            <div class="address" translate>layout.footer.address.headquater-address</div>
+            <span class="address-title" translate>layout.footer.address.seoul-branch</span>
+            <div class="address" translate>layout.footer.address.seoul-branch-address</div>
+          </div> 
+        </div>
+      </div> 
+    </div>
+    <div class="flex-container" fxLayoutAlign="center center">
+      <div class="copyright" translate>layout.footer.copyright</div>               
+    </div>
+  </div>    
 </footer>

@@ -1,0 +1,93 @@
+#mainContainer {     
+    order: 0;    
+    margin: 32px 0px;
+    background: #fff;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    color: #000000;
+    
+    #mainImage {
+        width: 100%;
+        height: 200px;
+        background: #f2f2f2;
+        padding: 64px;
+        order: 1;
+     }
+    
+    .mainImage-title {        
+        font-weight: bold;
+        font-size: 23px;
+        line-height: 27px;
+        
+        order: 2;
+        flex-grow: 0;
+        margin: 8px 0px;        
+    }
+    .mainImage-contents {
+        font-size: 16px;
+        line-height: 19px;
+        
+        order: 2;
+        flex-grow: 0;
+        margin: 8px 0px;        
+    }
+    .mainButton {        
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 8px 16px;
+
+        width: 120px;
+        height: 30px;        
+
+        /* primary */
+        background: #003F9E;
+        border-radius: 1px;
+
+        /* Inside Auto Layout */
+        order: 2;
+        flex-grow: 0;
+        margin: 32px 0px;
+        color:#fff;
+    }
+
+    mat-toolbar {
+        background: #fff;
+    }
+    
+    mat-card {
+        margin-bottom: 10px;
+    }
+      
+    .mr-10 {
+        margin-right: 10px;
+    }
+    
+    .ml-10 {
+        margin-left: 10px;
+    }   
+    .product-title {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 23px;
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
+
+    .submit_button {
+        width:200px;
+    }
+
+    .qna-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+    }
+      
+    .qna-full-width {
+        width: 100%;
+    }
+}
