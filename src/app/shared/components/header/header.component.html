@@ -10,7 +10,8 @@
       </button>
     </div>
 
-    <!-- Center -->
+    <!-- center -->
+    <!-- center for web-->
     <div fxFlex fxLayoutAlign="center" fxHide.lt-md>
       <button mat-button [matMenuTriggerFor]="menuService">
         <span translate>layout.header.services</span>
@@ -83,7 +84,11 @@
       </button>
     </div>
 
-    <!-- RightSide for web -->
+    <!-- center for mobile -->
+    <div fxFlex fxLayoutAlign="center" fxHide.gt-sm></div>
+
+    <!-- right -->
+    <!-- right for web-->
     <div fxFlex="20" fxLayoutAlign="end" fxHide.lt-md>
       <mat-form-field>
         <mat-select
@@ -111,18 +116,17 @@
       >
         <mat-icon>account_circle</mat-icon>
       </button>
-      <!-- menu user profile end-->
 
       <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
         <span translate>layout.header.login</span>
       </button>
+
       <button mat-button routerLink="/auth/register" [fxHide]="isLogin">
         <span translate>layout.header.register</span>
       </button>
     </div>
 
-    <!-- RightSide for mobile -->
-    <div fxFlex fxLayoutAlign="center" fxHide.gt-sm></div>
+    <!-- right for mobile -->
     <div fxFlex="20" fxLayoutAlign="end" fxHide.gt-sm>
       <mat-form-field>
         <mat-select
@@ -137,11 +141,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-    <!-- menu for mobile -->
-    <div fxFlex="5" fxHide.gt-sm>
-      <button (click)="isOpenMenuMobile = !isOpenMenuMobile" mat-button>
+      <button mat-icon-button (click)="isOpenMenuMobile = !isOpenMenuMobile">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
@@ -228,7 +228,6 @@
       <span translate>layout.header.menu-mobile.contact</span>
     </button>
     <mat-divider></mat-divider>
-    <mat-divider></mat-divider>
     <button mat-menu-item>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <span translate>layout.header.menu-mobile.profiles</span>
@@ -249,7 +248,6 @@
       </div>
     </button>
     <mat-divider></mat-divider>
-    <mat-divider></mat-divider>
     <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/login">
       <span translate>layout.header.menu-mobile.login</span>
     </button>
@@ -259,5 +257,7 @@
     <button mat-menu-item [fxHide]="!isLogin" (click)="logout()">
       <span translate>layout.header.menu-mobile.logout</span>
     </button>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
   </mat-list>
 </ng-template>
