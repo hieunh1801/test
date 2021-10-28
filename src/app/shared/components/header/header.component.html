@@ -5,13 +5,17 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <!--<div fxFlex="20">-->
-    <div fxFlex="10">    
+    <!-- Left -->
+    <div fxFlex="10">
       <button mat-button routerLink="/" translate>
-        <!--<p translate>layout.header.spmed-logo</p>-->        
-        <div class="logo"><img src='../../../../assets/common/logo.jpg' style="height:50px"></div>
+        <!--<p translate>layout.header.spmed-logo</p>-->
+        <div class="logo">
+          <img src="../../../../assets/common/logo.jpg" style="height: 50px" />
+        </div>
       </button>
     </div>
+
+    <!-- Center -->
     <div fxFlex fxLayoutAlign="center" fxHide.lt-md>
       <button mat-button [matMenuTriggerFor]="menuService">
         <span translate>layout.header.services</span>
@@ -84,6 +88,7 @@
       </button>
     </div>
 
+    <!-- RightSide for web -->
     <div fxFlex="20" fxLayoutAlign="end" fxHide.lt-md>
       <mat-form-field>
         <mat-select
@@ -98,16 +103,64 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-button routerLink="/auth/login">
+
+      <button mat-icon-button [fxHide]="!isLogin">
+        <mat-icon matBadge="1">notifications</mat-icon>
+      </button>
+
+      <!-- menu user profile -->
+      <button
+        mat-icon-button
+        [fxHide]="!isLogin"
+        [matMenuTriggerFor]="menuUserProfileForWeb"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menuUserProfileForWeb="matMenu">
+        <button mat-menu-item>
+          <div
+            style="width: 200px"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+          >
+            <span translate>layout.header.users-menu.profiles</span>
+            <span style="font-style: oblique; opacity: 0.9"
+              >@{{ username }}</span
+            >
+          </div>
+        </button>
+        <button mat-menu-item>
+          <span translate>layout.header.users-menu.settings</span>
+        </button>
+        <button mat-menu-item>
+          <div
+            style="width: 200px"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+          >
+            <span translate>layout.header.users-menu.membership</span>
+            <mat-chip-list>
+              <mat-chip>Doctor</mat-chip>
+            </mat-chip-list>
+          </div>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <span translate>layout.header.users-menu.logout</span>
+        </button>
+      </mat-menu>
+      <!-- menu user profile end-->
+
+      <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
         <span translate>layout.header.login</span>
       </button>
-      <button mat-button routerLink="/auth/register">
+      <button mat-button routerLink="/auth/register" [fxHide]="isLogin">
         <span translate>layout.header.register</span>
       </button>
     </div>
 
-    <div fxFlex fxLayoutAlign="center" fxHide.gt-sm>      
-    </div>
+    <!-- RightSide for mobile -->
+    <div fxFlex fxLayoutAlign="center" fxHide.gt-sm></div>
     <div fxFlex="20" fxLayoutAlign="end" fxHide.gt-sm>
       <mat-form-field>
         <mat-select
@@ -122,7 +175,8 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-button routerLink="/auth/login">
+
+      <button mat-button routerLink="/auth/login" [fxHide]="true">
         <span translate>layout.header.login</span>
       </button>
     </div>

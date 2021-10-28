@@ -1,5 +1,19 @@
 {
   "layout": {
+    "footer": {
+      "address": {
+        "headquater": "HeadQuarter",
+        "headquater-address": "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
+        "seoul-branch": "Seoul Office",
+        "seoul-branch-address": "709ho, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea"
+      },
+      "copyright": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law.",
+      "link": {
+        "company-introduction": "Company Introduction",
+        "privacy-policy": "Privacy Policy",
+        "term-of-policy": "Term of Policy"
+      }
+    },
     "header": {
       "about-us": "About us",
       "contact": "Contact",
@@ -21,36 +35,23 @@
           "title": "PDSS"
         }
       },
-      "spmed-logo": "SPMED Logo"
-    }, 
-
-    "footer": {
-      "link" : {
-        "company-introduction" : "Company Introduction", 
-        "term-of-policy" : "Term of Policy",
-        "privacy-policy" : "Privacy Policy"
-      },
-      "address" : {
-        "headquater" : "HeadQuarter",
-        "headquater-address" : "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
-        "seoul-branch" : "Seoul Office",
-        "seoul-branch-address" : "709ho, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea"
-      }, 
-      "copyright": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law."
-    }, 
-
+      "users-menu": {
+        "logout": "Logout",
+        "membership": "Membership",
+        "profiles": "Profiles",
+        "settings": "Settings"
+      }
+    },
     "login": {
-      "button" : {
-        "title" : "Login"        
-      }, 
-      "forgot" : {
-        "id" : "forgot id?",
-        "password" : "forgot password?"
-      }, 
-      "remember" : "Remember me",
-      "register-text" : "You don't have account?",
-      "register" : "Sign up"
-    
+      "button": {
+        "title": "Login"
+      },
+      "forgot": {
+        "password": "forgot password?"
+      },
+      "register": "Sign up",
+      "register-text": "You don't have account?",
+      "remember": "Remember me"
     }
   }
 }

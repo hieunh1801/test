@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { SessionStorageService } from './session-storage.service';
@@ -20,7 +19,6 @@ export class TokenStorageService {
     } else {
       this.storageService = this.sessionStorageService;
     }
-    console.log(this.storageService);
   }
 
   public set rememberMe(rememberMe: boolean) {
@@ -72,6 +70,19 @@ export class TokenStorageService {
 
   public get authorities(): string[] {
     return this.storageService.get(TokenKey.AUTHORITIES);
+  }
+
+  /**
+   * Clear all key related to token
+   */
+  public clearTokenStorage(): void {
+    this.storageService.removes([
+      TokenKey.ACCESS_TOKEN,
+      TokenKey.REFRESH_TOKEN,
+      TokenKey.USERNAME,
+      TokenKey.AUTHORITIES,
+      TokenKey.REMEMBER_ME,
+    ]);
   }
 }
 

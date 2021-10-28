@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,30 @@ import { LanguageService } from '../../services/language.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public languageService: LanguageService) {}
+  isLogin = false;
+  username = '';
 
-  ngOnInit(): void {}
+  constructor(
+    public languageService: LanguageService,
+    private tokenStorageService: TokenStorageService
+  ) {
+    console.log('HeaderComponent');
+  }
+
+  ngOnInit(): void {
+    const username = this.tokenStorageService.username;
+    if (username) {
+      this.isLogin = true;
+      this.username = username;
+    }
+  }
 
   changeLanguage(mLanguage: string): void {
     this.languageService.currentLanguage = mLanguage;
+  }
+
+  logout(): void {
+    this.tokenStorageService.clearTokenStorage();
+    window.location.reload();
   }
 }
