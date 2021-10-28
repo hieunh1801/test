@@ -10,6 +10,7 @@ import { TokenStorageService } from '../../services/token-storage.service';
 export class HeaderComponent implements OnInit {
   isLogin = false;
   username = '';
+  isOpenMenuMobile = false;
 
   constructor(
     public languageService: LanguageService,

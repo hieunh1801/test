@@ -1,9 +1,9 @@
-header {  
+header {
   order: 1;
-  
+
   .mat-toolbar.mat-primary {
     background: var(--primary-color);
-    color: black;    
+    color: black;
   }
 
   ::ng-deep .mat-form-field {
@@ -41,9 +41,39 @@ header {
   background-color: #f2f2f2;
 }
 
-.logo {  
+.logo {
   left: 2.5%;
   right: 86.25%;
   top: 18.75%;
-  bottom: 18.75%;  
+  bottom: 18.75%;
+}
+
+.menu-mobile-container {
+  display: flex;
+  width: 100vw;
+  background-color: white;
+  border-bottom: 1px #c4c4c4 solid;
+
+  ::ng-deep {
+    .cdk-overlay-pane {
+      min-width: 100vw !important;
+      right: 0 !important;
+    }
+
+    .mat-expansion-panel {
+      box-shadow: none !important;
+    }
+
+    .mat-expansion-panel-header {
+      padding: 0 16px !important;
+    }
+
+    .mat-expansion-panel-header.mat-expanded {
+      height: 48px;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0 24px !important;
+    }
+  }
 }

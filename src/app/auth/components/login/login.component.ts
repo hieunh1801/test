@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
-import { AuthService } from '../../auth.service';
-import { LoginRequest, LoginResponse } from './login';
+import { AuthService, LoginRequest, LoginResponse } from '../../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -87,6 +86,10 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             console.log(error.response);
+            this.matSnackbarService.open(
+              'Login failed. Server is not response',
+              'LOGIN'
+            );
           },
         });
     }

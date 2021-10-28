@@ -1,11 +1,6 @@
 <header>
-  <mat-toolbar color="primary">
-    <div fxFlex="5" fxHide.gt-sm>
-      <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <!-- Left -->
+  <mat-toolbar color="primary" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    <!-- brand -->
     <div fxFlex="10">
       <button mat-button routerLink="/" translate>
         <!--<p translate>layout.header.spmed-logo</p>-->
@@ -116,39 +111,6 @@
       >
         <mat-icon>account_circle</mat-icon>
       </button>
-      <mat-menu #menuUserProfileForWeb="matMenu">
-        <button mat-menu-item>
-          <div
-            style="width: 200px"
-            fxLayout="row"
-            fxLayoutAlign="space-between center"
-          >
-            <span translate>layout.header.users-menu.profiles</span>
-            <span style="font-style: oblique; opacity: 0.9"
-              >@{{ username }}</span
-            >
-          </div>
-        </button>
-        <button mat-menu-item>
-          <span translate>layout.header.users-menu.settings</span>
-        </button>
-        <button mat-menu-item>
-          <div
-            style="width: 200px"
-            fxLayout="row"
-            fxLayoutAlign="space-between center"
-          >
-            <span translate>layout.header.users-menu.membership</span>
-            <mat-chip-list>
-              <mat-chip>Doctor</mat-chip>
-            </mat-chip-list>
-          </div>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item (click)="logout()">
-          <span translate>layout.header.users-menu.logout</span>
-        </button>
-      </mat-menu>
       <!-- menu user profile end-->
 
       <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
@@ -175,10 +137,127 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+    </div>
 
-      <button mat-button routerLink="/auth/login" [fxHide]="true">
-        <span translate>layout.header.login</span>
+    <!-- menu for mobile -->
+    <div fxFlex="5" fxHide.gt-sm>
+      <button (click)="isOpenMenuMobile = !isOpenMenuMobile" mat-button>
+        <mat-icon>menu</mat-icon>
       </button>
     </div>
   </mat-toolbar>
 </header>
+
+<!-- menu user for web -->
+<mat-menu #menuUserProfileForWeb="matMenu">
+  <button mat-menu-item>
+    <div
+      style="width: 200px"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <span translate>layout.header.users-menu.profiles</span>
+      <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
+    </div>
+  </button>
+  <button mat-menu-item>
+    <span translate>layout.header.users-menu.settings</span>
+  </button>
+  <button mat-menu-item>
+    <div
+      style="width: 200px"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <span translate>layout.header.users-menu.membership</span>
+      <mat-chip-list>
+        <mat-chip>Doctor</mat-chip>
+      </mat-chip-list>
+    </div>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="logout()">
+    <span translate>layout.header.users-menu.logout</span>
+  </button>
+</mat-menu>
+
+<!-- this is overlay for mobile menu -->
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpenMenuMobile"
+>
+  <mat-list class="menu-mobile-container" fxLayout="column" fxHide.gt-sm>
+    <mat-divider></mat-divider>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span translate
+              >layout.header.menu-mobile.service</span
+            ></mat-panel-title
+          >
+        </mat-expansion-panel-header>
+        <mat-list>
+          <button mat-menu-item routerLink="/pdss">
+            <span translate>layout.header.menu-mobile.services.pdss</span>
+          </button>
+          <button mat-menu-item routerLink="/adme">
+            <span translate>layout.header.menu-mobile.services.adme</span>
+          </button>
+          <button mat-menu-item routerLink="/genotyping-kit">
+            <span translate
+              >layout.header.menu-mobile.services.genotyping-kit</span
+            >
+          </button>
+          <button mat-menu-item>
+            <span translate>layout.header.menu-mobile.services.others</span>
+          </button>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button mat-menu-item routerLink="/about-us">
+      <span translate>layout.header.menu-mobile.about-us</span>
+    </button>
+    <button mat-menu-item routerLink="/news">
+      <span translate>layout.header.menu-mobile.news</span>
+    </button>
+    <button mat-menu-item routerLink="/contact">
+      <span translate>layout.header.menu-mobile.contact</span>
+    </button>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span translate>layout.header.menu-mobile.profiles</span>
+        <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
+          >@{{ username }}</span
+        >
+      </div>
+    </button>
+    <button mat-menu-item>
+      <span translate>layout.header.menu-mobile.settings</span>
+    </button>
+    <button mat-menu-item>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span translate>layout.header.menu-mobile.membership</span>
+        <mat-chip-list>
+          <mat-chip>Doctor</mat-chip>
+        </mat-chip-list>
+      </div>
+    </button>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/login">
+      <span translate>layout.header.menu-mobile.login</span>
+    </button>
+    <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/register">
+      <span translate>layout.header.menu-mobile.sign-up</span>
+    </button>
+    <button mat-menu-item [fxHide]="!isLogin" (click)="logout()">
+      <span translate>layout.header.menu-mobile.logout</span>
+    </button>
+  </mat-list>
+</ng-template>

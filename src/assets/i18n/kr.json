@@ -18,6 +18,24 @@
       "about-us": "About us",
       "contact": "Contact",
       "login": "Login",
+      "menu-mobile": {
+        "about-us": "About us",
+        "contact": "Contact",
+        "login": "Login",
+        "logout": "Logout",
+        "membership": "Membership",
+        "news": "News",
+        "profiles": "Profiles",
+        "service": "Service",
+        "services": {
+          "adme": "ADME",
+          "genotyping-kit": "Genotyping KIT",
+          "others": "Others",
+          "pdss": "PDSS"
+        },
+        "settings": "Settings",
+        "sign-up": "Sign Up"
+      },
       "news": "News",
       "register": "Register",
       "services": "Services",
