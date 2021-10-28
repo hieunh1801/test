@@ -1,0 +1,134 @@
+<div id="register-step2" fxLayout="row" fxLayoutAlign="space-around center">
+  <form [formGroup]="signUpForm2">
+    <mat-card style="min-width: 960px">
+      <h1>Sign up for SPMED</h1>
+
+      <mat-card-content>
+        <div fxFlex="50" class="step-container" fxHide.lt-lg>
+          <div class="step-box">
+            <div class="step-title">Step 1</div>
+            <div class="step-comment" translate>
+              layout.auth.register.step1-comment
+            </div>
+          </div>
+          <div class="selected-step-box">
+            <div class="selected-step-title">Step 2</div>
+            <div class="selected-step-comment" translate>
+              layout.auth.register.step2-comment
+            </div>
+          </div>
+          <div class="step-box">
+            <div class="step-title">Step 3</div>
+            <div class="step-comment" translate>
+              layout.auth.register.step3-comment
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="50"
+          fxHide.lt-lg
+          fxLayout="column"
+          class="agreement-container"
+        >
+          <div style="width: 100%; height: 34px">
+            <div style="font-size: 14px; line-height: 16px">Username</div>
+            <div
+              style="
+                font-size: 12px;
+                line-height: 14px;
+                color: rgba(0, 0, 0, 0.5);
+              "
+            >
+              This is account you use to login spmed
+            </div>
+          </div>
+          <div style="margin: 10px 0px">
+            <mat-form-field class="input-full-width" appearance="fill">
+              <input matInput placeholder="" /> </mat-form-field
+            ><br />
+          </div>
+          <div>
+            <div style="font-size: 14px; line-height: 16px">Password</div>
+          </div>
+          <div>
+            <mat-form-field class="input-full-width" appearance="fill">
+              <input matInput placeholder="" />
+            </mat-form-field>
+          </div>
+          <div>
+            <div style="font-size: 14px; line-height: 16px">
+              Confirm Password
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                line-height: 14px;
+                color: rgba(0, 0, 0, 0.5);
+              "
+            >
+              Re-typing your password
+            </div>
+          </div>
+          <div>
+            <mat-form-field class="input-full-width" appearance="fill">
+              <input matInput placeholder="" />
+            </mat-form-field>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            style="width: 100%; margin-top: 15px"
+          >
+            <span translate>layout.auth.register.step2-confirm</span>
+          </button>
+
+          <div
+            style="
+              margin: 20px auto 20px auto;
+              font-weight: bold;
+              font-size: 14px;
+              line-height: 16px;
+              text-align: center;
+            "
+          >
+            Or
+          </div>
+          <button
+            mat-raised-button
+            class="input-full-width"
+            style="margin-top: 0px; margin-right: 5px"
+          >
+            <span translate>layout.auth.login.kakaotalk</span>
+          </button>
+          <button
+            mat-raised-button
+            class="input-full-width"
+            style="margin-top: 15px; margin-right: 5px"
+          >
+            <span translate>layout.auth.login.naver</span>
+          </button>
+        </div>
+
+        <div
+          fxShow.lt-lg
+          fxHide.gt-md
+          fxLayout="column"
+          style="width: 100%; font-size: 12px"
+        >
+          <div style="height: 40px">
+            <mat-checkbox>
+              <span translate>layout.auth.register.agree</span>
+            </mat-checkbox>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            class="agreement-button-mobile"
+          >
+            <span translate>layout.auth.register.step1-confirm</span>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
