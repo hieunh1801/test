@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
+import { ImageOverlayFullscreenComponent } from './components/image-overlay-fullscreen/image-overlay-fullscreen.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -19,6 +20,7 @@ const COMPONENTS = [
   AuthLayoutComponent,
   HomeLayoutComponent,
   PageLoadingComponent,
+  ImageOverlayFullscreenComponent,
 ];
 
 const httpInterceptorProviders = [

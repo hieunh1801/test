@@ -1,44 +1,5 @@
 {
   "layout": {
-    "auth": {
-      "login": {
-        "button": {
-          "title": "Login"
-        },
-        "forgot": {
-          "password": "forgot password?"
-        },
-        "kakaotalk": "Login with Kakaotalk",
-        "naver": "Login with Naver",
-        "register": "Sign up",
-        "register-text": "You don't have account?",
-        "remember": "Remember me"
-      },
-      "register": {
-        "agree": "Agree to all of the following terms and conditions of SPMED: Terms of Service, Privacy Policy.",
-        "privacy": "Privacy Policy",
-        "step1-comment": "",
-        "step1-confirm": "Confirm",
-        "step2-comment": "",
-        "step2-confirm": "Continue (Step2 of 3)",
-        "step3-comment": "",
-        "terms": "Terms of Service"
-      }
-    },
-    "footer": {
-      "address": {
-        "headquater": "HeadQuarter",
-        "headquater-address": "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
-        "seoul-branch": "Seoul Office",
-        "seoul-branch-address": "709, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea"
-      },
-      "copyright": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law.",
-      "link": {
-        "company-introduction": "Company Introduction",
-        "privacy-policy": "Privacy Policy",
-        "term-of-policy": "Term of Policy"
-      }
-    },
     "header": {
       "about-us": "About us",
       "contact": "Contact",
@@ -85,12 +46,60 @@
         "settings": "Settings"
       }
     },
-    "login": {
-      "button": {
-        "title": "Login"
+
+    "footer": {
+      "link": {
+        "company-introduction": "Company Introduction",
+        "term-of-policy": "Term of Policy",
+        "privacy-policy": "Privacy Policy"
       },
-      "register": "",
-      "register-text": ""
+      "address": {
+        "headquater": "HeadQuarter",
+        "headquater-address": "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
+        "seoul-branch": "Seoul Office",
+        "seoul-branch-address": "709, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea"
+      },
+      "copyright": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law."
+    },
+
+    "auth": {
+      "login": {
+        "button": {
+          "title": "Login"
+        },
+        "forgot": {
+          "id": "forgot id?",
+          "password": "forgot password?"
+        },
+        "remember": "Remember me",
+        "register-text": "You don't have account?",
+        "register": "Sign up",
+        "kakaotalk": "Login with Kakaotalk",
+        "naver": "Login with Naver"
+      },
+      "register": {
+        "agree": "Agree to all of the following terms and conditions of SPMED",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy",
+        "require": "Required",
+        "option": "Option",
+        "step1-comment": "Agree to terms and conditions of SPMED",
+        "step2-comment": "Fill account information  or use another service to sign up",
+        "step3-comment": "Personal information",
+        "step1-confirm": "Confirm",
+        "step2-confirm": "Continue (Step2 of 3)",
+        "step3-confirm": "Sign up",
+        "id": "Username",
+        "password": "Password",
+        "confirm-password": "Confirm Password",
+        "personal-info": {
+          "name": "Your Name",
+          "dateofbirth": "Date of birth",
+          "gender": "Gender",
+          "email": "Email",
+          "phone": "Phone number"
+        }
+      }
     }
   }
 }

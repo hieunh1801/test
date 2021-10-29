@@ -14,6 +14,7 @@ export class RegisterStep3Component implements OnInit {
     */
   });
 
+  genders: string[] = ['Male', 'Female', 'Other'];
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
