@@ -1,12 +1,14 @@
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about-us',
-  templateUrl: './about-us.component.html',
-  styleUrls: ['./about-us.component.scss'],
+  selector: 'app-certificate-list',
+  templateUrl: './certificate-list.component.html',
+  styleUrls: ['./certificate-list.component.scss'],
 })
-export class AboutUsComponent implements OnInit {
-  certificateList = [
+export class CertificateListComponent implements OnInit {
+  certificateList: Certificate[] = [
     {
       title:
         'Medical device quality management system ISO13485:2016 certification',
@@ -25,7 +27,7 @@ export class AboutUsComponent implements OnInit {
       url: 'https://spmed.kr/data/bbsData/15954046379.jpg',
     },
     {
-      title: 'manufacturing permit for in vitro medical devices_CYP2D6',
+      title: 'Manufacturing permit for in vitro medical devices_CYP2D6',
       url: 'https://spmed.kr/data/bbsData/15959158849.jpg',
     },
     {
@@ -50,7 +52,25 @@ export class AboutUsComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  isShowImageOverlay = false;
+
+  selectedCertificate?: Certificate;
+
+  constructor(public overlay: Overlay) {}
 
   ngOnInit(): void {}
+
+  openOverlayImage(certificate: Certificate): void {
+    this.selectedCertificate = certificate;
+    this.isShowImageOverlay = true;
+  }
+
+  closeOverlayImage(): void {
+    this.isShowImageOverlay = false;
+  }
+}
+
+interface Certificate {
+  title: string;
+  url: string;
 }
