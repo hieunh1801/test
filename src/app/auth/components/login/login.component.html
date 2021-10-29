@@ -19,12 +19,12 @@
         <div fxLayout="row" class="login-comment">
           <div fxFlex="50">
             <mat-checkbox formControlName="rememberMe"
-              ><span translate>layout.login.remember</span></mat-checkbox
+              ><span translate>layout.auth.login.remember</span></mat-checkbox
             >
           </div>
           <div fxFlex class="forgot-password">
             <a routerLink="/auth/reset-password"
-              ><span translate>layout.login.forgot.password</span></a
+              ><span translate>layout.auth.login.forgot.password</span></a
             >
           </div>
         </div>
@@ -34,7 +34,7 @@
           class="login-full-width login-button"
           (click)="login()"
         >
-          <span translate>layout.login.button.title</span>
+          <span translate>layout.auth.login.button.title</span>
         </button>
 
         <button
@@ -43,7 +43,7 @@
           style="margin-top: 40px; margin-right: 5px"
           (click)="loginWithKakaoTalk()"
         >
-          Login with Kakaotalk
+          <span translate>layout.auth.login.kakaotalk</span>
         </button>
         <button
           mat-raised-button
@@ -51,15 +51,15 @@
           style="margin-top: 15px; margin-right: 5px"
           (click)="loginWithNaver()"
         >
-          Login with Naver
+          <span translate>layout.auth.login.naver</span>
         </button>
         <div class="login-register">
-          <span translate>layout.login.register-text</span>
+          <span translate>layout.auth.login.register-text</span>
           <a routerLink="/auth/register"
             ><span
               style="padding-left: 5px; color: #003f9e; font-weight: bold"
               translate
-              >layout.login.register</span
+              >layout.auth.login.register</span
             ></a
           >
         </div>
