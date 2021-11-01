@@ -3,7 +3,7 @@
 <mat-toolbar fxHide.lt-md>
   <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
     <button mat-button routerLink="overview">
-      <b>PDSS</b>
+      <b translate>pdss.nav-menu.pdss</b>
     </button>
   </div>
   <div fxFlex="80" fxLayout="row">
@@ -12,30 +12,44 @@
       routerLink="overview"
       routerLinkActive="router-link-active"
     >
-      Overview
+      <span translate>pdss.nav-menu.overview</span>
     </button>
     <button
       mat-button
-      routerLink="products"
+      [matMenuTriggerFor]="pdssProductsMenu"
       routerLinkActive="router-link-active"
     >
-      Products
+      <span translate>pdss.nav-menu.products</span>
+      <mat-icon>arrow_drop_down</mat-icon>
     </button>
     <button
       mat-button
       routerLink="browser"
       routerLinkActive="router-link-active"
     >
-      Browser
+      <span translate>pdss.nav-menu.browser</span>
     </button>
     <button
       mat-button
       routerLink="utility"
       routerLinkActive="router-link-active"
     >
-      Utility
+      <span translate>pdss.nav-menu.utility</span>
     </button>
   </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
+
+<!-- menu pdss/products -->
+<mat-menu #pdssProductsMenu="matMenu">
+  <button mat-menu-item [routerLink]="['products', 'pgx']">
+    <span translate>pdss.products-menu.pgx</span>
+  </button>
+  <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
+    <span translate>pdss.products-menu.pgx-premium</span>
+  </button>
+  <button mat-menu-item [routerLink]="['products', 'single-gene-service']">
+    <span translate>pdss.products-menu.single-gene-service</span>
+  </button>
+</mat-menu>

@@ -92,5 +92,19 @@
       "register": "",
       "register-text": ""
     }
+  },
+  "pdss": {
+    "nav-menu": {
+      "browser": "Browser",
+      "overview": "Overview",
+      "pdss": "PDSS",
+      "products": "Products",
+      "utility": "Utility"
+    },
+    "products-menu": {
+      "pgx": "PGx",
+      "pgx-premium": "PGx Premium",
+      "single-gene-service": "Single Gene Service"
+    }
   }
 }

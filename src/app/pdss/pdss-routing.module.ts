@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserComponent } from './components/browser/browser.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
+import { PgxComponent } from './components/products/components/pgx/pgx.component';
+import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
 import { ProductsComponent } from './components/products/products.component';
 import { UtilityComponent } from './components/utility/utility.component';
 import { PdssComponent } from './pdss.component';
@@ -22,6 +25,14 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+        children: [
+          { path: 'pgx', component: PgxComponent },
+          { path: 'pgx-premium', component: PgxPremiumComponent },
+          {
+            path: 'single-gene-service',
+            component: SingleGeneServiceComponent,
+          },
+        ],
       },
       {
         path: 'browser',
