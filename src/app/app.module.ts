@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
+    FormsModule,
 
     // ngx-translate and the loader module
     HttpClientModule,

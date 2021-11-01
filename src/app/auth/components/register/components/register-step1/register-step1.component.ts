@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-register-step1',
@@ -7,14 +13,17 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register-step1.component.scss'],
 })
 export class RegisterStep1Component implements OnInit {
-  signUpForm1 = this.formBuilder.group({
-    /*username: ['', Validators.required],
-    password: ['', Validators.required],
-    rememberMe: [false, Validators.required],
-    */
-  });
+  signUpForm1 = this.formBuilder.group({});
+  checked: boolean;
+  checklist: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    this.checked = false;
+  }
 
   ngOnInit(): void {}
+
+  selectAll() {
+    var value = this.checked ? false : true;
+  }
 }

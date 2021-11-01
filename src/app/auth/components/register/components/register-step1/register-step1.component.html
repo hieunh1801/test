@@ -34,13 +34,13 @@
           [ngStyle.xs]="{ padding: '10px' }"
         >
           <div class="agreement-total">
-            <mat-checkbox>
+            <mat-checkbox [(ngModel)]="checked" (change)="selectAll()">
               <span translate>layout.auth.register.agree</span>
             </mat-checkbox>
           </div>
           <div style="margin: 10px 0px; height: 120px">
             <div>
-              <mat-checkbox>
+              <mat-checkbox name="terms_agree" value="1">
                 <span translate>layout.auth.register.terms</span>
               </mat-checkbox>
             </div>
