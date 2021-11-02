@@ -94,8 +94,21 @@
     }
   },
   "pdss": {
+    "my-report": {
+      "drug-table": {
+        "headers": {
+          "drug": "Drug",
+          "index": "No",
+          "recommendation": "Recommendation",
+          "risk": "Risk"
+        }
+      },
+      "total-drug": "Total Drug",
+      "total-gene": "Total Gene"
+    },
     "nav-menu": {
       "browser": "Browser",
+      "my-report": "My Report",
       "overview": "Overview",
       "pdss": "PDSS",
       "products": "Products",

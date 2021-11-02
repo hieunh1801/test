@@ -1,0 +1,39 @@
+<!-- drug table -->
+<div class="drug-table">
+  <table mat-table [dataSource]="drugList">
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef>
+        <span translate> pdss.my-report.drug-table.headers.index </span>
+      </th>
+      <td mat-cell *matCellDef="let drug; index as i">{{ i }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="drugName">
+      <th mat-header-cell *matHeaderCellDef>
+        <span translate> pdss.my-report.drug-table.headers.drug </span>
+      </th>
+      <td mat-cell *matCellDef="let drug">{{ drug.drugName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="riskLevel">
+      <th mat-header-cell *matHeaderCellDef>
+        <span translate> pdss.my-report.drug-table.headers.risk </span>
+      </th>
+      <td mat-cell *matCellDef="let drug">{{ drug.risk }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="recommendation">
+      <th mat-header-cell *matHeaderCellDef fxHide.lt-sm>
+        <span translate>
+          pdss.my-report.drug-table.headers.recommendation
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let drug" fxHide.lt-sm>
+        {{ drug.recommendation }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

@@ -1,0 +1,18 @@
+<!-- statistic -->
+<div class="my-report">
+  <div>
+    <div *ngIf="totalDrug">
+      <span translate>pdss.my-report.total-drug</span>: {{ totalDrug }}
+    </div>
+  </div>
+  <div class="total-gene">
+    <div *ngIf="totalGene">
+      <span translate>pdss.my-report.total-gene</span>
+      : {{ totalGene }}
+    </div>
+  </div>
+
+  <app-drug-table [drugList]="drugList"></app-drug-table>
+</div>
+
+<app-page-loading [isLoading]="isPageLoading"></app-page-loading>

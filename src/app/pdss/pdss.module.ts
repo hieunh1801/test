@@ -11,6 +11,9 @@ import { PgxComponent } from './components/products/components/pgx/pgx.component
 import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
 import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
 import { SharedModule } from '../shared/shared.module';
+import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.component';
+import { MyReportComponent } from './components/my-report/my-report.component';
+import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { SharedModule } from '../shared/shared.module';
     PgxComponent,
     PgxPremiumComponent,
     SingleGeneServiceComponent,
+    PdssNavMenuComponent,
+    MyReportComponent,
+    DrugTableComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule],
 })
