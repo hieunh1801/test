@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
+import { RowExpandedComponent } from './components/my-report/components/drug-table/components/row-expanded/row-expanded.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DrugTableComponent } from './components/my-report/components/drug-table
     PdssNavMenuComponent,
     MyReportComponent,
     DrugTableComponent,
+    RowExpandedComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule],
 })

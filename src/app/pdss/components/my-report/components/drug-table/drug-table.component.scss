@@ -1,5 +1,82 @@
 .drug-table {
+  // for table
   table.mat-table {
     width: 100%;
+  }
+  th.mat-header-cell {
+    color: #ffffff;
+    font-weight: 600;
+    background-color: #003f9e;
+  }
+  tr.detail-row {
+    height: 0;
+  }
+
+  .element-row td {
+    border-bottom-width: 0;
+    cursor: pointer;
+  }
+
+  // row detail
+  .element-detail-wrapper {
+    overflow: hidden;
+    display: flex;
+    padding: 0px;
+
+    margin-left: -24px;
+    margin-right: -24px;
+    // padding-left: 22px;
+    // padding-right: 22px;
+    // margin-bottom: -3px;
+
+    // border: solid 2px #003f9e;
+    // border-top: none;
+    .element-detail {
+      width: 100%;
+      padding: 16px 24px;
+      border: solid 2px #f2f2f2;
+      border-top: none;
+    }
+  }
+  // row expanded
+  .expanded-row {
+    color: #f2f2f2;
+    font-weight: 500;
+    background-color: #f2f2f2;
+    td {
+      // color: white !important;
+    }
+  }
+
+  // risk level
+  .risk-level-container {
+    padding: 8px 16px;
+    // background-color: #f2f2f2;
+    border-radius: 999px;
+    cursor: default;
+  }
+  .danger-level {
+    background-color: #f45a51;
+    color: white !important;
+  }
+  .warning-level {
+    background-color: #f89100;
+    color: white !important;
+  }
+  .caution-level {
+    background-color: #f8cb42;
+    color: black !important;
+  }
+  .good-level {
+    background-color: #44db77;
+    color: black !important;
+  }
+
+  mat-icon {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
   }
 }

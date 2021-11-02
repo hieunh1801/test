@@ -38,7 +38,11 @@
       </button>
     </div>
     <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
-      <button mat-button routerLink="my-report" [fxHide]="!isLogin">
+      <button
+        mat-button
+        routerLink="my-report"
+        routerLinkActive="router-link-active"
+      >
         <b translate>pdss.nav-menu.my-report</b>
       </button>
     </div>
@@ -60,11 +64,7 @@
 
         <!-- MENU -->
         <mat-list>
-          <button
-            mat-menu-item
-            routerLink="overview"
-            routerLinkActive="router-link-active"
-          >
+          <button mat-menu-item routerLink="overview">
             <span translate>pdss.nav-menu.overview</span>
           </button>
           <mat-expansion-panel class="pdss-products">
@@ -108,7 +108,7 @@
             <span translate>pdss.nav-menu.utility</span>
           </button>
 
-          <button mat-menu-item routerLink="my-report" [fxHide]="!isLogin">
+          <button mat-menu-item routerLink="my-report">
             <b translate>pdss.nav-menu.my-report</b>
           </button>
         </mat-list>

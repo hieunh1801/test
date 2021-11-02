@@ -101,6 +101,12 @@
           "index": "No",
           "recommendation": "Recommendation",
           "risk": "Risk"
+        },
+        "row-expanded": {
+          "kdfa-class": "KDFA Class",
+          "kpic-class": "KPIC Class",
+          "related-diseases": "Related Diseases",
+          "related-genes": "Related Genes"
         }
       },
       "total-drug": "Total Drug",

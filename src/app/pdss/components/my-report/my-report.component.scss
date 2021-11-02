@@ -1,5 +1,32 @@
 .my-report {
   // background-color: #f2f2f2;
-  max-width: 960px;
+  max-width: 1280px;
   margin: auto;
+  padding: 16px;
+
+  .statistic {
+    .card {
+      background-color: #f2f2f2;
+      margin-left: 16px;
+      padding: 16px;
+      border-radius: 1px;
+      font-size: 16px;
+    }
+
+    .card:first-child {
+      margin-left: 0;
+    }
+
+    .card-total-drug {
+      background-color: #9e2110;
+      color: white;
+    }
+
+    .card-total-gene {
+      background-color: #082652;
+      color: white;
+    }
+
+    margin-bottom: 16px;
+  }
 }

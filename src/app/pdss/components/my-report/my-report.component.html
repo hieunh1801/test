@@ -1,17 +1,29 @@
 <!-- statistic -->
 <div class="my-report">
-  <div>
-    <div *ngIf="totalDrug">
-      <span translate>pdss.my-report.total-drug</span>: {{ totalDrug }}
+  <div
+    class="statistic"
+    fxLayout="row"
+    fxLayoutAlign="space-between start"
+    fxLayout.lt-sm="column"
+  >
+    <div>
+      <h1>Report</h1>
+      <p>View your test results</p>
+    </div>
+    <div fxLayout="row">
+      <div class="card card-total-drug">
+        <div *ngIf="totalDrug">
+          <span translate>pdss.my-report.total-drug</span>: {{ totalDrug }}
+        </div>
+      </div>
+      <div class="card card-total-gene">
+        <div *ngIf="totalGene">
+          <span translate>pdss.my-report.total-gene</span>
+          : {{ totalGene }}
+        </div>
+      </div>
     </div>
   </div>
-  <div class="total-gene">
-    <div *ngIf="totalGene">
-      <span translate>pdss.my-report.total-gene</span>
-      : {{ totalGene }}
-    </div>
-  </div>
-
   <app-drug-table [drugList]="drugList"></app-drug-table>
 </div>
 

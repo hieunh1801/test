@@ -1,25 +1,38 @@
 <!-- drug table -->
 <div class="drug-table">
-  <table mat-table [dataSource]="drugList">
+  <table mat-table [dataSource]="drugList" multiTemplateDataRows>
     <ng-container matColumnDef="index">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> pdss.my-report.drug-table.headers.index </span>
       </th>
-      <td mat-cell *matCellDef="let drug; index as i">{{ i }}</td>
+      <td mat-cell *matCellDef="let element; let index = dataIndex">
+        {{ index + 1 }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="drugName">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> pdss.my-report.drug-table.headers.drug </span>
       </th>
-      <td mat-cell *matCellDef="let drug">{{ drug.drugName }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.drugName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="riskLevel">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> pdss.my-report.drug-table.headers.risk </span>
       </th>
-      <td mat-cell *matCellDef="let drug">{{ drug.risk }}</td>
+      <td mat-cell *matCellDef="let element">
+        <span
+          [ngClass]="{
+            'risk-level-container': true,
+            'good-level': element.risk === 'Good',
+            'caution-level': element.risk === 'Caution',
+            'danger-level': element.risk === 'Danger'
+          }"
+        >
+          {{ element.risk | lowercase }}
+        </span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="recommendation">
@@ -28,12 +41,50 @@
           pdss.my-report.drug-table.headers.recommendation
         </span>
       </th>
-      <td mat-cell *matCellDef="let drug" fxHide.lt-sm>
-        {{ drug.recommendation }}
+      <td mat-cell *matCellDef="let element" fxHide.lt-sm>
+        {{ element.recommendation }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <span translate> </span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="isExpandedElement(element)">remove</mat-icon>
+        <mat-icon *ngIf="!isExpandedElement(element)">add</mat-icon>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: displayedColumns"
+      class="element-row"
+      [class.expanded-row]="isExpandedElement(element)"
+      (click)="this.toggleElement(element)"
+    ></tr>
+
+    <!-- for detail -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" colspan="999">
+        <div
+          class="element-detail-wrapper"
+          [@detailExpand]="
+            isExpandedElement(element) ? 'expanded' : 'collapsed'
+          "
+        >
+          <div class="element-detail">
+            <app-row-expanded [drug]="element"></app-row-expanded>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="detail-row"
+    ></tr>
   </table>
 </div>
