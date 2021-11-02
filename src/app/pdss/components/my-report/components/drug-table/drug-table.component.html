@@ -74,7 +74,7 @@
             isExpandedElement(element) ? 'expanded' : 'collapsed'
           "
         >
-          <div class="element-detail">
+          <div class="element-detail" *ngIf="isExpandedElement(element)">
             <app-row-expanded [drug]="element"></app-row-expanded>
           </div>
         </div>
