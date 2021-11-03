@@ -1,5 +1,5 @@
-interface SpmedDataResponse {
-  items?: Array<any>;
+interface SpmedDataResponse<T> {
+  items?: Array<T>;
 }
 
 interface SpmedStatusResponse {
@@ -7,7 +7,7 @@ interface SpmedStatusResponse {
   message?: string;
 }
 
-interface SpmedResponse {
-  data?: SpmedDataResponse;
+interface SpmedResponse<T> {
+  data?: SpmedDataResponse<T>;
   status?: SpmedStatusResponse;
 }

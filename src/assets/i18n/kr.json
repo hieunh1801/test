@@ -67,5 +67,38 @@
         "step3-confirm": "회원가입"
       }
     }
+  },
+  "pdss": {
+    "my-report": {
+      "drug-table": {
+        "headers": {
+          "drug": "Drug",
+          "index": "No",
+          "recommendation": "Recommendation",
+          "risk": "Risk"
+        },
+        "row-expanded": {
+          "kdfa-class": "KDFA Class",
+          "kpic-class": "KPIC Class",
+          "related-diseases": "Related Diseases",
+          "related-genes": "Related Genes"
+        }
+      },
+      "total-drug": "Total Drug",
+      "total-gene": "Total Gene"
+    },
+    "nav-menu": {
+      "browser": "Browser",
+      "my-report": "My Report",
+      "overview": "Overview",
+      "pdss": "PDSS",
+      "products": "Products",
+      "utility": "Utility"
+    },
+    "products-menu": {
+      "pgx": "PGx",
+      "pgx-premium": "PGx Premium",
+      "single-gene-service": "Single Gene Service"
+    }
   }
 }

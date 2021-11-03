@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { HomeLayoutComponent } from './shared/layouts/home-layout/home-layout.component';
+import { PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -56,7 +57,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      // config: preloading module
+      // preloadingStrategy: PreloadAllModules,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

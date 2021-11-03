@@ -20,3 +20,31 @@ npm run i18n
 ```
 
 - Step 3: Translate language in Korean and English in **/assets/i18n/en.json** and **/assets/i18n/kr.json**
+
+## Deploy to server
+
+```bash
+
+# step 1: build project with production env
+npm run build-prod
+
+# step 2: ssh to server
+ssh 10.81.103.125
+
+# step 3: rename folder to new version in server
+# 10.81.103.125
+mv /home/ec2-user/workspace_spmed/spmed-portal-desktop /home/ec2-user/workspace_spmed/spmed-portal-desktop-211029
+
+# step 4: copy all file in folder /dist/spmed-portal-desktop to server
+# local
+scp -r /home/hieu/Desktop/spmed-pdss-210705/spmed-portal-desktop/dist/spmed-portal-desktop ec2-user@10.81.103.125:/home/ec2-user/workspace_spmed/spmed-portal-desktop
+
+# step 5: service
+https://portalapi.spmed.kr/portal/ping
+https://gwapi.spmed.kr/api-gateway/v1.0/portal/ping
+
+https://cuapi.spmed.kr/customer-user/ping
+https://gwapi.spmed.kr/api-gateway/v1.0/customer-user/ping
+
+https://home.spmed.kr/home
+```
