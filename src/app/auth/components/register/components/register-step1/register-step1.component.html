@@ -1,6 +1,6 @@
 <div id="register-step1" fxLayout="row" fxLayoutAlign="space-around center">
-  <form [formGroup]="signUpForm1">
-    <mat-card>
+  <form [formGroup]="signUpForm1" (ngSubmit)="onSubmit()">
+    <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
       <h1>Sign up for SPMED</h1>
 
       <mat-card-content>
@@ -29,17 +29,24 @@
           fxFlex.lt-lg="100"
           fxLayout="column"
           class="agreement-container"
+          [ngStyle.md]="{ width: '600px', padding: '10px' }"
+          [ngStyle.sm]="{ width: '600px', padding: '10px' }"
+          [ngStyle.xs]="{ padding: '10px' }"
         >
-          <div style="height: 40px">
-            <mat-checkbox>
+          <div class="agreement-total">
+            <mat-checkbox
+              formControlName="total_agree"
+              value="1"
+              (change)="updateCheck()"
+            >
               <span translate>layout.auth.register.agree</span>
             </mat-checkbox>
           </div>
-          <div style="margin: 10px 0px" style="height: 120px">
+          <div style="margin: 10px 0px; height: 120px">
             <div>
-              <mat-checkbox
-                ><span translate>layout.auth.register.terms</span></mat-checkbox
-              >
+              <mat-checkbox formControlName="terms_agree" value="1" required>
+                <span translate>layout.auth.register.terms</span>
+              </mat-checkbox>
             </div>
             <div class="agreement-box-mobile">
               <p>1 장 총 칙</p>
@@ -394,7 +401,7 @@
 
           <div style="margin: 10px 0px" style="height: 120px">
             <div>
-              <mat-checkbox
+              <mat-checkbox formControlName="privacy_agree" value="1" required
                 ><span translate
                   >layout.auth.register.privacy</span
                 ></mat-checkbox
@@ -434,6 +441,8 @@
             mat-raised-button
             color="primary"
             class="agreement-button-mobile"
+            type="submit"
+            [disabled]="!signUpForm1.valid"
           >
             <span translate>layout.auth.register.step1-confirm</span>
           </button>

@@ -1,1 +1,123 @@
-<p>register-step3 works!</p>
+<div id="register-step3" fxLayout="row" fxLayoutAlign="space-around center">
+  <form [formGroup]="signUpForm3">
+    <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
+      <h1>Sign up for SPMED</h1>
+
+      <mat-card-content>
+        <div fxFlex="50" class="step-container" fxHide.lt-lg>
+          <div class="step-box">
+            <div class="step-title">Step 1</div>
+            <div class="step-comment" translate>
+              layout.auth.register.step1-comment
+            </div>
+          </div>
+          <div class="step-box">
+            <div class="step-title">Step 2</div>
+            <div class="step-comment" translate>
+              layout.auth.register.step2-comment
+            </div>
+          </div>
+          <div class="selected-step-box">
+            <div class="selected-step-title">Step 3</div>
+            <div class="selected-step-comment" translate>
+              layout.auth.register.step3-comment
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="50"
+          fxFlex.lt-lg="100"
+          fxLayout="column"
+          class="agreement-container"
+          [ngStyle.md]="{ width: '600px', padding: '10px' }"
+          [ngStyle.sm]="{ width: '600px', padding: '10px' }"
+          [ngStyle.xs]="{ padding: '10px' }"
+        >
+          <div style="width: 100%; margin: 10x; padding: 10px">
+            <div class="signup-title" translate>
+              layout.auth.register.personal-info.name
+            </div>
+            <mat-grid-list cols="3" rowHeight="80px">
+              <mat-grid-tile colspan="1">
+                <mat-form-field hintLabel="Sir Name" appearance="fill">
+                  <input matInput type="text" formControlName="fsirname" />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="2">
+                <mat-form-field hintLabel="Given Name" appearance="fill">
+                  <input matInput type="text" formControlName="fgivenname" />
+                </mat-form-field>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+
+          <div style="width: 100%; margin: 10x; padding: 10px">
+            <div class="signup-title" translate>
+              layout.auth.register.personal-info.dateofbirth
+            </div>
+            <mat-form-field appearance="fill">
+              <input
+                matInput
+                type="text"
+                formControlName="fdateofbirth"
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div style="width: 100%; margin: 10x; padding: 10px">
+            <div id="example-radio-group-label" class="signup-title" translate>
+              layout.auth.register.personal-info.gender
+            </div>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"
+              formControlName="fgender"
+            >
+              <mat-radio-button
+                class="example-radio-button"
+                *ngFor="let gender of genders"
+                [value]="gender"
+              >
+                {{ gender }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div style="width: 100%; margin: 10x; padding: 10px">
+            <div class="signup-title" translate>
+              layout.auth.register.personal-info.email
+            </div>
+            <mat-form-field hintLabel="" appearance="fill">
+              <input matInput type="text" formControlName="femail" />
+            </mat-form-field>
+          </div>
+
+          <div style="width: 100%; margin: 10x; padding: 10px">
+            <div class="signup-title" translate>
+              layout.auth.register.personal-info.phone
+            </div>
+            <mat-form-field hintLabel="" appearance="fill">
+              <input matInput type="text" formControlName="fphone" />
+            </mat-form-field>
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="agreement-button-mobile"
+          >
+            <span translate>layout.auth.register.step3-confirm</span>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <pre>{{ signUpForm3.value | json }}</pre>
+  </form>
+</div>

@@ -21,7 +21,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
-
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({

@@ -12,6 +12,24 @@
       "about-us": "About us",
       "contact": "Contact",
       "login": "Login",
+      "menu-mobile": {
+        "about-us": "About Us",
+        "contact": "Contact",
+        "login": "Login",
+        "logout": "Logout",
+        "membership": "Membership",
+        "news": "News",
+        "profiles": "Profiles",
+        "service": "Service",
+        "services": {
+          "adme": "ADME",
+          "genotyping-kit": "Genotyping KIT",
+          "others": "Others",
+          "pdss": "PDSS"
+        },
+        "settings": "Settings",
+        "sign-up": "Sign Up"
+      },
       "news": "News",
       "register": "Register",
       "services": "Services",
@@ -29,7 +47,12 @@
           "title": "PDSS"
         }
       },
-      "spmed-logo": "SPMED Logo"
+      "users-menu": {
+        "logout": "Logout",
+        "membership": "Membership",
+        "profiles": "Profiles",
+        "settings": "Settings"
+      }
     },
 
     "footer": {
@@ -72,7 +95,17 @@
         "step3-comment": "추가정보 입력 및 가입완료",
         "step1-confirm": "동의",
         "step2-confirm": "계속 (Step 2 of 3)",
-        "step3-confirm": "회원가입"
+        "step3-confirm": "회원가입",
+        "id": "아이디",
+        "password": "비밀번호",
+        "confirm-password": "비밀번호 확인",
+        "personal-info": {
+          "name": "이름",
+          "dateofbirth": "생년월일",
+          "gender": "성별",
+          "email": "이메일",
+          "phone": "연락처"
+        }
       }
     }
   },
