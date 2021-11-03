@@ -8,67 +8,10 @@
   "PDSS__RISK_LEVEL__GOOD": "양호",
   "PDSS__RISK_LEVEL__WARNING": "경고",
   "layout": {
-    "auth": {
-      "login": {
-        "button": {
-          "title": "로그인"
-        },
-        "forgot": {
-          "password": "비밀번호 찾기"
-        },
-        "kakaotalk": "카카오톡으로 로그인",
-        "naver": "네이버로 로그인",
-        "register": "회원가입",
-        "register-text": "에스피메드 계정이 없으세요?",
-        "remember": "아이디 저장"
-      },
-      "register": {
-        "agree": "서비스 이용약관, 개인정보 수집 및 이용에 모두 동의합니다.",
-        "privacy": "개인정보 수집 및 이용동의",
-        "step1-comment": "약관동의",
-        "step1-confirm": "동의",
-        "step2-comment": "정보입력",
-        "step2-confirm": "계속 (Step 2 of 3)",
-        "step3-comment": "추가정보 입력 및 가입완료",
-        "terms": "서비스 이용약관 동의"
-      }
-    },
-    "footer": {
-      "address": {
-        "headquater": "본사",
-        "headquater-address": "부산광역시 북구 효열로 111, 6층 610,611,612,613,614호(금곡동, 부산지식산업센터)",
-        "seoul-branch": "서울사무소",
-        "seoul-branch-address": "서울특별시 영등포구 국제금융로6길 30, 709호"
-      },
-      "copyright": "spmed.kr 의 모든 컨텐츠들은 저작권법에 의거 보호받고 있습니다. 저작권자 또는 SPMED의 승인없이 컨텐츠의 일부 또는 전체를 복사하여 다른 매체(개인 미디어 포함)에 게재하는 행위는 저작권법에 의거 법적 조치에 처해질 수 있습니다.",
-      "link": {
-        "company-introduction": "회사소개",
-        "privacy-policy": "개인정보처리방침",
-        "term-of-policy": "이용약관"
-      }
-    },
     "header": {
       "about-us": "About us",
       "contact": "Contact",
       "login": "Login",
-      "menu-mobile": {
-        "about-us": "About Us",
-        "contact": "Contact",
-        "login": "Login",
-        "logout": "Logout",
-        "membership": "Membership",
-        "news": "News",
-        "profiles": "Profiles",
-        "service": "Service",
-        "services": {
-          "adme": "ADME",
-          "genotyping-kit": "Genotyping KIT",
-          "others": "Others",
-          "pdss": "PDSS"
-        },
-        "settings": "Settings",
-        "sign-up": "Sign Up"
-      },
       "news": "News",
       "register": "Register",
       "services": "Services",
@@ -86,19 +29,51 @@
           "title": "PDSS"
         }
       },
-      "users-menu": {
-        "logout": "Logout",
-        "membership": "Membership",
-        "profiles": "Profiles",
-        "settings": "Settings"
-      }
+      "spmed-logo": "SPMED Logo"
     },
-    "login": {
-      "button": {
-        "title": "Login"
+
+    "footer": {
+      "link": {
+        "company-introduction": "회사소개",
+        "term-of-policy": "이용약관",
+        "privacy-policy": "개인정보처리방침"
       },
-      "register": "",
-      "register-text": ""
+      "address": {
+        "headquater": "본사",
+        "headquater-address": "부산광역시 북구 효열로 111, 6층 610,611,612,613,614호(금곡동, 부산지식산업센터)",
+        "seoul-branch": "서울사무소",
+        "seoul-branch-address": "서울특별시 영등포구 국제금융로6길 30, 709호"
+      },
+      "copyright": "spmed.kr 의 모든 컨텐츠들은 저작권법에 의거 보호받고 있습니다. 저작권자 또는 SPMED의 승인없이 컨텐츠의 일부 또는 전체를 복사하여 다른 매체(개인 미디어 포함)에 게재하는 행위는 저작권법에 의거 법적 조치에 처해질 수 있습니다."
+    },
+    "auth": {
+      "login": {
+        "button": {
+          "title": "로그인"
+        },
+        "forgot": {
+          "id": "아이디 찾기",
+          "password": "비밀번호 찾기"
+        },
+        "remember": "아이디 저장",
+        "register-text": "에스피메드 계정이 없으세요?",
+        "register": "회원가입",
+        "kakaotalk": "카카오톡으로 로그인",
+        "naver": "네이버로 로그인"
+      },
+      "register": {
+        "agree": "서비스 이용약관, 개인정보 수집 및 이용에 모두 동의합니다.",
+        "terms": "서비스 이용약관 동의",
+        "privacy": "개인정보 수집 및 이용동의",
+        "require": "필수",
+        "option": "선택",
+        "step1-comment": "약관동의",
+        "step2-comment": "정보입력",
+        "step3-comment": "추가정보 입력 및 가입완료",
+        "step1-confirm": "동의",
+        "step2-confirm": "계속 (Step 2 of 3)",
+        "step3-confirm": "회원가입"
+      }
     }
   },
   "pdss": {
