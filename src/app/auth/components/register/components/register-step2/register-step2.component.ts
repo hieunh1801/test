@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-step2',
@@ -8,13 +8,19 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterStep2Component implements OnInit {
   signUpForm2 = this.formBuilder.group({
-    /*username: ['', Validators.required],
-    password: ['', Validators.required],
-    rememberMe: [false, Validators.required],
-    */
+    fusername: ['', Validators.required],
+    fpassword: ['', Validators.required, Validators.minLength(4)],
+    repassword: ['', Validators.required],
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    if (this.signUpForm2.valid) {
+      this.signUpForm2.reset();
+      window.location.href = '/auth/register3';
+    }
+  }
 }

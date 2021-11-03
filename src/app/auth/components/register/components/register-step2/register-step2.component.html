@@ -1,5 +1,5 @@
 <div id="register-step2" fxLayout="row" fxLayoutAlign="space-around center">
-  <form [formGroup]="signUpForm2">
+  <form [formGroup]="signUpForm2" (ngSubmit)="onSubmit()">
     <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
       <h1>Sign up for SPMED</h1>
 
@@ -41,7 +41,11 @@
           </div>
           <div style="margin: 10px 0px">
             <mat-form-field class="input-full-width" appearance="fill">
-              <input matInput placeholder="" /> </mat-form-field
+              <input
+                matInput
+                formControlName="fusername"
+                required
+              /> </mat-form-field
             ><br />
           </div>
           <div>
@@ -51,7 +55,14 @@
           </div>
           <div>
             <mat-form-field class="input-full-width" appearance="fill">
-              <input matInput placeholder="" />
+              <input
+                matInput
+                formControlName="fpassword"
+                id="password"
+                type="password"
+                required
+              />
+              <div><div></div></div>
             </mat-form-field>
           </div>
           <div>
@@ -62,13 +73,21 @@
           </div>
           <div>
             <mat-form-field class="input-full-width" appearance="fill">
-              <input matInput placeholder="" />
+              <input
+                matInput
+                formControlName="repassword"
+                id="confirme_password"
+                type="password"
+                required
+              />
             </mat-form-field>
           </div>
           <button
             mat-raised-button
             color="primary"
             class="agreement-button-mobile"
+            type="submit"
+            [disabled]="!signUpForm2.valid"
           >
             <span translate>layout.auth.register.step2-confirm</span>
           </button>
@@ -101,5 +120,7 @@
         </div>
       </mat-card-content>
     </mat-card>
+
+    <pre>{{ signUpForm2.value | json }}</pre>
   </form>
 </div>
