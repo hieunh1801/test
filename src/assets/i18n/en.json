@@ -7,138 +7,75 @@
   "PDSS__RISK_LEVEL__DANGER": "Danger",
   "PDSS__RISK_LEVEL__GOOD": "Good",
   "PDSS__RISK_LEVEL__WARNING": "Warning",
-  "layout": {
-    "header": {
-      "about-us": "About us",
-      "contact": "Contact",
-      "login": "Login",
-      "menu-mobile": {
-        "about-us": "Contact Us",
-        "contact": "Contact",
-        "login": "Login",
-        "logout": "Logout",
-        "membership": "Membership",
-        "news": "News",
-        "profiles": "Profiles",
-        "service": "Service",
-        "services": {
-          "adme": "ADME",
-          "genotyping-kit": "Genotyping KIT",
-          "others": "Other",
-          "pdss": "PDSS"
-        },
-        "settings": "Settings",
-        "sign-up": "Sign Up"
-      },
-      "news": "News",
-      "register": "Register",
-      "services": "Services",
-      "services-option": {
-        "adme": {
-          "sub-title": "Short description for ADME",
-          "title": "ADME"
-        },
-        "genotyping-kit": {
-          "sub-title": "Short description for Genotyping KIT",
-          "title": "Genotyping KIT"
-        },
-        "pdss": {
-          "sub-title": "Short description for PDSS",
-          "title": "PDSS"
-        }
-      },
-      "users-menu": {
-        "logout": "Logout",
-        "membership": "Membership",
-        "profiles": "Profiles",
-        "settings": "Settings"
-      }
-    },
-
-    "footer": {
-      "link": {
-        "company-introduction": "Company Introduction",
-        "term-of-policy": "Term of Policy",
-        "privacy-policy": "Privacy Policy"
-      },
-      "address": {
-        "headquater": "HeadQuarter",
-        "headquater-address": "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
-        "seoul-branch": "Seoul Office",
-        "seoul-branch-address": "709, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea"
-      },
-      "copyright": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law."
-    },
-
-    "auth": {
-      "login": {
-        "button": {
-          "title": "Login"
-        },
-        "forgot": {
-          "id": "forgot id?",
-          "password": "forgot password?"
-        },
-        "remember": "Remember me",
-        "register-text": "You don't have account?",
-        "register": "Sign up",
-        "kakaotalk": "Login with Kakaotalk",
-        "naver": "Login with Naver"
-      },
-      "register": {
-        "agree": "Agree to all of the following terms and conditions of SPMED",
-        "terms": "Terms of Service",
-        "privacy": "Privacy Policy",
-        "require": "Required",
-        "option": "Option",
-        "step1-comment": "Agree to terms and conditions of SPMED",
-        "step2-comment": "Fill account information  or use another service to sign up",
-        "step3-comment": "Personal information",
-        "step1-confirm": "Confirm",
-        "step2-confirm": "Continue (Step2 of 3)",
-        "step3-confirm": "Sign up",
-        "id": "Username",
-        "password": "Password",
-        "confirm-password": "Confirm Password",
-        "personal-info": {
-          "name": "Your Name",
-          "dateofbirth": "Date of birth",
-          "gender": "Gender",
-          "email": "Email",
-          "phone": "Phone number"
-        }
-      }
-    }
-  },
-  "pdss": {
-    "my-report": {
-      "drug-table": {
-        "headers": {
-          "drug": "Drug",
-          "index": "No",
-          "recommendation": "Recommendation",
-          "risk": "Risk"
-        },
-        "row-expanded": {
-          "kdfa-class": "KDFA Class",
-          "kpic-class": "KPIC Class",
-          "related-diseases": "Related Diseases",
-          "related-genes": "Related Genes"
-        }
-      }
-    },
-    "nav-menu": {
-      "browser": "Browser",
-      "my-report": "My Report",
-      "overview": "Overview",
-      "pdss": "PDSS",
-      "products": "Products",
-      "utility": "Utility"
-    },
-    "products-menu": {
-      "pgx": "PGx",
-      "pgx-premium": "PGx Premium",
-      "single-gene-service": "Single Gene Service"
-    }
-  }
+  "LAYOUT__AUTH__LOGIN__LOGIN": "Login",
+  "LAYOUT__AUTH__LOGIN__FORGOT_PASSWORD": "forgot password?",
+  "LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK": "Login with Kakaotalk",
+  "LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER": "Login with Naver",
+  "LAYOUT__AUTH__LOGIN__REGISTER": "Sign up",
+  "LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT": "You don't have account?",
+  "LAYOUT__AUTH__LOGIN__REMEMBER_ME": "Remember me",
+  "LAYOUT__AUTH__REGISTER__AGGREE": "Agree to all of the following terms and conditions of SPMED",
+  "LAYOUT__AUTH__REGISTER__CONFIRM_PASSWORD": "Confirm Password",
+  "LAYOUT__AUTH__REGISTER__ID": "Username",
+  "LAYOUT__AUTH__REGISTER__PASSWORD": "Password",
+  "LAYOUT__AUTH__REGISTER__DATE_OF_BIRTH": "Date of birth",
+  "LAYOUT__AUTH__REGISTER__PERSONAL_INFO__EMAIL": "Email",
+  "LAYOUT__AUTH__REGISTER__PERSONAL_INFO__GENDER": "Gender",
+  "LAYOUT__AUTH__REGISTER__PERSONAL_INFO__NAME": "Your Name",
+  "LAYOUT__AUTH__REGISTER__PERSONAL_INFO__PHONE": "Phone number",
+  "LAYOUT__AUTH__REGISTER__PRIVACY": "Privacy Policy",
+  "LAYOUT__AUTH__REGISTER__STEP1__COMMENT": "Agree to terms and conditions of SPMED",
+  "LAYOUT__AUTH__REGISTER__STEP1__CONFIRM": "Confirm",
+  "LAYOUT__AUTH__REGISTER__STEP2__COMMENT": "Fill account information  or use another service to sign up",
+  "LAYOUT__AUTH__REGISTER__STEP2__CONFIRM": "Continue (Step2 of 3)",
+  "LAYOUT__AUTH__REGISTER__STEP3__COMMENT": "Personal information",
+  "LAYOUT__AUTH__REGISTER__STEP3__CONFIRM": "Sign up",
+  "LAYOUT__AUTH__REGISTER__TERM": "Terms of Service",
+  "LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER": "HeadQuarter",
+  "LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER_ADRESS": "610, 611, 612, 613, 614 Ho, 111, Hyoyeol-ro, Buk-gu, Busan, 46508, Republic of Korea",
+  "LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH": "Seoul Office",
+  "LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH_ADDRESS": "709, 30, Gukjegeumyung-ro 6-gil, Yeongdeungpo-gu, Seoul, Republic of Korea",
+  "LAYOUT__FOOTER__COPYRIGHT": "All content on spmed.kr is protected under copyright law. Copying some or all of the content without the approval of the copyright holder or SPMED and publishing it to other media (including personal media) may be subject to legal action under copyright law.",
+  "LAYOUT__FOOTER__LINK__COMPANY_INTRODUCTION": "Company Introduction",
+  "LAYOUT__FOOTER__LINK__PRIVACY_POLICY": "Privacy Policy",
+  "LAYOUT__FOOTER__LINK__TERM_OF_POLICY": "Term of Policy",
+  "LAYOUT__HEADER__ABOUT_US": "About us",
+  "LAYOUT__HEADER__CONTACT": "Contact",
+  "LAYOUT__HEADER__LOGIN": "Login",
+  "LAYOUT__HEADER__LOGOUT": "Logout",
+  "LAYOUT__HEADER__MEMBERSHIP": "Membership",
+  "LAYOUT__HEADER__NEWS": "News",
+  "LAYOUT__HEADER__PROFILES": "Profiles",
+  "LAYOUT__HEADER__SERVICE": "Service",
+  "LAYOUT__HEADER__SERVICE_ADME": "ADME",
+  "LAYOUT__HEADER__SERVICE_GENOTYPING_KIT": "Genotyping KIT",
+  "LAYOUT__HEADER__SERVICE_OTHERS": "Other",
+  "LAYOUT__HEADER__SERVICE_PDSS": "PDSS",
+  "LAYOUT__HEADER__SETTINGS": "Settings",
+  "LAYOUT__HEADER__SIGN_UP": "Sign Up",
+  "LAYOUT__HEADER__REGISTER": "Register",
+  "LAYOUT__HEADER__SERVICES": "Services",
+  "LAYOUT__HEADER__SERVICES__OPTION__ADME__SUB_TITLE": "Short description for ADME",
+  "LAYOUT__HEADER__SERVICES__OPTION__ADME__TITLE": "ADME",
+  "LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__SUB_TITLE": "Short description for Genotyping KIT",
+  "LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__TITLE": "Genotyping KIT",
+  "LAYOUT__HEADER__SERVICES__OPTION__PDSS_SUB_TITLE": "Short description for PDSS",
+  "LAYOUT__HEADER__SERVICES__OPTION__PDSS_TITLE": "PDSS",
+  "PDSS__MY_REPORT__DRUG_TABLE__HEADERS__DRUG": "Drug",
+  "PDSS__MY_REPORT__DRUG_TABLE__HEADERS__INDEX": "No",
+  "PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RECOMMENDATION": "Recommendation",
+  "PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RISK": "Risk",
+  "PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__KDFA_CLASS": "KDFA Class",
+  "PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__KPIC_CLASS": "KPIC Class",
+  "PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__RELATED_DISEASES": "Related Diseases",
+  "PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__RELATED_GENES": "Related Genes",
+  "PDSS__NAV_MENU__BROWSER": "Browser",
+  "PDSS__NAV_MENU__MY_REPORT": "My Report",
+  "PDSS__NAV_MENU__OVERVIEW": "Overview",
+  "PDSS__NAV_MENU__PDSS": "PDSS",
+  "PDSS__NAV_MENU__PRODUCTS": "Products",
+  "PDSS__NAV_MENU__UTILITY": "Utility",
+  "PDSS__NAV_MENU__PGX": "PGx",
+  "PDSS__NAV_MENU__PGX_PREMIUM": "PGx Premium",
+  "PDSS__NAV_MENU__SINGLE_GENE_SERVICE": "Single Gene Service"
 }
