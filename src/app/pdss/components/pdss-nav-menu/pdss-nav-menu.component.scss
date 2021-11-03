@@ -1,0 +1,32 @@
+.pdss-nav-menu {
+  .mat-toolbar {
+    background-color: white;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .router-link-active {
+    border-bottom: 2px solid black;
+    border-radius: 0px;
+  }
+
+  ::ng-deep {
+    .mat-expansion-panel {
+      box-shadow: none !important;
+    }
+
+    .mat-expansion-panel-header.mat-expanded {
+      height: 48px;
+    }
+
+    .mat-list-base {
+      padding: 0px !important;
+    }
+  }
+
+  .pdss-products {
+    .mat-expansion-panel-header {
+      padding: 0 5px 0 0 !important;
+    }
+  }
+}

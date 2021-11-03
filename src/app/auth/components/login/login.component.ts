@@ -13,7 +13,7 @@ import { AuthService, LoginRequest, LoginResponse } from '../../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  pageLoading = false;
+  isPageLoading = false;
   redirectToUrl = '#';
 
   loginForm = this.formBuilder.group({
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         username: formValue.username,
         password: formValue.password,
       };
-      this.pageLoading = true;
+      this.isPageLoading = true;
 
       this.tokenStorageService.rememberMe = rememberMe;
 
@@ -60,11 +60,11 @@ export class LoginComponent implements OnInit {
         .login(loginRequest)
         .pipe(
           finalize(() => {
-            this.pageLoading = false;
+            this.isPageLoading = false;
           })
         )
         .subscribe({
-          next: (response: SpmedResponse) => {
+          next: (response: SpmedResponse<LoginResponse>) => {
             const loginResponse: LoginResponse = response?.data?.items[0];
             if (loginResponse == null) {
               this.matSnackbarService.open(

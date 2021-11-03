@@ -1,41 +1,4 @@
 <!-- sub router for pdss -->
+<app-pdss-nav-menu></app-pdss-nav-menu>
 <mat-divider></mat-divider>
-<mat-toolbar fxHide.lt-md>
-  <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
-    <button mat-button routerLink="overview">
-      <b>PDSS</b>
-    </button>
-  </div>
-  <div fxFlex="80" fxLayout="row">
-    <button
-      mat-button
-      routerLink="overview"
-      routerLinkActive="router-link-active"
-    >
-      Overview
-    </button>
-    <button
-      mat-button
-      routerLink="products"
-      routerLinkActive="router-link-active"
-    >
-      Products
-    </button>
-    <button
-      mat-button
-      routerLink="browser"
-      routerLinkActive="router-link-active"
-    >
-      Browser
-    </button>
-    <button
-      mat-button
-      routerLink="utility"
-      routerLinkActive="router-link-active"
-    >
-      Utility
-    </button>
-  </div>
-</mat-toolbar>
-
 <router-outlet></router-outlet>

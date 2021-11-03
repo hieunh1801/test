@@ -1,0 +1,131 @@
+<!-- for website -->
+<div class="pdss-nav-menu">
+  <mat-toolbar fxHide.lt-md>
+    <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
+      <button mat-button routerLink="overview">
+        <b translate>pdss.nav-menu.pdss</b>
+      </button>
+    </div>
+    <div fxFlex="80" fxLayout="row">
+      <button
+        mat-button
+        routerLink="overview"
+        routerLinkActive="router-link-active"
+      >
+        <span translate>pdss.nav-menu.overview</span>
+      </button>
+      <button
+        mat-button
+        [matMenuTriggerFor]="pdssProductsMenu"
+        routerLinkActive="router-link-active"
+      >
+        <span translate>pdss.nav-menu.products</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <button
+        mat-button
+        routerLink="browser"
+        routerLinkActive="router-link-active"
+      >
+        <span translate>pdss.nav-menu.browser</span>
+      </button>
+      <button
+        mat-button
+        routerLink="utility"
+        routerLinkActive="router-link-active"
+      >
+        <span translate>pdss.nav-menu.utility</span>
+      </button>
+    </div>
+    <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
+      <button
+        mat-button
+        routerLink="my-report"
+        routerLinkActive="router-link-active"
+      >
+        <b translate>pdss.nav-menu.my-report</b>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <!-- for mobile -->
+  <div fxHide.gt-sm>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div fxLayout fxLayoutAlign="start">
+              <button mat-button routerLink="overview">
+                <b translate>pdss.nav-menu.pdss</b>
+              </button>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- MENU -->
+        <mat-list>
+          <button mat-menu-item routerLink="overview">
+            <span translate>pdss.nav-menu.overview</span>
+          </button>
+          <mat-expansion-panel class="pdss-products">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div>
+                  <button mat-menu-item>
+                    <span translate>pdss.nav-menu.products</span>
+                  </button>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <button mat-menu-item [routerLink]="['products', 'pgx']">
+                <span translate>pdss.products-menu.pgx</span>
+              </button>
+              <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
+                <span translate>pdss.products-menu.pgx-premium</span>
+              </button>
+              <button
+                mat-menu-item
+                [routerLink]="['products', 'single-gene-service']"
+              >
+                <span translate>pdss.products-menu.single-gene-service</span>
+              </button>
+            </mat-list>
+          </mat-expansion-panel>
+
+          <button
+            mat-menu-item
+            routerLink="browser"
+            routerLinkActive="router-link-active"
+          >
+            <span translate>pdss.nav-menu.browser</span>
+          </button>
+          <button
+            mat-menu-item
+            routerLink="utility"
+            routerLinkActive="router-link-active"
+          >
+            <span translate>pdss.nav-menu.utility</span>
+          </button>
+
+          <button mat-menu-item routerLink="my-report">
+            <b translate>pdss.nav-menu.my-report</b>
+          </button>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <!-- menu pdss/products for website-->
+  <mat-menu #pdssProductsMenu="matMenu">
+    <button mat-menu-item [routerLink]="['products', 'pgx']">
+      <span translate>pdss.products-menu.pgx</span>
+    </button>
+    <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
+      <span translate>pdss.products-menu.pgx-premium</span>
+    </button>
+    <button mat-menu-item [routerLink]="['products', 'single-gene-service']">
+      <span translate>pdss.products-menu.single-gene-service</span>
+    </button>
+  </mat-menu>
+</div>

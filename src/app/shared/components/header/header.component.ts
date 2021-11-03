@@ -15,9 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public languageService: LanguageService,
     private tokenStorageService: TokenStorageService
-  ) {
-    console.log('HeaderComponent');
-  }
+  ) {}
 
   ngOnInit(): void {
     const username = this.tokenStorageService.username;
