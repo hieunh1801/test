@@ -76,7 +76,14 @@ export class MyReportComponent implements OnInit, OnDestroy {
       }
 
       // total drug
-      this.drugList = drugRecommendations;
+      this.drugList = drugRecommendations.map((drug) => {
+        return {
+          ...drug,
+          relatedDiseases: drug?.relatedDiseases
+            ?.replace(/, /g, ',')
+            .replace(/,/g, ', '),
+        };
+      });
       this.totalDrug = drugRecommendations.length;
 
       // total gene
