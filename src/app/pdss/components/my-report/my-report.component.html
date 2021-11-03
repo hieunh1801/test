@@ -13,17 +13,40 @@
     <div fxLayout="row">
       <div class="card card-total-drug">
         <div *ngIf="totalDrug">
-          <span translate>pdss.my-report.total-drug</span>: {{ totalDrug }}
+          <span translate>PDSS__MY_REPORT__TOTAL_DRUG</span>: {{ totalDrug }}
         </div>
       </div>
       <div class="card card-total-gene">
         <div *ngIf="totalGene">
-          <span translate>pdss.my-report.total-gene</span>
+          <span translate>PDSS__MY_REPORT__TOTAL_GENE</span>
           : {{ totalGene }}
         </div>
       </div>
     </div>
   </div>
+  <div fxLayout="row" fxLayoutAlign="end">
+    <div class="box danger" [ngClass.xs]="'box-mobile'">
+      <ng-container *ngIf="totalDanger">
+        {{ divideForTotalDrug(totalDanger) }} %
+      </ng-container>
+    </div>
+    <div class="box warning" [ngClass.xs]="'box-mobile'">
+      <ng-container *ngIf="totalCaution">
+        {{ divideForTotalDrug(totalWarning) }}%
+      </ng-container>
+    </div>
+    <div class="box caution" [ngClass.xs]="'box-mobile'">
+      <ng-container *ngIf="totalCaution"
+        >{{ divideForTotalDrug(totalCaution) }}%</ng-container
+      >
+    </div>
+    <div class="box good" [ngClass.xs]="'box-mobile'">
+      <ng-container *ngIf="totalGood"
+        >{{ divideForTotalDrug(totalGood) }}%</ng-container
+      >
+    </div>
+  </div>
+
   <app-drug-table [drugList]="drugList"></app-drug-table>
 </div>
 

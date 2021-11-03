@@ -1,4 +1,12 @@
 {
+  "MAT_SNACKBAR__ACTION__GET": "Get",
+  "PDSS__MY_REPORT__LOAD_REPORT_FAILED": "Load report failed",
+  "PDSS__MY_REPORT__TOTAL_DRUG": "Total drug",
+  "PDSS__MY_REPORT__TOTAL_GENE": "Total gene",
+  "PDSS__RISK_LEVEL__CAUTION": "Caution",
+  "PDSS__RISK_LEVEL__DANGER": "Danger",
+  "PDSS__RISK_LEVEL__GOOD": "Good",
+  "PDSS__RISK_LEVEL__WARNING": "Warning",
   "layout": {
     "auth": {
       "login": {
@@ -108,9 +116,7 @@
           "related-diseases": "Related Diseases",
           "related-genes": "Related Genes"
         }
-      },
-      "total-drug": "Total Drug",
-      "total-gene": "Total Gene"
+      }
     },
     "nav-menu": {
       "browser": "Browser",

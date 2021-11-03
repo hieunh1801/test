@@ -9,3 +9,14 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+:root {
+  --pdss--risk-level--good--color: #44db77;
+  --pdss--risk-level--caution--color: #f8cb42;
+  --pdss--risk-level--warning--color: #f89100;
+  --pdss--risk-level--danger--color: #f45a51;
+
+  --primary--color: #003f9e;
+  --primary-a--color: #082652;
+  --primary-b--color: #9e2110;
+}

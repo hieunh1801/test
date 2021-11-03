@@ -1,4 +1,12 @@
 {
+  "MAT_SNACKBAR__ACTION__GET": "",
+  "PDSS__MY_REPORT__LOAD_REPORT_FAILED": "Load report failed",
+  "PDSS__MY_REPORT__TOTAL_DRUG": "KR Total drug",
+  "PDSS__MY_REPORT__TOTAL_GENE": "KR Total gene",
+  "PDSS__RISK_LEVEL__CAUTION": "주의",
+  "PDSS__RISK_LEVEL__DANGER": "위험",
+  "PDSS__RISK_LEVEL__GOOD": "양호",
+  "PDSS__RISK_LEVEL__WARNING": "경고",
   "layout": {
     "auth": {
       "login": {
@@ -108,9 +116,7 @@
           "related-diseases": "Related Diseases",
           "related-genes": "Related Genes"
         }
-      },
-      "total-drug": "Total Drug",
-      "total-gene": "Total Gene"
+      }
     },
     "nav-menu": {
       "browser": "Browser",

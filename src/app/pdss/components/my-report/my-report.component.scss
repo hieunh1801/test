@@ -18,15 +18,42 @@
     }
 
     .card-total-drug {
-      background-color: #9e2110;
+      background-color: var(--primary-b--color);
       color: white;
     }
 
     .card-total-gene {
-      background-color: #082652;
+      background-color: var(--primary-a--color);
       color: white;
     }
 
     margin-bottom: 16px;
+  }
+
+  .box {
+    padding: 8px;
+    border-radius: 1px;
+    width: 60px;
+    height: 20px;
+    font-weight: 500;
+  }
+  .box-mobile {
+    flex: 1;
+  }
+  .danger {
+    background-color: var(--pdss--risk-level--danger--color);
+    color: white;
+  }
+
+  .warning {
+    background-color: var(--pdss--risk-level--warning--color);
+  }
+
+  .caution {
+    background-color: var(--pdss--risk-level--caution--color);
+  }
+
+  .good {
+    background-color: var(--pdss--risk-level--good--color);
   }
 }

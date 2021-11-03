@@ -12,43 +12,44 @@ export class LanguageService {
   public languageOptions = [
     {
       title: 'KR',
-      value: LanguagesProvided.korea,
+      value: LanguagesProvidedType.korea,
     },
     {
       title: 'EN',
-      value: LanguagesProvided.english,
+      value: LanguagesProvidedType.english,
     },
   ];
 
-  private defaultLanguage = LanguagesProvided.korea;
+  private defaultLanguage = LanguagesProvidedType.korea;
   private selectedLanguage: string;
 
   constructor(
     private localStorageService: LocalStorageService,
-    private translateService: TranslateService
+    public translateService: TranslateService
   ) {}
 
   isLanguageValid(lang: string): boolean {
-    return (Object.values(LanguagesProvided) as string[]).includes(lang);
+    return (Object.values(LanguagesProvidedType) as string[]).includes(lang);
   }
 
   init(): void {
     let mSelectedLanguage =
-      this.localStorageService.get<string>('lang') || LanguagesProvided.korea;
+      this.localStorageService.get<string>('lang') ||
+      LanguagesProvidedType.korea;
 
     if (!this.isLanguageValid(mSelectedLanguage)) {
       mSelectedLanguage = this.defaultLanguage;
       this.localStorageService.set<string>('lang', mSelectedLanguage);
     }
-
+    // set text translation
     this.selectedLanguage = mSelectedLanguage;
     this.translateService.currentLang = mSelectedLanguage;
     let translateFile;
     switch (mSelectedLanguage) {
-      case LanguagesProvided.korea:
+      case LanguagesProvidedType.korea:
         translateFile = krTranslation;
         break;
-      case LanguagesProvided.english:
+      case LanguagesProvidedType.english:
         translateFile = enTranslation;
         break;
       default:
@@ -69,13 +70,14 @@ export class LanguageService {
       lang = this.defaultLanguage;
     }
 
+    // change current language
     this.selectedLanguage = lang;
     this.translateService.use(lang);
     this.localStorageService.set('lang', lang);
   }
 }
 
-export enum LanguagesProvided {
+export enum LanguagesProvidedType {
   korea = 'kr',
   english = 'en',
 }
