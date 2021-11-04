@@ -5,7 +5,11 @@ import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
-import { AuthService, LoginRequest, LoginResponse } from '../../auth.service';
+import {
+  AuthService,
+  LoginRequest,
+  LoginResponse,
+} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

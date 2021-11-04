@@ -9,6 +9,7 @@ export class PdssReportService {
   constructor(private httpClient: HttpClient) {}
 
   getReport(): Observable<SpmedResponse<Report>> {
+    // const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/IM011-ABCD`;
     const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/IM011-ABCD`;
     return this.httpClient.get(url);
   }

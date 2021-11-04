@@ -1,6 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
-import { Subscription } from 'rxjs';
 import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
 import {
   animate,

@@ -8,6 +8,7 @@
     font-weight: 600;
     background-color: var(--primary--color);
   }
+
   tr.detail-row {
     height: 0;
   }
@@ -64,6 +65,13 @@
   }
   .good-level {
     color: var(--pdss--risk-level--good--color);
+  }
+
+  // package list
+  .package-list-item {
+    padding: 4px 8px;
+    border-radius: 100px;
+    background-color: #cecece;
   }
 
   mat-icon {
