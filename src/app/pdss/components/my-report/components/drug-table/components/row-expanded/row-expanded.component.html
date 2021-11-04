@@ -42,7 +42,7 @@
     <mat-divider></mat-divider>
     <!-- genes table -->
     <div *ngIf="drug.genes" class="gene-table-wrapper" fxHide.lt-sm>
-      <div class="detail-label">Drug Gene Recommendation</div>
+      <div class="detail-label">Drug Gene Interpretation</div>
 
       <table mat-table [dataSource]="drug.genes">
         <ng-container matColumnDef="id">
@@ -66,12 +66,12 @@
         </ng-container>
 
         <ng-container matColumnDef="phenotype">
-          <th mat-header-cell *matHeaderCellDef>Genotype</th>
-          <td mat-cell *matCellDef="let element">{{ element.genotype }}</td>
+          <th mat-header-cell *matHeaderCellDef>Phenotype</th>
+          <td mat-cell *matCellDef="let element">{{ element.phenotype }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="recommendation">
-          <th mat-header-cell *matHeaderCellDef>Recommendation</th>
+        <ng-container matColumnDef="interpretation">
+          <th mat-header-cell *matHeaderCellDef>Interpretation</th>
           <td mat-cell *matCellDef="let element">
             {{ element.recommendation }}
           </td>

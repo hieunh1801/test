@@ -49,27 +49,21 @@
   }
 
   // risk level
-  .risk-level-container {
-    padding: 8px 16px;
-    // background-color: #f2f2f2;
-    border-radius: 999px;
-    cursor: default;
+  .risk-level {
+    font-size: 24px;
+    font-weight: 500;
   }
   .danger-level {
-    background-color: var(--pdss--risk-level--danger--color);
-    color: white !important;
+    color: var(--pdss--risk-level--danger--color);
   }
   .warning-level {
-    background-color: var(--pdss--risk-level--warning--color);
-    color: white !important;
+    color: var(--pdss--risk-level--warning--color);
   }
   .caution-level {
-    background-color: var(--pdss--risk-level--caution--color);
-    color: black !important;
+    color: var(--pdss--risk-level--caution--color);
   }
   .good-level {
-    background-color: var(--pdss--risk-level--good--color);
-    color: black !important;
+    color: var(--pdss--risk-level--good--color);
   }
 
   mat-icon {

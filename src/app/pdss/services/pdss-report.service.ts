@@ -12,6 +12,10 @@ export class PdssReportService {
     const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/IM011-ABCD`;
     return this.httpClient.get(url);
   }
+
+  getReportById(): void {
+    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports`;
+  }
 }
 
 export interface ReportKr {

@@ -1,49 +1,61 @@
 <!-- statistic -->
 <div class="my-report">
-  <div
-    class="statistic"
-    fxLayout="row"
-    fxLayoutAlign="space-between start"
-    fxLayout.lt-sm="column"
-  >
+  <div class="statistic" fxLayout="row" fxLayoutAlign="space-between start">
     <div>
-      <h1>Report</h1>
-      <p>View your test results</p>
+      <h1 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h1>
+      <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
     </div>
     <div fxLayout="row">
-      <div class="card card-total-drug">
-        <div *ngIf="totalDrug">
-          <span translate>PDSS__MY_REPORT__TOTAL_DRUG</span>: {{ totalDrug }}
+      <div class="card" *ngIf="totalDrug">
+        <div class="card-total-drug">
+          <b>{{ totalDrug }}</b>
+          <span translate>PDSS__MY_REPORT__DRUGS</span>
         </div>
-      </div>
-      <div class="card card-total-gene">
-        <div *ngIf="totalGene">
-          <span translate>PDSS__MY_REPORT__TOTAL_GENE</span>
-          : {{ totalGene }}
+
+        <div class="card-total-gene">
+          <b>{{ totalGene }}</b>
+          <span translate>PDSS__MY_REPORT__GENES</span>
         </div>
+
+        <div class="card-total-interpretation">
+          <b>{{ totalInterpretation }}</b>
+          <span translate>PDSS__MY_REPORT__INTERPRETATIONS</span>
+        </div>
+
+        <!-- <app-risk-summary-pie-chart
+          [danger]="totalDanger"
+          [warning]="totalWarning"
+          [caution]="totalCaution"
+          [good]="totalGood"
+        ></app-risk-summary-pie-chart> -->
       </div>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="end">
     <div class="box danger" [ngClass.xs]="'box-mobile'">
       <ng-container *ngIf="totalDanger">
-        {{ divideForTotalDrug(totalDanger) }} %
+        {{ totalDanger }}/{{ totalDrug }}
+        <span translate>PDSS__RISK_LEVEL__DANGER</span>
       </ng-container>
     </div>
     <div class="box warning" [ngClass.xs]="'box-mobile'">
       <ng-container *ngIf="totalCaution">
-        {{ divideForTotalDrug(totalWarning) }}%
+        {{ totalWarning }}/{{ totalDrug }}
+
+        <span translate>PDSS__RISK_LEVEL__WARNING</span>
       </ng-container>
     </div>
     <div class="box caution" [ngClass.xs]="'box-mobile'">
-      <ng-container *ngIf="totalCaution"
-        >{{ divideForTotalDrug(totalCaution) }}%</ng-container
-      >
+      <ng-container *ngIf="totalCaution">
+        {{ totalCaution }}/{{ totalDrug }}
+        <span translate>PDSS__RISK_LEVEL__CAUTION</span>
+      </ng-container>
     </div>
     <div class="box good" [ngClass.xs]="'box-mobile'">
-      <ng-container *ngIf="totalGood"
-        >{{ divideForTotalDrug(totalGood) }}%</ng-container
-      >
+      <ng-container *ngIf="totalGood">
+        {{ totalGood }}/{{ totalDrug }}
+        <span translate>PDSS__RISK_LEVEL__GOOD</span>
+      </ng-container>
     </div>
   </div>
 
