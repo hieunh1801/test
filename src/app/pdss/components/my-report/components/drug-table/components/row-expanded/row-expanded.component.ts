@@ -11,7 +11,7 @@ export class RowExpandedComponent implements OnInit {
 
   constructor() {}
   geneTableDisplayedColumns = [
-    'id',
+    // 'id',
     'symbol',
     'rsid',
     'phenotype',

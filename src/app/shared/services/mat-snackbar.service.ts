@@ -10,11 +10,14 @@ export class MatSnackbarService {
     horizontalPosition: 'center',
     verticalPosition: 'bottom',
   };
+
   constructor(private matSnackbar: MatSnackBar) {}
 
-  open(message: string, action: Action): void {
+  public setConfig(mConfig: MatSnackBarConfig): void {
+    this.config = mConfig;
+  }
+
+  open(message: string, action: string): void {
     this.matSnackbar.open(message, action, this.config);
   }
 }
-
-export type Action = 'CREATE' | 'GET' | 'UPDATE' | 'DELETE' | 'LOGIN';

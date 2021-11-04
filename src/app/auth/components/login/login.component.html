@@ -19,12 +19,14 @@
         <div fxLayout="row" class="login-comment">
           <div fxFlex="50">
             <mat-checkbox formControlName="rememberMe"
-              ><span translate>layout.auth.login.remember</span></mat-checkbox
+              ><span translate
+                >LAYOUT__AUTH__LOGIN__REMEMBER_ME</span
+              ></mat-checkbox
             >
           </div>
           <div fxFlex class="forgot-password">
             <a routerLink="/auth/reset-password"
-              ><span translate>layout.auth.login.forgot.password</span></a
+              ><span translate>LAYOUT__AUTH__LOGIN__FORGOT_PASSWORD</span></a
             >
           </div>
         </div>
@@ -34,7 +36,7 @@
           class="login-full-width login-button"
           (click)="login()"
         >
-          <span translate>layout.auth.login.button.title</span>
+          <span translate>LAYOUT__AUTH__LOGIN__LOGIN</span>
         </button>
 
         <button
@@ -43,7 +45,7 @@
           style="margin-top: 40px; margin-right: 5px"
           (click)="loginWithKakaoTalk()"
         >
-          <span translate>layout.auth.login.kakaotalk</span>
+          <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK</span>
         </button>
         <button
           mat-raised-button
@@ -51,15 +53,15 @@
           style="margin-top: 15px; margin-right: 5px"
           (click)="loginWithNaver()"
         >
-          <span translate>layout.auth.login.naver</span>
+          <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
         </button>
         <div class="login-register">
-          <span translate>layout.auth.login.register-text</span>
+          <span translate>LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT</span>
           <a routerLink="/auth/register"
             ><span
               style="padding-left: 5px; color: #003f9e; font-weight: bold"
               translate
-              >layout.auth.login.register</span
+              >LAYOUT__AUTH__LOGIN__REGISTER</span
             ></a
           >
         </div>

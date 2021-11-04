@@ -14,7 +14,7 @@
     <!-- center for web-->
     <div fxFlex fxLayoutAlign="center" fxHide.lt-md>
       <button mat-button [matMenuTriggerFor]="menuService">
-        <span translate>layout.header.services</span>
+        <span translate>LAYOUT__HEADER__SERVICES</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menuService="matMenu" class="menu-service-container">
@@ -29,8 +29,10 @@
           >
             <mat-icon>trip_origin</mat-icon>
             <div>
-              <b translate>layout.header.services-option.pdss.title</b>
-              <div translate>layout.header.services-option.pdss.sub-title</div>
+              <b translate>LAYOUT__HEADER__SERVICES__OPTION__PDSS_TITLE</b>
+              <div translate>
+                LAYOUT__HEADER__SERVICES__OPTION__PDSS_SUB_TITLE
+              </div>
             </div>
           </div>
         </div>
@@ -46,8 +48,10 @@
           >
             <mat-icon>my_location</mat-icon>
             <div>
-              <b translate>layout.header.services-option.adme.title</b>
-              <div translate>layout.header.services-option.adme.sub-title</div>
+              <b translate>LAYOUT__HEADER__SERVICES__OPTION__ADME__TITLE</b>
+              <div translate>
+                LAYOUT__HEADER__SERVICES__OPTION__ADME__SUB_TITLE
+              </div>
             </div>
           </div>
         </div>
@@ -64,23 +68,23 @@
             <mat-icon>medical_services</mat-icon>
             <div>
               <b translate
-                >layout.header.services-option.genotyping-kit.title</b
+                >LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__TITLE</b
               >
               <div translate>
-                layout.header.services-option.genotyping-kit.sub-title
+                LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__SUB_TITLE
               </div>
             </div>
           </div>
         </div>
       </mat-menu>
       <button mat-button routerLink="/about-us">
-        <span translate> layout.header.about-us </span>
+        <span translate>LAYOUT__HEADER__ABOUT_US </span>
       </button>
       <button mat-button routerLink="/news">
-        <span translate> layout.header.news </span>
+        <span translate> LAYOUT__HEADER__NEWS </span>
       </button>
       <button mat-stroked-button routerLink="/contact">
-        <span translate> layout.header.contact </span>
+        <span translate> LAYOUT__HEADER__CONTACT </span>
       </button>
     </div>
 
@@ -118,11 +122,11 @@
       </button>
 
       <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
-        <span translate>layout.header.login</span>
+        <span translate>LAYOUT__HEADER__LOGIN</span>
       </button>
 
       <button mat-button routerLink="/auth/register" [fxHide]="isLogin">
-        <span translate>layout.header.register</span>
+        <span translate>LAYOUT__HEADER__REGISTER</span>
       </button>
     </div>
 
@@ -156,12 +160,12 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
     >
-      <span translate>layout.header.users-menu.profiles</span>
+      <span translate>LAYOUT__HEADER__PROFILES</span>
       <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
     </div>
   </button>
   <button mat-menu-item>
-    <span translate>layout.header.users-menu.settings</span>
+    <span translate>LAYOUT__HEADER__SETTINGS</span>
   </button>
   <button mat-menu-item>
     <div
@@ -169,7 +173,7 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
     >
-      <span translate>layout.header.users-menu.membership</span>
+      <span translate>LAYOUT__HEADER__MEMBERSHIP</span>
       <mat-chip-list>
         <mat-chip>Doctor</mat-chip>
       </mat-chip-list>
@@ -177,7 +181,7 @@
   </button>
   <mat-divider></mat-divider>
   <button mat-menu-item (click)="logout()">
-    <span translate>layout.header.users-menu.logout</span>
+    <span translate>LAYOUT__HEADER__LOGOUT</span>
   </button>
 </mat-menu>
 
@@ -194,54 +198,50 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <span translate
-              >layout.header.menu-mobile.service</span
-            ></mat-panel-title
+            <span translate>LAYOUT__HEADER__SERVICE</span></mat-panel-title
           >
         </mat-expansion-panel-header>
         <mat-list>
           <button mat-menu-item routerLink="/pdss">
-            <span translate>layout.header.menu-mobile.services.pdss</span>
+            <span translate>LAYOUT__HEADER__SERVICE_PDSS</span>
           </button>
           <button mat-menu-item routerLink="/adme">
-            <span translate>layout.header.menu-mobile.services.adme</span>
+            <span translate>LAYOUT__HEADER__SERVICE_ADME</span>
           </button>
           <button mat-menu-item routerLink="/genotyping-kit">
-            <span translate
-              >layout.header.menu-mobile.services.genotyping-kit</span
-            >
+            <span translate>LAYOUT__HEADER__SERVICE_GENOTYPING_KIT</span>
           </button>
           <button mat-menu-item>
-            <span translate>layout.header.menu-mobile.services.others</span>
+            <span translate>LAYOUT__HEADER__SERVICE_OTHERS</span>
           </button>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
 
     <button mat-menu-item routerLink="/about-us">
-      <span translate>layout.header.menu-mobile.about-us</span>
+      <span translate>LAYOUT__HEADER__ABOUT_US</span>
     </button>
     <button mat-menu-item routerLink="/news">
-      <span translate>layout.header.menu-mobile.news</span>
+      <span translate>LAYOUT__HEADER__NEWS</span>
     </button>
     <button mat-menu-item routerLink="/contact">
-      <span translate>layout.header.menu-mobile.contact</span>
+      <span translate>LAYOUT__HEADER__CONTACT</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item>
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span translate>layout.header.menu-mobile.profiles</span>
+        <span translate>LAYOUT__HEADER__PROFILES</span>
         <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
           >@{{ username }}</span
         >
       </div>
     </button>
     <button mat-menu-item>
-      <span translate>layout.header.menu-mobile.settings</span>
+      <span translate>LAYOUT__HEADER__SETTINGS</span>
     </button>
     <button mat-menu-item>
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span translate>layout.header.menu-mobile.membership</span>
+        <span translate>LAYOUT__HEADER__MEMBERSHIP</span>
         <mat-chip-list>
           <mat-chip>Doctor</mat-chip>
         </mat-chip-list>
@@ -249,13 +249,13 @@
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/login">
-      <span translate>layout.header.menu-mobile.login</span>
+      <span translate>LAYOUT__HEADER__LOGIN</span>
     </button>
     <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/register">
-      <span translate>layout.header.menu-mobile.sign-up</span>
+      <span translate>LAYOUT__HEADER__SIGN_UP</span>
     </button>
     <button mat-menu-item [fxHide]="!isLogin" (click)="logout()">
-      <span translate>layout.header.menu-mobile.logout</span>
+      <span translate>LAYOUT__HEADER__LOGOUT</span>
     </button>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>

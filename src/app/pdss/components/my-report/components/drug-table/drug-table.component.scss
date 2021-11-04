@@ -6,7 +6,7 @@
   th.mat-header-cell {
     color: #ffffff;
     font-weight: 600;
-    background-color: #003f9e;
+    background-color: var(--primary--color);
   }
   tr.detail-row {
     height: 0;
@@ -56,19 +56,19 @@
     cursor: default;
   }
   .danger-level {
-    background-color: #f45a51;
+    background-color: var(--pdss--risk-level--danger--color);
     color: white !important;
   }
   .warning-level {
-    background-color: #f89100;
+    background-color: var(--pdss--risk-level--warning--color);
     color: white !important;
   }
   .caution-level {
-    background-color: #f8cb42;
+    background-color: var(--pdss--risk-level--caution--color);
     color: black !important;
   }
   .good-level {
-    background-color: #44db77;
+    background-color: var(--pdss--risk-level--good--color);
     color: black !important;
   }
 
