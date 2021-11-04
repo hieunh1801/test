@@ -9,15 +9,29 @@ import { MustMatch } from '../../../../../shared/classes/must-match.validator';
   styleUrls: ['./register-step2.component.scss'],
 })
 export class RegisterStep2Component implements OnInit {
-  signUpForm2 = this.formBuilder.group(
-    {
-      fusername: ['', Validators.required],
-      fpassword: ['', Validators.required, Validators.minLength(4)],
-      repassword: ['', Validators.required],
-    },
-    { validator: MustMatch('fpassword', 'repassword') }
-  );
-  constructor(private formBuilder: FormBuilder) {}
+  signUpForm2: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.signUpForm2 = this.formBuilder.group(
+      {
+        fusername: ['', Validators.required],
+        fpassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(12),
+          ],
+        ],
+        repassword: ['', Validators.required],
+      },
+      { validator: MustMatch('fpassword', 'repassword') }
+    );
+  }
 
   ngOnInit(): void {}
   // convenience getter for easy access to form fields
@@ -26,6 +40,8 @@ export class RegisterStep2Component implements OnInit {
   }
 
   onSubmit() {
+    this.signUpForm2.markAllAsTouched();
+
     if (this.signUpForm2.valid) {
       this.signUpForm2.reset();
       window.location.href = '/auth/register3';

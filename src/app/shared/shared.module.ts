@@ -13,7 +13,6 @@ import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 import { ImageOverlayFullscreenComponent } from './components/image-overlay-fullscreen/image-overlay-fullscreen.component';
-import { MustMatch } from './classes/must-match.validator';
 
 const COMPONENTS = [
   FooterComponent,

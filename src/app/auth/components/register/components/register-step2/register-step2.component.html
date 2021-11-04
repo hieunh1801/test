@@ -41,19 +41,23 @@
           </div>
           <div style="margin: 10px 0px">
             <mat-form-field class="input-full-width" appearance="fill">
-              <input
-                matInput
-                formControlName="fusername"
-                required
-              /> </mat-form-field
-            ><br />
+              <input matInput formControlName="fusername" required />
+              <!--<mat-error *ngIf="signUpForm2.fusername.errors?.required"
+                >Username is required</mat-error
+              >-->
+              <mat-error *ngIf="signUpForm2.get('fusername').invalid"
+                ><span translate
+                  >LAYOUT__AUTH__REGISTER__ERROR__ID</span
+                ></mat-error
+              >
+            </mat-form-field>
+
+            <br />
           </div>
-          <div>
+          <div style="height: 90px">
             <div class="signup-title" translate>
               LAYOUT__AUTH__REGISTER__PASSWORD
             </div>
-          </div>
-          <div>
             <mat-form-field class="input-full-width" appearance="fill">
               <input
                 matInput
@@ -62,16 +66,18 @@
                 type="password"
                 required
               />
-              <div><div></div></div>
+              <mat-error *ngIf="signUpForm2.get('fpassword').invalid"
+                ><span translate
+                  >LAYOUT__AUTH__REGISTER__ERROR__PASSWORD</span
+                ></mat-error
+              >
             </mat-form-field>
           </div>
-          <div>
+          <div style="height: 90px">
             <div class="signup-title" translate>
               LAYOUT__AUTH__REGISTER__CONFIRM_PASSWORD
             </div>
             <div class="signup-comment">Re-typing your password</div>
-          </div>
-          <div>
             <mat-form-field class="input-full-width" appearance="fill">
               <input
                 matInput
@@ -81,15 +87,24 @@
                 [ngClass]="{ 'is-invalid': f.repassword.errors }"
                 required
               />
+              <mat-error
+                *ngIf="
+                  signUpForm2.get('repassword').errors &&
+                  signUpForm2.get('repassword').touched
+                "
+              >
+                <div *ngIf="signUpForm2.get('repassword').errors.required">
+                  <span translate
+                    >LAYOUT__AUTH__REGISTER__ERROR__CONFIRM__PASSWORD</span
+                  >
+                </div>
+                <div *ngIf="signUpForm2.get('repassword').errors.mustMatch">
+                  <span translate
+                    >LAYOUT__AUTH__REGISTER__ERROR__PASSWORD__MISMATCH</span
+                  >
+                </div>
+              </mat-error>
             </mat-form-field>
-            <div *ngIf="f.repassword.errors" class="invalid-feedback">
-              <div *ngIf="f.repassword.errors.required">
-                Confirm Password is required
-              </div>
-              <div *ngIf="f.repassword.errors.mustMatch">
-                Passwords must match
-              </div>
-            </div>
           </div>
           <button
             mat-raised-button

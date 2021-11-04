@@ -23,6 +23,27 @@ export class AuthService {
     };
     return this.httpClient.post(url, body);
   }
+
+  /*
+  createUser(payload: CustomerUserCreateRequest): Observable<SpmedResponse> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/signup`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    
+    return this.http.post<SpmedResponse>(url, payload, { headers })
+      .pipe(
+          // tap(data => console.log(JSON.stringify(data)))
+      );
+  }
+
+  getID(payload: IDCheckRequest): Observable<SpmedResponse> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/idcheck`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<SpmedResponse>(url, payload, { headers })
+      .pipe(
+          // tap(data => console.log(JSON.stringify(data)))
+      );
+  }
+
+*/
 }
 
 export interface LoginRequest {
@@ -38,3 +59,22 @@ export interface LoginResponse {
   refreshToken: string;
   authorities?: string[];
 }
+
+export interface IDCheckRequest {
+  username: string;
+}
+
+export interface CustomerUserCreateRequest {
+  username: string;
+  password: string;
+  sirname: string;
+  givenname: string;
+  email: string;
+  birthday: string;
+  gender: string;
+  mobile: string;
+  enabled: number;
+  role: number;
+}
+
+export interface CustomerUserCreateResponse {}

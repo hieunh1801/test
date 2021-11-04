@@ -1,9 +1,5 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
-import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 
 @Component({
   selector: 'app-register-step1',

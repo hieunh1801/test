@@ -1,5 +1,5 @@
 <div id="register-step3" fxLayout="row" fxLayoutAlign="space-around center">
-  <form [formGroup]="signUpForm3">
+  <form [formGroup]="signUpForm3" (ngSubmit)="onSubmit()">
     <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
       <h1>Sign up for SPMED</h1>
 
@@ -41,11 +41,21 @@
               <mat-grid-tile colspan="1">
                 <mat-form-field hintLabel="Sir Name" appearance="fill">
                   <input matInput type="text" formControlName="fsirname" />
+                  <mat-error
+                    ><span translate
+                      >LAYOUT__AUTH__REGISTER__ERROR__SIRNAME</span
+                    ></mat-error
+                  >
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile colspan="2">
                 <mat-form-field hintLabel="Given Name" appearance="fill">
                   <input matInput type="text" formControlName="fgivenname" />
+                  <mat-error
+                    ><span translate
+                      >LAYOUT__AUTH__REGISTER__ERROR__GIVENNAME</span
+                    ></mat-error
+                  >
                 </mat-form-field>
               </mat-grid-tile>
             </mat-grid-list>
@@ -56,17 +66,14 @@
               LAYOUT__AUTH__REGISTER__DATE_OF_BIRTH
             </div>
             <mat-form-field appearance="fill">
-              <input
-                matInput
-                type="text"
-                formControlName="fdateofbirth"
-                [matDatepicker]="picker"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <input matInput type="date" formControlName="fdateofbirth" />
+              <!--
+              <mat-error
+                ><span translate
+                  >LAYOUT__AUTH__REGISTER__ERROR__BIRTHDAY</span
+                ></mat-error
+              >
+              -->
             </mat-form-field>
           </div>
 
@@ -78,6 +85,7 @@
               aria-labelledby="example-radio-group-label"
               class="example-radio-group"
               formControlName="fgender"
+              required
             >
               <mat-radio-button
                 class="example-radio-button"
@@ -87,6 +95,11 @@
                 {{ gender }}
               </mat-radio-button>
             </mat-radio-group>
+            <mat-error *ngIf="signUpForm3.get('fgender').invalid"
+              ><span translate
+                >LAYOUT__AUTH__REGISTER__ERROR__GENDER</span
+              ></mat-error
+            >
           </div>
 
           <div style="width: 100%; margin: 10x; padding: 10px">
@@ -100,6 +113,23 @@
                 formControlName="femail"
                 pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
               />
+
+              <mat-error
+                *ngIf="
+                  signUpForm3.get('femail').errors &&
+                  signUpForm3.get('femail').touched
+                "
+              >
+                <div *ngIf="signUpForm3.get('femail').errors.required">
+                  <span translate>LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span>
+                </div>
+              </mat-error>
+
+              <mat-error
+                ><span translate
+                  >LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span
+                ></mat-error
+              >
             </mat-form-field>
           </div>
 
@@ -109,6 +139,11 @@
             </div>
             <mat-form-field hintLabel="" appearance="fill">
               <input matInput type="text" formControlName="fphone" />
+              <mat-error
+                ><span translate
+                  >LAYOUT__AUTH__REGISTER__ERROR__PHONE</span
+                ></mat-error
+              >
             </mat-form-field>
           </div>
 
