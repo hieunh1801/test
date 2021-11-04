@@ -11,6 +11,14 @@
       padding: 16px;
       border-radius: 1px;
       font-size: 16px;
+      border-radius: 10px;
+      border: solid 2px #ebebeb;
+
+      width: 100%;
+      b {
+        font-size: 20px;
+        padding: 8px;
+      }
     }
 
     .card:first-child {
@@ -18,13 +26,15 @@
     }
 
     .card-total-drug {
-      background-color: var(--primary-b--color);
-      color: white;
+      color: var(--primary-b--color);
     }
 
     .card-total-gene {
-      background-color: var(--primary-a--color);
-      color: white;
+      color: var(--primary-a--color);
+    }
+
+    .card-total-interpretation {
+      color: var(--primary--color);
     }
 
     margin-bottom: 16px;
@@ -33,16 +43,16 @@
   .box {
     padding: 8px;
     border-radius: 1px;
-    width: 60px;
-    height: 20px;
+    width: 100px;
     font-weight: 500;
+    color: white;
   }
   .box-mobile {
     flex: 1;
   }
   .danger {
     background-color: var(--pdss--risk-level--danger--color);
-    color: white;
+    // color: white;
   }
 
   .warning {

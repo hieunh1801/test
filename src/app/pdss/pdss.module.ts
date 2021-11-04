@@ -15,7 +15,8 @@ import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.c
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
 import { RowExpandedComponent } from './components/my-report/components/drug-table/components/row-expanded/row-expanded.component';
-
+import { ChartsModule } from 'ng2-charts';
+import { RiskSummaryPieChartComponent } from './components/my-report/components/risk-summary-pie-chart/risk-summary-pie-chart.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -30,7 +31,8 @@ import { RowExpandedComponent } from './components/my-report/components/drug-tab
     MyReportComponent,
     DrugTableComponent,
     RowExpandedComponent,
+    RiskSummaryPieChartComponent,
   ],
-  imports: [CommonModule, PdssRoutingModule, SharedModule],
+  imports: [CommonModule, PdssRoutingModule, SharedModule, ChartsModule],
 })
 export class PdssModule {}

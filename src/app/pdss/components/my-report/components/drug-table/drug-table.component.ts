@@ -9,6 +9,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-drug-table',
@@ -37,9 +38,14 @@ export class DrugTableComponent implements OnInit, OnDestroy {
     'index',
     'drugName',
     'riskLevel',
-    'recommendation',
+    'packages',
     'actions',
   ];
+
+  dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+  warningTxt = this.translateService.instant('PDSS__RISK_LEVEL__WARNING');
+  cautionTxt = this.translateService.instant('PDSS__RISK_LEVEL__CAUTION');
+  goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
 
   isExpandedElement(element: DrugRecommendation): boolean {
     return this.expandedElementList.includes(element);
@@ -55,7 +61,7 @@ export class DrugTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor() {}
+  constructor(private translateService: TranslateService) {}
 
   ngOnInit(): void {}
 

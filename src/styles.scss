@@ -11,12 +11,16 @@ body {
 }
 
 :root {
-  --pdss--risk-level--good--color: #44db77;
-  --pdss--risk-level--caution--color: #f8cb42;
-  --pdss--risk-level--warning--color: #f89100;
-  --pdss--risk-level--danger--color: #f45a51;
+  --pdss--risk-level--good--color: #00af50;
+  --pdss--risk-level--caution--color: #ffc000;
+  --pdss--risk-level--warning--color: #ed7d31;
+  --pdss--risk-level--danger--color: #d93d31;
 
   --primary--color: #003f9e;
-  --primary-a--color: #082652;
-  --primary-b--color: #9e2110;
+  --primary-a--color: rgb(8, 38, 82);
+  --primary-a-800-color: rgba(8, 38, 82, 0.8);
+  --primary-a-400-color: rgba(8, 38, 82, 0.4);
+  --primary-b--color: rgb(158, 33, 16);
+  --primary-b-800--color: rgba(158, 33, 16, 0.8);
+  --primary-b-400--color: rgba(158, 33, 16, 0.4);
 }

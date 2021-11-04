@@ -14,9 +14,9 @@ export class RowExpandedComponent implements OnInit {
     // 'id',
     'symbol',
     'rsid',
-    'phenotype',
     'genotype',
-    'recommendation',
+    'phenotype',
+    'interpretation',
   ];
   ngOnInit(): void {}
 }

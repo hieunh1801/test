@@ -22,24 +22,30 @@
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RISK </span>
       </th>
       <td mat-cell *matCellDef="let element">
-        <span
-          [ngClass]="{
-            'risk-level-container': true,
-            'good-level': element.risk === 'Good',
-            'caution-level': element.risk === 'Caution',
-            'danger-level': element.risk === 'Danger'
-          }"
+        <mat-icon
+          class="risk-level danger-level"
+          *ngIf="element?.risk == dangerTxt"
+          >cancel</mat-icon
         >
-          {{ element.risk | lowercase }}
-        </span>
+        <mat-icon
+          class="risk-level caution-level"
+          *ngIf="element?.risk == cautionTxt"
+          >remove_circle</mat-icon
+        >
+        <mat-icon
+          class="risk-level warning-level"
+          *ngIf="element?.risk == warningTxt"
+          >error</mat-icon
+        >
+        <mat-icon class="risk-level good-level" *ngIf="element?.risk == goodTxt"
+          >check_circle</mat-icon
+        >
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="recommendation">
+    <ng-container matColumnDef="packages">
       <th mat-header-cell *matHeaderCellDef fxHide.lt-sm>
-        <span translate>
-          PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RECOMMENDATION
-        </span>
+        <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__PACKAGES </span>
       </th>
       <td mat-cell *matCellDef="let element" fxHide.lt-sm>
         {{ element.recommendation }}

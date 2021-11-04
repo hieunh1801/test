@@ -42,6 +42,10 @@ class Sample {
 
 ```
 
+## Chartjs
+
+https://valor-software.com/ng2-charts/#/GeneralInfo
+
 ## Deploy to server
 
 ```bash
@@ -65,7 +69,6 @@ https://portalapi.spmed.kr/portal/ping
 https://gwapi.spmed.kr/api-gateway/v1.0/portal/ping
 
 https://cuapi.spmed.kr/customer-user/ping
-https://gwapi.spmed.kr/api-gateway/v1.0/customer-user/ping
 
 https://home.spmed.kr/home
 ```

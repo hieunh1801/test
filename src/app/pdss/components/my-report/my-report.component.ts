@@ -21,6 +21,7 @@ export class MyReportComponent implements OnInit, OnDestroy {
   report$ = new BehaviorSubject<Report>(null);
   totalGene: number = null;
   totalDrug: number = null;
+  totalInterpretation: number = null;
 
   totalGood: number = null;
   totalCaution: number = null;
@@ -92,11 +93,20 @@ export class MyReportComponent implements OnInit, OnDestroy {
         const genes = drugRecommendation?.genes;
         if (genes) {
           for (const gene of genes) {
-            geneIdSet.add(gene.id);
+            geneIdSet.add(gene.symbol);
           }
         }
       }
       this.totalGene = geneIdSet.size;
+
+      // total interpretation
+      this.totalInterpretation = drugRecommendations
+        .map((drugRecommendation) => {
+          return drugRecommendation?.genes?.length || 0;
+        })
+        .reduce((pre, currentValue) => {
+          return pre + currentValue;
+        }, 0);
 
       // total good
       const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
@@ -149,7 +159,6 @@ export class MyReportComponent implements OnInit, OnDestroy {
       // total danger
       const totalDanger = drugRecommendations.reduce(
         (count, drugRecommendation) => {
-          console.log(count, drugRecommendation.risk, dangerTxt);
           if (drugRecommendation.risk === dangerTxt) {
             return count + 1;
           }
@@ -171,7 +180,7 @@ export class MyReportComponent implements OnInit, OnDestroy {
     this.subscriptions$.unsubscribe();
   }
 
-  divideForTotalDrug(count: number) {
+  divideForTotalDrug(count: number): string {
     const totalDrug = this.totalDrug;
     if (totalDrug) {
       return ((count / totalDrug) * 100).toFixed(2);
