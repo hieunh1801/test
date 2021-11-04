@@ -13,7 +13,7 @@ import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 import { ImageOverlayFullscreenComponent } from './components/image-overlay-fullscreen/image-overlay-fullscreen.component';
-import { MustMatchValidatorComponent } from './components/must-match-validator/must-match-validator.component';
+import { MustMatch } from './classes/must-match.validator';
 
 const COMPONENTS = [
   FooterComponent,
@@ -29,7 +29,7 @@ const httpInterceptorProviders = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, MustMatchValidatorComponent],
+  declarations: [...COMPONENTS],
   providers: [httpInterceptorProviders],
   imports: [
     CommonModule,
