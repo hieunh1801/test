@@ -94,7 +94,12 @@
               layout.auth.register.personal-info.email
             </div>
             <mat-form-field hintLabel="" appearance="fill">
-              <input matInput type="text" formControlName="femail" />
+              <input
+                matInput
+                type="text"
+                formControlName="femail"
+                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              />
             </mat-form-field>
           </div>
 

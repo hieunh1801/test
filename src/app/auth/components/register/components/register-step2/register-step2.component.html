@@ -78,9 +78,18 @@
                 formControlName="repassword"
                 id="confirme_password"
                 type="password"
+                [ngClass]="{ 'is-invalid': f.repassword.errors }"
                 required
               />
             </mat-form-field>
+            <div *ngIf="f.repassword.errors" class="invalid-feedback">
+              <div *ngIf="f.repassword.errors.required">
+                Confirm Password is required
+              </div>
+              <div *ngIf="f.repassword.errors.mustMatch">
+                Passwords must match
+              </div>
+            </div>
           </div>
           <button
             mat-raised-button
