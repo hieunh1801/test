@@ -125,7 +125,12 @@
         <span translate>LAYOUT__HEADER__LOGIN</span>
       </button>
 
-      <button mat-button routerLink="/auth/register" [fxHide]="isLogin">
+      <button
+        mat-button
+        routerLink="/auth/register"
+        [queryParams]="{ step: 1 }"
+        [fxHide]="isLogin"
+      >
         <span translate>LAYOUT__HEADER__REGISTER</span>
       </button>
     </div>
@@ -251,7 +256,12 @@
     <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/login">
       <span translate>LAYOUT__HEADER__LOGIN</span>
     </button>
-    <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/register">
+    <button
+      mat-menu-item
+      routerLink="/auth/register"
+      [queryParams]="{ step: 1 }"
+      [fxHide]="isLogin"
+    >
       <span translate>LAYOUT__HEADER__SIGN_UP</span>
     </button>
     <button mat-menu-item [fxHide]="!isLogin" (click)="logout()">

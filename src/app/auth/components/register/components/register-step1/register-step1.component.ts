@@ -9,8 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterStep1Component implements OnInit {
   redirectToUrl = '#';
   formValue: any;
-  terms: boolean;
-  privacy: boolean;
   agree: boolean;
 
   signUpForm1 = this.formBuilder.group({

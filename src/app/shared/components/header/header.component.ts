@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +15,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public languageService: LanguageService,
-    private tokenStorageService: TokenStorageService,
-    private route: ActivatedRoute,
-    private router: Router
+    private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
@@ -37,10 +34,5 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.tokenStorageService.clearTokenStorage();
     window.location.reload();
-  }
-
-  goRegister(): void {
-    this.router.navigateByUrl('/auth/register?step=1');
-    // window.location.href = '/auth/register?step=' + this.step;
   }
 }
