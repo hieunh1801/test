@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LanguageService } from '../../shared/services/language.service';
 
@@ -24,16 +25,16 @@ export class AuthService {
     return this.httpClient.post(url, body);
   }
 
-  /*
-  createUser(payload: CustomerUserCreateRequest): Observable<SpmedResponse> {
+  createUser(payload: CustomerUserCreateRequest): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/signup`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    
-    return this.http.post<SpmedResponse>(url, payload, { headers })
-      .pipe(
-          // tap(data => console.log(JSON.stringify(data)))
-      );
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log(payload);
+    return this.httpClient
+      .post<any>(url, payload, { headers })
+      .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
+  /*
   getID(payload: IDCheckRequest): Observable<SpmedResponse> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/idcheck`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -65,10 +66,10 @@ export interface IDCheckRequest {
 }
 
 export interface CustomerUserCreateRequest {
-  username: string;
+  userName: string;
   password: string;
-  sirname: string;
-  givenname: string;
+  surName: string;
+  givenName: string;
   email: string;
   birthday: string;
   gender: string;

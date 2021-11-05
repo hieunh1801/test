@@ -597,8 +597,8 @@
               </div>
               <mat-grid-list cols="3" rowHeight="80px">
                 <mat-grid-tile colspan="1">
-                  <mat-form-field hintLabel="Sir Name" appearance="fill">
-                    <input matInput type="text" formControlName="fsirname" />
+                  <mat-form-field hintLabel="Sur Name" appearance="fill">
+                    <input matInput type="text" formControlName="fsurname" />
                     <mat-error
                       ><span translate
                         >LAYOUT__AUTH__REGISTER__ERROR__SIRNAME</span
@@ -625,13 +625,6 @@
               </div>
               <mat-form-field appearance="fill">
                 <input matInput type="date" formControlName="fdateofbirth" />
-                <!--
-                    <mat-error
-                      ><span translate
-                        >LAYOUT__AUTH__REGISTER__ERROR__BIRTHDAY</span
-                      ></mat-error
-                    >
-                    -->
               </mat-form-field>
             </div>
 
@@ -651,10 +644,11 @@
               >
                 <mat-radio-button
                   class="example-radio-button"
-                  *ngFor="let gender of genders"
-                  [value]="gender"
+                  *ngFor="let gen of genders"
+                  [value]="gen.value"
                 >
-                  {{ gender }}
+                  <span *ngIf="this.lang == 'kr'">{{ gen.data_kr }}</span>
+                  <span *ngIf="this.lang == 'en'">{{ gen.data_en }}</span>
                 </mat-radio-button>
               </mat-radio-group>
               <mat-error *ngIf="signUpForm3.get('fgender').invalid"

@@ -4,12 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { from, Subscription } from 'rxjs';
 import { MustMatch } from '../../../shared/classes/must-match.validator';
 import { DatePipe, Location } from '@angular/common';
+import { finalize } from 'rxjs/operators';
+import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import {
   AuthService,
   IDCheckRequest,
   CustomerUserCreateRequest,
   CustomerUserCreateResponse,
 } from '../../services/auth.service';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -18,13 +21,19 @@ import {
   providers: [DatePipe],
 })
 export class RegisterComponent implements OnInit {
-  // signUpForm: FormGroup;
+  isPageLoading = false;
 
-  genders: string[] = ['Male', 'Female', 'Other'];
+  genders: genderArray[] = [
+    { data_en: 'Male', data_kr: '남', value: 1 },
+    { data_en: 'Female', data_kr: '여', value: -1 },
+    { data_en: 'Undefined', data_kr: '모름', value: 0 },
+  ];
+
   redirectToUrl = '#';
   formValue: any;
   agree: boolean;
   parameter: number;
+  lang: string;
 
   currentStep = 1;
 
@@ -54,7 +63,7 @@ export class RegisterComponent implements OnInit {
 
   signUpForm3 = this.formBuilder.group({
     // TODO add form3 here
-    fsirname: ['', Validators.required],
+    fsurname: ['', Validators.required],
     fgivenname: ['', Validators.required],
     // validates date format yyyy-mm-dd
     fdateofbirth: [
@@ -71,12 +80,20 @@ export class RegisterComponent implements OnInit {
     fphone: ['', Validators.required],
   });
 
+  private subscription$ = new Subscription();
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private datePipe: DatePipe
-  ) {}
+    private datePipe: DatePipe,
+    private authService: AuthService,
+    private matSnackbarService: MatSnackbarService,
+    private localStorage: LocalStorageService
+  ) {
+    this.lang = localStorage.get('lang');
+    // console.log(this.lang);
+  }
 
   ngOnInit(): void {}
 
@@ -88,7 +105,7 @@ export class RegisterComponent implements OnInit {
       '',
       [Validators.required, Validators.minLength(4), Validators.maxLength(12)],
     ],
-    fsirname: ['', Validators.required],
+    fsurname: ['', Validators.required],
     fgivenname: ['', Validators.required],
     // validates date format yyyy-mm-dd
     fdateofbirth: [
@@ -138,7 +155,7 @@ export class RegisterComponent implements OnInit {
       privacyAgree: form1Value.privacyAgree,
       fusername: form2Value.fusername,
       fpassword: form2Value.fpassword,
-      fsirname: form3Value.fsirname,
+      fsurname: form3Value.fsurname,
       fgivenname: form3Value.fgivenname,
       fdateofbirth: form3Value.fdateofbirth,
       fgender: form3Value.fgender,
@@ -149,6 +166,55 @@ export class RegisterComponent implements OnInit {
 
     // call api sign up => I will do that after you done =))
     if (this.signUpForm.valid) {
+      const formValue = this.signUpForm.value;
+
+      const CustomerUserCreateRequest: CustomerUserCreateRequest = {
+        userName: formValue.fusername,
+        password: formValue.fpassword,
+        surName: formValue.fsurname,
+        givenName: formValue.fgivenname,
+        email: formValue.femail,
+        birthday: formValue.fdateofbirth,
+        gender: formValue.fgender,
+        mobile: formValue.fphone,
+        enabled: 1,
+        role: 3,
+      };
+
+      this.authService
+        .createUser(CustomerUserCreateRequest)
+        .pipe(
+          finalize(() => {
+            this.isPageLoading = false;
+          })
+        )
+        .subscribe({
+          next: (response: SpmedResponse<CustomerUserCreateResponse>) => {
+            const CustomerUserCreateResponse: CustomerUserCreateResponse =
+              response?.data?.items[0];
+            if (CustomerUserCreateResponse == null) {
+              this.matSnackbarService.open('SignUp process Fail', 'SIGNUP');
+            } else {
+              window.location.href = this.redirectToUrl;
+            }
+          },
+          complete: () => {
+            console.log('this.authService.Register done!!!');
+          },
+          error: (error) => {
+            console.log(error.response);
+            this.matSnackbarService.open(
+              'Sign up failed. Server is not response',
+              'SIGNUP'
+            );
+          },
+        });
     }
   }
+}
+
+interface genderArray {
+  data_en: string;
+  data_kr: string;
+  value: number;
 }

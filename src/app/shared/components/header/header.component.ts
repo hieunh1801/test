@@ -9,7 +9,6 @@ import { TokenStorageService } from '../../services/token-storage.service';
 })
 export class HeaderComponent implements OnInit {
   isLogin = false;
-  step: number;
   username = '';
   isOpenMenuMobile = false;
 
@@ -23,7 +22,6 @@ export class HeaderComponent implements OnInit {
     if (username) {
       this.isLogin = true;
       this.username = username;
-      this.step = 1;
     }
   }
 

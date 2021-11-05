@@ -67,8 +67,6 @@ scp -r /home/hieu/Desktop/spmed-pdss-210705/spmed-portal-desktop/dist/spmed-port
 # step 5: service
 https://portalapi.spmed.kr/portal/ping
 https://gwapi.spmed.kr/api-gateway/v1.0/portal/ping
-
 https://cuapi.spmed.kr/customer-user/ping
-
 https://home.spmed.kr/home
 ```
