@@ -1,61 +1,61 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div id="register" fxLayout="row" fxLayoutAlign="space-around center">
-    <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
-      <h1>Sign up for SPMED</h1>
+<div id="register" fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-card [ngStyle.gt-md]="{ width: '1200px' }">
+    <h1>Sign up for SPMED</h1>
 
-      <mat-card-content>
-        <div fxFlex="50" class="step-container" fxHide.lt-lg>
-          <div class="selected-step-box" [fxShow]="isShowStep1">
-            <div class="selected-step-title">Step 1</div>
-            <div class="selected-step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP1__COMMENT
-            </div>
-          </div>
-          <div class="step-box" [fxHide]="isShowStep1">
-            <div class="step-title">Step 1</div>
-            <div class="step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP1__COMMENT
-            </div>
-          </div>
-          <div class="selected-step-box" [fxShow]="isShowStep2">
-            <div class="selected-step-title">Step 2</div>
-            <div class="selected-step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP2__COMMENT
-            </div>
-          </div>
-          <div class="step-box" [fxHide]="isShowStep2">
-            <div class="step-title">Step 2</div>
-            <div class="step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP2__COMMENT
-            </div>
-          </div>
-          <div class="selected-step-box" [fxShow]="isShowStep3">
-            <div class="selected-step-title">Step 3</div>
-            <div class="selected-step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP3__COMMENT
-            </div>
-          </div>
-          <div class="step-box" [fxHide]="isShowStep3">
-            <div class="step-title">Step 3</div>
-            <div class="step-comment" translate>
-              LAYOUT__AUTH__REGISTER__STEP3__COMMENT
-            </div>
+    <mat-card-content>
+      <div fxFlex="50" class="step-container" fxHide.lt-lg>
+        <div class="selected-step-box" [fxShow]="currentStep == 1">
+          <div class="selected-step-title">Step 1</div>
+          <div class="selected-step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP1__COMMENT
           </div>
         </div>
+        <div class="step-box" [fxHide]="currentStep == 1">
+          <div class="step-title">Step 1</div>
+          <div class="step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP1__COMMENT
+          </div>
+        </div>
+        <div class="selected-step-box" [fxShow]="currentStep == 2">
+          <div class="selected-step-title">Step 2</div>
+          <div class="selected-step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP2__COMMENT
+          </div>
+        </div>
+        <div class="step-box" [fxHide]="currentStep == 2">
+          <div class="step-title">Step 2</div>
+          <div class="step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP2__COMMENT
+          </div>
+        </div>
+        <div class="selected-step-box" [fxShow]="currentStep == 3">
+          <div class="selected-step-title">Step 3</div>
+          <div class="selected-step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP3__COMMENT
+          </div>
+        </div>
+        <div class="step-box" [fxHide]="currentStep == 3">
+          <div class="step-title">Step 3</div>
+          <div class="step-comment" translate>
+            LAYOUT__AUTH__REGISTER__STEP3__COMMENT
+          </div>
+        </div>
+      </div>
 
-        <div
-          fxFlex="50"
-          fxFlex.lt-lg="100"
-          fxLayout="column"
-          class="agreement-container"
-          [ngStyle.md]="{ width: '600px', padding: '10px' }"
-          [ngStyle.sm]="{ width: '600px', padding: '10px' }"
-          [ngStyle.xs]="{ padding: '10px' }"
-        >
-          <div [fxHide]="!isShowStep1">
+      <div
+        fxFlex="50"
+        fxFlex.lt-lg="100"
+        fxLayout="column"
+        class="agreement-container"
+        [ngStyle.md]="{ width: '600px', padding: '10px' }"
+        [ngStyle.sm]="{ width: '600px', padding: '10px' }"
+        [ngStyle.xs]="{ padding: '10px' }"
+      >
+        <div [fxShow]="currentStep == 1">
+          <form [formGroup]="signUpForm1">
             <div class="agreement-total">
               <mat-checkbox
-                formControlName="total_agree"
+                formControlName="totalAgree"
                 value="1"
                 (change)="updateCheck()"
               >
@@ -64,7 +64,7 @@
             </div>
             <div style="margin: 10px 0px; height: 120px">
               <div>
-                <mat-checkbox formControlName="terms_agree" value="1" required>
+                <mat-checkbox formControlName="termsAgree" value="1" required>
                   <span translate>LAYOUT__AUTH__REGISTER__TERM</span>
                 </mat-checkbox>
               </div>
@@ -141,6 +141,8 @@
                   >
                 </p>
                 <p>
+                  <!-- this data from db in the future. now example. -->
+                  <!-- all inline style need to be remove =)) ok -->
                   <span style="font-size: 9pt">5. 단말기라 함은&nbsp;</span
                   ><span style="font-size: 9pt">에스피메드</span
                   ><span style="font-size: 9pt"
@@ -429,7 +431,7 @@
 
             <div style="margin: 10px 0px" style="height: 120px">
               <div>
-                <mat-checkbox formControlName="privacy_agree" value="1" required
+                <mat-checkbox formControlName="privacyAgree" value="1" required
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__PRIVACY</span
                   ></mat-checkbox
@@ -476,8 +478,10 @@
             >
               <span translate>LAYOUT__AUTH__REGISTER__STEP1__CONFIRM</span>
             </button>
-          </div>
-          <div [fxHide]="!isShowStep2">
+          </form>
+        </div>
+        <div [fxShow]="currentStep == 2">
+          <form [formGroup]="signUpForm2">
             <div style="width: 90%; height: 34px">
               <div class="signup-title" translate>
                 LAYOUT__AUTH__REGISTER__ID
@@ -490,7 +494,7 @@
               <mat-form-field class="input-full-width" appearance="fill">
                 <input matInput formControlName="fusername" required />
 
-                <mat-error *ngIf="signUpForm.get('fusername').invalid"
+                <mat-error *ngIf="signUpForm2.get('fusername').invalid"
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__ID</span
                   ></mat-error
@@ -509,7 +513,7 @@
                   type="password"
                   required
                 />
-                <mat-error *ngIf="signUpForm.get('fpassword').invalid"
+                <mat-error *ngIf="signUpForm2.get('fpassword').invalid"
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__PASSWORD</span
                   ></mat-error
@@ -531,16 +535,16 @@
                 />
                 <mat-error
                   *ngIf="
-                    signUpForm.get('repassword').errors &&
-                    signUpForm.get('repassword').touched
+                    signUpForm2.get('repassword').errors &&
+                    signUpForm2.get('repassword').touched
                   "
                 >
-                  <div *ngIf="signUpForm.get('repassword').errors.required">
+                  <div *ngIf="signUpForm2.get('repassword').errors.required">
                     <span translate
                       >LAYOUT__AUTH__REGISTER__ERROR__CONFIRM__PASSWORD</span
                     >
                   </div>
-                  <div *ngIf="signUpForm.get('repassword').errors.mustMatch">
+                  <div *ngIf="signUpForm2.get('repassword').errors.mustMatch">
                     <span translate
                       >LAYOUT__AUTH__REGISTER__ERROR__PASSWORD__MISMATCH</span
                     >
@@ -582,9 +586,11 @@
             >
               <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
             </button>
-          </div>
+          </form>
+        </div>
 
-          <div [fxHide]="!isShowStep3">
+        <div [fxShow]="currentStep == 3">
+          <form [formGroup]="signUpForm3" (ngSubmit)="onSubmit()">
             <div style="width: 100%; margin: 10x; padding: 10px">
               <div class="signup-title" translate>
                 LAYOUT__AUTH__REGISTER__PERSONAL_INFO__NAME
@@ -620,12 +626,12 @@
               <mat-form-field appearance="fill">
                 <input matInput type="date" formControlName="fdateofbirth" />
                 <!--
-                  <mat-error
-                    ><span translate
-                      >LAYOUT__AUTH__REGISTER__ERROR__BIRTHDAY</span
-                    ></mat-error
-                  >
-                  -->
+                    <mat-error
+                      ><span translate
+                        >LAYOUT__AUTH__REGISTER__ERROR__BIRTHDAY</span
+                      ></mat-error
+                    >
+                    -->
               </mat-form-field>
             </div>
 
@@ -651,7 +657,7 @@
                   {{ gender }}
                 </mat-radio-button>
               </mat-radio-group>
-              <mat-error *ngIf="signUpForm.get('fgender').invalid"
+              <mat-error *ngIf="signUpForm3.get('fgender').invalid"
                 ><span translate
                   >LAYOUT__AUTH__REGISTER__ERROR__GENDER</span
                 ></mat-error
@@ -669,23 +675,9 @@
                   formControlName="femail"
                   pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
                 />
-
-                <mat-error
-                  *ngIf="
-                    signUpForm.get('femail').errors &&
-                    signUpForm.get('femail').touched
-                  "
-                >
-                  <div *ngIf="signUpForm.get('femail').errors.required">
-                    <span translate>LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span>
-                  </div>
+                <mat-error *ngIf="signUpForm3.get('femail').invalid"
+                  ><span translate>LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span>
                 </mat-error>
-
-                <mat-error
-                  ><span translate
-                    >LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span
-                  ></mat-error
-                >
               </mat-form-field>
             </div>
 
@@ -695,7 +687,7 @@
               </div>
               <mat-form-field hintLabel="" appearance="fill">
                 <input matInput type="text" formControlName="fphone" />
-                <mat-error
+                <mat-error *ngIf="signUpForm3.get('fphone').invalid"
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__PHONE</span
                   ></mat-error
@@ -707,13 +699,13 @@
               mat-raised-button
               color="primary"
               class="agreement-button-mobile"
+              type="submit"
             >
               <span translate>LAYOUT__AUTH__REGISTER__STEP3__CONFIRM</span>
             </button>
-          </div>
+          </form>
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <pre>{{ signUpForm.value | json }}</pre>
-</form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
