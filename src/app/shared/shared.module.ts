@@ -15,6 +15,8 @@ import { PageLoadingComponent } from './components/page-loading/page-loading.com
 import { ImageOverlayFullscreenComponent } from './components/image-overlay-fullscreen/image-overlay-fullscreen.component';
 import { MustMatchValidatorComponent } from './components/must-match-validator/must-match-validator.component';
 import { AuthenticationInterceptor } from './interceptors/authentication.intercepter';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -23,10 +25,12 @@ const COMPONENTS = [
   HomeLayoutComponent,
   PageLoadingComponent,
   ImageOverlayFullscreenComponent,
+  SnackbarComponent,
 ];
 
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,

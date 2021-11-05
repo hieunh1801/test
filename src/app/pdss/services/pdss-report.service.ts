@@ -1,16 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PdssReportService {
-  constructor(private httpClient: HttpClient) {}
+  private baseUrl = `${environment.gateway}/portal`;
 
-  getReport(): Observable<SpmedResponse<Report>> {
-    // const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/IM011-ABCD`;
-    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/IM011-ABCD`;
+  constructor(
+    private httpClient: HttpClient,
+    private languageService: LanguageService
+  ) {}
+
+  getMyReport(): Observable<SpmedResponse<Report>> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/my-report`;
     return this.httpClient.get(url);
   }
 

@@ -16,12 +16,12 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('authentication');
+    console.log('access-token');
     const accessToken = this.tokenStorageService.accessToken;
 
     request = request.clone({
       setHeaders: {
-        Authorization: `${accessToken}`,
+        'access-token': `${accessToken}`,
       },
     });
 
