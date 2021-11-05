@@ -47,7 +47,7 @@ export class MyReportComponent implements OnInit, OnDestroy {
   loadReportList(): void {
     this.isPageLoading = true;
     this.pdssReportService
-      .getReport()
+      .getMyReport()
       .pipe(
         finalize(() => {
           this.isPageLoading = false;

@@ -18,7 +18,7 @@ export class MyReportResolverService implements Resolve<Report> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Report> {
-    return this.pdssReportService.getReport().pipe(
+    return this.pdssReportService.getMyReport().pipe(
       map((response) => {
         const report = response?.data?.items?.[0];
         return report;

@@ -1,0 +1,4 @@
+GET http://localhost:61128/customer-user/ping
+
+### get all user
+GET http://localhost:61128/customer-user/v1.0/en/users?username=PH210121B
