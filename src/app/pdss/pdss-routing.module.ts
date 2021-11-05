@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../shared/guards/auth.guard';
 import { BrowserComponent } from './components/browser/browser.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
       {
         path: 'my-report',
         component: MyReportComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

@@ -1,5 +1,6 @@
-<!-- for website -->
+<!-- website -->
 <div class="pdss-nav-menu">
+  <!-- nav-website -->
   <mat-toolbar fxHide.lt-md>
     <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
       <button mat-button routerLink="overview">
@@ -48,7 +49,7 @@
     </div>
   </mat-toolbar>
 
-  <!-- for mobile -->
+  <!-- nav-mobile -->
   <div fxHide.gt-sm>
     <mat-accordion>
       <mat-expansion-panel>
@@ -93,18 +94,10 @@
             </mat-list>
           </mat-expansion-panel>
 
-          <button
-            mat-menu-item
-            routerLink="browser"
-            routerLinkActive="router-link-active"
-          >
+          <button mat-menu-item routerLink="browser">
             <span translate>PDSS__NAV_MENU__BROWSER</span>
           </button>
-          <button
-            mat-menu-item
-            routerLink="utility"
-            routerLinkActive="router-link-active"
-          >
+          <button mat-menu-item routerLink="utility">
             <span translate>PDSS__NAV_MENU__UTILITY</span>
           </button>
 
@@ -116,7 +109,7 @@
     </mat-accordion>
   </div>
 
-  <!-- menu pdss/products for website-->
+  <!-- website -> products menu -->
   <mat-menu #pdssProductsMenu="matMenu">
     <button mat-menu-item [routerLink]="['products', 'pgx']">
       <span translate>PDSS__NAV_MENU__PGX</span>

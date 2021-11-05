@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
@@ -18,7 +18,7 @@ import {
 })
 export class LoginComponent implements OnInit {
   isPageLoading = false;
-  redirectToUrl = '#';
+  redirectFromUrl = '#';
 
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
@@ -33,13 +33,11 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
     private matSnackbarService: MatSnackbarService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.activeRoute.queryParams.subscribe((queryParams) => {
-      const url = queryParams?.url || '';
-      if (url && url.startsWith('http')) {
-        this.redirectToUrl = url;
-      }
+      this.redirectFromUrl = queryParams?.redirectFromUrl || '';
     });
   }
 
@@ -83,7 +81,7 @@ export class LoginComponent implements OnInit {
               this.tokenStorageService.authorities =
                 loginResponse?.authorities || [];
 
-              window.location.href = this.redirectToUrl;
+              this.router.navigate([this.redirectFromUrl]);
             }
           },
           complete: () => {

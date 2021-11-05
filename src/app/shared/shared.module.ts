@@ -17,6 +17,7 @@ import { MustMatchValidatorComponent } from './components/must-match-validator/m
 import { AuthenticationInterceptor } from './interceptors/authentication.intercepter';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const COMPONENTS = [
   FooterComponent,
@@ -40,7 +41,7 @@ const httpInterceptorProviders = [
 
 @NgModule({
   declarations: [...COMPONENTS, MustMatchValidatorComponent],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthGuard],
   imports: [
     CommonModule,
     RouterModule,
