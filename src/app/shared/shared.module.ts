@@ -9,10 +9,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoggingInterceptor } from './interceptors/logging-interceptor';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 import { ImageOverlayFullscreenComponent } from './components/image-overlay-fullscreen/image-overlay-fullscreen.component';
+import { AuthenticationInterceptor } from './interceptors/authentication.intercepter';
 
 const COMPONENTS = [
   FooterComponent,
@@ -25,6 +26,11 @@ const COMPONENTS = [
 
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi: true,
+  },
 ];
 
 @NgModule({

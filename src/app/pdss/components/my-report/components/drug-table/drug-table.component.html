@@ -1,23 +1,23 @@
 <!-- drug table -->
 <div class="drug-table">
   <table mat-table [dataSource]="drugList" multiTemplateDataRows>
-    <ng-container matColumnDef="index">
+    <div matColumnDef="index">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__INDEX </span>
       </th>
       <td mat-cell *matCellDef="let element; let index = dataIndex">
         {{ index + 1 }}
       </td>
-    </ng-container>
+    </div>
 
-    <ng-container matColumnDef="drugName">
+    <div matColumnDef="drugName">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__DRUG </span>
       </th>
       <td mat-cell *matCellDef="let element">{{ element.drugName }}</td>
-    </ng-container>
+    </div>
 
-    <ng-container matColumnDef="riskLevel">
+    <div matColumnDef="riskLevel">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RISK </span>
       </th>
@@ -41,18 +41,21 @@
           >check_circle</mat-icon
         >
       </td>
-    </ng-container>
+    </div>
 
-    <ng-container matColumnDef="packages">
+    <div matColumnDef="packages">
       <th mat-header-cell *matHeaderCellDef fxHide.lt-sm>
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__PACKAGES </span>
       </th>
       <td mat-cell *matCellDef="let element" fxHide.lt-sm>
-        {{ element.recommendation }}
+        <div class="package-list" fxLayout="row" fxLayoutGap="10px">
+          <div class="package-list-item">PGx-NP</div>
+          <div class="package-list-item">PGx-Premium</div>
+        </div>
       </td>
-    </ng-container>
+    </div>
 
-    <ng-container matColumnDef="actions">
+    <div matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> </span>
       </th>
@@ -60,7 +63,7 @@
         <mat-icon *ngIf="isExpandedElement(element)">remove</mat-icon>
         <mat-icon *ngIf="!isExpandedElement(element)">add</mat-icon>
       </td>
-    </ng-container>
+    </div>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
@@ -72,7 +75,7 @@
     ></tr>
 
     <!-- for detail -->
-    <ng-container matColumnDef="expandedDetail">
+    <div matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" colspan="999">
         <div
           class="element-detail-wrapper"
@@ -85,7 +88,7 @@
           </div>
         </div>
       </td>
-    </ng-container>
+    </div>
 
     <tr
       mat-row

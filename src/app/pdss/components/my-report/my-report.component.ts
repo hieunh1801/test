@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -18,7 +19,7 @@ import {
 export class MyReportComponent implements OnInit, OnDestroy {
   isPageLoading = false;
 
-  report$ = new BehaviorSubject<Report>(null);
+  reportList$ = new BehaviorSubject<Report[]>(null);
   totalGene: number = null;
   totalDrug: number = null;
   totalInterpretation: number = null;
@@ -35,10 +36,15 @@ export class MyReportComponent implements OnInit, OnDestroy {
   constructor(
     private pdssReportService: PdssReportService,
     private matSnackbarService: MatSnackbarService,
-    private translateService: TranslateService
-  ) {}
+    private translateService: TranslateService,
+    public activeRoute: ActivatedRoute
+  ) {
+    const url = this.activeRoute.snapshot.params;
+    const queryParams = this.activeRoute.snapshot.queryParams;
+    console.log(queryParams);
+  }
 
-  loadReport(): void {
+  loadReportList(): void {
     this.isPageLoading = true;
     this.pdssReportService
       .getReport()
@@ -50,7 +56,7 @@ export class MyReportComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response?.data?.items?.[0]) {
-            this.report$.next(response?.data?.items?.[0]);
+            this.reportList$.next(response?.data?.items || []);
           }
         },
         error: () => {
@@ -65,13 +71,18 @@ export class MyReportComponent implements OnInit, OnDestroy {
       });
   }
 
-  subscribeReport(): void {
-    const sub = this.report$.subscribe((report) => {
-      if (!report) {
+  subscribeReportListChange(): void {
+    const sub = this.reportList$.subscribe((reportList) => {
+      if (!reportList || reportList.length === 0) {
         return;
       }
 
-      const { drugRecommendations = null } = report;
+      const drugRecommendations = reportList
+        .map((report) => report.drugRecommendations)
+        .reduce((pre, curr) => {
+          return [...pre, ...curr];
+        }, []);
+
       if (!drugRecommendations) {
         return;
       }
@@ -172,8 +183,8 @@ export class MyReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscribeReport();
-    this.loadReport();
+    this.subscribeReportListChange();
+    this.loadReportList();
   }
 
   ngOnDestroy(): void {
