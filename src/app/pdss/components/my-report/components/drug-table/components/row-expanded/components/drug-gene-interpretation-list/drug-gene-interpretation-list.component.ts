@@ -8,6 +8,7 @@ import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
 })
 export class DrugGeneInterpretationListComponent implements OnInit {
   @Input() genes: DrugRecommendation[] = [];
+
   constructor() {}
 
   ngOnInit(): void {}

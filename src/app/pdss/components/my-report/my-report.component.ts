@@ -109,19 +109,6 @@ export class MyReportComponent implements OnInit, OnDestroy {
       });
     }
 
-    // sort
-    drugRecommendations.sort((d1, d2) => {
-      if (d1.drugName > d2.drugName) {
-        return 1;
-      }
-
-      if (d1.drugName < d2.drugName) {
-        return -1;
-      }
-
-      return 0;
-    });
-
     if (sort) {
       if (!sort.active || sort.direction === '') {
         this.sortedDrugList = drugRecommendations;

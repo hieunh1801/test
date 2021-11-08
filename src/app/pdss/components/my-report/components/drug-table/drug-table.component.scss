@@ -9,6 +9,12 @@
       color: #ffffff !important;
     }
   }
+
+  .filter-header {
+    background-color: white;
+    color: var(--primary--color);
+  }
+
   th.mat-header-cell {
     color: #ffffff !important;
     font-weight: 600;
