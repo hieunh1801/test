@@ -16,9 +16,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('access-token');
     const accessToken = this.tokenStorageService.accessToken;
-
     request = request.clone({
       setHeaders: {
         'access-token': `${accessToken}`,

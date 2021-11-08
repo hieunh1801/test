@@ -16,6 +16,7 @@ import { ImageOverlayFullscreenComponent } from './components/image-overlay-full
 import { AuthenticationInterceptor } from './interceptors/authentication.intercepter';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const COMPONENTS = [
   FooterComponent,
@@ -38,8 +39,9 @@ const httpInterceptorProviders = [
 ];
 
 @NgModule({
+  //
   declarations: [...COMPONENTS],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthGuard],
   imports: [
     CommonModule,
     RouterModule,
