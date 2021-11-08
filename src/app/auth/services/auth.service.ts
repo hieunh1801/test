@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   createUser(payload: CustomerUserCreateRequest): Observable<any> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/signup`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/sign-up`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log(payload);
     return this.httpClient
@@ -34,17 +34,15 @@ export class AuthService {
       .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
-  /*
-  getID(payload: IDCheckRequest): Observable<SpmedResponse> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/idcheck`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<SpmedResponse>(url, payload, { headers })
-      .pipe(
-          // tap(data => console.log(JSON.stringify(data)))
-      );
+  getID(checkUserNameRequest: CheckUserNameRequest): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/check-username`;
+    const body = {
+      username: checkUserNameRequest.username,
+    };
+    return this.httpClient
+      .post<any>(url, body)
+      .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
-
-*/
 }
 
 export interface LoginRequest {
@@ -61,9 +59,11 @@ export interface LoginResponse {
   authorities?: string[];
 }
 
-export interface IDCheckRequest {
+export interface CheckUserNameRequest {
   username: string;
 }
+
+export interface CheckUserNameResponse {}
 
 export interface CustomerUserCreateRequest {
   userName: string;
@@ -74,7 +74,6 @@ export interface CustomerUserCreateRequest {
   birthday: string;
   gender: string;
   mobile: string;
-  enabled: number;
   role: number;
 }
 

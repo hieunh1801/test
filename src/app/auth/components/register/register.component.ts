@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import {
   AuthService,
-  IDCheckRequest,
+  CheckUserNameRequest,
   CustomerUserCreateRequest,
   CustomerUserCreateResponse,
 } from '../../services/auth.service';
@@ -177,7 +177,6 @@ export class RegisterComponent implements OnInit {
         birthday: formValue.fdateofbirth,
         gender: formValue.fgender,
         mobile: formValue.fphone,
-        enabled: 1,
         role: 3,
       };
 
