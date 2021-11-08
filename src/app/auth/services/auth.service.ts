@@ -28,10 +28,7 @@ export class AuthService {
   createUser(payload: CustomerUserCreateRequest): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/sign-up`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(payload);
-    return this.httpClient
-      .post<any>(url, payload, { headers })
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+    return this.httpClient.post<SpmedResponse<any>>(url, payload, { headers });
   }
 
   getID(checkUserNameRequest: CheckUserNameRequest): Observable<any> {
@@ -40,7 +37,7 @@ export class AuthService {
       username: checkUserNameRequest.username,
     };
     return this.httpClient
-      .post<any>(url, body)
+      .post<SpmedResponse<any>>(url, body)
       .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 }
@@ -66,15 +63,21 @@ export interface CheckUserNameRequest {
 export interface CheckUserNameResponse {}
 
 export interface CustomerUserCreateRequest {
-  userName: string;
+  username: string;
   password: string;
-  surName: string;
+  surname: string;
   givenName: string;
   email: string;
   birthday: string;
   gender: string;
   mobile: string;
-  role: number;
 }
 
-export interface CustomerUserCreateResponse {}
+export interface CustomerUserCreateResponse {
+  id: number;
+  username: string;
+  email: string;
+  accessToken: string;
+  refreshToken: string;
+  authorities?: string[];
+}

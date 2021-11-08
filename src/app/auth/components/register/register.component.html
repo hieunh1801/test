@@ -647,8 +647,8 @@
                   *ngFor="let gen of genders"
                   [value]="gen.value"
                 >
-                  <span *ngIf="this.lang == 'kr'">{{ gen.data_kr }}</span>
-                  <span *ngIf="this.lang == 'en'">{{ gen.data_en }}</span>
+                  <span *ngIf="this.lang == 'kr'">{{ gen.dataKr }}</span>
+                  <span *ngIf="this.lang == 'en'">{{ gen.dataEn }}</span>
                 </mat-radio-button>
               </mat-radio-group>
               <mat-error *ngIf="signUpForm3.get('fgender').invalid"
