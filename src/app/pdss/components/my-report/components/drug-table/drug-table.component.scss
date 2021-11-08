@@ -3,8 +3,14 @@
   table.mat-table {
     width: 100%;
   }
+
+  ::ng-deep {
+    .mat-sort-header-arrow {
+      color: #ffffff !important;
+    }
+  }
   th.mat-header-cell {
-    color: #ffffff;
+    color: #ffffff !important;
     font-weight: 600;
     background-color: var(--primary--color);
   }

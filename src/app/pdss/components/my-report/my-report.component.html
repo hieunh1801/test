@@ -56,7 +56,10 @@
     </div>
   </div>
 
-  <app-drug-table [drugList]="drugList"></app-drug-table>
+  <app-drug-table
+    [drugList]="drugList"
+    (sortChange)="sortChange($event)"
+  ></app-drug-table>
 </div>
 
 <app-page-loading [isLoading]="isPageLoading"></app-page-loading>

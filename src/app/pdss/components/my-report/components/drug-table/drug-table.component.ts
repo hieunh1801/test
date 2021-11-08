@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
 import {
   animate,
@@ -8,6 +15,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-drug-table',
@@ -30,14 +38,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DrugTableComponent implements OnInit, OnDestroy {
   @Input() drugList: DrugRecommendation[] = [];
+  @Output() sortChange: EventEmitter<Sort> = new EventEmitter();
+
   expandedElement?: DrugRecommendation = this.drugList?.[0];
   expandedElementIdList: number[] = [];
   displayedColumns: string[] = [
     'index',
     'drugName',
-    'relatedGene',
+    'relatedGenes',
     'riskLevel',
-    'packages',
+    'product',
     'actions',
   ];
 
@@ -86,5 +96,9 @@ export class DrugTableComponent implements OnInit, OnDestroy {
   isGood(riskLevel: string): boolean {
     const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
     return riskLevel === goodTxt;
+  }
+
+  sortData(sort: Sort): void {
+    this.sortChange.emit(sort);
   }
 }
