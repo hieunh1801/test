@@ -10,13 +10,6 @@ export class RowExpandedComponent implements OnInit {
   @Input() drug: DrugRecommendation = null;
 
   constructor() {}
-  geneTableDisplayedColumns = [
-    // 'id',
-    'symbol',
-    'rsid',
-    'genotype',
-    'phenotype',
-    'interpretation',
-  ];
+
   ngOnInit(): void {}
 }

@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve --port 61126 -o",
     "i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/*.json --clean --sort --marker _",
-    "build": "ng build",
-    "build-prod": "ng build --prod",
+    "build": "ng build --prod --aot --buildOptimizer",
+    "build-prod": "ng build --prod --aot --buildOptimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -26,6 +26,8 @@
     "@angular/router": "~10.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "echarts": "^5.2.2",
+    "ngx-echarts": "^7.0.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

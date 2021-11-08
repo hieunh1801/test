@@ -22,39 +22,36 @@
           <span translate>PDSS__MY_REPORT__INTERPRETATIONS</span>
         </div>
 
-        <!-- <app-risk-summary-pie-chart
-          [danger]="totalDanger"
-          [warning]="totalWarning"
-          [caution]="totalCaution"
-          [good]="totalGood"
-        ></app-risk-summary-pie-chart> -->
+        <!-- <div class="chart-container">
+          <app-risk-summary-pie-chart></app-risk-summary-pie-chart>
+        </div> -->
       </div>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="end">
     <div class="box danger" [ngClass.xs]="'box-mobile'">
       <div *ngIf="totalDanger">
-        {{ totalDanger }}/{{ totalDrug }}
         <span translate>PDSS__RISK_LEVEL__DANGER</span>
+        {{ totalDanger }}/{{ totalDrug }}
       </div>
     </div>
     <div class="box warning" [ngClass.xs]="'box-mobile'">
       <div *ngIf="totalCaution">
-        {{ totalWarning }}/{{ totalDrug }}
-
         <span translate>PDSS__RISK_LEVEL__WARNING</span>
+        {{ totalWarning }}/{{ totalDrug }}
       </div>
     </div>
     <div class="box caution" [ngClass.xs]="'box-mobile'">
       <div *ngIf="totalCaution">
-        {{ totalCaution }}/{{ totalDrug }}
         <span translate>PDSS__RISK_LEVEL__CAUTION</span>
+        {{ totalCaution }}/{{ totalDrug }}
       </div>
     </div>
     <div class="box good" [ngClass.xs]="'box-mobile'">
       <div *ngIf="totalGood">
-        {{ totalGood }}/{{ totalDrug }}
         <span translate>PDSS__RISK_LEVEL__GOOD</span>
+
+        {{ totalGood }}/{{ totalDrug }}
       </div>
     </div>
   </div>

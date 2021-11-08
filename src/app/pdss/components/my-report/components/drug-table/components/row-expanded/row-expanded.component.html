@@ -38,51 +38,27 @@
           {{ drug.kfdaClass }}
         </div>
       </div>
+
+      <div class="cell dosing">
+        <div translate class="cell-label">
+          PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__DOSING
+        </div>
+        <div class="cell-detail">
+          {{ drug.dose }}
+        </div>
+      </div>
     </div>
     <mat-divider></mat-divider>
-    <!-- genes table -->
-    <div *ngIf="drug.genes" class="gene-table-wrapper" fxHide.lt-sm>
-      <div class="detail-label">Drug Gene Interpretation</div>
+    <app-drug-gene-interpretation-table
+      fxHide.lt-sm
+      [genes]="drug?.genes"
+    ></app-drug-gene-interpretation-table>
 
-      <table mat-table [dataSource]="drug.genes">
-        <div matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </div>
-
-        <div matColumnDef="rsid">
-          <th mat-header-cell *matHeaderCellDef>RSID</th>
-          <td mat-cell *matCellDef="let element">{{ element.rsid }}</td>
-        </div>
-
-        <div matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef>Gene</th>
-          <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-        </div>
-
-        <div matColumnDef="genotype">
-          <th mat-header-cell *matHeaderCellDef>Genotype</th>
-          <td mat-cell *matCellDef="let element">{{ element.genotype }}</td>
-        </div>
-
-        <div matColumnDef="phenotype">
-          <th mat-header-cell *matHeaderCellDef>Phenotype</th>
-          <td mat-cell *matCellDef="let element">{{ element.phenotype }}</td>
-        </div>
-
-        <div matColumnDef="interpretation">
-          <th mat-header-cell *matHeaderCellDef>Interpretation</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.recommendation }}
-          </td>
-        </div>
-
-        <tr mat-header-row *matHeaderRowDef="geneTableDisplayedColumns"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: geneTableDisplayedColumns"
-        ></tr>
-      </table>
-    </div>
+    <app-drug-gene-interpretation-list
+      fxHide
+      fxShow.lt-sm
+      [genes]="drug?.genes"
+    >
+    </app-drug-gene-interpretation-list>
   </div>
 </div>

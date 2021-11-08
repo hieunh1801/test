@@ -15,6 +15,10 @@ import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.c
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
 import { RowExpandedComponent } from './components/my-report/components/drug-table/components/row-expanded/row-expanded.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { RiskSummaryPieChartComponent } from './components/my-report/components/risk-summary-pie-chart/risk-summary-pie-chart.component';
+import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
+import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -29,7 +33,10 @@ import { RowExpandedComponent } from './components/my-report/components/drug-tab
     MyReportComponent,
     DrugTableComponent,
     RowExpandedComponent,
+    RiskSummaryPieChartComponent,
+    DrugGeneInterpretationTableComponent,
+    DrugGeneInterpretationListComponent,
   ],
-  imports: [CommonModule, PdssRoutingModule, SharedModule],
+  imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
 export class PdssModule {}

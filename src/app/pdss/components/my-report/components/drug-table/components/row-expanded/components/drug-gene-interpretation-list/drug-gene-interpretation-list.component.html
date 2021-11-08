@@ -1,0 +1,23 @@
+<div *ngIf="genes" class="gene-list-wrapper">
+  <div class="detail-label">Drug Gene Interpretation</div>
+
+  <div class="list-wrapper">
+    <div class="list-item-wrapper" *ngFor="let gene of genes">
+      <div class="title">
+        {{ gene.symbol }}
+        <ng-container *ngIf="gene.rsid">
+          &nbsp;&nbsp; {{ gene.rsid }}
+        </ng-container>
+
+        <ng-container *ngIf="gene.genotype">
+          &nbsp;&nbsp; {{ gene.genotype }}
+        </ng-container>
+
+        <ng-container *ngIf="gene.phenotype">
+          &nbsp;&nbsp; {{ gene.phenotype }}
+        </ng-container>
+      </div>
+      <div class="recommendation">{{ gene.recommendation }}</div>
+    </div>
+  </div>
+</div>

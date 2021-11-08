@@ -6,7 +6,9 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { MatSnackbarService } from '../services/mat-snackbar.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
@@ -15,7 +17,9 @@ import { TokenStorageService } from '../services/token-storage.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private matSnackbarService: MatSnackbarService,
+    private translateService: TranslateService
   ) {}
 
   // Require login to active this router
@@ -31,10 +35,19 @@ export class AuthGuard implements CanActivate {
       this.tokenStorageService.accessToken && this.tokenStorageService.username
     );
     if (!isLogin) {
-      this.router.navigate(['/auth/login'], {
-        queryParams: { redirectFromUrl: state.url },
-      });
+      const requireLoginStr = this.translateService.instant(
+        'AUTH_GUARD__REQUIRE_LOGIN'
+      );
+      const loginStr = this.translateService.instant('AUTH_GUARD__LOGIN');
+      this.matSnackbarService.open(requireLoginStr, loginStr);
+
+      setTimeout(() => {
+        this.router.navigate(['/auth/login'], {
+          queryParams: { redirectFromUrl: state.url },
+        });
+      }, 1500);
+    } else {
+      return true;
     }
-    return true;
   }
 }
