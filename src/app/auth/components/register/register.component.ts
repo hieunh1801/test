@@ -194,7 +194,8 @@ export class RegisterComponent implements OnInit {
             if (CustomerUserCreateResponse == null) {
               this.matSnackbarService.open('SignUp process Fail', 'SIGNUP');
             } else {
-              window.location.href = this.redirectToUrl;
+              // window.location.href = this.redirectToUrl;
+              this.router.navigate(['home']);
             }
           },
           complete: () => {
