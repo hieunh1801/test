@@ -1,71 +1,90 @@
-mat-toolbar {
-  background: #fff;
-}
+#login-div {
+  padding: 10px;
 
-a {
-  text-decoration: none;
-  color: #003f9e;
-}
+  mat-toolbar {
+    background: #fff;
+  }
 
-.login-title {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 23px;
+  a {
+    text-decoration: none;
+    color: #003f9e;
+  }
 
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-}
+  .login-title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 23px;
 
-.login-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
 
-.login-full-width {
-  width: 100%;
-}
+  .login-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
 
-.login-comment {
-  padding-bottom: 20px;
-}
-.right-align {
-  text-align: right;
-}
+  .login-full-width {
+    width: 100%;
+  }
 
-.center-align {
-  text-align: center;
-}
-.login-button {
-  margin-top: 15px;
-  margin-right: 5px;
-}
+  .login-comment {
+    padding-bottom: 20px;
+  }
+  .right-align {
+    text-align: right;
+  }
 
-.login-register {
-  padding: 10px 0px;
-  font-size: 12px;
-}
+  .center-align {
+    text-align: center;
+  }
+  .login-button {
+    margin-top: 15px;
+    margin-right: 5px;
+  }
 
-.forgot-password {
-  text-align: right;
-  font-weight: bold;
-  font-size: 12px;
-}
+  .register-link {
+    padding-left: 5px;
+    color: #003f9e;
+    font-weight: bold;
+  }
+  .login-register {
+    padding: 10px 0px;
+    font-size: 12px;
+  }
 
-mat-card-header {
-  width: 100%;
-  display: block;
-  font-weight: 700;
-}
-mat-card-title {
-  font-size: 30px;
-  padding: 20px 0px 30px 0px;
-  text-align: center;
-}
-mat-stroked-button {
-  border: 1px solid currentColor;
-  line-height: 54px;
-  background: #fff7fa;
+  .forgot-password {
+    text-align: right;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .kakao-button {
+    margin-top: 40px;
+    margin-right: 5px;
+  }
+
+  .naver-button {
+    margin-top: 15px;
+    margin-right: 5px;
+  }
+
+  mat-card-header {
+    width: 100%;
+    display: block;
+    font-weight: 700;
+  }
+  mat-card-title {
+    font-size: 30px;
+    padding: 20px 0px 30px 0px;
+    text-align: center;
+  }
+  mat-stroked-button {
+    border: 1px solid currentColor;
+    line-height: 54px;
+    background: #fff7fa;
+  }
 }

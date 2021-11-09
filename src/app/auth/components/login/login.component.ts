@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import {
@@ -28,11 +29,15 @@ export class LoginComponent implements OnInit {
 
   private subscription$ = new Subscription();
 
+  cusername = this.translateService.instant('LAYOUT__AUTH__REGISTER__ID');
+  cpassword = this.translateService.instant('LAYOUT__AUTH__REGISTER__PASSWORD');
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
     private matSnackbarService: MatSnackbarService,
+    private translateService: TranslateService,
     private activeRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -69,10 +74,13 @@ export class LoginComponent implements OnInit {
           next: (response: SpmedResponse<LoginResponse>) => {
             const loginResponse: LoginResponse = response?.data?.items[0];
             if (loginResponse == null) {
-              this.matSnackbarService.open(
-                'Username or Password incorrect',
-                'LOGIN'
+              const message = this.translateService.instant(
+                'LAYOUT__AUTH__LOGIN__MISMATCH__INFORMATION'
               );
+              const action = this.translateService.instant(
+                'LAYOUT__AUTH__LOGIN__MAT__SNACKBAR__ACTION'
+              );
+              this.matSnackbarService.open(message, action);
             } else {
               this.tokenStorageService.accessToken = loginResponse.accessToken;
               this.tokenStorageService.refreshToken =
@@ -85,14 +93,17 @@ export class LoginComponent implements OnInit {
             }
           },
           complete: () => {
-            console.log('this.authService.login done!!!');
+            // console.log('this.authService.login done!!!');
           },
           error: (error) => {
-            console.log(error.response);
-            this.matSnackbarService.open(
-              'Login failed. Server is not response',
-              'LOGIN'
+            // console.log(error.response);
+            const message2 = this.translateService.instant(
+              'LAYOUT__AUTH__LOGIN__SERVER__NOT__RESPONSE'
             );
+            const action2 = this.translateService.instant(
+              'LAYOUT__AUTH__LOGIN__MAT__SNACKBAR__ACTION'
+            );
+            this.matSnackbarService.open(message2, action2);
           },
         });
     }

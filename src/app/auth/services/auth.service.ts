@@ -28,7 +28,6 @@ export class AuthService {
   createUser(payload: CustomerUserCreateRequest): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/sign-up`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(payload);
     return this.httpClient
       .post<any>(url, payload, { headers })
       .pipe(tap((data) => console.log(JSON.stringify(data))));
