@@ -23,6 +23,12 @@
         display: inline;
         margin-top: 8px;
       }
+
+      .disable {
+        color: gray;
+        pointer-events: none;
+        opacity: 0.8;
+      }
     }
   }
 }

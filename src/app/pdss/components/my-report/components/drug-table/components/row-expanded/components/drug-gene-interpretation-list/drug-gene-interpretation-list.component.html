@@ -20,6 +20,7 @@
       <div class="recommendation">{{ gene.recommendation }}</div>
       <div
         class="references"
+        [ngClass]="{ disable: !!!gene.referenceOfEvidence }"
         (click)="showReferences(gene.referenceOfEvidence)"
       >
         References
