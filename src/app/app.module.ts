@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module';
+import { NgxEchartsModule } from 'ngx-echarts';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +29,9 @@ import { SharedModule } from './shared/shared.module';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+    }),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
     }),
   ],
   providers: [],

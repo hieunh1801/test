@@ -17,11 +17,18 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const accessToken = this.tokenStorageService.accessToken;
-    request = request.clone({
-      setHeaders: {
-        'access-token': `${accessToken}`,
-      },
-    });
+    if (
+      accessToken !== null &&
+      accessToken !== undefined &&
+      accessToken !== 'null' &&
+      accessToken !== 'undefined'
+    ) {
+      request = request.clone({
+        setHeaders: {
+          'access-token': `${accessToken}`,
+        },
+      });
+    }
 
     return next.handle(request);
   }

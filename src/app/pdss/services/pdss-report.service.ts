@@ -71,6 +71,8 @@ export interface DrugRecommendation {
   updatedActor?: string;
   genes: Gene[];
   kr: DrugRecommendationKr;
+
+  product: string; // additional information
 }
 
 export interface Report {

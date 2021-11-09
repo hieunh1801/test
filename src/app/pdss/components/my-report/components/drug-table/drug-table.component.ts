@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
 import {
   animate,
@@ -8,6 +15,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-drug-table',
@@ -30,32 +38,31 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DrugTableComponent implements OnInit, OnDestroy {
   @Input() drugList: DrugRecommendation[] = [];
+  @Output() sortChange: EventEmitter<Sort> = new EventEmitter();
+
   expandedElement?: DrugRecommendation = this.drugList?.[0];
-  expandedElementList: DrugRecommendation[] = [];
+  expandedElementIdList: number[] = [];
   displayedColumns: string[] = [
     'index',
     'drugName',
+    'relatedGenes',
     'riskLevel',
-    'packages',
+    'product',
     'actions',
   ];
 
-  dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
-  warningTxt = this.translateService.instant('PDSS__RISK_LEVEL__WARNING');
-  cautionTxt = this.translateService.instant('PDSS__RISK_LEVEL__CAUTION');
-  goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
-
   isExpandedElement(element: DrugRecommendation): boolean {
-    return this.expandedElementList.includes(element);
+    return this.expandedElementIdList.includes(element.id);
   }
+
   toggleElement(element: DrugRecommendation): void {
-    if (this.expandedElementList.includes(element)) {
-      this.expandedElementList.splice(
-        this.expandedElementList.indexOf(element),
+    if (this.expandedElementIdList.includes(element.id)) {
+      this.expandedElementIdList.splice(
+        this.expandedElementIdList.indexOf(element.id),
         1
       );
     } else {
-      this.expandedElementList.push(element);
+      this.expandedElementIdList.push(element.id);
     }
   }
 
@@ -64,4 +71,34 @@ export class DrugTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {}
+
+  isDanger(riskLevel: string): boolean {
+    const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    return riskLevel === dangerTxt;
+  }
+
+  isWarning(riskLevel: string): boolean {
+    const warningTxt = this.translateService.instant(
+      'PDSS__RISK_LEVEL__WARNING'
+    );
+
+    return riskLevel === warningTxt;
+  }
+
+  isCaution(riskLevel: string): boolean {
+    const cautionTxt = this.translateService.instant(
+      'PDSS__RISK_LEVEL__CAUTION'
+    );
+
+    return riskLevel === cautionTxt;
+  }
+
+  isGood(riskLevel: string): boolean {
+    const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    return riskLevel === goodTxt;
+  }
+
+  sortData(sort: Sort): void {
+    this.sortChange.emit(sort);
+  }
 }

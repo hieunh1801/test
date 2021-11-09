@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { from, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MustMatch } from '../../../shared/classes/must-match.validator';
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs/operators';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 import {
   AuthService,
-  CheckUserNameRequest,
   CustomerUserCreateRequest,
   CustomerUserCreateResponse,
 } from '../../services/auth.service';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -23,10 +23,10 @@ import { LocalStorageService } from '../../../shared/services/local-storage.serv
 export class RegisterComponent implements OnInit {
   isPageLoading = false;
 
-  genders: genderArray[] = [
-    { data_en: 'Male', data_kr: '남', value: 1 },
-    { data_en: 'Female', data_kr: '여', value: -1 },
-    { data_en: 'Undefined', data_kr: '모름', value: 0 },
+  genders: GenderArray[] = [
+    { dataEn: 'Male', dataKr: '남', value: 1 },
+    { dataEn: 'Female', dataKr: '여', value: -1 },
+    { dataEn: 'Other', dataKr: '모름', value: 0 },
   ];
 
   redirectToUrl = '#';
@@ -80,23 +80,6 @@ export class RegisterComponent implements OnInit {
     fphone: ['', Validators.required],
   });
 
-  private subscription$ = new Subscription();
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private datePipe: DatePipe,
-    private authService: AuthService,
-    private matSnackbarService: MatSnackbarService,
-    private localStorage: LocalStorageService
-  ) {
-    this.lang = localStorage.get('lang');
-    // console.log(this.lang);
-  }
-
-  ngOnInit(): void {}
-
   signUpForm = this.formBuilder.group({
     termsAgree: ['', Validators.requiredTrue],
     privacyAgree: ['', Validators.requiredTrue],
@@ -122,7 +105,24 @@ export class RegisterComponent implements OnInit {
     fphone: ['', Validators.required],
   });
 
-  updateCheck() {
+  private subscription$ = new Subscription();
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private datePipe: DatePipe,
+    private authService: AuthService,
+    private matSnackbarService: MatSnackbarService,
+    private tokenStorageService: TokenStorageService,
+    private localStorage: LocalStorageService
+  ) {
+    this.lang = localStorage.get('lang');
+  }
+
+  ngOnInit(): void {}
+
+  updateCheck(): void {
     const formValue = this.signUpForm1.value;
     this.agree = formValue.totalAgree;
     this.agree = this.agree ? true : false;
@@ -133,17 +133,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onStep2() {
-    // TODO: because of form will submit (send a request to server) if we touch enter so we need to prevent this
-    // TODO: change current step is 2
+  onStep2(): void {
     this.currentStep = 2;
   }
-  onStep3() {
+  onStep3(): void {
     this.currentStep = 3;
   }
 
   onSubmit(): void {
-    this.signUpForm3.markAsDirty(); // ok i know this meaning : form input change
+    this.signUpForm3.markAsDirty();
     const form1Value = this.signUpForm1.value;
     const form2Value = this.signUpForm2.value;
     const form3Value = this.signUpForm3.value;
@@ -162,13 +160,10 @@ export class RegisterComponent implements OnInit {
       femail: form3Value.femail,
       fphone: form3Value.fphone,
     });
-    //console.log(this.signUpForm.value);
-
-    // call api sign up => I will do that after you done =))
+    console.log('Valid');
     if (this.signUpForm.valid) {
       const formValue = this.signUpForm.value;
-
-      const CustomerUserCreateRequest: CustomerUserCreateRequest = {
+      const customerUserCreateRequest: CustomerUserCreateRequest = {
         username: formValue.fusername,
         password: formValue.fpassword,
         surname: formValue.fsurname,
@@ -177,11 +172,10 @@ export class RegisterComponent implements OnInit {
         birthday: formValue.fdateofbirth,
         gender: formValue.fgender,
         mobile: formValue.fphone,
-        role: 3,
       };
 
       this.authService
-        .createUser(CustomerUserCreateRequest)
+        .createUser(customerUserCreateRequest)
         .pipe(
           finalize(() => {
             this.isPageLoading = false;
@@ -189,11 +183,21 @@ export class RegisterComponent implements OnInit {
         )
         .subscribe({
           next: (response: SpmedResponse<CustomerUserCreateResponse>) => {
-            const CustomerUserCreateResponse: CustomerUserCreateResponse =
-              response?.data?.items[0];
-            if (CustomerUserCreateResponse == null) {
+            const customerUserCreateResponse: CustomerUserCreateResponse =
+              response?.data?.items?.[0];
+            if (customerUserCreateResponse == null) {
               this.matSnackbarService.open('SignUp process Fail', 'SIGNUP');
             } else {
+              this.tokenStorageService.rememberMe = true; // todo -> add when create user
+              this.tokenStorageService.accessToken =
+                customerUserCreateResponse.accessToken;
+              this.tokenStorageService.refreshToken =
+                customerUserCreateResponse.refreshToken;
+              this.tokenStorageService.username =
+                customerUserCreateResponse.username;
+              this.tokenStorageService.authorities =
+                customerUserCreateResponse?.authorities || [];
+
               // window.location.href = this.redirectToUrl;
               this.router.navigate(['auth/login']);
             }
@@ -213,8 +217,8 @@ export class RegisterComponent implements OnInit {
   }
 }
 
-interface genderArray {
-  data_en: string;
-  data_kr: string;
+interface GenderArray {
+  dataEn: string;
+  dataKr: string;
   value: number;
 }

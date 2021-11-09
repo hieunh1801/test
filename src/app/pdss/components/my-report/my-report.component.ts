@@ -1,8 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import {
+  LanguageService,
+  LanguagesProvidedType,
+} from 'src/app/shared/services/language.service';
 import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
 
 import {
@@ -20,6 +25,8 @@ export class MyReportComponent implements OnInit, OnDestroy {
   isPageLoading = false;
 
   reportList$ = new BehaviorSubject<Report[]>(null);
+  sort$ = new BehaviorSubject<Sort>(null);
+
   totalGene: number = null;
   totalDrug: number = null;
   totalInterpretation: number = null;
@@ -30,6 +37,7 @@ export class MyReportComponent implements OnInit, OnDestroy {
   totalDanger: number = null;
 
   drugList: DrugRecommendation[] = [];
+  sortedDrugList: DrugRecommendation[] = [];
 
   subscriptions$ = new Subscription();
 
@@ -37,12 +45,8 @@ export class MyReportComponent implements OnInit, OnDestroy {
     private pdssReportService: PdssReportService,
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
-    public activeRoute: ActivatedRoute
-  ) {
-    const url = this.activeRoute.snapshot.params;
-    const queryParams = this.activeRoute.snapshot.queryParams;
-    console.log(queryParams);
-  }
+    private languageService: LanguageService
+  ) {}
 
   loadReportList(): void {
     this.isPageLoading = true;
@@ -71,119 +75,194 @@ export class MyReportComponent implements OnInit, OnDestroy {
       });
   }
 
-  subscribeReportListChange(): void {
-    const sub = this.reportList$.subscribe((reportList) => {
-      if (!reportList || reportList.length === 0) {
-        return;
+  updateState(): void {
+    const reportList = this.reportList$.value;
+    const language = this.languageService.currentLanguage;
+    const sort = this.sort$.value;
+    if (!reportList || reportList.length === 0) {
+      return;
+    }
+
+    if (!language) {
+      return;
+    }
+
+    // add packages
+    let drugRecommendations: DrugRecommendation[] = [];
+    for (const report of reportList) {
+      const productName = report.productName;
+      for (const drug of report?.drugRecommendations || []) {
+        drugRecommendations.push({
+          ...drug,
+          product: productName,
+        });
       }
+    }
 
-      const drugRecommendations = reportList
-        .map((report) => report.drugRecommendations)
-        .reduce((pre, curr) => {
-          return [...pre, ...curr];
-        }, []);
-
-      if (!drugRecommendations) {
-        return;
-      }
-
-      // total drug
-      this.drugList = drugRecommendations.map((drug) => {
+    // multiple language
+    if (language === LanguagesProvidedType.korea) {
+      drugRecommendations = drugRecommendations.map((drug) => {
         return {
           ...drug,
-          relatedDiseases: drug?.relatedDiseases
-            ?.replace(/, /g, ',')
-            .replace(/,/g, ', '),
+          ...drug?.kr,
         };
       });
-      this.totalDrug = drugRecommendations.length;
+    }
 
-      // total gene
-      const geneIdSet = new Set();
-      for (const drugRecommendation of drugRecommendations) {
-        const genes = drugRecommendation?.genes;
-        if (genes) {
-          for (const gene of genes) {
-            geneIdSet.add(gene.symbol);
-          }
+    if (sort) {
+      if (!sort.active || sort.direction === '') {
+        this.sortedDrugList = drugRecommendations;
+        return;
+      }
+      const RISK_LEVEL_WEIGHT = {
+        [this.translateService.instant('PDSS__RISK_LEVEL__DANGER')]: 4,
+        [this.translateService.instant('PDSS__RISK_LEVEL__WARNING')]: 3,
+        [this.translateService.instant('PDSS__RISK_LEVEL__CAUTION')]: 2,
+        [this.translateService.instant('PDSS__RISK_LEVEL__GOOD')]: 1,
+      };
+
+      this.sortedDrugList = drugRecommendations.sort((a, b) => {
+        const isAsc = sort.direction === 'asc';
+        switch (sort.active) {
+          case 'drugName':
+            return compare(a.drugName, b.drugName, isAsc);
+          case 'relatedGenes':
+            return compare(a.relatedGenes, b.relatedGenes, isAsc);
+          case 'riskLevel':
+            return compare(
+              RISK_LEVEL_WEIGHT[a.risk],
+              RISK_LEVEL_WEIGHT[b.risk],
+              isAsc
+            );
+          case 'product':
+            return compare(a.product, b.product, isAsc);
+          default:
+            return 0;
+        }
+      });
+    }
+
+    // STATISTIC
+    const nameSet = new Set();
+    for (const drugRecommendation of drugRecommendations) {
+      nameSet.add(drugRecommendation.drugName);
+    }
+
+    // STATISTIC -> total drug
+    this.drugList = drugRecommendations.map((drug) => {
+      return {
+        ...drug,
+        relatedDiseases: drug?.relatedDiseases
+          ?.replace(/, /g, ',')
+          .replace(/,/g, ', '),
+      };
+    });
+    this.totalDrug = drugRecommendations.length;
+
+    // STATISTIC -> total gene
+    const geneIdSet = new Set();
+    for (const drugRecommendation of drugRecommendations) {
+      const genes = drugRecommendation?.genes;
+      if (genes) {
+        for (const gene of genes) {
+          geneIdSet.add(gene.symbol);
         }
       }
-      this.totalGene = geneIdSet.size;
+    }
+    this.totalGene = geneIdSet.size;
 
-      // total interpretation
-      this.totalInterpretation = drugRecommendations
-        .map((drugRecommendation) => {
-          return drugRecommendation?.genes?.length || 0;
-        })
-        .reduce((pre, currentValue) => {
-          return pre + currentValue;
-        }, 0);
+    // STATISTIC -> total interpretation
+    this.totalInterpretation = drugRecommendations
+      .map((drugRecommendation) => {
+        return drugRecommendation?.genes?.length || 0;
+      })
+      .reduce((pre, currentValue) => {
+        return pre + currentValue;
+      }, 0);
 
-      // total good
-      const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
-      const totalGood = drugRecommendations.reduce(
-        (count, drugRecommendation) => {
-          if (drugRecommendation.risk === goodTxt) {
-            return count + 1;
-          }
-          return count;
-        },
-        0
-      );
-      this.totalGood = totalGood;
+    //  STATISTIC -> total good
+    const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    const totalGood = drugRecommendations.reduce(
+      (count, drugRecommendation) => {
+        if (drugRecommendation.risk === goodTxt) {
+          return count + 1;
+        }
+        return count;
+      },
+      0
+    );
+    this.totalGood = totalGood;
 
-      // total caution
-      const cautionTxt = this.translateService.instant(
-        'PDSS__RISK_LEVEL__CAUTION'
-      );
-      const totalCaution = drugRecommendations.reduce(
-        (count, drugRecommendation) => {
-          if (drugRecommendation.risk === cautionTxt) {
-            return count + 1;
-          }
-          return count;
-        },
-        0
-      );
-      this.totalCaution = totalCaution;
+    // STATISTIC -> total caution
+    const cautionTxt = this.translateService.instant(
+      'PDSS__RISK_LEVEL__CAUTION'
+    );
+    const totalCaution = drugRecommendations.reduce(
+      (count, drugRecommendation) => {
+        if (drugRecommendation.risk === cautionTxt) {
+          return count + 1;
+        }
+        return count;
+      },
+      0
+    );
+    this.totalCaution = totalCaution;
 
-      // total warning
-      const warningTxt = this.translateService.instant(
-        'PDSS__RISK_LEVEL__WARNING'
-      );
-      const totalWarning = drugRecommendations.reduce(
-        (count, drugRecommendation) => {
-          if (drugRecommendation.risk === warningTxt) {
-            return count + 1;
-          }
-          return count;
-        },
-        0
-      );
-      this.totalWarning = totalWarning;
-      // total danger
+    // STATISTIC -> total warning
+    const warningTxt = this.translateService.instant(
+      'PDSS__RISK_LEVEL__WARNING'
+    );
+    const totalWarning = drugRecommendations.reduce(
+      (count, drugRecommendation) => {
+        if (drugRecommendation.risk === warningTxt) {
+          return count + 1;
+        }
+        return count;
+      },
+      0
+    );
+    this.totalWarning = totalWarning;
+    // total danger
 
-      const dangerTxt = this.translateService.instant(
-        'PDSS__RISK_LEVEL__DANGER'
-      );
+    const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    const totalDanger = drugRecommendations.reduce(
+      (count, drugRecommendation) => {
+        if (drugRecommendation.risk === dangerTxt) {
+          return count + 1;
+        }
+        return count;
+      },
+      0
+    );
+    this.totalDanger = totalDanger;
+  }
 
-      // total danger
-      const totalDanger = drugRecommendations.reduce(
-        (count, drugRecommendation) => {
-          if (drugRecommendation.risk === dangerTxt) {
-            return count + 1;
-          }
-          return count;
-        },
-        0
-      );
-      this.totalDanger = totalDanger;
+  subscribeLanguageChange(): void {
+    const sub = this.translateService.onLangChange.subscribe(() => {
+      this.updateState();
+    });
+
+    this.subscriptions$.add(sub);
+  }
+
+  subscribeReportListChange(): void {
+    const sub = this.reportList$.subscribe(() => {
+      this.updateState();
+    });
+    this.subscriptions$.add(sub);
+  }
+
+  subscribeSortChange(): void {
+    const sub = this.sort$.subscribe(() => {
+      this.updateState();
     });
     this.subscriptions$.add(sub);
   }
 
   ngOnInit(): void {
     this.subscribeReportListChange();
+    this.subscribeLanguageChange();
+    this.subscribeSortChange();
     this.loadReportList();
   }
 
@@ -191,11 +270,11 @@ export class MyReportComponent implements OnInit, OnDestroy {
     this.subscriptions$.unsubscribe();
   }
 
-  divideForTotalDrug(count: number): string {
-    const totalDrug = this.totalDrug;
-    if (totalDrug) {
-      return ((count / totalDrug) * 100).toFixed(2);
-    }
-    return null;
+  sortChange(sort: Sort): void {
+    this.sort$.next(sort);
   }
 }
+
+const compare = (a: number | string, b: number | string, isAsc: boolean) => {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+};

@@ -1,2 +1,0 @@
-GET http://localhost:61100/api-gateway/v1.0/portal/v1.0/kr/pdss/my-report
-access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDEyMUIiLCJpYXQiOjE2MzYwODkyMTcsImV4cCI6MTcyMjQ4OTIxN30.I4AqIAeZCLCM0htB0aM9vo2R5MHLN8hPrAqpTw0vRDg

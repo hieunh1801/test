@@ -1,0 +1,20 @@
+.gene-list-wrapper {
+  .detail-label {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .list-wrapper {
+    .list-item-wrapper {
+      .title {
+        margin-top: 16px;
+        font-weight: 500;
+        color: var(--primary--color);
+        font-size: 14px;
+      }
+      .interpretation {
+        font-size: 12px;
+      }
+    }
+  }
+}
