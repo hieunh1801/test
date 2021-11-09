@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageService } from 'src/app/shared/services/language.service';
+import { LanguageService } from '@shared/services/language.service';
 
 @Component({
   selector: 'app-history',

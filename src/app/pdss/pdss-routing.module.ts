@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../shared/guards/auth.guard';
+import { AuthGuard } from '@shared/guards/auth.guard';
 import { BrowserComponent } from './components/browser/browser.component';
+import { ReportComponent } from './components/my-report/components/report/report.component';
+import { SummaryReportComponent } from './components/my-report/components/summary-report/summary-report.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
@@ -10,7 +12,6 @@ import { SingleGeneServiceComponent } from './components/products/components/sin
 import { ProductsComponent } from './components/products/products.component';
 import { UtilityComponent } from './components/utility/utility.component';
 import { PdssComponent } from './pdss.component';
-import { MyReportResolverService } from './services/my-report-resolver.service';
 
 const routes: Routes = [
   {
@@ -49,6 +50,21 @@ const routes: Routes = [
         path: 'my-report',
         component: MyReportComponent,
         canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'summary',
+            component: SummaryReportComponent,
+          },
+          {
+            path: 'reports/:qrcode',
+            component: ReportComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'summary',
+            pathMatch: 'full',
+          },
+        ],
       },
     ],
   },

@@ -10,7 +10,6 @@ import { ProductsComponent } from './components/products/products.component';
 import { PgxComponent } from './components/products/components/pgx/pgx.component';
 import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
 import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
-import { SharedModule } from '../shared/shared.module';
 import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
@@ -20,6 +19,10 @@ import { RiskSummaryPieChartComponent } from './components/my-report/components/
 import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
 import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
 import { ReferenceListDialogComponent } from './components/my-report/components/drug-table/components/row-expanded/components/reference-list-dialog/reference-list-dialog.component';
+import { SummaryReportComponent } from './components/my-report/components/summary-report/summary-report.component';
+import { ReportComponent } from './components/my-report/components/report/report.component';
+import { SummaryPackageTableComponent } from './components/my-report/components/summary-report/components/summary-package-table/summary-package-table.component';
+import { SharedModule } from '@shared/shared.module';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -38,6 +41,9 @@ import { ReferenceListDialogComponent } from './components/my-report/components/
     DrugGeneInterpretationTableComponent,
     DrugGeneInterpretationListComponent,
     ReferenceListDialogComponent,
+    SummaryReportComponent,
+    ReportComponent,
+    SummaryPackageTableComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

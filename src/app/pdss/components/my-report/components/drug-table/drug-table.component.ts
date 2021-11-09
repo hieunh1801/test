@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
 import {
   animate,
   state,
@@ -16,6 +15,10 @@ import {
 } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
 import { Sort } from '@angular/material/sort';
+import {
+  DrugRecommendation,
+  DrugRecommendationKr,
+} from '../../services/pdss-report.service';
 
 @Component({
   selector: 'app-drug-table',
@@ -37,10 +40,9 @@ import { Sort } from '@angular/material/sort';
   ],
 })
 export class DrugTableComponent implements OnInit, OnDestroy {
-  @Input() drugList: DrugRecommendation[] = [];
+  @Input() drugList: DrugRecommendationKr[] = [];
   @Output() sortChange: EventEmitter<Sort> = new EventEmitter();
 
-  expandedElement?: DrugRecommendation = this.drugList?.[0];
   expandedElementIdList: number[] = [];
   displayedColumns: string[] = [
     'index',

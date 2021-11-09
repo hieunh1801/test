@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
+import { DrugRecommendation } from '@pdss/components/my-report/services/pdss-report.service';
 import {
   ReferenceListDialogComponent,
   ReferenceListDialogInputData,
