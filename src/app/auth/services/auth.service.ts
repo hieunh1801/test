@@ -66,9 +66,9 @@ export interface CheckUserNameRequest {
 export interface CheckUserNameResponse {}
 
 export interface CustomerUserCreateRequest {
-  userName: string;
+  username: string;
   password: string;
-  surName: string;
+  surname: string;
   givenName: string;
   email: string;
   birthday: string;

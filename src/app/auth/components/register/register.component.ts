@@ -169,9 +169,9 @@ export class RegisterComponent implements OnInit {
       const formValue = this.signUpForm.value;
 
       const CustomerUserCreateRequest: CustomerUserCreateRequest = {
-        userName: formValue.fusername,
+        username: formValue.fusername,
         password: formValue.fpassword,
-        surName: formValue.fsurname,
+        surname: formValue.fsurname,
         givenName: formValue.fgivenname,
         email: formValue.femail,
         birthday: formValue.fdateofbirth,
@@ -195,7 +195,7 @@ export class RegisterComponent implements OnInit {
               this.matSnackbarService.open('SignUp process Fail', 'SIGNUP');
             } else {
               // window.location.href = this.redirectToUrl;
-              this.router.navigate(['home']);
+              this.router.navigate(['auth/login']);
             }
           },
           complete: () => {
