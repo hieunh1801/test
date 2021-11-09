@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MustMatch } from '../../../shared/classes/must-match.validator';
 import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs/operators';
-import { MatSnackbarService } from 'src/app/shared/services/mat-snackbar.service';
+import { MustMatch } from '@shared/classes/must-match.validator';
 import {
   AuthService,
   CustomerUserCreateRequest,
   CustomerUserCreateResponse,
-} from '../../services/auth.service';
-import { LocalStorageService } from '../../../shared/services/local-storage.service';
-import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+} from '@auth/services/auth.service';
+import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
+import { TokenStorageService } from '@shared/services/token-storage.service';
+import { LocalStorageService } from '@shared/services/local-storage.service';
 
 @Component({
   selector: 'app-register',

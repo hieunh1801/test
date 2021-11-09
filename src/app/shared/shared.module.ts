@@ -6,7 +6,6 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '../material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
@@ -19,6 +18,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { TrimPipe } from './pipes/trim.pipe';
 import { ReferencesPipe } from './pipes/references.pipe';
+import { MaterialModule } from '@material/material.module';
 
 const COMPONENTS = [
   FooterComponent,

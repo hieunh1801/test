@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageService } from '../../services/language.service';
-import { TokenStorageService } from '../../services/token-storage.service';
+import { LanguageService } from '@shared/services/language.service';
+import { TokenStorageService } from '@shared/services/token-storage.service';
 
 @Component({
   selector: 'app-header',

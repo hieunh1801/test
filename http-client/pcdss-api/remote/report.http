@@ -1,2 +1,5 @@
 ## Get user reports
 GET https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports
+
+
+GET http://localhost:61111/pcdss/v1.0/en/users/3/reports

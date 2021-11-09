@@ -7,7 +7,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RequestPasswordComponent } from './components/request-password/request-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AuthComponent } from './auth.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [

@@ -8,8 +8,7 @@ import {
 } from '@angular/common/http';
 import { finalize, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { MatSnackbarService } from '../services/mat-snackbar.service';
+import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {

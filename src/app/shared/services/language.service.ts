@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalStorageService } from './local-storage.service';
 
-import enTranslation from '../../../assets/i18n/en.json';
-import krTranslation from '../../../assets/i18n/kr.json';
+import enTranslation from '@asset/i18n/en.json';
+import krTranslation from '@asset/i18n/kr.json';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',

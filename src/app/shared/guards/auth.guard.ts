@@ -7,9 +7,9 @@ import {
   Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
+import { TokenStorageService } from '@shared/services/token-storage.service';
 import { Observable } from 'rxjs';
-import { MatSnackbarService } from '../services/mat-snackbar.service';
-import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
   providedIn: 'root',

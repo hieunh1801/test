@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DrugRecommendation } from 'src/app/pdss/services/pdss-report.service';
+import { DrugRecommendation } from '@pdss/components/my-report/services/pdss-report.service';
 
 @Component({
   selector: 'app-row-expanded',

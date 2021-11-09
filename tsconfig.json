@@ -3,6 +3,20 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@environment/*": ["./src/environments/*"],
+      "@material/*": ["./src/app/@material/*"],
+      "@asset/*": ["./src/assets/*"],
+      "@about-us/*": ["./src/app/about-us/*"],
+      "@adme/*": ["./src/app/adme/*"],
+      "@auth/*": ["./src/app/auth/*"],
+      "@contact/*": ["./src/app/contact/*"],
+      "@home/*": ["./src/app/home/*"],
+      "@new/*": ["./src/app/new/*"],
+      "@not-found/*": ["./src/app/not-found/*"],
+      "@pdss/*": ["./src/app/pdss/*"],
+      "@shared/*": ["./src/app/shared/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -15,5 +29,7 @@
     "lib": ["es2018", "dom"],
     "resolveJsonModule": true,
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
 }
