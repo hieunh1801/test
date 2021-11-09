@@ -39,6 +39,7 @@ export interface Gene {
   phenotype: string;
   recommendation: string;
   drugRecommendationId: number;
+  referenceOfEvidence?: string;
 }
 
 export interface DrugRecommendationKr {
@@ -63,6 +64,7 @@ export interface DrugRecommendation {
   kpicClass: string;
   kfdaClass: string;
   relatedDiseases: string;
+  referenceOfEvidence?: string;
   dose?: any;
   reportId: number;
   createdTime: string;

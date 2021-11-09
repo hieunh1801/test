@@ -1,0 +1,20 @@
+### ping to server
+GET http://localhost:61128/customer-user/ping
+
+
+### login
+POST http://localhost:61128/customer-user/v1.0/en/auth/login
+content-type: application/json
+
+{
+  "username": "PH210121B",
+  "password": "123456"
+}
+
+### get user by token
+POST http://localhost:61128/customer-user/v1.0/en/auth/user
+content-type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDEyMUIiLCJpYXQiOjE2MzYwNzU5MzYsImV4cCI6MTcyMjQ3NTkzNn0.5DmIN_eOfBgF7wdGl7VJX49hDnbu1oWbYHWfTBimHPA"
+}

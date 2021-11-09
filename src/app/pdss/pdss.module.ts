@@ -19,6 +19,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { RiskSummaryPieChartComponent } from './components/my-report/components/risk-summary-pie-chart/risk-summary-pie-chart.component';
 import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
 import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
+import { ReferenceListDialogComponent } from './components/my-report/components/drug-table/components/row-expanded/components/reference-list-dialog/reference-list-dialog.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -36,6 +37,7 @@ import { DrugGeneInterpretationListComponent } from './components/my-report/comp
     RiskSummaryPieChartComponent,
     DrugGeneInterpretationTableComponent,
     DrugGeneInterpretationListComponent,
+    ReferenceListDialogComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
