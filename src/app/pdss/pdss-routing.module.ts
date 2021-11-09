@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@shared/guards/auth.guard';
-import { BrowserComponent } from './components/browser/browser.component';
-import { ReportComponent } from './components/my-report/components/report/report.component';
-import { SummaryReportComponent } from './components/my-report/components/summary-report/summary-report.component';
-import { MyReportComponent } from './components/my-report/my-report.component';
-import { OverviewComponent } from './components/overview/overview.component';
-import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
-import { PgxComponent } from './components/products/components/pgx/pgx.component';
-import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
-import { ProductsComponent } from './components/products/products.component';
-import { UtilityComponent } from './components/utility/utility.component';
-import { PdssComponent } from './pdss.component';
+import { BrowserComponent } from '@pdss/components/browser/browser.component';
+import { ReportComponent } from '@pdss/components/my-report/components/report/report.component';
+import { SummaryReportComponent } from '@pdss/components/my-report/components/summary-report/summary-report.component';
+import { MyReportComponent } from '@pdss/components/my-report/my-report.component';
+import { OverviewComponent } from '@pdss/components/overview/overview.component';
+import { PgxPremiumComponent } from '@pdss/components/products/components/pgx-premium/pgx-premium.component';
+import { PgxComponent } from '@pdss/components/products/components/pgx/pgx.component';
+import { SingleGeneServiceComponent } from '@pdss/components/products/components/single-gene-service/single-gene-service.component';
+import { ProductsComponent } from '@pdss/components/products/products.component';
+import { UtilityComponent } from '@pdss/components/utility/utility.component';
+import { PdssComponent } from '@pdss/pdss.component';
 
 const routes: Routes = [
   {
