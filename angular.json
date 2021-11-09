@@ -59,6 +59,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
             }
           }
         },
@@ -70,6 +78,9 @@
           "configurations": {
             "production": {
               "browserTarget": "spmed-portal-desktop:build:production"
+            },
+            "staging": {
+              "browserTarget": "spmed-portal-desktop:build:staging"
             }
           }
         },
