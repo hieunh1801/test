@@ -1,0 +1,25 @@
+
+### get my report
+GET http://localhost:61111/pcdss/v1.0/en/users/3/reports
+// drugKr information
+
+###
+GET http://localhost:61111/pcdss/v1.0/en/reports/20210323-25501-ZXPJ
+//
+
+###
+https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/20210323-25501-ZXPJ
+
+### GET
+https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/20211008-0004-GZZE
+
+// reference
+https://portal.spmed.kr/roe/8/detail
+
+// sample report
+https://report.spmed.kr/oz70/ozhviewer/single_ko_pdss_type2.jsp?qr_code=20211029-630019-OQIA&show_qr_code=1
++ Reference for report
++ Reference for recommendation
+
+// account multiple report: username=PH210325A, id=3
+// account with report references: username=PH210630D-237, id=233

@@ -15,6 +15,14 @@
       .interpretation {
         font-size: 12px;
       }
+
+      .references {
+        font-size: 14px;
+        font-style: italic;
+        color: var(--primary--color);
+        display: inline;
+        margin-top: 8px;
+      }
     }
   }
 }

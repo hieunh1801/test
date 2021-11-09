@@ -17,6 +17,8 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { AuthGuard } from './guards/auth.guard';
+import { TrimPipe } from './pipes/trim.pipe';
+import { ReferencesPipe } from './pipes/references.pipe';
 
 const COMPONENTS = [
   FooterComponent,
@@ -40,7 +42,7 @@ const httpInterceptorProviders = [
 
 @NgModule({
   //
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, TrimPipe, ReferencesPipe],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
     CommonModule,
@@ -55,6 +57,8 @@ const httpInterceptorProviders = [
     TranslateModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    TrimPipe,
+    ReferencesPipe,
   ],
 })
 export class SharedModule {}

@@ -18,6 +18,12 @@
         </ng-container>
       </div>
       <div class="recommendation">{{ gene.recommendation }}</div>
+      <div
+        class="references"
+        (click)="showReferences(gene.referenceOfEvidence)"
+      >
+        References
+      </div>
     </div>
   </div>
 </div>
