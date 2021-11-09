@@ -115,10 +115,6 @@
     color: rgba(0, 0, 0, 0.5);
   }
 
-  mat-form-field {
-    width: 95%;
-  }
-
   .example-radio-group {
     display: flex;
     flex-direction: column;
@@ -127,5 +123,58 @@
 
   .example-radio-button {
     margin: 5px;
+  }
+
+  .agree-div {
+    height: 130px;
+    margin: 10px 0px;
+  }
+
+  .username-div {
+    width: 90%;
+    height: 34px;
+  }
+
+  .margin10 {
+    margin: 10px 0px;
+  }
+
+  .pwd-height {
+    height: 90px;
+  }
+
+  .or-div {
+    width: 90%;
+    margin: 20px auto 20px auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+  }
+
+  .kakao-button {
+    margin-top: 0px;
+    margin-right: 5px;
+  }
+
+  .naver-button {
+    margin-top: 15px;
+    margin-right: 5px;
+  }
+
+  .step3-div {
+    width: 100%;
+    margin: 10x;
+    padding: 10px;
+  }
+
+  .psinfo-div {
+    width: 100%;
+    margin: 10x;
+    padding: 10px;
+  }
+
+  mat-form-field {
+    width: 95%;
   }
 }

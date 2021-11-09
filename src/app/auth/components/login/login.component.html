@@ -1,17 +1,21 @@
-<div fxLayout="column" fxLayoutAlign="center center" style="padding: 10px">
+<div fxLayout="column" fxLayoutAlign="center center" id="login-div">
   <app-page-loading [isLoading]="isPageLoading"></app-page-loading>
   <form class="login-form" [formGroup]="loginForm">
     <mat-card>
-      <mat-card-title style="text-align: center"> SPMED Login </mat-card-title>
+      <mat-card-title> SPMED Login </mat-card-title>
 
       <mat-card-content>
         <mat-form-field class="login-full-width" appearance="fill">
-          <input matInput placeholder="Username" formControlName="username" />
+          <input
+            matInput
+            placeholder="{{ this.cusername }}"
+            formControlName="username"
+          />
         </mat-form-field>
         <mat-form-field class="login-full-width" appearance="fill">
           <input
             matInput
-            placeholder="Password"
+            placeholder="{{ this.cpassword }}"
             formControlName="password"
             type="password"
           />
@@ -41,16 +45,14 @@
 
         <button
           mat-raised-button
-          class="login-full-width"
-          style="margin-top: 40px; margin-right: 5px"
+          class="login-full-width kakao-button"
           (click)="loginWithKakaoTalk()"
         >
           <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK</span>
         </button>
         <button
           mat-raised-button
-          class="login-full-width"
-          style="margin-top: 15px; margin-right: 5px"
+          class="login-full-width naver-button"
           (click)="loginWithNaver()"
         >
           <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
@@ -58,9 +60,7 @@
         <div class="login-register">
           <span translate>LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT</span>
           <a routerLink="/auth/register"
-            ><span
-              style="padding-left: 5px; color: #003f9e; font-weight: bold"
-              translate
+            ><span class="register-link" translate
               >LAYOUT__AUTH__LOGIN__REGISTER</span
             ></a
           >

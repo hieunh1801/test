@@ -28,7 +28,9 @@ export class AuthService {
   createUser(payload: CustomerUserCreateRequest): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/sign-up`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post<SpmedResponse<any>>(url, payload, { headers });
+    return this.httpClient
+      .post<any>(url, payload, { headers })
+      .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
   getID(checkUserNameRequest: CheckUserNameRequest): Observable<any> {
@@ -37,7 +39,7 @@ export class AuthService {
       username: checkUserNameRequest.username,
     };
     return this.httpClient
-      .post<SpmedResponse<any>>(url, body)
+      .post<any>(url, body)
       .pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 }

@@ -13,6 +13,7 @@ import {
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -23,12 +24,28 @@ import { LocalStorageService } from '@shared/services/local-storage.service';
 export class RegisterComponent implements OnInit {
   isPageLoading = false;
 
-  genders: GenderArray[] = [
-    { dataEn: 'Male', dataKr: '남', value: 1 },
-    { dataEn: 'Female', dataKr: '여', value: -1 },
-    { dataEn: 'Other', dataKr: '모름', value: 0 },
-  ];
+  genderMale = this.translateService.instant(
+    'LAYOUT__AUTH__REGISTER__GENDER__MALE'
+  );
+  genderFemale = this.translateService.instant(
+    'LAYOUT__AUTH__REGISTER__GENDER__FEMALE'
+  );
+  genderOther = this.translateService.instant(
+    'LAYOUT__AUTH__REGISTER__GENDER__OTHER'
+  );
 
+  terms_text = this.translateService.instant(
+    'LAYOUT__AUTH__REGISTER__TERMS__CONTENTS'
+  );
+  privacy_text = this.translateService.instant(
+    'LAYOUT__AUTH__REGISTER__PRIVACY__CONTENTS'
+  );
+
+  genders: GenderArray[] = [
+    { data: this.genderMale, value: 1 },
+    { data: this.genderFemale, value: -1 },
+    { data: this.genderOther, value: 0 },
+  ];
   redirectToUrl = '#';
   formValue: any;
   agree: boolean;
@@ -48,14 +65,7 @@ export class RegisterComponent implements OnInit {
     {
       // TODO add form 2 information here
       fusername: ['', Validators.required],
-      fpassword: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(12),
-        ],
-      ],
+      fpassword: ['', [Validators.required, Validators.minLength(4)]],
       repassword: ['', Validators.required],
     },
     { validator: MustMatch('fpassword', 'repassword') }
@@ -115,7 +125,8 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private matSnackbarService: MatSnackbarService,
     private tokenStorageService: TokenStorageService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private translateService: TranslateService
   ) {
     this.lang = localStorage.get('lang');
   }
@@ -134,10 +145,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onStep2(): void {
-    this.currentStep = 2;
+    this.signUpForm1.markAsDirty();
+    if (this.signUpForm1.valid) {
+      this.currentStep = 2;
+    }
   }
   onStep3(): void {
-    this.currentStep = 3;
+    this.signUpForm2.markAsDirty();
+    if (this.signUpForm2.valid) {
+      this.currentStep = 3;
+    }
   }
 
   onSubmit(): void {
@@ -160,10 +177,10 @@ export class RegisterComponent implements OnInit {
       femail: form3Value.femail,
       fphone: form3Value.fphone,
     });
-    console.log('Valid');
+    // console.log('Valid');
+
     if (this.signUpForm.valid) {
       const formValue = this.signUpForm.value;
-
       const customerUserCreateRequest: CustomerUserCreateRequest = {
         username: formValue.fusername,
         password: formValue.fpassword,
@@ -187,7 +204,13 @@ export class RegisterComponent implements OnInit {
             const customerUserCreateResponse: CustomerUserCreateResponse =
               response?.data?.items?.[0];
             if (customerUserCreateResponse == null) {
-              this.matSnackbarService.open('SignUp process Fail', 'SIGNUP');
+              const message = this.translateService.instant(
+                'LAYOUT__AUTH__REGISTER__PROCESS_FAIL'
+              );
+              const action = this.translateService.instant(
+                'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+              );
+              this.matSnackbarService.open(message, action);
             } else {
               this.tokenStorageService.rememberMe = true; // todo -> add when create user
               this.tokenStorageService.accessToken =
@@ -204,14 +227,17 @@ export class RegisterComponent implements OnInit {
             }
           },
           complete: () => {
-            console.log('this.authService.Register done!!!');
+            // console.log('this.authService.Register done!!!');
           },
           error: (error) => {
-            console.log(error.response);
-            this.matSnackbarService.open(
-              'Sign up failed. Server is not response',
-              'SIGNUP'
+            // console.log(error.response);
+            const message2 = this.translateService.instant(
+              'LAYOUT__AUTH__REGISTER__SERVER__NOT__RESPONSE'
             );
+            const action2 = this.translateService.instant(
+              'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+            );
+            this.matSnackbarService.open(message2, action2);
           },
         });
     }
@@ -219,7 +245,6 @@ export class RegisterComponent implements OnInit {
 }
 
 interface GenderArray {
-  dataEn: string;
-  dataKr: string;
+  data: string;
   value: number;
 }
