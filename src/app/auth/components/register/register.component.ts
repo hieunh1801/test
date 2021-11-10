@@ -9,6 +9,10 @@ import {
   AuthService,
   CustomerUserCreateRequest,
   CustomerUserCreateResponse,
+  CheckUserNameRequest,
+  CheckUserNameResponse,
+  CheckEmailRequest,
+  CheckEmailResponse,
 } from '@auth/services/auth.service';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
@@ -51,9 +55,10 @@ export class RegisterComponent implements OnInit {
   agree: boolean;
   parameter: number;
   lang: string;
+  isValidID: boolean;
+  isValidEmail: boolean;
 
   currentStep = 1;
-
   signUpForm1 = this.formBuilder.group({
     // add form 1 information here
     totalAgree: [''],
@@ -222,8 +227,17 @@ export class RegisterComponent implements OnInit {
               this.tokenStorageService.authorities =
                 customerUserCreateResponse?.authorities || [];
 
-              // window.location.href = this.redirectToUrl;
-              this.router.navigate(['home']);
+              // console.log(error.response);
+              const message = this.translateService.instant(
+                'LAYOUT__AUTH__REGISTER__SUCCESS'
+              );
+              const action = this.translateService.instant(
+                'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+              );
+              this.matSnackbarService.open(message, action);
+              setTimeout((_) => {
+                this.router.navigate(['home']);
+              }, 3000);
             }
           },
           complete: () => {
@@ -241,6 +255,76 @@ export class RegisterComponent implements OnInit {
           },
         });
     }
+  }
+
+  onCheckId() {
+    const form2Value = this.signUpForm2.value;
+    const username = form2Value.fusername;
+    if (!username) {
+      return;
+    }
+    const checkUserNameRequest: CheckUserNameRequest = {
+      username: username,
+    };
+
+    this.authService
+      .getID(checkUserNameRequest)
+      .pipe(
+        finalize(() => {
+          this.isPageLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response: SpmedResponse<CheckUserNameResponse>) => {
+          const checkUserNameResponse: CheckUserNameResponse =
+            response?.data?.items?.[0];
+          if (checkUserNameResponse == null) {
+          } else {
+            this.isValidID = checkUserNameResponse.isValid;
+          }
+        },
+        complete: () => {
+          console.log('this.authService.Check ID done!!!');
+        },
+        error: (error) => {
+          console.log(error.response);
+        },
+      });
+  }
+
+  onCheckEmail() {
+    const form3Value = this.signUpForm3.value;
+    const femail = form3Value.femail;
+    if (!femail) {
+      return;
+    }
+    const checkEmailRequest: CheckEmailRequest = {
+      email: femail,
+    };
+
+    this.authService
+      .getEmail(checkEmailRequest)
+      .pipe(
+        finalize(() => {
+          this.isPageLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response: SpmedResponse<CheckEmailResponse>) => {
+          const checkEmailResponse: CheckEmailResponse =
+            response?.data?.items?.[0];
+          if (checkEmailResponse == null) {
+          } else {
+            this.isValidEmail = checkEmailResponse.isValid;
+          }
+        },
+        complete: () => {
+          console.log('this.authService.Check Email done!!!');
+        },
+        error: (error) => {
+          console.log(error.response);
+        },
+      });
   }
 }
 
