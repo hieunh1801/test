@@ -24,3 +24,9 @@ body {
   --primary-b-800--color: rgba(158, 33, 16, 0.8);
   --primary-b-400--color: rgba(158, 33, 16, 0.4);
 }
+
+::ng-root {
+  .mat-button {
+    border-radius: 0 !important;
+  }
+}

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { LanguageService } from '@shared/services/language.service';
 import { Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,13 @@ export class PdssReportService {
     return this.httpClient.get(url);
   }
 
-  getReportById(): void {
-    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports`;
+  getReportByQrCode(qrCode: string): Observable<SpmedResponse<Report>> {
+    // const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/my-report`;
+    const options = {
+      params: { qrCode },
+    };
+    return this.httpClient.get(url);
   }
 }
 

@@ -75,7 +75,6 @@ export class StorageService {
       this.subjects.get(key).complete();
       this.subjects.delete(key);
     }
-    console.log('removeItem', key);
     this.storage.removeItem(key);
   }
 

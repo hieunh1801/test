@@ -8,22 +8,11 @@ import { DrugRecommendation, Report } from './pdss-report.service';
 export class ReportHelperService {
   constructor(private translateService: TranslateService) {}
 
-  getStatistic(packageName: string, reportList?: Report[]): ReportsStatistic {
-    if (!reportList || reportList.length === 0) {
-      return null;
-    }
-
-    const drugRecommendations: DrugRecommendation[] = [];
-    for (const report of reportList) {
-      const productName = report.productName;
-      for (const drug of report?.drugRecommendations || []) {
-        drugRecommendations.push({
-          ...drug,
-          product: productName,
-        });
-      }
-    }
-
+  getStatisticFromDrugRecommendationList(
+    drugRecommendations: DrugRecommendation[] = [],
+    packageName: string = null,
+    qrCode: string = null
+  ): ReportsStatistic {
     // summary total drug
     const drugName = new Set();
     for (const drugRecommendation of drugRecommendations) {
@@ -106,6 +95,8 @@ export class ReportHelperService {
 
     const result: ReportsStatistic = {
       packageName,
+      qrCode,
+
       totalDrug,
       totalGene,
       totalInterpretation,
@@ -122,11 +113,33 @@ export class ReportHelperService {
     };
     return result;
   }
+
+  getStatisticFromReport(
+    reportList?: Report[],
+    packageName: string = null,
+    qrCode: string = null
+  ): ReportsStatistic {
+    if (!reportList || reportList.length === 0) {
+      return null;
+    }
+
+    const drugRecommendations = reportList
+      .map((report) => report?.drugRecommendations || [])
+      .reduce((prev, cur) => {
+        return [...prev, ...cur];
+      }, []);
+
+    return this.getStatisticFromDrugRecommendationList(
+      drugRecommendations,
+      packageName,
+      qrCode
+    );
+  }
 }
 
 export interface ReportsStatistic {
-  packageName: string;
-
+  packageName?: string;
+  qrCode?: string;
   totalDrug: number;
   totalGene: number;
   totalInterpretation: number;

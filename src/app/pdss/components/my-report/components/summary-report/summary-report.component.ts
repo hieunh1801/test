@@ -14,6 +14,7 @@ import {
   PdssReportService,
   Report,
 } from '@pdss/components/my-report/services/pdss-report.service';
+import { PageLoadingService } from '@shared/services/page-loading.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -21,8 +22,6 @@ import {
   styleUrls: ['./summary-report.component.scss'],
 })
 export class SummaryReportComponent implements OnInit, OnDestroy {
-  isPageLoading = false;
-
   reportList$ = new BehaviorSubject<Report[]>([]);
   sort$ = new BehaviorSubject<Sort>(null);
 
@@ -44,16 +43,17 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     private pdssReportService: PdssReportService,
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private pageLoadingService: PageLoadingService
   ) {}
 
   loadReportList(): void {
-    this.isPageLoading = true;
+    this.pageLoadingService.startLoading();
     this.pdssReportService
       .getMyReport()
       .pipe(
         finalize(() => {
-          this.isPageLoading = false;
+          this.pageLoadingService.stopLoading();
         })
       )
       .subscribe({

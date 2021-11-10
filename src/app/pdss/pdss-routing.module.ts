@@ -56,7 +56,7 @@ const routes: Routes = [
             component: SummaryReportComponent,
           },
           {
-            path: 'reports/:qrcode',
+            path: 'reports/:qrCode',
             component: ReportComponent,
           },
           {

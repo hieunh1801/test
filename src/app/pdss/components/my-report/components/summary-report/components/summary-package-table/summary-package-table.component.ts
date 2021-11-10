@@ -36,17 +36,21 @@ export class SummaryPackageTableComponent implements OnInit, OnDestroy {
         const mTableData = [];
         for (const report of reportList) {
           const packageName = report.productName;
-          const statistic = this.reportHelperService.getStatistic(packageName, [
-            report,
-          ]);
+          const qrCode = report.qrCode;
+          const statistic = this.reportHelperService.getStatisticFromReport(
+            [report],
+            packageName,
+            qrCode
+          );
           mTableData.push(statistic);
         }
 
         this.tableData = mTableData;
 
-        const mSummaryData = this.reportHelperService.getStatistic(
+        const mSummaryData = this.reportHelperService.getStatisticFromReport(
+          reportList,
           'Summary',
-          reportList
+          ''
         );
         this.summaryData = mSummaryData;
 

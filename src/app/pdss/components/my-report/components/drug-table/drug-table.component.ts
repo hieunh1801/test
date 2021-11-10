@@ -40,7 +40,7 @@ import {
   ],
 })
 export class DrugTableComponent implements OnInit, OnDestroy {
-  @Input() drugList: DrugRecommendationKr[] = [];
+  @Input() drugList: DrugRecommendation[] = [];
   @Output() sortChange: EventEmitter<Sort> = new EventEmitter();
 
   expandedElementIdList: number[] = [];
@@ -70,6 +70,11 @@ export class DrugTableComponent implements OnInit, OnDestroy {
 
   constructor(private translateService: TranslateService) {}
 
+  summaryData(drugList: DrugRecommendation[] = null): void {
+    if (drugList == null) {
+      drugList = [...this.drugList];
+    }
+  }
   ngOnInit(): void {}
 
   ngOnDestroy(): void {}

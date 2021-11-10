@@ -1,0 +1,29 @@
+<div class="drug-table-statistic">
+  <div fxLayout="row" fxLayoutAlign="end">
+    <div class="box danger" [ngClass.xs]="'box-mobile'">
+      <div *ngIf="totalDanger != null && totalDanger !== undefined">
+        <span translate>PDSS__RISK_LEVEL__DANGER</span>
+        {{ totalDanger }}/{{ totalDrug }}
+      </div>
+    </div>
+    <div class="box warning" [ngClass.xs]="'box-mobile'">
+      <div *ngIf="totalWarning != null && totalWarning !== undefined">
+        <span translate>PDSS__RISK_LEVEL__WARNING</span>
+        {{ totalWarning }}/{{ totalDrug }}
+      </div>
+    </div>
+    <div class="box caution" [ngClass.xs]="'box-mobile'">
+      <div *ngIf="totalCaution != null && totalCaution !== undefined">
+        <span translate>PDSS__RISK_LEVEL__CAUTION</span>
+        {{ totalCaution }}/{{ totalDrug }}
+      </div>
+    </div>
+    <div class="box good" [ngClass.xs]="'box-mobile'">
+      <div *ngIf="totalGood != null && totalGood !== undefined">
+        <span translate>PDSS__RISK_LEVEL__GOOD</span>
+
+        {{ totalGood }}/{{ totalDrug }}
+      </div>
+    </div>
+  </div>
+</div>
