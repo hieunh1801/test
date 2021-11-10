@@ -23,6 +23,7 @@ import { SummaryReportComponent } from './components/my-report/components/summar
 import { ReportComponent } from './components/my-report/components/report/report.component';
 import { SummaryPackageTableComponent } from './components/my-report/components/summary-report/components/summary-package-table/summary-package-table.component';
 import { SharedModule } from '@shared/shared.module';
+import { DrugTableStatisticComponent } from './components/my-report/components/drug-table/components/drug-table-statistic/drug-table-statistic.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -44,6 +45,7 @@ import { SharedModule } from '@shared/shared.module';
     SummaryReportComponent,
     ReportComponent,
     SummaryPackageTableComponent,
+    DrugTableStatisticComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

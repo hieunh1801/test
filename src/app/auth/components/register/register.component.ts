@@ -18,6 +18,7 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PageLoadingService } from '@shared/services/page-loading.service';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +27,6 @@ import { TranslateService } from '@ngx-translate/core';
   providers: [DatePipe],
 })
 export class RegisterComponent implements OnInit {
-  isPageLoading = false;
-
   genderMale = this.translateService.instant(
     'LAYOUT__AUTH__REGISTER__GENDER__MALE'
   );
@@ -131,7 +130,8 @@ export class RegisterComponent implements OnInit {
     private matSnackbarService: MatSnackbarService,
     private tokenStorageService: TokenStorageService,
     private localStorage: LocalStorageService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private pageLoadingService: PageLoadingService
   ) {
     this.lang = localStorage.get('lang');
   }
@@ -197,11 +197,12 @@ export class RegisterComponent implements OnInit {
         mobile: formValue.fphone,
       };
 
+      this.pageLoadingService.startLoading();
       this.authService
         .createUser(customerUserCreateRequest)
         .pipe(
           finalize(() => {
-            this.isPageLoading = false;
+            this.pageLoadingService.stopLoading();
           })
         )
         .subscribe({

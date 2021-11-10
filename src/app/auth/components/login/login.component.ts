@@ -11,6 +11,7 @@ import { TokenStorageService } from '@shared/services/token-storage.service';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { PageLoadingService } from '@shared/services/page-loading.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  isPageLoading = false;
   redirectFromUrl = '#';
 
   loginForm = this.formBuilder.group({
@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pageLoadingService: PageLoadingService
   ) {
     this.activeRoute.queryParams.subscribe((queryParams) => {
       this.redirectFromUrl = queryParams?.redirectFromUrl || '';
@@ -51,7 +52,6 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       const formValue = this.loginForm.value;
       const rememberMe = formValue.rememberMe;
 
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         username: formValue.username,
         password: formValue.password,
       };
-      this.isPageLoading = true;
+      this.pageLoadingService.startLoading();
 
       this.tokenStorageService.rememberMe = rememberMe;
 
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         .login(loginRequest)
         .pipe(
           finalize(() => {
-            this.isPageLoading = false;
+            this.pageLoadingService.stopLoading();
           })
         )
         .subscribe({
@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
             // console.log('this.authService.login done!!!');
           },
           error: (error) => {
-            // console.log(error.response);
+            console.error(error.response);
             const message2 = this.translateService.instant(
               'LAYOUT__AUTH__LOGIN__SERVER__NOT__RESPONSE'
             );

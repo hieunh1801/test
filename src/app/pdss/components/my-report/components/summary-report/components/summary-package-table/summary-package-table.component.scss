@@ -1,0 +1,35 @@
+.summary-package-table {
+  table {
+    width: 100%;
+  }
+
+  ::ng-deep {
+    .mat-header-row {
+      background-color: var(--primary-a--color);
+      color: white;
+    }
+    .mat-header-cell {
+      color: white;
+    }
+  }
+
+  .summary {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .header {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .statistic {
+      font-style: italic;
+      font-weight: 500;
+      padding: 10px 0;
+      span {
+        margin-right: 10px;
+      }
+    }
+  }
+}

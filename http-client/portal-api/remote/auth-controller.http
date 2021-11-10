@@ -1,0 +1,13 @@
+POST https://gwapi.spmed.kr/api-gateway/v1.0/portal/v1.0/en/auth/sign-up
+Content-Type: application/json
+
+{
+  "username":"tester56",
+  "password":"123456",
+  "surname":"Tester5",
+  "givenName":"tester5",
+  "email":"tester5@gmail.com",
+  "birthday":"1998-11-08",
+  "gender":1,
+  "mobile":"123456"
+}
