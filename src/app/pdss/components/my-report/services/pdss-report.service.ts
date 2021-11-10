@@ -29,6 +29,11 @@ export class PdssReportService {
     };
     return this.httpClient.get(url);
   }
+
+  getGeneticResult(qrCode: string): Observable<SpmedResponse<UserVariant>> {
+    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/${qrCode}/variants`;
+    return this.httpClient.get(url);
+  }
 }
 
 export interface ReportKr {
@@ -104,4 +109,29 @@ export interface Report {
   updatedActor: string;
   kr: ReportKr;
   drugRecommendations: DrugRecommendation[];
+}
+
+export interface UserVariant {
+  id: number;
+  relatedTestAlleles?: string;
+  variantRsid?: string;
+  variantGenotypeCode?: string;
+  variantGenotype?: string;
+  variantPhenotypeCode?: string;
+  variantPhenotype?: string;
+  variantPhenotypeSummary?: any;
+  relatedDrugs?: string;
+  userGeneId?: number;
+  userGeneSymbol?: string;
+  userId?: number;
+  qrCode?: string;
+  kr: UserVariantKr;
+}
+
+export interface UserVariantKr {
+  id: number;
+  variantPhenotypeCode?: any;
+  variantPhenotype?: any;
+  variantPhenotypeSummary?: string;
+  relatedDrugs?: string;
 }

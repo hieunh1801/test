@@ -10,6 +10,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+pre {
+  text-align: left;
+  white-space: pre-line;
+  counter-increment: line;
+}
+
 :root {
   --pdss--risk-level--good--color: #00af50;
   --pdss--risk-level--caution--color: #ffc000;
@@ -23,10 +29,4 @@ body {
   --primary-b--color: rgb(158, 33, 16);
   --primary-b-800--color: rgba(158, 33, 16, 0.8);
   --primary-b-400--color: rgba(158, 33, 16, 0.4);
-}
-
-::ng-root {
-  .mat-button {
-    border-radius: 0 !important;
-  }
 }

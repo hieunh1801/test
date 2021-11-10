@@ -1,0 +1,32 @@
+.report-genetic-result {
+  table {
+    width: 100%;
+  }
+
+  ::ng-deep {
+    .mat-sort-header-arrow {
+      color: #ffffff !important;
+    }
+    .mat-focus-indicator {
+      font-weight: 500;
+    }
+    .mat-cell {
+      word-break: break-word;
+    }
+  }
+
+  .mat-header-row {
+    background-color: var(--primary--color);
+  }
+
+  .mat-header-cell {
+    color: white;
+    font-weight: 500;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    max-width: 250px;
+    padding: 4px 8px;
+  }
+}

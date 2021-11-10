@@ -1,0 +1,53 @@
+<div
+  class="report-genetic-result"
+  *ngIf="tableDataSorted && tableDataSorted.length > 0"
+>
+  <table
+    mat-table
+    matSort
+    [dataSource]="tableDataSorted"
+    (matSortChange)="matSortChange($event)"
+  >
+    <ng-container matColumnDef="geneSymbol">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Gene Symbol</th>
+      <td mat-cell *matCellDef="let element">{{ element.userGeneSymbol }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="relatedTestAlleles">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        Related Test Alleles
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.relatedTestAlleles }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="variantGenotypeCode">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        Variant Genotype Code
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.variantGenotypeCode }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="variantPhenotypeSummary">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-sm>
+        Variant Phenotype Summary
+      </th>
+      <td mat-cell *matCellDef="let element" fxHide.lt-sm>
+        {{ element.variantPhenotypeSummary }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="relatedDrugs">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-md>
+        Related Drugs
+      </th>
+      <td mat-cell *matCellDef="let element" fxHide.lt-md>
+        {{ element.relatedDrugs }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumnList"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumnList"></tr>
+  </table>
+</div>

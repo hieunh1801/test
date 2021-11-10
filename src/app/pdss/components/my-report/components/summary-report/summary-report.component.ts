@@ -15,6 +15,7 @@ import {
   Report,
 } from '@pdss/components/my-report/services/pdss-report.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
+import { TableHelperService } from '@shared/services/table-helper.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -44,7 +45,8 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
     private languageService: LanguageService,
-    private pageLoadingService: PageLoadingService
+    private pageLoadingService: PageLoadingService,
+    private tableHelperService: TableHelperService
   ) {}
 
   loadReportList(): void {
@@ -122,6 +124,7 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
 
       this.sortedDrugList = drugRecommendations.sort((a, b) => {
         const isAsc = sort.direction === 'asc';
+        const compare = this.tableHelperService.compare;
         switch (sort.active) {
           case 'drugName':
             return compare(a.drugName, b.drugName, isAsc);
@@ -273,6 +276,3 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     this.sort$.next(sort);
   }
 }
-const compare = (a: number | string, b: number | string, isAsc: boolean) => {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-};

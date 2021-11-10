@@ -140,6 +140,7 @@ export class ReportHelperService {
 export interface ReportsStatistic {
   packageName?: string;
   qrCode?: string;
+  pdfFileLink?: string;
   totalDrug: number;
   totalGene: number;
   totalInterpretation: number;

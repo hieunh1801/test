@@ -15,7 +15,6 @@ import { MyReportComponent } from './components/my-report/my-report.component';
 import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
 import { RowExpandedComponent } from './components/my-report/components/drug-table/components/row-expanded/row-expanded.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { RiskSummaryPieChartComponent } from './components/my-report/components/risk-summary-pie-chart/risk-summary-pie-chart.component';
 import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
 import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
 import { ReferenceListDialogComponent } from './components/my-report/components/drug-table/components/row-expanded/components/reference-list-dialog/reference-list-dialog.component';
@@ -24,6 +23,9 @@ import { ReportComponent } from './components/my-report/components/report/report
 import { SummaryPackageTableComponent } from './components/my-report/components/summary-report/components/summary-package-table/summary-package-table.component';
 import { SharedModule } from '@shared/shared.module';
 import { DrugTableStatisticComponent } from './components/my-report/components/drug-table/components/drug-table-statistic/drug-table-statistic.component';
+import { ReportDrugSummaryTableComponent } from './components/my-report/components/report/components/report-drug-summary-table/report-drug-summary-table.component';
+import { ReportReferencesComponent } from './components/my-report/components/report/components/report-references/report-references.component';
+import { ReportGeneticResultTableComponent } from './components/my-report/components/report/components/report-genetic-result-table/report-genetic-result-table.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -38,7 +40,6 @@ import { DrugTableStatisticComponent } from './components/my-report/components/d
     MyReportComponent,
     DrugTableComponent,
     RowExpandedComponent,
-    RiskSummaryPieChartComponent,
     DrugGeneInterpretationTableComponent,
     DrugGeneInterpretationListComponent,
     ReferenceListDialogComponent,
@@ -46,6 +47,9 @@ import { DrugTableStatisticComponent } from './components/my-report/components/d
     ReportComponent,
     SummaryPackageTableComponent,
     DrugTableStatisticComponent,
+    ReportDrugSummaryTableComponent,
+    ReportReferencesComponent,
+    ReportGeneticResultTableComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

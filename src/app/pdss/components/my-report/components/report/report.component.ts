@@ -10,7 +10,7 @@ import { PdssReportService, Report } from '../../services/pdss-report.service';
   styleUrls: ['./report.component.scss'],
 })
 export class ReportComponent implements OnInit {
-  private report?: Report = null;
+  report?: Report = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,11 @@ export class ReportComponent implements OnInit {
         })
       )
       .subscribe((response) => {
-        this.report = response?.data?.items?.[0] || null;
+        for (const report of response?.data?.items || []) {
+          if (report.qrCode === qrCode) {
+            this.report = report;
+          }
+        }
       });
   }
 }

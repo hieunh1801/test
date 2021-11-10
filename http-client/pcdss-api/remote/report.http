@@ -2,4 +2,11 @@
 GET https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports
 
 
+##s user reports
 GET http://localhost:61111/pcdss/v1.0/en/users/3/reports
+
+### user variant /users/{id}/variants
+GET https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/variants
+
+### report variant
+GET https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/SPMED%2020211013-0001-LMCN/variants
