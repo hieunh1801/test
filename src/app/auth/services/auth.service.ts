@@ -30,17 +30,32 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient
       .post<any>(url, payload, { headers })
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+      .pipe
+      //tap((data) => console.log(JSON.stringify(data))));
+      ();
   }
 
   getID(checkUserNameRequest: CheckUserNameRequest): Observable<any> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/check-username`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/check-id`;
     const body = {
       username: checkUserNameRequest.username,
     };
     return this.httpClient
       .post<any>(url, body)
+      .pipe
+      //tap((data) => console.log(JSON.stringify(data))));
+      ();
+  }
+
+  getEmail(checkEmailRequest: CheckEmailRequest): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/auth/check-email`;
+    const body = {
+      email: checkEmailRequest.email,
+    };
+    return this.httpClient
+      .post<any>(url, body)
       .pipe(tap((data) => console.log(JSON.stringify(data))));
+    // ();
   }
 }
 
@@ -62,7 +77,17 @@ export interface CheckUserNameRequest {
   username: string;
 }
 
-export interface CheckUserNameResponse {}
+export interface CheckUserNameResponse {
+  isValid: boolean;
+}
+
+export interface CheckEmailRequest {
+  email: string;
+}
+
+export interface CheckEmailResponse {
+  isValid: boolean;
+}
 
 export interface CustomerUserCreateRequest {
   username: string;

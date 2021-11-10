@@ -136,14 +136,52 @@
             </div>
             <div class="margin10">
               <mat-form-field class="input-full-width" appearance="fill">
-                <input matInput formControlName="fusername" required />
-
-                <mat-error *ngIf="signUpForm2.get('fusername').invalid"
-                  ><span translate
-                    >LAYOUT__AUTH__REGISTER__ERROR__ID</span
-                  ></mat-error
-                > </mat-form-field
-              ><br />
+                <input
+                  matInput
+                  formControlName="fusername"
+                  name="fusername"
+                  (keyup.enter)="onCheckId()"
+                  (blur)="onCheckId()"
+                  required
+                />
+                <mat-icon
+                  matSuffix
+                  *ngIf="
+                    this.isValidID === true &&
+                    signUpForm2.get('fusername').valid
+                  "
+                  color="success"
+                  >check_circle</mat-icon
+                >
+                <mat-icon
+                  matSuffix
+                  *ngIf="
+                    (signUpForm2.get('fusername').invalid &&
+                      signUpForm2.get('fusername').touched) ||
+                    (this.isValidID === false &&
+                      signUpForm2.get('fusername').touched)
+                  "
+                  color="cancel"
+                  >cancel</mat-icon
+                >
+                <mat-error
+                  *ngIf="signUpForm2.get('fusername').hasError('required')"
+                >
+                  <span translate>LAYOUT__AUTH__REGISTER__ERROR__ID</span>
+                </mat-error>
+              </mat-form-field>
+              <div
+                *ngIf="
+                  this.isValidID === false &&
+                  signUpForm2.get('fusername').touched
+                "
+                [hidden]="signUpForm2.get('fusername').value == null"
+              >
+                <span class="warning-color" translate
+                  >LAYOUT__AUTH__REGISTER__DUPLICATE__ID</span
+                >
+              </div>
+              <br />
             </div>
             <div class="pwd-height">
               <div class="signup-title" translate>
@@ -157,6 +195,12 @@
                   type="password"
                   required
                 />
+                <mat-icon
+                  matSuffix
+                  *ngIf="signUpForm2.get('fpassword').valid"
+                  color="success"
+                  >check_circle</mat-icon
+                >
                 <mat-error *ngIf="signUpForm2.get('fpassword').invalid"
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__PASSWORD</span
@@ -177,6 +221,12 @@
                   type="password"
                   required
                 />
+                <mat-icon
+                  matSuffix
+                  *ngIf="signUpForm2.get('repassword').valid"
+                  color="success"
+                  >check_circle</mat-icon
+                >
                 <mat-error
                   *ngIf="
                     signUpForm2.get('repassword').errors &&
@@ -225,6 +275,12 @@
                 <mat-grid-tile colspan="1">
                   <mat-form-field hintLabel="Sur Name" appearance="fill">
                     <input matInput type="text" formControlName="fsurname" />
+                    <mat-icon
+                      matSuffix
+                      *ngIf="signUpForm3.get('fsurname').valid"
+                      color="success"
+                      >check_circle</mat-icon
+                    >
                     <mat-error
                       ><span translate
                         >LAYOUT__AUTH__REGISTER__ERROR__SIRNAME</span
@@ -235,6 +291,12 @@
                 <mat-grid-tile colspan="2">
                   <mat-form-field hintLabel="Given Name" appearance="fill">
                     <input matInput type="text" formControlName="fgivenname" />
+                    <mat-icon
+                      matSuffix
+                      *ngIf="signUpForm3.get('fgivenname').valid"
+                      color="success"
+                      >check_circle</mat-icon
+                    >
                     <mat-error
                       ><span translate
                         >LAYOUT__AUTH__REGISTER__ERROR__GIVENNAME</span
@@ -251,6 +313,12 @@
               </div>
               <mat-form-field appearance="fill">
                 <input matInput type="date" formControlName="fdateofbirth" />
+                <mat-icon
+                  matSuffix
+                  *ngIf="signUpForm3.get('fdateofbirth').valid"
+                  color="success"
+                  >check_circle</mat-icon
+                >
                 <mat-error
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__DOB</span
@@ -301,11 +369,40 @@
                   type="text"
                   formControlName="femail"
                   pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                  (keyup.enter)="onCheckEmail()"
+                  (blur)="onCheckEmail()"
                 />
+                <mat-icon
+                  matSuffix
+                  *ngIf="
+                    signUpForm3.get('femail').valid &&
+                    this.isValidEmail === true
+                  "
+                  color="success"
+                  >check_circle</mat-icon
+                >
+                <mat-icon
+                  matSuffix
+                  *ngIf="
+                    (signUpForm3.get('femail').invalid &&
+                      signUpForm3.get('femail').touched) ||
+                    (this.isValidEmail === false &&
+                      signUpForm3.get('femail').touched)
+                  "
+                  color="cancel"
+                  >cancel</mat-icon
+                >
                 <mat-error *ngIf="signUpForm3.get('femail').invalid"
                   ><span translate>LAYOUT__AUTH__REGISTER__ERROR__EMAIL</span>
                 </mat-error>
               </mat-form-field>
+              <div
+                *ngIf="this.isValidEmail === false"
+                class="warning-color"
+                translate
+              >
+                LAYOUT__AUTH__REGISTER__ERROR__DUPLICATE__EMAIL
+              </div>
             </div>
 
             <div class="psinfo-div">
@@ -314,6 +411,12 @@
               </div>
               <mat-form-field hintLabel="" appearance="fill">
                 <input matInput type="text" formControlName="fphone" />
+                <mat-icon
+                  matSuffix
+                  *ngIf="signUpForm3.get('fphone').valid"
+                  color="success"
+                  >check_circle</mat-icon
+                >
                 <mat-error *ngIf="signUpForm3.get('fphone').invalid"
                   ><span translate
                     >LAYOUT__AUTH__REGISTER__ERROR__PHONE</span
