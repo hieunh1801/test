@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { finalize } from 'rxjs/operators';
+import { finalize, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MustMatch } from '@shared/classes/must-match.validator';
 
 import {
@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
   lang: string;
   isValidID: boolean;
   isValidEmail: boolean;
-  duplicateId: boolean;
+  checkId: boolean;
 
   currentStep = 1;
 
@@ -148,7 +148,14 @@ export class RegisterComponent implements OnInit {
     this.lang = localStorage.get('lang');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.signUpForm2
+      .get('fusername')
+      .valueChanges.pipe(distinctUntilChanged())
+      .subscribe((term) => {
+        this.checkId = true;
+      });
+  }
 
   updateCheck(): void {
     const formValue = this.signUpForm1.value;
@@ -294,6 +301,7 @@ export class RegisterComponent implements OnInit {
           if (checkUserNameResponse == null) {
           } else {
             this.isValidID = checkUserNameResponse.isValid;
+            this.checkId = null;
           }
         },
         complete: () => {

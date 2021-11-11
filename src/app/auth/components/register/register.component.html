@@ -174,11 +174,20 @@
                 >
               </mat-form-field>
               <div
-                *ngIf="!this.isValidID && signUpForm2.get('fusername').valid"
+                *ngIf="
+                  this.isValidID === false && signUpForm2.get('fusername').valid
+                "
               >
                 <span class="warning-color" translate
                   >LAYOUT__AUTH__REGISTER__DUPLICATE__ID</span
                 >
+              </div>
+              <div
+                *ngIf="!this.isValidID && signUpForm2.get('fusername').valid"
+                [hidden]="!this.checkId"
+                class="is-loading"
+              >
+                <mat-spinner diameter="20"></mat-spinner>
               </div>
               <br />
             </div>
@@ -230,7 +239,7 @@
                 >
                 <mat-error
                   *ngIf="
-                    signUpForm2.get('repassword').errors &&
+                    signUpForm2.get('repassword').invalid &&
                     signUpForm2.get('repassword').touched
                   "
                 >
@@ -364,7 +373,7 @@
               <div class="signup-title" translate>
                 LAYOUT__AUTH__REGISTER__PERSONAL_INFO__EMAIL
               </div>
-              <mat-form-field hintLabel="" appearance="fill">
+              <mat-form-field appearance="fill">
                 <input
                   matInput
                   type="text"
@@ -406,6 +415,20 @@
               >
                 LAYOUT__AUTH__REGISTER__ERROR__DUPLICATE__EMAIL
               </div>
+              <div
+                *ngIf="
+                  !this.isValidEmail &&
+                  signUpForm3.get('femail').valid &&
+                  signUpForm3.get('femail').dirty
+                "
+                [hidden]="
+                  this.isValidEmail === false || this.isValidEmail === true
+                "
+                style="position: relative; top: -50px; left: 90%"
+              >
+                <mat-spinner diameter="20"></mat-spinner>
+              </div>
+              <br />
             </div>
 
             <div class="psinfo-div">

@@ -190,7 +190,15 @@
     width: 95%;
   }
 
-  .mat-form-field-required-marker {
-    color: red;
+  .is-loading {
+    position: absolute;
+    top: 25.5%;
+    right: 8%;
+  }
+
+  .is-loading2 {
+    position: relative;
+    top: -55px;
+    left: 90%;
   }
 }
