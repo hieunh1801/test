@@ -59,7 +59,6 @@ export class DrugTableStatisticComponent implements OnInit, OnChanges {
       if (JSON.stringify(preValue) !== JSON.stringify(curValue)) {
         this.reloadState();
       } else {
-        console.log('NO');
       }
     }
   }

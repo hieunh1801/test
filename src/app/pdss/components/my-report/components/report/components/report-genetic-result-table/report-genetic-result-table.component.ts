@@ -113,7 +113,14 @@ export class ReportGeneticResultTableComponent
         },
         error: (error) => {
           console.error(error);
-          this.matSnackbarService.open('Load genetic result error', 'GET');
+
+          const message = this.translateService.instant(
+            'PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__GET_GENETIC_RESULT_FAILED'
+          );
+          const action = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__GET'
+          );
+          this.matSnackbarService.open(message, action);
         },
       });
     }

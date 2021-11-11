@@ -43,7 +43,7 @@ export class ReportAdditionalInformationListComponent
           'PDSS__MY_REPORTS__REPORT__ADDITIONAL_INFORMATION_LIST__GET_ADDITIONAL_INFORMATION_FAILED'
         );
         const action = this.translateService.instant(
-          'PDSS__MY_REPORTS__REPORT__ADDITIONAL_INFORMATION_LIST__GET_ACTION'
+          'MAT_SNACKBAR__ACTION__GET'
         );
         this.matSnackbarService.open(message, action);
       },

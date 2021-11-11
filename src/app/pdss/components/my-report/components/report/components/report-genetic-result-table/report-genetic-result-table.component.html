@@ -9,13 +9,19 @@
     (matSortChange)="matSortChange($event)"
   >
     <ng-container matColumnDef="geneSymbol">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>Gene</th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__GENE</span
+        >
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.userGeneSymbol }}</td>
     </ng-container>
 
     <ng-container matColumnDef="relatedTestAlleles">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        Related Test Alleles
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__RELATED_TEST_ALLELES</span
+        >
       </th>
       <td mat-cell *matCellDef="let element">
         {{ element.relatedTestAlleles }}
@@ -23,14 +29,20 @@
     </ng-container>
 
     <ng-container matColumnDef="variantGenotype">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>Genotype</th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__GENOTYPE</span
+        >
+      </th>
       <td mat-cell *matCellDef="let element">
         {{ renderRsid(element.variantRsid) }} {{ element.variantGenotype }}
       </td>
     </ng-container>
     <ng-container matColumnDef="variantPhenotype">
       <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-sm>
-        Phenotype
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__PHENOTYPE</span
+        >
       </th>
       <td mat-cell *matCellDef="let element" fxHide.lt-sm>
         {{ element.variantPhenotype }}
@@ -38,7 +50,9 @@
     </ng-container>
     <ng-container matColumnDef="variantPhenotypeSummary">
       <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-md>
-        Phenotype Summary
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__PHENOTYPE_SUMMARY</span
+        >
       </th>
       <td mat-cell *matCellDef="let element" fxHide.lt-md>
         {{ element.variantPhenotypeSummary }}
@@ -46,7 +60,9 @@
     </ng-container>
     <ng-container matColumnDef="relatedDrugs">
       <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-md>
-        Related Drugs
+        <span translate
+          >PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__HEADERS__RELATED_DRUGS</span
+        >
       </th>
       <td mat-cell *matCellDef="let element" fxHide.lt-md>
         {{ element.relatedDrugs }}

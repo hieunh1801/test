@@ -233,7 +233,7 @@ export class RegisterComponent implements OnInit {
                 'LAYOUT__AUTH__REGISTER__PROCESS_FAIL'
               );
               const action = this.translateService.instant(
-                'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+                'MAT_SNACKBAR__ACTION__SIGN_UP'
               );
               this.matSnackbarService.open(message, action);
             } else {
@@ -252,7 +252,7 @@ export class RegisterComponent implements OnInit {
                 'LAYOUT__AUTH__REGISTER__SUCCESS'
               );
               const action = this.translateService.instant(
-                'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+                'MAT_SNACKBAR__ACTION__SIGN_UP'
               );
               this.matSnackbarService.open(message, action);
               setTimeout((_) => {
@@ -269,7 +269,7 @@ export class RegisterComponent implements OnInit {
               'LAYOUT__AUTH__REGISTER__SERVER__NOT__RESPONSE'
             );
             const action2 = this.translateService.instant(
-              'LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION'
+              'MAT_SNACKBAR__ACTION__SIGN_UP'
             );
             this.matSnackbarService.open(message2, action2);
           },
