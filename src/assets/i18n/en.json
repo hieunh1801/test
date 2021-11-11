@@ -32,11 +32,8 @@
   "LAYOUT__AUTH__REGISTER__GENDER__MALE": "Male",
   "LAYOUT__AUTH__REGISTER__GENDER__OTHER": "Other",
   "LAYOUT__AUTH__REGISTER__ID": "Username",
-<<<<<<< HEAD
   "LAYOUT__AUTH__REGISTER__ID__COMMMENT": "This is account you use to login spmed",
-=======
   "LAYOUT__AUTH__REGISTER__MAT__SNACKBAR__ACTION": "SIGNUP",
->>>>>>> main
   "LAYOUT__AUTH__REGISTER__PASSWORD": "Password",
   "LAYOUT__AUTH__REGISTER__CONFIRM__PASSWORD__COMMENT": "Re-typing your password",
   "LAYOUT__AUTH__REGISTER__PERSONAL_INFO__EMAIL": "Email",
