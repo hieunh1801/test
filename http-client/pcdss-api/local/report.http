@@ -23,3 +23,9 @@ https://report.spmed.kr/oz70/ozhviewer/single_ko_pdss_type2.jsp?qr_code=20211029
 
 // account multiple report: username=PH210325A, id=3
 // account with report references: username=PH210630D-237, id=233
+
+###
+GET http://localhost:61111/pcdss/v1.0/en/reports/20210323-25501-ZXPJ
+
+###
+GET http://localhost:61111/pcdss/v1.0/en/users/3/reports

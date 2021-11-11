@@ -24,6 +24,15 @@ export class SummaryPackageTableComponent implements OnInit, OnDestroy {
   @Input() reportList$ = new BehaviorSubject<Report[]>([]);
 
   tableData: ReportsStatistic[] = []; // for table
+  tableColumnList: string[] = [
+    'index',
+    'packageName',
+    'totalDrug',
+    'totalGene',
+    'totalInterpretation',
+    'file',
+    'detail',
+  ];
   summaryData: ReportsStatistic = null; // summary
 
   subscription$ = new Subscription();
@@ -37,10 +46,12 @@ export class SummaryPackageTableComponent implements OnInit, OnDestroy {
         for (const report of reportList) {
           const packageName = report.productName;
           const qrCode = report.qrCode;
+          const resultReportFileName = report.resultReportFileName;
           const statistic = this.reportHelperService.getStatisticFromReport(
             [report],
             packageName,
-            qrCode
+            qrCode,
+            resultReportFileName
           );
           mTableData.push(statistic);
         }
@@ -68,14 +79,4 @@ export class SummaryPackageTableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
-}
-
-interface PackageStatistic {
-  totalDrug?: number;
-  totalGene?: number;
-  totalInterpretation: number;
-  totalDanger?: number;
-  totalWarning: number;
-  totalCaution?: number;
-  total;
 }

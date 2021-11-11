@@ -12,20 +12,20 @@ import { PgxPremiumComponent } from './components/products/components/pgx-premiu
 import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
 import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
-import { DrugTableComponent } from './components/my-report/components/drug-table/drug-table.component';
-import { RowExpandedComponent } from './components/my-report/components/drug-table/components/row-expanded/row-expanded.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
-import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-table/components/row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
-import { ReferenceListDialogComponent } from './components/my-report/components/drug-table/components/row-expanded/components/reference-list-dialog/reference-list-dialog.component';
 import { SummaryReportComponent } from './components/my-report/components/summary-report/summary-report.component';
 import { ReportComponent } from './components/my-report/components/report/report.component';
 import { SummaryPackageTableComponent } from './components/my-report/components/summary-report/components/summary-package-table/summary-package-table.component';
 import { SharedModule } from '@shared/shared.module';
-import { DrugTableStatisticComponent } from './components/my-report/components/drug-table/components/drug-table-statistic/drug-table-statistic.component';
 import { ReportDrugSummaryTableComponent } from './components/my-report/components/report/components/report-drug-summary-table/report-drug-summary-table.component';
-import { ReportReferencesComponent } from './components/my-report/components/report/components/report-references/report-references.component';
 import { ReportGeneticResultTableComponent } from './components/my-report/components/report/components/report-genetic-result-table/report-genetic-result-table.component';
+import { ReportAdditionalInformationListComponent } from './components/my-report/components/report/components/report-additional-information-list/report-additional-information-list.component';
+import { DrugRecommendationTableComponent } from './components/my-report/components/drug-recommendation-table/drug-recommendation-table.component';
+import { DrugRecommendationTableRowExpandedComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/drug-recommendation-table-row-expanded.component';
+import { DrugGeneInterpretationTableComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/components/drug-gene-interpretation-table/drug-gene-interpretation-table.component';
+import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
+import { ReferenceListDialogComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/components/reference-list-dialog/reference-list-dialog.component';
+import { DrugTableStatisticComponent } from './components/my-report/components/drug-recommendation-table/components/drug-table-statistic/drug-table-statistic.component';
 @NgModule({
   declarations: [
     PdssComponent,
@@ -38,8 +38,8 @@ import { ReportGeneticResultTableComponent } from './components/my-report/compon
     SingleGeneServiceComponent,
     PdssNavMenuComponent,
     MyReportComponent,
-    DrugTableComponent,
-    RowExpandedComponent,
+    DrugRecommendationTableComponent,
+    DrugRecommendationTableRowExpandedComponent,
     DrugGeneInterpretationTableComponent,
     DrugGeneInterpretationListComponent,
     ReferenceListDialogComponent,
@@ -48,8 +48,9 @@ import { ReportGeneticResultTableComponent } from './components/my-report/compon
     SummaryPackageTableComponent,
     DrugTableStatisticComponent,
     ReportDrugSummaryTableComponent,
-    ReportReferencesComponent,
     ReportGeneticResultTableComponent,
+    ReportAdditionalInformationListComponent,
+    DrugRecommendationTableComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
