@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -25,7 +27,9 @@ export class ReportComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private pdssReportService: PdssReportService,
-    private pageLoadingService: PageLoadingService
+    private pageLoadingService: PageLoadingService,
+    private translateService: TranslateService,
+    private matSnackbarService: MatSnackbarService
   ) {}
 
   subscribeQrCodeChange(): void {
@@ -70,12 +74,24 @@ export class ReportComponent implements OnInit, OnDestroy {
           this.pageLoadingService.stopLoading();
         })
       )
-      .subscribe((response) => {
-        for (const report of response?.data?.items || []) {
-          if (report.qrCode === qrCode) {
-            this.report$.next(report);
+      .subscribe({
+        next: (response) => {
+          for (const report of response?.data?.items || []) {
+            if (report.qrCode === qrCode) {
+              this.report$.next(report);
+            }
           }
-        }
+        },
+        error: (error) => {
+          console.error(error);
+          const message = this.translateService.instant(
+            'PDSS__MY_REPORT__REPORT__GET_REPORT_FAILED'
+          );
+          const action = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__GET'
+          );
+          this.matSnackbarService.open(message, action);
+        },
       });
   }
 }

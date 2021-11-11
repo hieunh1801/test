@@ -1,6 +1,5 @@
 <div class="report-detail" *ngIf="report">
-  <h2>Report Detail</h2>
-
+  <h2 translate>PDSS__MY_REPORT__REPORT__REPORT_DETAIL</h2>
   <div
     class="report-information"
     fxLayout="row"
@@ -10,45 +9,119 @@
     fxLayoutGap.lt-sm="8px"
   >
     <div>
-      <div class="label">QRCode</div>
+      <div class="label">
+        <span translate>PDSS__MY_REPORT__REPORT__QR_CODE</span>
+      </div>
       <div class="detail">
-        {{ report.qrCode || "No information" }}
+        {{ report.qrCode }}
       </div>
     </div>
     <div>
-      <div class="label">Package</div>
-      <div class="detail">
-        {{ report.productName || "No information" }} ({{ report.productCode }})
+      <div class="label">
+        <span translate>PDSS__MY_REPORT__REPORT__PACKAGE</span>
       </div>
-    </div>
-
-    <div>
-      <div class="label">Test Method</div>
       <div class="detail">
-        {{ report.productTestMethod || "No information" }}
+        {{ report.productName }} ({{ report.productCode }})
       </div>
     </div>
 
     <div>
-      <div class="label">References</div>
+      <div class="label">
+        <span translate>PDSS__MY_REPORT__REPORT__TEST_METHOD</span>
+      </div>
+      <div class="detail">
+        {{ report.productTestMethod }}
+      </div>
+    </div>
+    <div>
+      <div class="label">
+        <span translate>PDSS__MY_REPORT__REPORT__REFERENCES</span>
+      </div>
       <div class="detail">
         <pre>
-          {{ report.referenceOfEvidence || "No information" }}
+          {{ report.referenceOfEvidence }}
         </pre>
+      </div>
+    </div>
+    <div>
+      <div class="label">
+        <span translate>PDSS__MY_REPORT__REPORT__FILE</span>
+      </div>
+      <div class="detail">
+        <a
+          mat-icon-button
+          *ngIf="report.resultReportFileName"
+          [href]="report.resultReportFileName"
+          target="_blank"
+          download
+        >
+          <mat-icon>download</mat-icon>
+        </a>
+
+        <button *ngIf="!report.resultReportFileName" mat-icon-button disabled>
+          <mat-icon>download</mat-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <h2>Drug Gene Interpretation</h2>
-  <app-drug-recommendation-table
-    [drugRecommendationList$]="drugRecommendationList$"
-  ></app-drug-recommendation-table>
+  <!-- for web -->
+  <div fxHide.lt-sm>
+    <mat-tab-group>
+      <!-- drug gene interpretation -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <h3 translate>PDSS__MY_REPORT__REPORT__DRUG_GENE_INTERPRETATION</h3>
+        </ng-template>
+        <app-drug-recommendation-table
+          [drugRecommendationList$]="drugRecommendationList$"
+        ></app-drug-recommendation-table>
+      </mat-tab>
+      <!-- drug gene interpretation end -->
 
-  <h2>Genetic Test Result</h2>
-  <app-report-genetic-result-table
-    [qrCode]="report?.qrCode"
-  ></app-report-genetic-result-table>
+      <!-- genetic test result -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <h3 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h3>
+        </ng-template>
+        <app-report-genetic-result-table
+          [qrCode]="report?.qrCode"
+        ></app-report-genetic-result-table>
+      </mat-tab>
+      <!-- genetic test result end -->
 
-  <h2>Additional Information</h2>
-  <app-report-additional-information-list></app-report-additional-information-list>
+      <!-- additional information -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <h3 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h3>
+        </ng-template>
+
+        <app-report-additional-information-list></app-report-additional-information-list>
+      </mat-tab>
+      <!-- additional information end -->
+    </mat-tab-group>
+  </div>
+
+  <!-- for mobile -->
+  <div fxHide fxShow.lt-sm>
+    <!-- drug gene interpretation -->
+    <h2 translate>PDSS__MY_REPORT__REPORT__DRUG_GENE_INTERPRETATION</h2>
+
+    <app-drug-recommendation-table
+      [drugRecommendationList$]="drugRecommendationList$"
+    ></app-drug-recommendation-table>
+    <!-- drug gene interpretation end -->
+
+    <!-- genetic test result -->
+    <h2 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h2>
+    <app-report-genetic-result-table
+      [qrCode]="report?.qrCode"
+    ></app-report-genetic-result-table>
+    <!-- genetic test result end -->
+
+    <!-- additional information -->
+    <h2 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h2>
+    <app-report-additional-information-list></app-report-additional-information-list>
+    <!-- additional information end -->
+  </div>
 </div>

@@ -1,28 +1,43 @@
 <div class="drug-table-statistic">
   <div fxLayout="row" fxLayoutAlign="end">
     <div class="box danger" [ngClass.xs]="'box-mobile'">
-      <div *ngIf="totalDanger != null && totalDanger !== undefined">
+      <div
+        *ngIf="totalDanger != null && totalDanger !== undefined"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+      >
         <span translate>PDSS__RISK_LEVEL__DANGER</span>
-        {{ totalDanger }}/{{ totalDrug }}
+        <span> {{ totalDanger }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box warning" [ngClass.xs]="'box-mobile'">
-      <div *ngIf="totalWarning != null && totalWarning !== undefined">
+      <div
+        *ngIf="totalWarning != null && totalWarning !== undefined"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+      >
         <span translate>PDSS__RISK_LEVEL__WARNING</span>
-        {{ totalWarning }}/{{ totalDrug }}
+        <span> {{ totalWarning }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box caution" [ngClass.xs]="'box-mobile'">
-      <div *ngIf="totalCaution != null && totalCaution !== undefined">
+      <div
+        *ngIf="totalCaution != null && totalCaution !== undefined"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+      >
         <span translate>PDSS__RISK_LEVEL__CAUTION</span>
-        {{ totalCaution }}/{{ totalDrug }}
+        <span> {{ totalCaution }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box good" [ngClass.xs]="'box-mobile'">
-      <div *ngIf="totalGood != null && totalGood !== undefined">
+      <div
+        *ngIf="totalGood != null && totalGood !== undefined"
+        fxLayout="row"
+        fxLayout.lt-md="column"
+      >
         <span translate>PDSS__RISK_LEVEL__GOOD</span>
-
-        {{ totalGood }}/{{ totalDrug }}
+        <span> {{ totalGood }}/{{ totalDrug }} </span>
       </div>
     </div>
   </div>

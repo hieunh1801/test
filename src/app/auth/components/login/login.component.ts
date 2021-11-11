@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
                 'LAYOUT__AUTH__LOGIN__MISMATCH__INFORMATION'
               );
               const action = this.translateService.instant(
-                'LAYOUT__AUTH__LOGIN__MAT__SNACKBAR__ACTION'
+                'MAT_SNACKBAR__ACTION__LOGIN'
               );
               this.matSnackbarService.open(message, action);
             } else {
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
               'LAYOUT__AUTH__LOGIN__SERVER__NOT__RESPONSE'
             );
             const action2 = this.translateService.instant(
-              'LAYOUT__AUTH__LOGIN__MAT__SNACKBAR__ACTION'
+              'MAT_SNACKBAR__ACTION__LOGIN'
             );
             this.matSnackbarService.open(message2, action2);
           },
