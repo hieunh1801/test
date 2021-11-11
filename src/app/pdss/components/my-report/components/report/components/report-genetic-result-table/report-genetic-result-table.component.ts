@@ -35,7 +35,8 @@ export class ReportGeneticResultTableComponent
   tableColumnList: string[] = [
     'geneSymbol',
     'relatedTestAlleles',
-    'variantGenotypeCode',
+    'variantGenotype',
+    'variantPhenotype',
     'variantPhenotypeSummary',
     'relatedDrugs',
   ];
