@@ -1,14 +1,17 @@
 <!-- drug table -->
 <div class="drug-table">
-  <app-drug-table-statistic [drugList]="drugList"></app-drug-table-statistic>
+  <app-drug-table-statistic
+    [drugList]="tableDataSorted"
+  ></app-drug-table-statistic>
 
   <table
     mat-table
     matSort
     multiTemplateDataRows
-    [dataSource]="drugList"
+    [dataSource]="tableDataSorted"
     (matSortChange)="sortData($event)"
   >
+    <!-- TABLE -->
     <ng-container matColumnDef="index">
       <th mat-header-cell *matHeaderCellDef>
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__INDEX </span>
@@ -92,27 +95,26 @@
         <mat-icon *ngIf="!isExpandedElement(element)">add</mat-icon>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="tableColumnList"></tr>
     <tr
       mat-row
-      *matRowDef="let element; columns: displayedColumns"
+      *matRowDef="let element; columns: tableColumnList"
       class="element-row"
       [class.expanded-row]="isExpandedElement(element)"
       (click)="this.toggleElement(element)"
     ></tr>
 
-    <!-- for detail -->
+    <!-- TABLE ROW EXPANDED -->
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" colspan="999">
-        <div
-          class="element-detail-wrapper"
-          [@detailExpand]="
-            isExpandedElement(element) ? 'expanded' : 'collapsed'
-          "
-        >
-          <div class="element-detail" *ngIf="isExpandedElement(element)">
-            <app-row-expanded [drug]="element"></app-row-expanded>
-          </div>
+        <div class="element-detail-wrapper">
+          <ng-container *ngIf="isExpandedElement(element)">
+            <div class="element-detail">
+              <app-drug-recommendation-table-row-expanded
+                [drug]="element"
+              ></app-drug-recommendation-table-row-expanded>
+            </div>
+          </ng-container>
         </div>
       </td>
     </ng-container>

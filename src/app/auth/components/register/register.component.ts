@@ -37,10 +37,10 @@ export class RegisterComponent implements OnInit {
     'LAYOUT__AUTH__REGISTER__GENDER__OTHER'
   );
 
-  terms_text = this.translateService.instant(
+  termsText = this.translateService.instant(
     'LAYOUT__AUTH__REGISTER__TERMS__CONTENTS'
   );
-  privacy_text = this.translateService.instant(
+  privacyText = this.translateService.instant(
     'LAYOUT__AUTH__REGISTER__PRIVACY__CONTENTS'
   );
 
@@ -267,12 +267,12 @@ export class RegisterComponent implements OnInit {
     const checkUserNameRequest: CheckUserNameRequest = {
       username: username,
     };
-
+    this.pageLoadingService.startLoading();
     this.authService
       .getID(checkUserNameRequest)
       .pipe(
         finalize(() => {
-          this.isPageLoading = false;
+          this.pageLoadingService.stopLoading();
         })
       )
       .subscribe({
@@ -302,12 +302,13 @@ export class RegisterComponent implements OnInit {
     const checkEmailRequest: CheckEmailRequest = {
       email: femail,
     };
+    this.pageLoadingService.startLoading();
 
     this.authService
       .getEmail(checkEmailRequest)
       .pipe(
         finalize(() => {
-          this.isPageLoading = false;
+          this.pageLoadingService.stopLoading();
         })
       )
       .subscribe({

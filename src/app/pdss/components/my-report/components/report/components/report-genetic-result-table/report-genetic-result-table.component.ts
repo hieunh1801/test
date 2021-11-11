@@ -74,8 +74,14 @@ export class ReportGeneticResultTableComponent
             return compare(a.userGeneSymbol, b.userGeneSymbol, isAsc);
           case 'relatedTestAlleles':
             return compare(a.relatedTestAlleles, b.relatedTestAlleles, isAsc);
-          case 'variantGenotypeCode':
-            return compare(a.variantGenotypeCode, b.variantGenotypeCode, isAsc);
+          case 'variantGenotype':
+            const value1 =
+              this.renderRsid(a.variantRsid) + ' ' + a.variantGenotype;
+            const value2 =
+              this.renderRsid(b.variantRsid) + ' ' + b.variantGenotype;
+            return compare(value1, value2, isAsc);
+          case 'variantPhenotype':
+            return compare(a.variantPhenotype, b.variantPhenotype, isAsc);
           case 'variantPhenotypeSummary':
             return compare(
               a.variantPhenotypeSummary,
@@ -101,7 +107,7 @@ export class ReportGeneticResultTableComponent
     }
 
     if (qrCode) {
-      this.pdssReportService.getGeneticResult(qrCode).subscribe({
+      this.pdssReportService.getReportGeneticResult(qrCode).subscribe({
         next: (response) => {
           this.tableData$.next(response?.data?.items || []);
         },
@@ -156,5 +162,12 @@ export class ReportGeneticResultTableComponent
 
   matSortChange(sort: Sort): void {
     this.tableSort$.next(sort);
+  }
+
+  renderRsid(rsid?: string): string {
+    if (rsid && !rsid.startsWith('*')) {
+      return rsid;
+    }
+    return null;
   }
 }

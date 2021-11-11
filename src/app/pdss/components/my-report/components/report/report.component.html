@@ -1,5 +1,6 @@
 <div class="report-detail" *ngIf="report">
   <h2>Report Detail</h2>
+
   <div
     class="report-information"
     fxLayout="row"
@@ -38,8 +39,16 @@
     </div>
   </div>
 
-  <h3>Genetic Test Result</h3>
+  <h2>Drug Gene Interpretation</h2>
+  <app-drug-recommendation-table
+    [drugRecommendationList$]="drugRecommendationList$"
+  ></app-drug-recommendation-table>
+
+  <h2>Genetic Test Result</h2>
   <app-report-genetic-result-table
     [qrCode]="report?.qrCode"
   ></app-report-genetic-result-table>
+
+  <h2>Additional Information</h2>
+  <app-report-additional-information-list></app-report-additional-information-list>
 </div>

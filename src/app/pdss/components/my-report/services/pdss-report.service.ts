@@ -30,9 +30,19 @@ export class PdssReportService {
     return this.httpClient.get(url);
   }
 
-  getGeneticResult(qrCode: string): Observable<SpmedResponse<UserVariant>> {
+  getReportGeneticResult(
+    qrCode: string
+  ): Observable<SpmedResponse<UserVariant>> {
     const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/${qrCode}/variants`;
     return this.httpClient.get(url);
+  }
+
+  getReportAdditionalInformation(
+    productCode: string = 'SGH007',
+    patient: number = 1
+  ): Observable<SpmedResponse<ReportAdditionalInformation>> {
+    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/additional-informations?product_code=${productCode}&patient=${patient}`;
+    return this.httpClient.get<SpmedResponse<ReportAdditionalInformation>>(url);
   }
 }
 
@@ -107,6 +117,8 @@ export interface Report {
   createdActor: string;
   updatedTime: string;
   updatedActor: string;
+  resultReportFileName?: string;
+  resultReportDisplayName?: string;
   kr: ReportKr;
   drugRecommendations: DrugRecommendation[];
 }
@@ -134,4 +146,15 @@ export interface UserVariantKr {
   variantPhenotype?: any;
   variantPhenotypeSummary?: string;
   relatedDrugs?: string;
+}
+
+export interface ReportAdditionalInformation {
+  additionalInformationId: number;
+  content?: string;
+  productCode?: string;
+  patient?: number;
+  group?: number;
+  order?: number;
+  createdTime?: string;
+  createdActor?: string;
 }

@@ -25,20 +25,22 @@
     <ng-container matColumnDef="variantGenotype">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>Genotype</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.variantGenotype }}
+        {{ renderRsid(element.variantRsid) }} {{ element.variantGenotype }}
       </td>
     </ng-container>
     <ng-container matColumnDef="variantPhenotype">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>Phenotype</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-sm>
+        Phenotype
+      </th>
+      <td mat-cell *matCellDef="let element" fxHide.lt-sm>
         {{ element.variantPhenotype }}
       </td>
     </ng-container>
     <ng-container matColumnDef="variantPhenotypeSummary">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-sm>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef fxHide.lt-md>
         Phenotype Summary
       </th>
-      <td mat-cell *matCellDef="let element" fxHide.lt-sm>
+      <td mat-cell *matCellDef="let element" fxHide.lt-md>
         {{ element.variantPhenotypeSummary }}
       </td>
     </ng-container>

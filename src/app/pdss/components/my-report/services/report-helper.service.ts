@@ -11,7 +11,8 @@ export class ReportHelperService {
   getStatisticFromDrugRecommendationList(
     drugRecommendations: DrugRecommendation[] = [],
     packageName: string = null,
-    qrCode: string = null
+    qrCode: string = null,
+    resultReportFileName: string = null
   ): ReportsStatistic {
     // summary total drug
     const drugName = new Set();
@@ -96,6 +97,7 @@ export class ReportHelperService {
     const result: ReportsStatistic = {
       packageName,
       qrCode,
+      resultReportFileName,
 
       totalDrug,
       totalGene,
@@ -117,7 +119,8 @@ export class ReportHelperService {
   getStatisticFromReport(
     reportList?: Report[],
     packageName: string = null,
-    qrCode: string = null
+    qrCode: string = null,
+    resultReportFileName: string = null
   ): ReportsStatistic {
     if (!reportList || reportList.length === 0) {
       return null;
@@ -132,7 +135,8 @@ export class ReportHelperService {
     return this.getStatisticFromDrugRecommendationList(
       drugRecommendations,
       packageName,
-      qrCode
+      qrCode,
+      resultReportFileName
     );
   }
 }
@@ -140,7 +144,7 @@ export class ReportHelperService {
 export interface ReportsStatistic {
   packageName?: string;
   qrCode?: string;
-  pdfFileLink?: string;
+  resultReportFileName?: string;
   totalDrug: number;
   totalGene: number;
   totalInterpretation: number;

@@ -4,14 +4,12 @@
     [reportList$]="reportList$"
   ></app-summary-package-table>
 
-  <div *ngIf="drugList && drugList.length > 0">
-    <div>
-      <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
-      <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
-    </div>
-    <app-drug-table
-      [drugList]="drugList"
-      (sortChange)="sortChange($event)"
-    ></app-drug-table>
+  <div>
+    <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
+    <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
   </div>
+
+  <app-drug-recommendation-table
+    [drugRecommendationList$]="drugRecommendationList$"
+  ></app-drug-recommendation-table>
 </div>

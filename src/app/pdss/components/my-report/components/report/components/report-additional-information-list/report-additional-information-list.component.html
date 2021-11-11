@@ -1,0 +1,28 @@
+<div class="report-additional-information-list-group">
+  <div class="group-wrapper">
+    <div
+      *ngFor="
+        let reportAdditionalInformationList of additionalInformationListGroup
+      "
+      class="group"
+    >
+      <div
+        class="list-wrapper"
+        *ngIf="
+          reportAdditionalInformationList &&
+          reportAdditionalInformationList.length > 0
+        "
+      >
+        <div
+          *ngFor="let additionalInformation of reportAdditionalInformationList"
+          class="list-item"
+        >
+          <ng-container *ngIf="additionalInformation">
+            <span>*</span>
+            <span [innerHTML]="additionalInformation.content"></span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
