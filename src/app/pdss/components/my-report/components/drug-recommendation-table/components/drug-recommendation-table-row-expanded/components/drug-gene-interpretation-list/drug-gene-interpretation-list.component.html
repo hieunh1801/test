@@ -1,5 +1,9 @@
 <div *ngIf="genes" class="gene-list-wrapper">
-  <div class="detail-label">Drug Gene Interpretation</div>
+  <div class="detail-label">
+    <span translate
+      >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION__DRUG_GENE_INTERPRETATION</span
+    >
+  </div>
 
   <div class="list-wrapper">
     <div class="list-item-wrapper" *ngFor="let gene of genes">
@@ -23,7 +27,9 @@
         [ngClass]="{ disable: !!!gene.referenceOfEvidence }"
         (click)="showReferences(gene.referenceOfEvidence)"
       >
-        References
+        <span translate
+          >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION__REFERENCES</span
+        >
       </div>
     </div>
   </div>
