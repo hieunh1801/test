@@ -176,7 +176,8 @@
 
   .warning-color {
     color: red;
-    padding-left: 3px;
+    font-size: 75%;
+    margin-left: 10px;
   }
 
   .mat-success {
@@ -187,5 +188,9 @@
   }
   mat-form-field {
     width: 95%;
+  }
+
+  .mat-form-field-required-marker {
+    color: red;
   }
 }

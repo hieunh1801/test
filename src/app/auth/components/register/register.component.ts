@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AsyncValidatorFn,
+  AbstractControl,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs/operators';
 import { MustMatch } from '@shared/classes/must-match.validator';
+
 import {
   AuthService,
   CustomerUserCreateRequest,
@@ -19,6 +26,7 @@ import { TokenStorageService } from '@shared/services/token-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PageLoadingService } from '@shared/services/page-loading.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-register',
@@ -56,8 +64,10 @@ export class RegisterComponent implements OnInit {
   lang: string;
   isValidID: boolean;
   isValidEmail: boolean;
+  duplicateId: boolean;
 
   currentStep = 1;
+
   signUpForm1 = this.formBuilder.group({
     // add form 1 information here
     totalAgree: [''],
@@ -72,7 +82,9 @@ export class RegisterComponent implements OnInit {
       fpassword: ['', [Validators.required, Validators.minLength(4)]],
       repassword: ['', Validators.required],
     },
-    { validator: MustMatch('fpassword', 'repassword') }
+    {
+      validator: [MustMatch('fpassword', 'repassword')],
+    }
   );
 
   signUpForm3 = this.formBuilder.group({
@@ -268,11 +280,12 @@ export class RegisterComponent implements OnInit {
       username: username,
     };
 
+    this.pageLoadingService.startLoading();
     this.authService
       .getID(checkUserNameRequest)
       .pipe(
         finalize(() => {
-          this.isPageLoading = false;
+          this.pageLoadingService.stopLoading();
         })
       )
       .subscribe({
@@ -303,11 +316,12 @@ export class RegisterComponent implements OnInit {
       email: femail,
     };
 
+    this.pageLoadingService.startLoading();
     this.authService
       .getEmail(checkEmailRequest)
       .pipe(
         finalize(() => {
-          this.isPageLoading = false;
+          this.pageLoadingService.stopLoading();
         })
       )
       .subscribe({

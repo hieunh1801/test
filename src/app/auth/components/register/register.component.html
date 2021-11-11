@@ -130,10 +130,11 @@
               <div class="signup-title" translate>
                 LAYOUT__AUTH__REGISTER__ID
               </div>
-              <div class="signup-comment">
-                This is account you use to login spmed
+              <div class="signup-comment" translate>
+                LAYOUT__AUTH__REGISTER__ID__COMMMENT
               </div>
             </div>
+            <div></div>
             <div class="margin10">
               <mat-form-field class="input-full-width" appearance="fill">
                 <input
@@ -157,25 +158,23 @@
                   matSuffix
                   *ngIf="
                     (signUpForm2.get('fusername').invalid &&
-                      signUpForm2.get('fusername').touched) ||
+                      (signUpForm2.get('fusername').touched ||
+                        signUpForm2.get('fusername').dirty)) ||
                     (this.isValidID === false &&
-                      signUpForm2.get('fusername').touched)
+                      (signUpForm2.get('fusername').touched ||
+                        signUpForm2.get('fusername').dirty))
                   "
                   color="cancel"
                   >cancel</mat-icon
                 >
-                <mat-error
-                  *ngIf="signUpForm2.get('fusername').hasError('required')"
+                <mat-error *ngIf="this.signUpForm2.get('fusername').invalid">
+                  <span translate
+                    >LAYOUT__AUTH__REGISTER__ERROR__ID</span
+                  ></mat-error
                 >
-                  <span translate>LAYOUT__AUTH__REGISTER__ERROR__ID</span>
-                </mat-error>
               </mat-form-field>
               <div
-                *ngIf="
-                  this.isValidID === false &&
-                  signUpForm2.get('fusername').touched
-                "
-                [hidden]="signUpForm2.get('fusername').value == null"
+                *ngIf="!this.isValidID && signUpForm2.get('fusername').valid"
               >
                 <span class="warning-color" translate
                   >LAYOUT__AUTH__REGISTER__DUPLICATE__ID</span
@@ -212,7 +211,9 @@
               <div class="signup-title" translate>
                 LAYOUT__AUTH__REGISTER__CONFIRM_PASSWORD
               </div>
-              <div class="signup-comment">Re-typing your password</div>
+              <div class="signup-comment" translate>
+                LAYOUT__AUTH__REGISTER__CONFIRM__PASSWORD__COMMENT
+              </div>
               <mat-form-field class="input-full-width" appearance="fill">
                 <input
                   matInput
@@ -397,7 +398,9 @@
                 </mat-error>
               </mat-form-field>
               <div
-                *ngIf="this.isValidEmail === false"
+                *ngIf="
+                  this.isValidEmail === false && signUpForm3.get('femail').valid
+                "
                 class="warning-color"
                 translate
               >
