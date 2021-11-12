@@ -6,7 +6,9 @@ footer {
   justify-content: center;
   align-items: center;
   order: 5;
-
+  .sns-icon {
+    width: 24px;
+  }
   .footer-box {
     padding: 10px 5px;
   }
@@ -61,14 +63,14 @@ footer {
     padding-top: 5px;
   }
 
-  .copyright {
-    font-size: 10px;
-    line-height: 12px;
-    text-align: center;
+  // .copyright {
+  //   font-size: 10px;
+  //   line-height: 12px;
+  //   text-align: center;
 
-    margin: 0px 5px;
-    padding: 0px 25px;
-  }
+  //   margin: 0px 5px;
+  //   padding: 0px 25px;
+  // }
 
   .footer-contents {
     margin: 10px 0px;

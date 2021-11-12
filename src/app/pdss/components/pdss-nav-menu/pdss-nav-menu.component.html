@@ -51,103 +51,124 @@
 
   <!-- nav-mobile -->
   <div fxHide.gt-sm>
-    <mat-accordion #navMenuAccordionMobile="matAccordion" [multi]="true">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div fxLayout fxLayoutAlign="start">
-              <button
-                mat-button
-                routerLink="overview"
-                (click)="navMenuAccordionMobile.closeAll()"
-              >
-                <b translate>PDSS__NAV_MENU__PDSS</b>
-              </button>
-            </div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <!-- MENU -->
-        <mat-list>
-          <button
-            mat-menu-item
-            routerLink="overview"
-            (click)="navMenuAccordionMobile.closeAll()"
-          >
-            <span translate>PDSS__NAV_MENU__OVERVIEW</span>
-          </button>
-          <mat-expansion-panel class="pdss-products">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <div>
-                  <button mat-menu-item>
-                    <span translate>PDSS__NAV_MENU__PRODUCTS</span>
-                  </button>
-                </div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list>
-              <button
-                mat-menu-item
-                [routerLink]="['products', 'pgx']"
-                (click)="navMenuAccordionMobile.closeAll()"
-              >
-                <span translate>PDSS__NAV_MENU__PGX</span>
-              </button>
-              <button
-                mat-menu-item
-                [routerLink]="['products', 'pgx-premium']"
-                (click)="navMenuAccordionMobile.closeAll()"
-              >
-                <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
-              </button>
-              <button
-                mat-menu-item
-                [routerLink]="['products', 'single-gene-service']"
-                (click)="navMenuAccordionMobile.closeAll()"
-              >
-                <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
-              </button>
-            </mat-list>
-          </mat-expansion-panel>
-
-          <button
-            mat-menu-item
-            routerLink="browser"
-            (click)="navMenuAccordionMobile.closeAll()"
-          >
-            <span translate>PDSS__NAV_MENU__BROWSER</span>
-          </button>
-          <button
-            mat-menu-item
-            routerLink="utility"
-            (click)="navMenuAccordionMobile.closeAll()"
-          >
-            <span translate>PDSS__NAV_MENU__UTILITY</span>
-          </button>
-
-          <button
-            mat-menu-item
-            routerLink="my-report"
-            (click)="navMenuAccordionMobile.closeAll()"
-          >
-            <b translate>PDSS__NAV_MENU__MY_REPORT</b>
-          </button>
-        </mat-list>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <div
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      class="nav-menu-bar"
+    >
+      <button
+        mat-button
+        routerLink="overview"
+        (click)="isOpenMenuMobile = false"
+      >
+        <b translate>PDSS__NAV_MENU__PDSS</b>
+      </button>
+      <div
+        fxFlex
+        fxLayoutAlign="end center"
+        (click)="isOpenMenuMobile = !isOpenMenuMobile"
+      >
+        <button mat-icon-button>
+          <mat-icon>expand_more</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
-
-  <!-- website -> products menu -->
-  <mat-menu #pdssProductsMenu="matMenu">
-    <button mat-menu-item [routerLink]="['products', 'pgx']">
-      <span translate>PDSS__NAV_MENU__PGX</span>
-    </button>
-    <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
-      <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
-    </button>
-    <button mat-menu-item [routerLink]="['products', 'single-gene-service']">
-      <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
-    </button>
-  </mat-menu>
 </div>
+
+<!-- website -> products menu -->
+<mat-menu #pdssProductsMenu="matMenu">
+  <button mat-menu-item [routerLink]="['products', 'pgx']">
+    <span translate>PDSS__NAV_MENU__PGX</span>
+  </button>
+  <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
+    <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
+  </button>
+  <button mat-menu-item [routerLink]="['products', 'single-gene-service']">
+    <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
+  </button>
+</mat-menu>
+
+<!-- Mobile Nav Menu -->
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpenMenuMobile"
+>
+  <mat-list
+    @pdssNavMenuMobile
+    class="nav-menu-mobile"
+    fxLayout="column"
+    fxHide.gt-sm
+  >
+    <mat-divider></mat-divider>
+    <button
+      mat-menu-item
+      routerLink="overview"
+      (click)="isOpenMenuMobile = false"
+    >
+      <span translate>PDSS__NAV_MENU__OVERVIEW</span>
+    </button>
+    <mat-expansion-panel class="pdss-products">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div>
+            <button mat-menu-item>
+              <span translate>PDSS__NAV_MENU__PRODUCTS</span>
+            </button>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <button
+          mat-menu-item
+          [routerLink]="['products', 'pgx']"
+          (click)="isOpenMenuMobile = false"
+        >
+          <span translate>PDSS__NAV_MENU__PGX</span>
+        </button>
+        <button
+          mat-menu-item
+          [routerLink]="['products', 'pgx-premium']"
+          (click)="isOpenMenuMobile = false"
+        >
+          <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
+        </button>
+        <button
+          mat-menu-item
+          [routerLink]="['products', 'single-gene-service']"
+          (click)="isOpenMenuMobile = false"
+        >
+          <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
+        </button>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <button
+      mat-menu-item
+      routerLink="browser"
+      (click)="isOpenMenuMobile = false"
+    >
+      <span translate>PDSS__NAV_MENU__BROWSER</span>
+    </button>
+    <button
+      mat-menu-item
+      routerLink="utility"
+      (click)="isOpenMenuMobile = false"
+    >
+      <span translate>PDSS__NAV_MENU__UTILITY</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button
+      mat-menu-item
+      routerLink="my-report"
+      (click)="isOpenMenuMobile = false"
+    >
+      <b translate>PDSS__NAV_MENU__MY_REPORT</b>
+    </button>
+    <mat-divider></mat-divider>
+  </mat-list>
+</ng-template>

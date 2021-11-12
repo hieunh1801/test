@@ -1,6 +1,5 @@
 <footer>
   <mat-divider></mat-divider>
-
   <div class="footer-box">
     <div
       class="flex-container"
@@ -8,46 +7,23 @@
       fxLayout.lt-md="column"
       fxLayoutAlign="center center"
     >
-      <div fxflex="40" fxLayout="column">
+      <div fxLayout="column">
         <div class="logo"><img src="../../../../assets/common/logo.jpg" /></div>
         <div class="footer-txt" translate>LAYOUT__FOOTER__COPYRIGHT</div>
-        <div class="sns" fxLayout="row" fxLayoutGap="15px">
-          <div>
-            <a href="https://www.facebook.com/SPMEDkr/" target="_blank"
-              ><img
-                src="../../../../assets/common/facebook_icon.png"
-                style="height: 20px"
-            /></a>
-          </div>
-          <div>
-            <a href="https://www.instagram.com/spmed_official/" target="_blank">
-              <img
-                src="../../../../assets/common/instagram_icon.png"
-                style="height: 20px"
-            /></a>
-          </div>
-          <div>
-            <a href="https://blog.naver.com/spmed1602" target="_blank">
-              <img
-                src="../../../../assets/common/naver_icon.png"
-                style="height: 20px"
-              />
+        <div class="sns" fxLayout="row">
+          <div *ngFor="let snsLink of snsLinkList">
+            <a
+              mat-icon-button
+              target="_blank"
+              [href]="snsLink.link"
+              [title]="snsLink.title"
+            >
+              <img class="sns-icon" [src]="snsLink.iconLink" />
             </a>
-          </div>
-          <div>
-            <img
-              src="../../../../assets/common/kakaotalk_icon.png"
-              style="height: 20px"
-            />
           </div>
         </div>
       </div>
-      <div
-        fxflex="50"
-        fxLayout="row"
-        fxLayout.lt-lg="column"
-        style="padding-left: 10px"
-      >
+      <div fxLayout="row" fxLayout.lt-lg="column" style="padding-left: 10px">
         <div fxLayout="row" fxLayoutAlign="none" class="footer-contents">
           <div fxFlex="50">
             <div class="footer-title">Service</div>
