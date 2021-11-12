@@ -2,8 +2,13 @@ header {
   order: 1;
 
   .mat-toolbar.mat-primary {
-    background: var(--primary-color);
+    background: #ffffff;
     color: black;
+  }
+  .btn-contact {
+    color: var(--primary--color);
+    border: solid 2px var(--primary-color);
+    border-radius: 2px;
   }
 
   ::ng-deep .mat-form-field {
