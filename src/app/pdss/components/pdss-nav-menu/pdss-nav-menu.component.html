@@ -2,7 +2,7 @@
 <div class="pdss-nav-menu">
   <!-- nav-website -->
   <mat-toolbar fxHide.lt-md>
-    <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
+    <div fxFlex="10" fxLayoutAlign="start" fxLayout>
       <button mat-button routerLink="overview">
         <b translate>PDSS__NAV_MENU__PDSS</b>
       </button>
@@ -38,7 +38,7 @@
         <span translate>PDSS__NAV_MENU__UTILITY</span>
       </button>
     </div>
-    <div fxFlex="10" fxLayoutAlign="space-around center" fxLayout>
+    <div fxFlex="10" fxLayoutAlign="end" fxLayout>
       <button
         mat-button
         routerLink="my-report"
@@ -51,12 +51,16 @@
 
   <!-- nav-mobile -->
   <div fxHide.gt-sm>
-    <mat-accordion>
+    <mat-accordion #navMenuAccordionMobile="matAccordion" [multi]="true">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div fxLayout fxLayoutAlign="start">
-              <button mat-button routerLink="overview">
+              <button
+                mat-button
+                routerLink="overview"
+                (click)="navMenuAccordionMobile.closeAll()"
+              >
                 <b translate>PDSS__NAV_MENU__PDSS</b>
               </button>
             </div>
@@ -65,7 +69,11 @@
 
         <!-- MENU -->
         <mat-list>
-          <button mat-menu-item routerLink="overview">
+          <button
+            mat-menu-item
+            routerLink="overview"
+            (click)="navMenuAccordionMobile.closeAll()"
+          >
             <span translate>PDSS__NAV_MENU__OVERVIEW</span>
           </button>
           <mat-expansion-panel class="pdss-products">
@@ -79,29 +87,50 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list>
-              <button mat-menu-item [routerLink]="['products', 'pgx']">
+              <button
+                mat-menu-item
+                [routerLink]="['products', 'pgx']"
+                (click)="navMenuAccordionMobile.closeAll()"
+              >
                 <span translate>PDSS__NAV_MENU__PGX</span>
               </button>
-              <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
+              <button
+                mat-menu-item
+                [routerLink]="['products', 'pgx-premium']"
+                (click)="navMenuAccordionMobile.closeAll()"
+              >
                 <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
               </button>
               <button
                 mat-menu-item
                 [routerLink]="['products', 'single-gene-service']"
+                (click)="navMenuAccordionMobile.closeAll()"
               >
                 <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
               </button>
             </mat-list>
           </mat-expansion-panel>
 
-          <button mat-menu-item routerLink="browser">
+          <button
+            mat-menu-item
+            routerLink="browser"
+            (click)="navMenuAccordionMobile.closeAll()"
+          >
             <span translate>PDSS__NAV_MENU__BROWSER</span>
           </button>
-          <button mat-menu-item routerLink="utility">
+          <button
+            mat-menu-item
+            routerLink="utility"
+            (click)="navMenuAccordionMobile.closeAll()"
+          >
             <span translate>PDSS__NAV_MENU__UTILITY</span>
           </button>
 
-          <button mat-menu-item routerLink="my-report">
+          <button
+            mat-menu-item
+            routerLink="my-report"
+            (click)="navMenuAccordionMobile.closeAll()"
+          >
             <b translate>PDSS__NAV_MENU__MY_REPORT</b>
           </button>
         </mat-list>

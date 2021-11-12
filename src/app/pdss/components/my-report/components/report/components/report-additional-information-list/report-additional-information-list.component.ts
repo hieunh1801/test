@@ -15,12 +15,9 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class ReportAdditionalInformationListComponent
   implements OnInit, OnDestroy
 {
-  @Input() productCode: string;
-  @Input() patient: number;
-
   additionalInformationListGroup: Array<ReportAdditionalInformation[]> = [];
 
-  additionalInformationList$ = new BehaviorSubject<
+  @Input() additionalInformationList$ = new BehaviorSubject<
     ReportAdditionalInformation[]
   >([]);
 
@@ -31,24 +28,6 @@ export class ReportAdditionalInformationListComponent
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService
   ) {}
-
-  loadAdditionalInformationList(): void {
-    this.pdssReportService.getReportAdditionalInformation().subscribe({
-      next: (response) => {
-        const nextValue = response?.data?.items || [];
-        this.additionalInformationList$.next(nextValue);
-      },
-      error: () => {
-        const message = this.translateService.instant(
-          'PDSS__MY_REPORTS__REPORT__ADDITIONAL_INFORMATION_LIST__GET_ADDITIONAL_INFORMATION_FAILED'
-        );
-        const action = this.translateService.instant(
-          'MAT_SNACKBAR__ACTION__GET'
-        );
-        this.matSnackbarService.open(message, action);
-      },
-    });
-  }
 
   subscribeAdditionalInformationListChange(): void {
     const sub = this.additionalInformationList$.subscribe({
@@ -90,8 +69,6 @@ export class ReportAdditionalInformationListComponent
 
   ngOnInit(): void {
     this.subscribeAdditionalInformationListChange();
-
-    this.loadAdditionalInformationList();
   }
 
   ngOnDestroy(): void {

@@ -25,11 +25,8 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   templateUrl: './report-genetic-result-table.component.html',
   styleUrls: ['./report-genetic-result-table.component.scss'],
 })
-export class ReportGeneticResultTableComponent
-  implements OnInit, OnChanges, OnDestroy
-{
-  @Input() qrCode: string;
-  tableData$ = new BehaviorSubject<UserVariant[]>([]);
+export class ReportGeneticResultTableComponent implements OnInit, OnDestroy {
+  @Input() userVariantList$ = new BehaviorSubject<UserVariant[]>([]);
   tableSort$ = new BehaviorSubject<Sort>(null);
   tableDataSorted: UserVariant[] = [];
   tableColumnList: string[] = [
@@ -55,7 +52,7 @@ export class ReportGeneticResultTableComponent
     const tableSort: Sort = this.tableSort$.value || null;
     const language: string = this.languageService.currentLanguage;
 
-    let tableData: UserVariant[] = this.tableData$.value || [];
+    let tableData: UserVariant[] = this.userVariantList$.value || [];
 
     // multiple language
     if (language === LanguagesProvidedType.korea) {
@@ -101,33 +98,8 @@ export class ReportGeneticResultTableComponent
     this.tableDataSorted = [...mTableDataSorted];
   }
 
-  loadUserVariant(qrCode: string): void {
-    if (!qrCode) {
-      qrCode = this.qrCode;
-    }
-
-    if (qrCode) {
-      this.pdssReportService.getReportGeneticResult(qrCode).subscribe({
-        next: (response) => {
-          this.tableData$.next(response?.data?.items || []);
-        },
-        error: (error) => {
-          console.error(error);
-
-          const message = this.translateService.instant(
-            'PDSS__MY_REPORT__REPORT_GENETIC_RESULT_TABLE__GET_GENETIC_RESULT_FAILED'
-          );
-          const action = this.translateService.instant(
-            'MAT_SNACKBAR__ACTION__GET'
-          );
-          this.matSnackbarService.open(message, action);
-        },
-      });
-    }
-  }
-
-  subscribeTableDataChange(): void {
-    const sub = this.tableData$.asObservable().subscribe(() => {
+  subscribeUserVariantListChange(): void {
+    const sub = this.userVariantList$.asObservable().subscribe(() => {
       this.reloadTable();
     });
     this.subscription$.add(sub);
@@ -148,19 +120,8 @@ export class ReportGeneticResultTableComponent
 
   ngOnInit(): void {
     this.subscribeLanguageChange();
-    this.subscribeTableDataChange();
+    this.subscribeUserVariantListChange();
     this.subscribeTableSortChange();
-  }
-
-  ngOnChanges(simpleChanges: SimpleChanges): void {
-    const qrCodeSimpleChange = simpleChanges?.qrCode;
-    if (qrCodeSimpleChange) {
-      const cur = qrCodeSimpleChange.currentValue;
-      const pre = qrCodeSimpleChange.previousValue;
-      if (cur !== pre) {
-        this.loadUserVariant(cur);
-      }
-    }
   }
 
   ngOnDestroy(): void {

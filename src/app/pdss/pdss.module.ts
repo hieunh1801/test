@@ -17,7 +17,6 @@ import { SummaryReportComponent } from './components/my-report/components/summar
 import { ReportComponent } from './components/my-report/components/report/report.component';
 import { SummaryPackageTableComponent } from './components/my-report/components/summary-report/components/summary-package-table/summary-package-table.component';
 import { SharedModule } from '@shared/shared.module';
-import { ReportDrugSummaryTableComponent } from './components/my-report/components/report/components/report-drug-summary-table/report-drug-summary-table.component';
 import { ReportGeneticResultTableComponent } from './components/my-report/components/report/components/report-genetic-result-table/report-genetic-result-table.component';
 import { ReportAdditionalInformationListComponent } from './components/my-report/components/report/components/report-additional-information-list/report-additional-information-list.component';
 import { DrugRecommendationTableComponent } from './components/my-report/components/drug-recommendation-table/drug-recommendation-table.component';
@@ -47,7 +46,6 @@ import { DrugTableStatisticComponent } from './components/my-report/components/d
     ReportComponent,
     SummaryPackageTableComponent,
     DrugTableStatisticComponent,
-    ReportDrugSummaryTableComponent,
     ReportGeneticResultTableComponent,
     ReportAdditionalInformationListComponent,
     DrugRecommendationTableComponent,

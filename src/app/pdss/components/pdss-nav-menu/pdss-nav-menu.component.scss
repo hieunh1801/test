@@ -1,8 +1,11 @@
 .pdss-nav-menu {
+  max-width: var(--primary--screen);
+  margin: auto;
   .mat-toolbar {
     background-color: white;
     height: 48px;
     font-size: 18px;
+    padding: 0px;
   }
 
   .router-link-active {

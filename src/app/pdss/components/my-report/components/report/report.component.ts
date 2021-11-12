@@ -9,6 +9,9 @@ import {
   DrugRecommendation,
   PdssReportService,
   Report,
+  ReportAdditionalInformation,
+  ReportPage,
+  UserVariant,
 } from '../../services/pdss-report.service';
 
 @Component({
@@ -19,8 +22,12 @@ import {
 export class ReportComponent implements OnInit, OnDestroy {
   report: Report = null;
   report$ = new BehaviorSubject<Report>(null);
-  qrCode$ = new BehaviorSubject<string>(null);
   drugRecommendationList$ = new BehaviorSubject<DrugRecommendation[]>([]);
+  additionalInformationList$ = new BehaviorSubject<
+    ReportAdditionalInformation[]
+  >([]);
+  userVariantList$ = new BehaviorSubject<UserVariant[]>([]);
+  reportPageData$ = new BehaviorSubject<ReportPage>(null);
 
   subscription$ = new Subscription();
 
@@ -31,13 +38,6 @@ export class ReportComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private matSnackbarService: MatSnackbarService
   ) {}
-
-  subscribeQrCodeChange(): void {
-    const sub = this.qrCode$.subscribe((qrCode) => {
-      this.loadReport(qrCode);
-    });
-    this.subscription$.add(sub);
-  }
 
   subscribeReportChange(): void {
     const sub = this.report$.subscribe((report) => {
@@ -53,12 +53,23 @@ export class ReportComponent implements OnInit, OnDestroy {
     this.subscription$.add(sub);
   }
 
+  subscribeReportPageDataChange(): void {
+    const sub = this.reportPageData$.subscribe((reportPageData) => {
+      if (reportPageData) {
+        const { report, additionalInformations, userVariants } = reportPageData;
+        this.report$.next(report);
+        this.additionalInformationList$.next(additionalInformations);
+        this.userVariantList$.next(userVariants);
+      }
+    });
+    this.subscription$.add(sub);
+  }
+
   ngOnInit(): void {
     this.subscribeReportChange();
-    this.subscribeQrCodeChange();
-
+    this.subscribeReportPageDataChange();
     const qrCode = this.route.snapshot.paramMap.get('qrCode');
-    this.qrCode$.next(qrCode);
+    this.loadReport(qrCode);
   }
 
   ngOnDestroy(): void {
@@ -76,11 +87,8 @@ export class ReportComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (response) => {
-          for (const report of response?.data?.items || []) {
-            if (report.qrCode === qrCode) {
-              this.report$.next(report);
-            }
-          }
+          const reportPageData = response?.data?.items?.[0] || null;
+          this.reportPageData$.next(reportPageData);
         },
         error: (error) => {
           console.error(error);
