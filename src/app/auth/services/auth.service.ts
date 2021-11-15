@@ -52,10 +52,11 @@ export class AuthService {
     const body = {
       email: checkEmailRequest.email,
     };
-    return this.httpClient.post<any>(url, body).pipe(
+    return this.httpClient
+      .post<any>(url, body)
+      .pipe
       //tap((data) => console.log(JSON.stringify(data))));
-      delay(2000)
-    );
+      ();
   }
 }
 
