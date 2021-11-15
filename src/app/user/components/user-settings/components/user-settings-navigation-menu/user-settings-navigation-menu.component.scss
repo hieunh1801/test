@@ -1,0 +1,43 @@
+#navigation-menu {
+  .navigation-menu-container {
+    .nav-button {
+      cursor: pointer;
+      padding: 8px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .router-link-active {
+      background-color: var(--primary--color);
+      color: white;
+      font-weight: 500;
+    }
+  }
+
+  .website {
+    h2 {
+      padding: 8px;
+    }
+    border: solid 1px #d8d8d8;
+    font-size: 14px;
+    padding: 20px;
+    .nav-button {
+      border-radius: 3px;
+      text-align: left;
+    }
+  }
+
+  .mobile {
+    border: solid 1px #d8d8d8;
+    .nav-button {
+      width: 100%;
+    }
+    .nav-button:not(:first-child, :last-child) {
+      border-left: solid 1px #d8d8d8;
+      border-right: solid 1px #d8d8d8;
+      border-radius: 0;
+    }
+  }
+}

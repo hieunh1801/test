@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { finalize, distinctUntilChanged } from 'rxjs/operators';
-import { MustMatch } from '@shared/classes/must-match.validator';
 
 import {
   AuthService,
@@ -26,6 +25,7 @@ import {
   RegisterSuccessDialogInput,
 } from './components/register-success-dialog/register-success-dialog.component';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { MustMatch } from '@shared/validators/must-match.validator';
 
 @Component({
   selector: 'app-register',
