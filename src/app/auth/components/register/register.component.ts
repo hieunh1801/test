@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,11 @@ import { TokenStorageService } from '@shared/services/token-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PageLoadingService } from '@shared/services/page-loading.service';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  RegisterSuccessDialogComponent,
+  RegisterSuccessDialogInput,
+} from './components/register-success-dialog/register-success-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +31,7 @@ import { PageLoadingService } from '@shared/services/page-loading.service';
   styleUrls: ['./register.component.scss'],
   providers: [DatePipe],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   genderMale = this.translateService.instant(
     'LAYOUT__AUTH__REGISTER__GENDER__MALE'
   );
@@ -56,7 +61,8 @@ export class RegisterComponent implements OnInit {
   lang: string;
   isValidID: boolean;
   isValidEmail: boolean;
-
+  isCheckingId: boolean = null;
+  isCheckingEmail: boolean = null;
   currentStep = 1;
   signUpForm1 = this.formBuilder.group({
     // add form 1 information here
@@ -131,12 +137,17 @@ export class RegisterComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private localStorage: LocalStorageService,
     private translateService: TranslateService,
-    private pageLoadingService: PageLoadingService
+    private pageLoadingService: PageLoadingService,
+    private dialog: MatDialog
   ) {
     this.lang = localStorage.get('lang');
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
 
   updateCheck(): void {
     const formValue = this.signUpForm1.value;
@@ -155,6 +166,7 @@ export class RegisterComponent implements OnInit {
       this.currentStep = 2;
     }
   }
+
   onStep3(): void {
     this.signUpForm2.markAsDirty();
     if (this.signUpForm2.valid) {
@@ -218,27 +230,20 @@ export class RegisterComponent implements OnInit {
               );
               this.matSnackbarService.open(message, action);
             } else {
-              this.tokenStorageService.rememberMe = true; // todo -> add when create user
-              this.tokenStorageService.accessToken =
-                customerUserCreateResponse.accessToken;
-              this.tokenStorageService.refreshToken =
-                customerUserCreateResponse.refreshToken;
-              this.tokenStorageService.username =
-                customerUserCreateResponse.username;
-              this.tokenStorageService.authorities =
-                customerUserCreateResponse?.authorities || [];
+              // this.tokenStorageService.rememberMe = true; // todo -> add when create user
+              // this.tokenStorageService.accessToken =
+              //   customerUserCreateResponse.accessToken;
+              // this.tokenStorageService.refreshToken =
+              //   customerUserCreateResponse.refreshToken;
+              // this.tokenStorageService.username =
+              //   customerUserCreateResponse.username;
+              // this.tokenStorageService.authorities =
+              //   customerUserCreateResponse?.authorities || [];
 
-              // console.log(error.response);
-              const message = this.translateService.instant(
-                'LAYOUT__AUTH__REGISTER__SUCCESS'
-              );
-              const action = this.translateService.instant(
-                'MAT_SNACKBAR__ACTION__SIGN_UP'
-              );
-              this.matSnackbarService.open(message, action);
-              setTimeout((_) => {
-                this.router.navigate(['home']);
-              }, 3000);
+              const dialogInputData: RegisterSuccessDialogInput = {};
+              this.dialog.open(RegisterSuccessDialogComponent, {
+                data: dialogInputData,
+              });
             }
           },
           complete: () => {
@@ -258,7 +263,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onCheckId() {
+  onCheckId(): void {
     const form2Value = this.signUpForm2.value;
     const username = form2Value.fusername;
     if (!username) {
@@ -267,12 +272,12 @@ export class RegisterComponent implements OnInit {
     const checkUserNameRequest: CheckUserNameRequest = {
       username: username,
     };
-    this.pageLoadingService.startLoading();
+    this.isCheckingId = true;
     this.authService
       .getID(checkUserNameRequest)
       .pipe(
         finalize(() => {
-          this.pageLoadingService.stopLoading();
+          this.isCheckingId = false;
         })
       )
       .subscribe({
@@ -293,7 +298,7 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  onCheckEmail() {
+  onCheckEmail(): void {
     const form3Value = this.signUpForm3.value;
     const femail = form3Value.femail;
     if (!femail) {
@@ -302,13 +307,12 @@ export class RegisterComponent implements OnInit {
     const checkEmailRequest: CheckEmailRequest = {
       email: femail,
     };
-    this.pageLoadingService.startLoading();
-
+    this.isCheckingEmail = true;
     this.authService
       .getEmail(checkEmailRequest)
       .pipe(
         finalize(() => {
-          this.pageLoadingService.stopLoading();
+          this.isCheckingEmail = false;
         })
       )
       .subscribe({

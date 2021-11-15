@@ -142,8 +142,16 @@
                   name="fusername"
                   (keyup.enter)="onCheckId()"
                   (blur)="onCheckId()"
+                  (ngModelChange)="isValidID = null"
                   required
                 />
+                <mat-progress-spinner
+                  *ngIf="isCheckingId"
+                  matSuffix
+                  [diameter]="24"
+                  mode="indeterminate"
+                >
+                </mat-progress-spinner>
                 <mat-icon
                   matSuffix
                   *ngIf="
@@ -371,7 +379,15 @@
                   pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
                   (keyup.enter)="onCheckEmail()"
                   (blur)="onCheckEmail()"
+                  (ngModelChange)="isValidEmail = null"
                 />
+                <mat-progress-spinner
+                  *ngIf="isCheckingEmail"
+                  matSuffix
+                  [diameter]="24"
+                  mode="indeterminate"
+                >
+                </mat-progress-spinner>
                 <mat-icon
                   matSuffix
                   *ngIf="

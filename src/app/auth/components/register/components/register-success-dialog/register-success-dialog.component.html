@@ -1,0 +1,21 @@
+<h1 mat-dialog-title translate>
+  AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__REGISTER_SUCCESS
+</h1>
+<mat-dialog-content>
+  <p translate>
+    AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__SIGN_UP_DONE_LOGIN_NOW
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">
+    <span translate>AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__ACTION_CLOSE</span>
+  </button>
+  <button
+    mat-stroked-button
+    cdkFocusInitial
+    (click)="onClose()"
+    [routerLink]="['auth', 'login']"
+  >
+    <span translate>AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__ACTION_LOGIN</span>
+  </button>
+</mat-dialog-actions>
