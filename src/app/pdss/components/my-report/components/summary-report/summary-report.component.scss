@@ -1,6 +1,6 @@
 .summary-report {
   // background-color: #f2f2f2;
-  max-width: 1280px;
+  max-width: var(--primary--screen);
   margin: auto;
   padding: 16px;
   .chart-container {

@@ -85,7 +85,7 @@
           <h3 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h3>
         </ng-template>
         <app-report-genetic-result-table
-          [qrCode]="report?.qrCode"
+          [userVariantList$]="userVariantList$"
         ></app-report-genetic-result-table>
       </mat-tab>
       <!-- genetic test result end -->
@@ -96,7 +96,9 @@
           <h3 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h3>
         </ng-template>
 
-        <app-report-additional-information-list></app-report-additional-information-list>
+        <app-report-additional-information-list
+          [additionalInformationList$]="additionalInformationList$"
+        ></app-report-additional-information-list>
       </mat-tab>
       <!-- additional information end -->
     </mat-tab-group>
@@ -115,13 +117,15 @@
     <!-- genetic test result -->
     <h2 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h2>
     <app-report-genetic-result-table
-      [qrCode]="report?.qrCode"
+      [userVariantList$]="userVariantList$"
     ></app-report-genetic-result-table>
     <!-- genetic test result end -->
 
     <!-- additional information -->
     <h2 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h2>
-    <app-report-additional-information-list></app-report-additional-information-list>
+    <app-report-additional-information-list
+      [additionalInformationList$]="additionalInformationList$"
+    ></app-report-additional-information-list>
     <!-- additional information end -->
   </div>
 </div>

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { LanguageService } from '@shared/services/language.service';
 import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -17,32 +16,14 @@ export class PdssReportService {
   ) {}
 
   getMyReport(): Observable<SpmedResponse<Report>> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/my-report`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/reports`;
     return this.httpClient.get(url);
   }
 
-  getReportByQrCode(qrCode: string): Observable<SpmedResponse<Report>> {
+  getReportByQrCode(qrCode: string): Observable<SpmedResponse<ReportPage>> {
     // const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports`;
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/my-report`;
-    const options = {
-      params: { qrCode },
-    };
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/reports/${qrCode}`;
     return this.httpClient.get(url);
-  }
-
-  getReportGeneticResult(
-    qrCode: string
-  ): Observable<SpmedResponse<UserVariant>> {
-    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/reports/${qrCode}/variants`;
-    return this.httpClient.get(url);
-  }
-
-  getReportAdditionalInformation(
-    productCode: string = 'SGH007',
-    patient: number = 1
-  ): Observable<SpmedResponse<ReportAdditionalInformation>> {
-    const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/additional-informations?product_code=${productCode}&patient=${patient}`;
-    return this.httpClient.get<SpmedResponse<ReportAdditionalInformation>>(url);
   }
 }
 
@@ -157,4 +138,10 @@ export interface ReportAdditionalInformation {
   order?: number;
   createdTime?: string;
   createdActor?: string;
+}
+
+export interface ReportPage {
+  report?: Report;
+  userVariants?: UserVariant[];
+  additionalInformations?: ReportAdditionalInformation[];
 }

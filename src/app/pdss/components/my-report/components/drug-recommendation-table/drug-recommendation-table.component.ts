@@ -33,6 +33,13 @@ import { DrugRecommendation } from '../../services/pdss-report.service';
         'collapsed => expanded',
         animate('225ms cubic-bezier(0.2, 0.0, 0.1, 1)')
       ),
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('100ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('100ms', style({ opacity: 0, height: 0 })),
+      ]),
     ]),
   ],
 })
