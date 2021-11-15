@@ -8,6 +8,7 @@ import { RequestPasswordComponent } from './components/request-password/request-
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AuthComponent } from './auth.component';
 import { SharedModule } from '@shared/shared.module';
+import { RegisterSuccessDialogComponent } from './components/register/components/register-success-dialog/register-success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from '@shared/shared.module';
     RequestPasswordComponent,
     ResetPasswordComponent,
     AuthComponent,
+    RegisterSuccessDialogComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
 })

@@ -154,7 +154,7 @@
 
 <!-- menu user for web -->
 <mat-menu #menuUserProfileForWeb="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['..', 'user', 'profiles']">
     <div
       style="width: 200px"
       fxLayout="row"
@@ -164,7 +164,7 @@
       <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
     </div>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['..', 'user', 'settings']">
     <span translate>LAYOUT__HEADER__SETTINGS</span>
   </button>
   <button mat-menu-item>
@@ -228,7 +228,7 @@
       <span translate>LAYOUT__HEADER__CONTACT</span>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item>
+    <button mat-menu-item [routerLink]="['..', 'user', 'profiles']">
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <span translate>LAYOUT__HEADER__PROFILES</span>
         <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
@@ -236,7 +236,7 @@
         >
       </div>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item [routerLink]="['..', 'user', 'settings']">
       <span translate>LAYOUT__HEADER__SETTINGS</span>
     </button>
     <button mat-menu-item>

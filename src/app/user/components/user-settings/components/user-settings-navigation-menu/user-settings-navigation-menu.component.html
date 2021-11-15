@@ -1,0 +1,68 @@
+<div id="navigation-menu">
+  <!-- website -->
+  <div
+    fxHide.lt-sm
+    fxLayoutGap="10px"
+    fxLayout="column"
+    class="navigation-menu-container website"
+  >
+    <h2>Settings</h2>
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="email-and-notification"
+      routerLinkActive="router-link-active"
+    >
+      Email And Notification
+    </div>
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="password"
+      routerLinkActive="router-link-active"
+    >
+      Password
+    </div>
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="account"
+      routerLinkActive="router-link-active"
+    >
+      Account
+    </div>
+  </div>
+
+  <!-- mobile -->
+  <div
+    fxHide
+    fxShow.lt-sm
+    fxLayoutAlign="space-between center"
+    class="navigation-menu-container mobile"
+  >
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="email-and-notification"
+      routerLinkActive="router-link-active"
+    >
+      Email And Notification
+    </div>
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="password"
+      routerLinkActive="router-link-active"
+    >
+      Password
+    </div>
+    <div
+      class="nav-button"
+      mat-ripple
+      routerLink="account"
+      routerLinkActive="router-link-active"
+    >
+      Account
+    </div>
+  </div>
+</div>
