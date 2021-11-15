@@ -1,23 +1,19 @@
-<div fxLayout="column" fxLayoutAlign="center center" id="login-div">
+<div fxLayout="column" fxLayoutAlign="center center" id="login">
   <form class="login-form" [formGroup]="loginForm">
     <mat-card>
-      <mat-card-title> SPMED Login </mat-card-title>
+      <mat-card-title>
+        <span translate>AUTH__LOGIN__SPMED_LOGIN</span>
+      </mat-card-title>
 
       <mat-card-content>
-        <mat-form-field class="login-full-width" appearance="fill">
-          <input
-            matInput
-            placeholder="{{ this.cusername }}"
-            formControlName="username"
-          />
+        <mat-label>{{ this.cusername }}</mat-label>
+        <mat-form-field class="login-full-width" appearance="outline">
+          <input matInput formControlName="username" />
         </mat-form-field>
-        <mat-form-field class="login-full-width" appearance="fill">
-          <input
-            matInput
-            placeholder="{{ this.cpassword }}"
-            formControlName="password"
-            type="password"
-          />
+
+        <mat-label>{{ this.cpassword }}</mat-label>
+        <mat-form-field class="login-full-width" appearance="outline">
+          <input matInput formControlName="password" type="password" />
         </mat-form-field>
         <div fxLayout="row" class="login-comment">
           <div fxFlex="50">
@@ -33,36 +29,52 @@
             >
           </div>
         </div>
-        <button
-          mat-raised-button
-          color="primary"
-          class="login-full-width login-button"
-          (click)="login()"
+        <div
+          class="actions"
+          fxLayout="column"
+          fxLayoutGap="10px"
+          fxLayoutAlign="space-around center"
         >
-          <span translate>LAYOUT__AUTH__LOGIN__LOGIN</span>
-        </button>
-
-        <button
-          mat-raised-button
-          class="login-full-width kakao-button"
-          (click)="loginWithKakaoTalk()"
-        >
-          <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK</span>
-        </button>
-        <button
-          mat-raised-button
-          class="login-full-width naver-button"
-          (click)="loginWithNaver()"
-        >
-          <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
-        </button>
-        <div class="login-register">
-          <span translate>LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT</span>
-          <a routerLink="/auth/register"
-            ><span class="register-link" translate
-              >LAYOUT__AUTH__LOGIN__REGISTER</span
-            ></a
+          <!-- actions main: login -->
+          <button
+            mat-stroked-button
+            color="primary"
+            class="login-button"
+            (click)="login()"
           >
+            <span translate>LAYOUT__AUTH__LOGIN__LOGIN</span>
+          </button>
+
+          <!-- or -->
+          <b>or</b>
+
+          <!-- actions: other -->
+          <div class="other-actions" fxLayout="column" fxLayoutGap="8px">
+            <button
+              mat-stroked-button
+              class="kakao-button"
+              (click)="loginWithKakaoTalk()"
+            >
+              <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK</span>
+            </button>
+            <button
+              mat-stroked-button
+              class="naver-button"
+              (click)="loginWithNaver()"
+            >
+              <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
+            </button>
+            <div class="login-register">
+              <span translate
+                >LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT</span
+              >
+              <a routerLink="/auth/register"
+                ><span class="register-link" translate
+                  >LAYOUT__AUTH__LOGIN__REGISTER</span
+                ></a
+              >
+            </div>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>

@@ -1,6 +1,7 @@
 {
   "AUTH_GUARD__LOGIN": "LOGIN",
   "AUTH_GUARD__REQUIRE_LOGIN": "Require login",
+  "AUTH__LOGIN__SPMED_LOGIN": "SPMED Login",
   "AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__ACTION_CLOSE": "Close",
   "AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__ACTION_LOGIN": "Login",
   "AUTH__REGISTER__REGISTER_SUCCESS_DIALOG__REGISTER_SUCCESS": "Register Success",
@@ -12,7 +13,7 @@
   "LAYOUT__AUTH__LOGIN__MISMATCH__INFORMATION": "Username or Password incorrect",
   "LAYOUT__AUTH__LOGIN__REGISTER": "Sign up",
   "LAYOUT__AUTH__LOGIN__REMEMBER_ME": "Remember me",
-  "LAYOUT__AUTH__LOGIN__SERVER__NOT__RESPONSE": "Login failed. Server is not response",
+  "LAYOUT__AUTH__LOGIN__SERVER__NOT__RESPONSE": "Username or Password incorrect.",
   "LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT": "You don't have account?",
   "LAYOUT__AUTH__REGISTER__AGREE": "Agree to all of the following terms and conditions of SPMED",
   "LAYOUT__AUTH__REGISTER__CONFIRM_PASSWORD": "Confirm Password",

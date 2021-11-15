@@ -1,13 +1,37 @@
-#login-div {
-  padding: 10px;
+#login {
+  padding: 16px;
+  .login-form {
+    width: 450px;
+    min-width: 250px;
 
-  mat-toolbar {
-    background: #fff;
+    .mat-button {
+      width: 100%;
+    }
+  }
+
+  .mat-card {
+    border-radius: 2px;
+    border: solid 1px #d8d8d8;
+    box-shadow: none;
+  }
+
+  .mat-form-field {
+    .mat-form-field-infix {
+      height: 14px;
+    }
+  }
+
+  .actions {
+    margin-top: 16px;
+  }
+
+  .other-actions {
+    width: 100%;
   }
 
   a {
     text-decoration: none;
-    color: #003f9e;
+    color: var(--primary--color);
   }
 
   .login-title {
@@ -41,16 +65,22 @@
   .center-align {
     text-align: center;
   }
+
   .login-button {
-    margin-top: 15px;
-    margin-right: 5px;
+    width: 100%;
+    font-weight: 500;
+    background-color: var(--primary--color);
+    color: white;
+    border: none;
+    border-radius: 2px;
   }
 
   .register-link {
-    padding-left: 5px;
-    color: #003f9e;
+    padding-left: 4px;
+    color: var(--primary--color);
     font-weight: bold;
   }
+
   .login-register {
     padding: 10px 0px;
     font-size: 12px;
@@ -63,13 +93,11 @@
   }
 
   .kakao-button {
-    margin-top: 40px;
-    margin-right: 5px;
+    width: 100%;
   }
 
   .naver-button {
-    margin-top: 15px;
-    margin-right: 5px;
+    width: 100%;
   }
 
   mat-card-header {
