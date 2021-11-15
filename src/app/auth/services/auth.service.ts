@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { LanguageService } from '@shared/services/language.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -52,10 +52,10 @@ export class AuthService {
     const body = {
       email: checkEmailRequest.email,
     };
-    return this.httpClient
-      .post<any>(url, body)
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
-    // ();
+    return this.httpClient.post<any>(url, body).pipe(
+      //tap((data) => console.log(JSON.stringify(data))));
+      delay(2000)
+    );
   }
 }
 

@@ -3,8 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { finalize } from 'rxjs/operators';
+import { finalize, distinctUntilChanged } from 'rxjs/operators';
 import { MustMatch } from '@shared/classes/must-match.validator';
+
 import {
   AuthService,
   CustomerUserCreateRequest,
@@ -24,6 +25,7 @@ import {
   RegisterSuccessDialogComponent,
   RegisterSuccessDialogInput,
 } from './components/register-success-dialog/register-success-dialog.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-register',
@@ -63,7 +65,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   isValidEmail: boolean;
   isCheckingId: boolean = null;
   isCheckingEmail: boolean = null;
+  checkId: boolean;
+
   currentStep = 1;
+
   signUpForm1 = this.formBuilder.group({
     // add form 1 information here
     totalAgree: [''],
@@ -78,7 +83,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
       fpassword: ['', [Validators.required, Validators.minLength(4)]],
       repassword: ['', Validators.required],
     },
-    { validator: MustMatch('fpassword', 'repassword') }
+    {
+      validator: [MustMatch('fpassword', 'repassword')],
+    }
   );
 
   signUpForm3 = this.formBuilder.group({
@@ -143,7 +150,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.lang = localStorage.get('lang');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.signUpForm2
+    //   .get('fusername')
+    //   .valueChanges.pipe(distinctUntilChanged())
+    //   .subscribe((term) => {
+    //     this.checkId = true;
+    //   });
+  }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
@@ -287,6 +301,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           if (checkUserNameResponse == null) {
           } else {
             this.isValidID = checkUserNameResponse.isValid;
+            this.checkId = null;
           }
         },
         complete: () => {

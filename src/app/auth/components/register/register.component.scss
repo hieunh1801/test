@@ -180,7 +180,8 @@
 
   .warning-color {
     color: red;
-    padding-left: 3px;
+    font-size: 75%;
+    margin-left: 10px;
   }
 
   .mat-success {
@@ -191,5 +192,17 @@
   }
   mat-form-field {
     width: 95%;
+  }
+
+  .is-loading {
+    position: absolute;
+    top: 25.5%;
+    right: 8%;
+  }
+
+  .is-loading2 {
+    position: relative;
+    top: -55px;
+    left: 90%;
   }
 }
