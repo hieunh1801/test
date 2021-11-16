@@ -4,19 +4,23 @@ import {
   FormGroup,
   FormGroupDirective,
   NgForm,
-  Validators,
+  ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 // custom validator to check that two fields match
-export function MustMatch(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
+export function MustMatch(
+  controlName: string,
+  matchingControlName: string
+): ValidatorFn {
+  return (formGroup: FormGroup): ValidationErrors | null => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
 
     if (matchingControl.errors && !matchingControl.errors.mustMatch) {
       // return if another validator has already found an error on the matchingControl
-      return;
+      return null;
     }
 
     // set error on matchingControl if validation fails
@@ -25,6 +29,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     } else {
       matchingControl.setErrors(null);
     }
+    return null;
   };
 }
 

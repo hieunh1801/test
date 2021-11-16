@@ -19,6 +19,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { TrimPipe } from './pipes/trim.pipe';
 import { ReferencesPipe } from './pipes/references.pipe';
 import { MaterialModule } from '@material/material.module';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -42,7 +43,7 @@ const httpInterceptorProviders = [
 
 @NgModule({
   //
-  declarations: [...COMPONENTS, TrimPipe, ReferencesPipe],
+  declarations: [...COMPONENTS, TrimPipe, ReferencesPipe, ConfirmDialogComponent],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
     CommonModule,

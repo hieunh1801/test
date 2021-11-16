@@ -32,3 +32,14 @@ pre {
 
   --primary--screen: 1280px;
 }
+
+%primary-button {
+  background-color: var(--primary--color);
+  color: white;
+  font-weight: 500;
+}
+
+%secondary-button {
+  border-color: var(--primary--color);
+  color: var(--primary--color);
+}

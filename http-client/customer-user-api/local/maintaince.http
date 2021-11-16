@@ -1,0 +1,16 @@
+### ping
+GET http://localhost:61128/customer-user/ping
+
+
+GET http://localhost:61128/customer-user/ping
+
+### change password
+PUT http://localhost:61128/customer-user/v1.0/en/auth/change-password
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "currentPassword": "123456",
+  "newPassword": "1234567"
+}
+

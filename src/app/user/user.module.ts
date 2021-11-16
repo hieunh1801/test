@@ -7,10 +7,11 @@ import { UserComponent } from './user.component';
 import { UserProfilesComponent } from './components/user-profiles/user-profiles.component';
 import { UserSettingsNavigationMenuComponent } from './components/user-settings/components/user-settings-navigation-menu/user-settings-navigation-menu.component';
 import { AccountSettingComponent } from './components/user-settings/components/account-setting/account-setting.component';
-import { ResetPasswordSettingComponent } from './components/user-settings/components/reset-password-setting/reset-password-setting.component';
 import { EmailAndNotificationSettingComponent } from './components/user-settings/components/email-and-notification-setting/email-and-notification-setting.component';
 import { SharedModule } from '@shared/shared.module';
-import { ConfirmResetPasswordDialogComponent } from './components/user-settings/components/reset-password-setting/components/confirm-reset-password-dialog/confirm-reset-password-dialog.component';
+import { ChangePasswordComponent } from './components/user-settings/components/password-setting/components/change-password/change-password.component';
+import { PasswordSettingComponent } from './components/user-settings/components/password-setting/password-setting.component';
+import { CloseAccountComponent } from './components/user-settings/components/account-setting/components/close-account/close-account.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,10 @@ import { ConfirmResetPasswordDialogComponent } from './components/user-settings/
     UserProfilesComponent,
     UserSettingsNavigationMenuComponent,
     AccountSettingComponent,
-    ResetPasswordSettingComponent,
     EmailAndNotificationSettingComponent,
-    ConfirmResetPasswordDialogComponent,
+    PasswordSettingComponent,
+    ChangePasswordComponent,
+    CloseAccountComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })
