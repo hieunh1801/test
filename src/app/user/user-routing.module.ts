@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserProfilesComponent } from './components/user-profiles/user-profiles.component';
 import { AccountSettingComponent } from './components/user-settings/components/account-setting/account-setting.component';
 import { EmailAndNotificationSettingComponent } from './components/user-settings/components/email-and-notification-setting/email-and-notification-setting.component';
-import { ResetPasswordSettingComponent } from './components/user-settings/components/reset-password-setting/reset-password-setting.component';
+import { PasswordSettingComponent } from './components/user-settings/components/password-setting/password-setting.component';
 import { UserSettingComponent } from './components/user-settings/user-setting.component';
 import { UserComponent } from './user.component';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
           },
           {
             path: 'password',
-            component: ResetPasswordSettingComponent,
+            component: PasswordSettingComponent,
           },
           { path: 'account', component: AccountSettingComponent },
           {

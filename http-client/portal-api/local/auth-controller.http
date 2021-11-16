@@ -1,4 +1,4 @@
-POST http://localhost:61100/api-gateway/v1.0/portal/v1.0/en/auth/sign-up
+POST http://localhost:61127/portal/v1.0/en/auth/sign-up
 Content-Type: application/json
 
 {
@@ -10,4 +10,23 @@ Content-Type: application/json
   "birthday":"1998-11-08",
   "gender":1,
   "mobile":"123456"
+}
+
+### Login
+POST http://localhost:61127/portal/v1.0/en/auth/login
+Content-Type: application/json
+
+{
+  "username": "PH210325A",
+  "password": "123456"
+}
+
+### Change password
+PUT http://localhost:61127/portal/v1.0/en/auth/change-password
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2MzcwNDM3NDUsImV4cCI6MTcyMzQ0Mzc0NX0.Y7zjkvNf43-2fRISuHEy0di4vJBqcdfjEmaI-hhKorw
+
+{
+  "currentPassword": "456",
+  "newPassword": "123456"
 }
