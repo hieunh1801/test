@@ -16,10 +16,6 @@ import {
   ChangePasswordExceptionCode,
   UserSettingsService,
 } from 'src/app/user/services/user-settings.service';
-import {
-  ChangePasswordConfirmDialogComponent,
-  ChangePasswordConfirmDialogOutput,
-} from '../change-password-confirm-dialog/change-password-confirm-dialog.component';
 
 @Component({
   selector: 'app-change-password',

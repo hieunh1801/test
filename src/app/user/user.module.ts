@@ -11,6 +11,7 @@ import { EmailAndNotificationSettingComponent } from './components/user-settings
 import { SharedModule } from '@shared/shared.module';
 import { ChangePasswordComponent } from './components/user-settings/components/password-setting/components/change-password/change-password.component';
 import { PasswordSettingComponent } from './components/user-settings/components/password-setting/password-setting.component';
+import { CloseAccountComponent } from './components/user-settings/components/account-setting/components/close-account/close-account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PasswordSettingComponent } from './components/user-settings/components/
     EmailAndNotificationSettingComponent,
     PasswordSettingComponent,
     ChangePasswordComponent,
+    CloseAccountComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })
