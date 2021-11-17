@@ -16,7 +16,7 @@ export class BrowserService {
   ) {}
 
   search(searchRequest: SearchRequest): Observable<any> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/knowledge-base/search-data-customer`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/total-search`;
     const body = {
       keyword: searchRequest.keyword,
     };
