@@ -1,0 +1,46 @@
+<div id="medical-history">
+  <div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>Medical History</h2>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menuEdit"
+      *ngIf="medicalHistoryList && medicalHistoryList.length > 0"
+    >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+
+    <button
+      mat-button
+      class="add-button"
+      *ngIf="
+        mode === MedicalHistoryMode.VIEW &&
+        (!medicalHistoryList || medicalHistoryList.length == 0)
+      "
+      (click)="mode = MedicalHistoryMode.ADD"
+    >
+      Add
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="content">
+    <!-- empty -->
+    <app-medical-history-empty
+      *ngIf="
+        mode === MedicalHistoryMode.VIEW &&
+        (!medicalHistoryList || medicalHistoryList.length == 0)
+      "
+    ></app-medical-history-empty>
+
+    <!-- add -->
+    <app-medical-history-add
+      (cancelEvent)="mode = MedicalHistoryMode.VIEW"
+      *ngIf="mode == MedicalHistoryMode.ADD"
+    ></app-medical-history-add>
+  </div>
+</div>
+
+<mat-menu #menuEdit="matMenu">
+  <button mat-menu-item>Add</button>
+  <button mat-menu-item>Edit</button>
+</mat-menu>

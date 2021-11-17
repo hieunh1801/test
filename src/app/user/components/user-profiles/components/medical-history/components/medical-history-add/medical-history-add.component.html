@@ -1,0 +1,109 @@
+<div id="medical-history-add">
+  <h3 translate>
+    USER_PROFILES__MEDICAL_HISTORY_ADD__TITLE__ADD_NEW_MEDICAL_HISTORY
+  </h3>
+  <form [formGroup]="medicalForm">
+    <div
+      fxLayout="row"
+      fxLayoutGap="32px"
+      fxLayout.lt-sm="column"
+      fxLayoutGap.lt-sm="0px"
+    >
+      <div class="form-field">
+        <mat-label>
+          <span translate
+            >USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__DRUG</span
+          >
+          <span class="required">*</span>
+        </mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            formControlName="drug"
+            [placeholder]="
+              'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__DRUG_NAME'
+                | translate
+            "
+          />
+          <mat-error *ngIf="f?.drug?.dirty || f?.drug?.touched">
+            <mat-icon>error</mat-icon>
+            <span *ngIf="f?.drug?.errors?.required" translate>
+              USER_PROFILES__MEDICAL_HISTORY_ADD__ERRORS__REQUIRED_DRUG_NAME
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-label translate>
+          USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__TIME_RANGE
+        </mat-label>
+        <mat-form-field appearance="outline">
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              [placeholder]="
+                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__FROM_DATE'
+                  | translate
+              "
+              formControlName="fromDate"
+            />
+            <input
+              matEndDate
+              [placeholder]="
+                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__TO_DATE'
+                  | translate
+              "
+              formControlName="toDate"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <mat-label translate>
+        USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__NOTE
+      </mat-label>
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          [placeholder]="
+            'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__DRUG_DETAIL'
+              | translate
+          "
+          formControlName="note"
+          rows="6"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions" fxLayout="row" fxLayoutAlign="end center">
+      <button
+        mat-stroked-button
+        class="cancel-button"
+        (click)="onCancelClick(); $event.preventDefault()"
+      >
+        <span translate>
+          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__CANCEL
+        </span>
+      </button>
+      <button
+        mat-button
+        class="save-button"
+        translate
+        (click)="onSaveClick(); $event.preventDefault()"
+      >
+        <span translate>
+          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__SAVE
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

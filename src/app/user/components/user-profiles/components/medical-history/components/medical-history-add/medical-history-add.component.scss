@@ -1,0 +1,43 @@
+#medical-history-add {
+  ::ng-deep .mat-form-field-outline-start {
+    border-radius: 3px 0 0 3px !important;
+    min-width: 3px !important;
+  }
+
+  ::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 3px 3px 0 !important;
+  }
+
+  .required {
+    color: red;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    .mat-form-field {
+      width: 100%;
+    }
+    mat-label {
+      font-weight: 500;
+    }
+  }
+
+  .medical-form {
+    display: grid;
+    grid-column-gap: 30px;
+    grid-row-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .save-button {
+    color: white;
+    font-weight: 500;
+    background-color: var(--primary--color);
+    margin-left: 16px;
+    border-radius: 3px;
+  }
+}
