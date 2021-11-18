@@ -16,9 +16,9 @@ import { IntroductionComponent } from './components/user-profiles/components/int
 import { DemoGraphicComponent } from './components/user-profiles/components/demo-graphic/demo-graphic.component';
 import { MedicalHistoryComponent } from './components/user-profiles/components/medical-history/medical-history.component';
 import { LifeStyleComponent } from './components/user-profiles/components/life-style/life-style.component';
-import { MedicalHistoryEmptyComponent } from './components/user-profiles/components/medical-history/components/medical-history-empty/medical-history-empty.component';
 import { MedicalHistoryAddComponent } from './components/user-profiles/components/medical-history/components/medical-history-add/medical-history-add.component';
 import { MedicalHistoryEditComponent } from './components/user-profiles/components/medical-history/components/medical-history-edit/medical-history-edit.component';
+import { MedicalHistoryListComponent } from './components/user-profiles/components/medical-history/components/medical-history-list/medical-history-list.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +35,9 @@ import { MedicalHistoryEditComponent } from './components/user-profiles/componen
     DemoGraphicComponent,
     MedicalHistoryComponent,
     LifeStyleComponent,
-    MedicalHistoryEmptyComponent,
     MedicalHistoryAddComponent,
     MedicalHistoryEditComponent,
+    MedicalHistoryListComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })

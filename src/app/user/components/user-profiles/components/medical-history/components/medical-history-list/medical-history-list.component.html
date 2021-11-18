@@ -1,0 +1,41 @@
+<div id="medical-history-list">
+  <ng-container *ngIf="dataSource && dataSource.length > 0">
+    <div *ngFor="let medicalHistory of dataSource">
+      <div>{{ medicalHistory?.drug }}</div>
+    </div>
+
+    <ng-container *ngIf="medicalHistoryList$.value?.length > 3">
+      <div
+        class="show-button"
+        *ngIf="showLess$.value"
+        (click)="showLess$.next(false)"
+      >
+        Show more
+        <mat-icon>expand_more</mat-icon>
+      </div>
+      <div
+        class="show-button"
+        *ngIf="!showLess$.value"
+        (click)="showLess$.next(true)"
+      >
+        Show less
+        <mat-icon>expand_less</mat-icon>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!dataSource || dataSource.length === 0">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      id="medical-history-empty "
+    >
+      <img
+        src="/assets/images/empty.svg"
+        alt="image"
+        width="40px"
+        height="40px"
+      />
+      <h3>Empty</h3>
+    </div>
+  </ng-container>
+</div>

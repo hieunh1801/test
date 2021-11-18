@@ -15,7 +15,7 @@
       class="add-button"
       *ngIf="
         mode === MedicalHistoryMode.VIEW &&
-        (!medicalHistoryList || medicalHistoryList.length == 0)
+        (!medicalHistoryList || medicalHistoryList.length === 0)
       "
       (click)="mode = MedicalHistoryMode.ADD"
     >
@@ -25,17 +25,16 @@
   <mat-divider></mat-divider>
   <div class="content">
     <!-- empty -->
-    <app-medical-history-empty
-      *ngIf="
-        mode === MedicalHistoryMode.VIEW &&
-        (!medicalHistoryList || medicalHistoryList.length == 0)
-      "
-    ></app-medical-history-empty>
+
+    <app-medical-history-list
+      [medicalHistoryList$]="medicalHistoryList$"
+      *ngIf="mode === MedicalHistoryMode.VIEW"
+    ></app-medical-history-list>
 
     <!-- add -->
     <app-medical-history-add
       (cancelEvent)="mode = MedicalHistoryMode.VIEW"
-      *ngIf="mode == MedicalHistoryMode.ADD"
+      *ngIf="mode === MedicalHistoryMode.ADD"
     ></app-medical-history-add>
   </div>
 </div>
