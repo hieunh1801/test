@@ -1,1 +1,54 @@
-<p>browser works!</p>
+<div class="browser" fxLayout="column" fxLayoutGap="20px">
+  <form class="search-form" [formGroup]="searchForm">
+    <div>
+      <h2>Drug/Gene Browser</h2>
+      <p>Some results below may be the things you are looking for</p>
+    </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label
+        >찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin /
+        Tyrenol)</mat-label
+      >
+      <input
+        type="text"
+        formControlName="keyword"
+        name="keyword"
+        matInput
+        (keydown.enter)="search()"
+      />
+      <button
+        type="button"
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Autofill"
+        (click)="search()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+    <div fxFlex="50">
+      <h3>Drugs</h3>
+      <mat-selection-list #drugs [multiple]="false">
+        <mat-list-option *ngFor="let drug of listOfDrugs" [value]="drug.name">
+          <a [routerLink]="['/pdss/drug', drug.id, 'detail']">{{
+            drug.name
+          }}</a>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <div fxFlex="50">
+      <h3>Genes</h3>
+      <mat-selection-list #genes [multiple]="false">
+        <mat-list-option *ngFor="let gene of listOfGenes" [value]="gene">
+          <a [routerLink]="['/pdss/gene', gene.id, 'detail']">{{
+            gene.name
+          }}</a>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+</div>
