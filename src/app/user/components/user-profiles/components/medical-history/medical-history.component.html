@@ -1,6 +1,8 @@
 <div id="medical-history">
   <div class="title" fxLayout="row" fxLayoutAlign="space-between center">
-    <h2>Medical History</h2>
+    <h2 translate>
+      USER__USER_PROFILES__MEDICAL_HISTORY__TITLES__MEDICAL_HISTORY
+    </h2>
 
     <button
       mat-icon-button
@@ -17,9 +19,11 @@
         mode === MedicalHistoryMode.VIEW &&
         (!medicalHistoryList || medicalHistoryList.length === 0)
       "
-      (click)="mode = MedicalHistoryMode.ADD"
+      (click)="changeMode(MedicalHistoryMode.ADD)"
     >
-      Add
+      <span translate>
+        USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD
+      </span>
     </button>
   </div>
   <mat-divider></mat-divider>
@@ -33,13 +37,18 @@
 
     <!-- add -->
     <app-medical-history-add
-      (cancelEvent)="mode = MedicalHistoryMode.VIEW"
       *ngIf="mode === MedicalHistoryMode.ADD"
+      (cancelEvent)="changeMode(MedicalHistoryMode.VIEW)"
+      (createEvent)="create($event)"
     ></app-medical-history-add>
   </div>
 </div>
 
 <mat-menu #menuEdit="matMenu">
-  <button mat-menu-item>Add</button>
-  <button mat-menu-item>Edit</button>
+  <button mat-menu-item (click)="changeMode(MedicalHistoryMode.ADD)">
+    <span translate> USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD </span>
+  </button>
+  <button mat-menu-item (click)="changeMode(MedicalHistoryMode.EDIT)">
+    <span translate> USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__EDIT </span>
+  </button>
 </mat-menu>

@@ -1,7 +1,37 @@
 <div id="medical-history-list">
   <ng-container *ngIf="dataSource && dataSource.length > 0">
-    <div *ngFor="let medicalHistory of dataSource">
-      <div>{{ medicalHistory?.drug }}</div>
+    <div>
+      <div *ngFor="let medicalHistory of dataSource">
+        <div
+          class="medical-history-list-item"
+          fxLayout="row"
+          fxLayoutAlign="space-between stretch"
+          fxLayout.lt-sm="column"
+          fxLayoutAlign.lt-sm="none"
+        >
+          <span fxFlex="20" class="drug-name">{{ medicalHistory?.drug }}</span>
+          <span fxFlex="50" class="note">{{ medicalHistory?.note }}</span>
+
+          <span fxFlex="20" class="time-range">
+            <mat-icon>schedule</mat-icon>
+            {{ medicalHistory?.fromDate }}
+            <ng-container *ngIf="medicalHistory?.toDate">
+              <span translate>
+                USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__STRINGS__TO
+              </span>
+              {{ medicalHistory?.toDate }}
+            </ng-container>
+
+            <ng-container
+              *ngIf="!medicalHistory?.toDate && !medicalHistory?.toDate"
+            >
+              <span translate>
+                USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__STRINGS__NO_INFORMATION
+              </span>
+            </ng-container>
+          </span>
+        </div>
+      </div>
     </div>
 
     <ng-container *ngIf="medicalHistoryList$.value?.length > 3">
@@ -10,7 +40,9 @@
         *ngIf="showLess$.value"
         (click)="showLess$.next(false)"
       >
-        Show more
+        <span translate>
+          USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__BUTTONS__SHOW_MORE
+        </span>
         <mat-icon>expand_more</mat-icon>
       </div>
       <div
@@ -18,7 +50,9 @@
         *ngIf="!showLess$.value"
         (click)="showLess$.next(true)"
       >
-        Show less
+        <span translate>
+          USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__BUTTONS__SHOW_LESS
+        </span>
         <mat-icon>expand_less</mat-icon>
       </div>
     </ng-container>
@@ -35,7 +69,9 @@
         width="40px"
         height="40px"
       />
-      <h3>Empty</h3>
+      <h3 translate>
+        USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__STRINGS__EMPTY
+      </h3>
     </div>
   </ng-container>
 </div>

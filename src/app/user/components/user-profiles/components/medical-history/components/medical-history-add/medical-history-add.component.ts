@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { DateUtilService } from '@shared/services/date-util.service';
+import { MedicalHistoryPostRequest } from 'src/app/user/services/user-medical-history.service';
 
 @Component({
   selector: 'app-medical-history-add',
@@ -9,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MedicalHistoryAddComponent implements OnInit {
   @Output() cancelEvent = new EventEmitter();
-  @Output() saveEvent = new EventEmitter();
+  @Output() createEvent = new EventEmitter();
 
   medicalForm = this.formBuilder.group({
     drug: [null, [Validators.required]],
@@ -20,7 +22,8 @@ export class MedicalHistoryAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private dateUtilService: DateUtilService
   ) {}
 
   ngOnInit(): void {}
@@ -35,7 +38,15 @@ export class MedicalHistoryAddComponent implements OnInit {
 
   onSaveClick(): void {
     if (this.medicalForm.valid) {
-      this.saveEvent.emit(this.medicalForm.value);
+      const formValue = this.medicalForm.value;
+      const body: MedicalHistoryPostRequest = {
+        drug: formValue.drug,
+        note: formValue.note,
+        fromDate: this.dateUtilService.toDateString(formValue.fromDate),
+        toDate: this.dateUtilService.toDateString(formValue.toDate),
+      };
+      console.log(body);
+      this.createEvent.emit(this.medicalForm.value);
     }
   }
 }
