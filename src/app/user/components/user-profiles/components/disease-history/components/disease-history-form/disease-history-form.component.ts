@@ -3,46 +3,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { DateUtilService } from '@shared/services/date-util.service';
 import {
-  MedicalHistoryPostRequest,
-  MedicalHistoryPutRequest,
-} from 'src/app/user/services/user-medical-history.service';
-import { MedicalHistory } from 'src/app/user/services/user-profile.service';
+  DiseaseHistoryPostRequest,
+  DiseaseHistoryPutRequest,
+} from 'src/app/user/services/user-disease-history.service';
+import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
 
 @Component({
-  selector: 'app-medical-history-add',
-  templateUrl: './medical-history-add.component.html',
-  styleUrls: ['./medical-history-add.component.scss'],
+  selector: 'app-disease-history-form',
+  templateUrl: './disease-history-form.component.html',
+  styleUrls: ['./disease-history-form.component.scss'],
 })
-export class MedicalHistoryAddComponent implements OnInit {
-  @Input() medicalHistory: MedicalHistory = null;
+export class DiseaseHistoryFormComponent implements OnInit {
+  @Input() diseaseHistory: DiseaseHistory = null;
 
   @Output() cancelEvent = new EventEmitter();
   @Output() createEvent = new EventEmitter();
   @Output() saveEvent = new EventEmitter();
 
-  mode: 'ADD' | 'EDIT' = null;
-  medicalForm: FormGroup = null;
+  mode: 'CREATE' | 'UPDATE' = null;
+  diseaseForm: FormGroup = null;
 
   initForm(): void {
-    if (this.medicalHistory && this.medicalHistory.id > 0) {
-      this.mode = 'EDIT';
-      const { drug, note, fromDate, toDate } = this.medicalHistory;
-      this.medicalForm = this.formBuilder.group({
-        drug: [drug, [Validators.required]],
+    if (this.diseaseHistory && this.diseaseHistory.id > 0) {
+      this.mode = 'UPDATE';
+      const { disease, note, fromDate, toDate } = this.diseaseHistory;
+      this.diseaseForm = this.formBuilder.group({
+        disease: [disease, [Validators.required]],
         note: [note],
         fromDate: [fromDate],
         toDate: [toDate],
       });
     } else {
-      this.mode = 'ADD';
-      this.medicalForm = this.formBuilder.group({
-        drug: [null, [Validators.required]],
+      this.mode = 'CREATE';
+      this.diseaseForm = this.formBuilder.group({
+        disease: [null, [Validators.required]],
         note: [null],
         fromDate: [null],
         toDate: [null],
       });
     }
   }
+
   constructor(
     private formBuilder: FormBuilder,
     private translateService: TranslateService,
@@ -54,7 +55,7 @@ export class MedicalHistoryAddComponent implements OnInit {
   }
 
   get f(): any {
-    return this.medicalForm.controls;
+    return this.diseaseForm.controls;
   }
 
   cancelClick(): void {
@@ -62,32 +63,34 @@ export class MedicalHistoryAddComponent implements OnInit {
   }
 
   saveClick(): void {
-    this.medicalForm.markAllAsTouched();
+    this.diseaseForm.markAllAsTouched();
 
-    if (!this.medicalForm.valid) {
+    if (!this.diseaseForm.valid) {
       return;
     }
-    const formValue = this.medicalForm.value;
-    const output: MedicalHistoryPutRequest = {
-      drug: formValue.drug,
+    const formValue = this.diseaseForm.value;
+
+    const output: DiseaseHistoryPutRequest = {
+      disease: formValue.disease,
       note: formValue.note,
       fromDate: this.dateUtilService.toDateString(formValue.fromDate),
       toDate: this.dateUtilService.toDateString(formValue.toDate),
     };
+
     this.saveEvent.emit({
-      medicalHistoryId: this.medicalHistory.id,
+      diseaseHistoryId: this.diseaseHistory.id,
       putRequest: output,
     });
   }
 
   createClick(): void {
-    this.medicalForm.markAllAsTouched();
-    if (!this.medicalForm.valid) {
+    this.diseaseForm.markAllAsTouched();
+    if (!this.diseaseForm.valid) {
       return;
     }
-    const formValue = this.medicalForm.value;
-    const output: MedicalHistoryPostRequest = {
-      drug: formValue.drug,
+    const formValue = this.diseaseForm.value;
+    const output: DiseaseHistoryPostRequest = {
+      disease: formValue.disease,
       note: formValue.note,
       fromDate: this.dateUtilService.toDateString(formValue.fromDate),
       toDate: this.dateUtilService.toDateString(formValue.toDate),

@@ -50,8 +50,8 @@ export interface MedicalHistoryPostRequest {
   umlsId?: string;
   kbDrugIdRef?: number;
   kbDrugbankIdRef?: number;
-  fromDate: string;
-  toDate: string;
+  fromDate?: string;
+  toDate?: string;
 }
 
 export interface MedicalHistoryPutRequest {
@@ -60,6 +60,6 @@ export interface MedicalHistoryPutRequest {
   umlsId?: string;
   kbDrugIdRef?: number;
   kbDrugbankIdRef?: number;
-  fromDate: string;
-  toDate: string;
+  fromDate?: string;
+  toDate?: string;
 }

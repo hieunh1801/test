@@ -62,7 +62,9 @@ export class MedicalHistoryComponent implements OnInit, OnDestroy {
   }
 
   changeMode(mode: MedicalHistoryMode): void {
-    this.mode = mode;
+    if (mode) {
+      this.mode = mode;
+    }
   }
 
   create(body: MedicalHistoryPostRequest): void {
@@ -78,18 +80,11 @@ export class MedicalHistoryComponent implements OnInit, OnDestroy {
       .subscribe((response: SpmedResponse<MedicalHistory>) => {
         const statusResponse = response.status;
         const isSuccess = statusResponse.code === 'success';
-        const message = isSuccess
-          ? this.translateService.instant('MAT_SNACKBAR__MESSAGES__SUCCESS')
-          : this.translateService.instant('MAT_SNACKBAR__MESSAGES__FAILED');
-
-        const action = this.translateService.instant(
-          'MAT_SNACKBAR__ACTION__CREATE'
-        );
-
-        this.matSnackbarService.open(message, action);
-
         if (isSuccess) {
           this.reloadMedicalHistoryList();
+          this.matSnackbarService.openCreateSuccess();
+        } else {
+          this.matSnackbarService.openCreateFailed();
         }
       });
   }

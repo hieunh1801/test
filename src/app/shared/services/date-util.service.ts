@@ -20,6 +20,7 @@ export class DateUtilService {
 
   public toDateString(date: Date): string {
     try {
+      date = new Date(date);
       const [day, month, year] = [
         `${date.getDate()}`.padStart(2, '0'),
         `${date.getMonth() + 1}`.padStart(2, '0'),
@@ -34,6 +35,7 @@ export class DateUtilService {
 
   public toDateTimeString(date: Date): string {
     try {
+      date = new Date(date);
       const [year, month, day] = [
         date.getFullYear(),
         `${date.getMonth() + 1}`.padStart(2, '0'),

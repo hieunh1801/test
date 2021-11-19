@@ -1,0 +1,56 @@
+<div id="disease-history">
+  <div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 translate>
+      USER__USER_PROFILES__DISEASE_HISTORY__TITLES__DISEASE_HISTORY
+    </h2>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menuEdit"
+      *ngIf="diseaseHistoryList && diseaseHistoryList.length > 0"
+    >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+
+    <button
+      mat-button
+      class="add-button"
+      *ngIf="
+        mode === 'VIEW' &&
+        (!diseaseHistoryList || diseaseHistoryList.length === 0)
+      "
+      (click)="changeMode('ADD')"
+    >
+      <span translate>
+        USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__ADD
+      </span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="content">
+    <!-- add -->
+    <app-disease-history-form
+      *ngIf="mode === 'ADD'"
+      (cancelEvent)="changeMode('VIEW')"
+      (createEvent)="create($event)"
+    ></app-disease-history-form>
+
+    <!-- view -->
+    <app-disease-history-list
+      *ngIf="mode === 'EDIT' || mode === 'VIEW'"
+      [mode]="mode"
+      [diseaseHistoryList$]="diseaseHistoryList$"
+      (cancelEvent)="changeMode('VIEW') && reloadMedicalHistoryList()"
+    >
+    </app-disease-history-list>
+  </div>
+</div>
+
+<mat-menu #menuEdit="matMenu">
+  <button mat-menu-item (click)="changeMode('ADD')">
+    <span translate> USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__ADD </span>
+  </button>
+  <button mat-menu-item (click)="changeMode('EDIT')">
+    <span translate> USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__EDIT </span>
+  </button>
+</mat-menu>

@@ -16,71 +16,69 @@ import {
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { UserMedicalHistoryService } from 'src/app/user/services/user-medical-history.service';
-import { MedicalHistory } from 'src/app/user/services/user-profile.service';
+import { UserDiseaseHistoryService } from 'src/app/user/services/user-disease-history.service';
+import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
 
 @Component({
-  selector: 'app-medical-history-list-edit',
-  templateUrl: './medical-history-list-edit.component.html',
-  styleUrls: ['./medical-history-list-edit.component.scss'],
+  selector: 'app-disease-history-list',
+  templateUrl: './disease-history-list.component.html',
+  styleUrls: ['./disease-history-list.component.scss'],
 })
-export class MedicalHistoryListEditComponent implements OnInit, OnDestroy {
-  @Input() medicalHistoryList$ = new BehaviorSubject<MedicalHistory[]>([]);
+export class DiseaseHistoryListComponent implements OnInit, OnDestroy {
+  @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
+  @Input() mode: 'VIEW' | 'EDIT' = 'VIEW';
+
   @Output() cancelEvent = new EventEmitter();
 
-  medicalHistoryList: MedicalHistory[] = [];
-  medicalHistoryEditIdSet = new Set();
+  diseaseHistoryList: DiseaseHistory[] = [];
+  diseaseHistoryEditIdSet = new Set();
 
   subscription$ = new Subscription();
 
   constructor(
-    private userMedicalHistoryService: UserMedicalHistoryService,
+    private userDiseaseHistoryService: UserDiseaseHistoryService,
     private translateService: TranslateService,
     private matSnackbarService: MatSnackbarService,
     private matDialog: MatDialog
   ) {}
 
-  loadMedicalHistoryList(): void {
-    this.userMedicalHistoryService
-      .getAllUserMedicalHistory()
+  loadDiseaseHistoryList(): void {
+    this.userDiseaseHistoryService
+      .getAllUserDiseaseHistory()
       .subscribe((response) => {
-        const mMedicalHistoryList = response?.data?.items || [];
-        this.medicalHistoryList$.next(mMedicalHistoryList);
+        this.diseaseHistoryList$.next(response?.data?.items || []);
       });
   }
 
-  isEditItem(medicalHistory: MedicalHistory): boolean {
-    const id = (medicalHistory && medicalHistory.id) || null;
-    return this.medicalHistoryEditIdSet.has(id);
+  isEditItem(diseaseHistoryId: number): boolean {
+    return this.diseaseHistoryEditIdSet.has(diseaseHistoryId);
   }
 
-  toggleEdit(medicalHistoryId: number): void {
-    if (!medicalHistoryId) {
+  toggleEdit(diseaseHistoryId: number): void {
+    if (!diseaseHistoryId) {
       return;
     }
 
-    const mSet = new Set(this.medicalHistoryEditIdSet);
-    if (this.medicalHistoryEditIdSet.has(medicalHistoryId)) {
+    const mSet = new Set(this.diseaseHistoryEditIdSet);
+    if (this.diseaseHistoryEditIdSet.has(diseaseHistoryId)) {
       // existed => remove
-      mSet.delete(medicalHistoryId);
+      mSet.delete(diseaseHistoryId);
     } else {
-      mSet.add(medicalHistoryId);
+      mSet.add(diseaseHistoryId);
       // not existed => add
     }
-    this.medicalHistoryEditIdSet = mSet;
+    this.diseaseHistoryEditIdSet = mSet;
   }
 
-  updateItem({ medicalHistoryId, putRequest }): void {
-    if (medicalHistoryId) {
-      this.userMedicalHistoryService
-        .putUserMedicalHistory(medicalHistoryId, putRequest)
+  updateItem({ diseaseHistoryId, putRequest }): void {
+    if (diseaseHistoryId) {
+      this.userDiseaseHistoryService
+        .putUserDiseaseHistory(diseaseHistoryId, putRequest)
         .subscribe({
           next: (response) => {
-            const isSuccess = response?.status?.code === 'success';
-
-            if (isSuccess) {
-              this.loadMedicalHistoryList();
-              this.toggleEdit(medicalHistoryId);
+            if (response?.status?.code === 'success') {
+              this.loadDiseaseHistoryList();
+              this.toggleEdit(diseaseHistoryId);
               this.matSnackbarService.openUpdateSuccess();
             } else {
               this.matSnackbarService.openUpdateFailed();
@@ -94,16 +92,16 @@ export class MedicalHistoryListEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteItem(medicalHistoryId: number): void {
-    if (!medicalHistoryId) {
+  deleteItem(diseaseHistoryId: number): void {
+    if (!diseaseHistoryId) {
       return;
     }
     const dialogInput: ConfirmDialogInput = {
       title: this.translateService.instant(
-        'USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST_EDIT__CONFIRM_DELETE__CONFIRM_DELETE'
+        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__CONFIRM_DELETE'
       ),
       content: this.translateService.instant(
-        'USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST_EDIT__CONFIRM_DELETE__ARE_YOUR_SURE_TO_DELETE'
+        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__ARE_YOUR_SURE_TO_DELETE'
       ),
     };
     const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
@@ -111,12 +109,12 @@ export class MedicalHistoryListEditComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((dialogOutput: ConfirmDialogOutput) => {
       if (dialogOutput.action === 'yes') {
-        this.userMedicalHistoryService
-          .deleteUserMedicalHistory(medicalHistoryId)
+        this.userDiseaseHistoryService
+          .deleteUserDiseaseHistory(diseaseHistoryId)
           .subscribe({
             next: (response) => {
               if (response?.status?.code === 'success') {
-                this.loadMedicalHistoryList();
+                this.loadDiseaseHistoryList();
                 this.matSnackbarService.openDeleteSuccess();
               } else {
                 this.matSnackbarService.openDeleteFailed();
@@ -132,18 +130,18 @@ export class MedicalHistoryListEditComponent implements OnInit, OnDestroy {
   }
 
   subscribeMedicalHistoryListChange(): void {
-    const sub = this.medicalHistoryList$
+    const sub = this.diseaseHistoryList$
       .pipe(distinctUntilChanged())
-      .subscribe((mMedicalHistoryList) => {
-        this.medicalHistoryList = mMedicalHistoryList;
+      .subscribe((mDiseaseHistoryList) => {
+        this.diseaseHistoryList = mDiseaseHistoryList;
       });
 
     this.subscription$.add(sub);
   }
-
   ngOnInit(): void {
     this.subscribeMedicalHistoryListChange();
   }
+
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }

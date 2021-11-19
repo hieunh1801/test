@@ -1,40 +1,43 @@
-<div id="medical-history-add">
-  <h3 *ngIf="mode === 'ADD'" translate>
-    USER_PROFILES__MEDICAL_HISTORY_ADD__TITLE__ADD_NEW_MEDICAL_HISTORY
+<div id="disease-history-form">
+  <h3 *ngIf="mode === 'CREATE'" translate>
+    USER_PROFILES__DISEASE_HISTORY_FORM__TITLE__ADD_NEW_DISEASE_HISTORY
   </h3>
-  <form [formGroup]="medicalForm" *ngIf="medicalForm">
-    <!-- drug, from date, to date -->
+
+  <form *ngIf="diseaseForm" [formGroup]="diseaseForm">
     <div
       fxLayout="row"
       fxLayoutGap="16px"
       fxLayout.lt-sm="column"
       fxLayoutGap.lt-sm="0px"
     >
+      <!-- disease -->
       <div class="form-field">
         <mat-label>
           <span translate
-            >USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__DRUG</span
+            >USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__DISEASE</span
           >
           <span class="required">*</span>
         </mat-label>
         <mat-form-field appearance="outline">
           <input
             matInput
-            formControlName="drug"
+            formControlName="disease"
             [placeholder]="
-              'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__DRUG_NAME'
+              'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__DISEASE_NAME'
                 | translate
             "
           />
-          <mat-error *ngIf="f?.drug?.dirty || f?.drug?.touched">
+          <mat-error *ngIf="f?.disease?.dirty || f?.disease?.touched">
             <mat-icon>error</mat-icon>
-            <span *ngIf="f?.drug?.errors?.required" translate>
-              USER_PROFILES__MEDICAL_HISTORY_ADD__ERRORS__REQUIRED_DRUG_NAME
+            <span *ngIf="f?.disease?.errors?.required" translate>
+              USER_PROFILES__DISEASE_HISTORY_FORM__ERRORS__REQUIRED_DISEASE_NAME
             </span>
           </mat-error>
         </mat-form-field>
       </div>
+      <!-- disease end -->
 
+      <!-- from date, to date  -->
       <div
         fxLayout="row"
         fxLayoutGap="8px"
@@ -43,7 +46,7 @@
       >
         <div class="form-field">
           <mat-label translate>
-            USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__FROM_DATE
+            USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__FROM_DATE
           </mat-label>
           <mat-form-field appearance="outline">
             <input
@@ -52,7 +55,7 @@
               [max]="f?.toDate?.value"
               formControlName="fromDate"
               [placeholder]="
-                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__CHOOSE_DATE'
+                'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
                   | translate
               "
               disabled
@@ -66,7 +69,7 @@
         </div>
         <div class="form-field">
           <mat-label translate>
-            USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__TO_DATE
+            USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__TO_DATE
           </mat-label>
           <mat-form-field appearance="outline">
             <input
@@ -75,7 +78,7 @@
               [matDatepicker]="pickerToDate"
               formControlName="toDate"
               [placeholder]="
-                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__CHOOSE_DATE'
+                'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
                   | translate
               "
               disabled
@@ -88,20 +91,20 @@
           </mat-form-field>
         </div>
       </div>
+      <!-- from date, to date  end -->
     </div>
-    <!-- drug, from date, to date end -->
 
     <!-- note -->
     <div class="form-field">
       <mat-label translate>
-        USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__NOTE
+        USER_PROFILES__DISEASE_HISTORY_ADD__LABELS__NOTE
       </mat-label>
       <mat-form-field appearance="outline">
         <textarea
           matInput
           cdkTextareaAutosize
           [placeholder]="
-            'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__DRUG_DETAIL'
+            'USER_PROFILES__DISEASE_HISTORY_ADD__PLACEHOLDER__DISEASE_DETAIL'
               | translate
           "
           formControlName="note"
@@ -111,7 +114,7 @@
     </div>
     <!-- note end-->
 
-    <!-- form actions -->
+    <!-- form action -->
     <div class="form-actions" fxLayout="row" fxLayoutAlign="end center">
       <button
         mat-stroked-button
@@ -119,31 +122,30 @@
         (click)="cancelClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__CANCEL
+          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CANCEL
         </span>
       </button>
       <button
-        *ngIf="mode === 'EDIT'"
+        *ngIf="mode === 'UPDATE'"
         mat-button
         class="save-button"
         (click)="saveClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__SAVE
+          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__SAVE
         </span>
       </button>
 
       <button
-        *ngIf="mode === 'ADD'"
+        *ngIf="mode === 'CREATE'"
         mat-button
         class="create-button"
         (click)="createClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__CREATE
+          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CREATE
         </span>
       </button>
     </div>
-    <!-- form actions end-->
   </form>
 </div>
