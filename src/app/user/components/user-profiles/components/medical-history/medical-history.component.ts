@@ -22,7 +22,7 @@ export class MedicalHistoryComponent implements OnInit, OnDestroy {
   subscription$ = new Subscription();
 
   MedicalHistoryMode = MedicalHistoryMode;
-  mode: MedicalHistoryMode = MedicalHistoryMode.VIEW;
+  mode: MedicalHistoryMode = MedicalHistoryMode.VIEW; // default mode
 
   constructor(
     private userMedicalHistoryService: UserMedicalHistoryService,

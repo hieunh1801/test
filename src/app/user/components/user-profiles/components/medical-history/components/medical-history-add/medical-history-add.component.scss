@@ -24,6 +24,10 @@
     mat-label {
       font-weight: 500;
     }
+    .mat-form-field-suffix {
+      display: inline-flex;
+      align-items: center;
+    }
   }
 
   .medical-form {
@@ -33,7 +37,8 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .save-button {
+  .save-button,
+  .create-button {
     color: white;
     font-weight: 500;
     background-color: var(--primary--color);

@@ -1,0 +1,44 @@
+#medical-history-list {
+  .medical-history-list-item {
+    padding: 8px 4px;
+    span {
+    }
+    .drug-name {
+      font-weight: 500;
+    }
+    .note {
+      word-break: break-all;
+    }
+    .time-range {
+      font-style: italic;
+      color: rgba($color: #000000, $alpha: 0.8);
+      font-size: 12px;
+      mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .edit-button {
+      color: rgba($color: #000000, $alpha: 0.8);
+    }
+    .delete-button {
+      color: rgba($color: red, $alpha: 0.8);
+    }
+  }
+
+  .actions {
+    margin-top: 16px;
+  }
+
+  .edit-item {
+    background-color: #f2f2f2;
+    font-weight: 500;
+  }
+
+  .medical-history-list-item-edit {
+    border: solid 2px #f2f2f2;
+    padding: 10px 20px;
+  }
+}

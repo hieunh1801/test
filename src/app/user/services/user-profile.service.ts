@@ -42,6 +42,8 @@ export interface MedicalHistory {
   umlsId?: string;
   kbDrugIdRef?: number;
   kbDrugbankIdRef?: number;
+  fromDate?: string;
+  toDate?: string;
   createdTime?: string;
   createdActor?: string;
   updatedTime?: string;

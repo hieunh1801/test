@@ -28,8 +28,7 @@
   </div>
   <mat-divider></mat-divider>
   <div class="content">
-    <!-- empty -->
-
+    <!-- view -->
     <app-medical-history-list
       [medicalHistoryList$]="medicalHistoryList$"
       *ngIf="mode === MedicalHistoryMode.VIEW"
@@ -41,6 +40,16 @@
       (cancelEvent)="changeMode(MedicalHistoryMode.VIEW)"
       (createEvent)="create($event)"
     ></app-medical-history-add>
+
+    <!-- edit -->
+    <app-medical-history-list-edit
+      *ngIf="mode === MedicalHistoryMode.EDIT"
+      [medicalHistoryList$]="medicalHistoryList$"
+      (cancelEvent)="
+        changeMode(MedicalHistoryMode.VIEW) && reloadMedicalHistoryList()
+      "
+    >
+    </app-medical-history-list-edit>
   </div>
 </div>
 

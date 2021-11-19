@@ -1,11 +1,11 @@
 <div id="medical-history-add">
-  <h3 translate>
+  <h3 *ngIf="mode === 'ADD'" translate>
     USER_PROFILES__MEDICAL_HISTORY_ADD__TITLE__ADD_NEW_MEDICAL_HISTORY
   </h3>
-  <form [formGroup]="medicalForm">
+  <form [formGroup]="medicalForm" *ngIf="medicalForm">
     <div
       fxLayout="row"
-      fxLayoutGap="32px"
+      fxLayoutGap="16px"
       fxLayout.lt-sm="column"
       fxLayoutGap.lt-sm="0px"
     >
@@ -33,8 +33,61 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <div
+        fxLayout="row"
+        fxLayoutGap="8px"
+        fxLayout.lt-sm="column"
+        fxLayoutGap.lt-sm="0px"
+      >
+        <div class="form-field">
+          <mat-label translate>
+            USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__FROM_DATE
+          </mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [matDatepicker]="pickerFromDate"
+              [max]="f?.toDate?.value"
+              formControlName="fromDate"
+              [placeholder]="
+                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__CHOOSE_DATE'
+                  | translate
+              "
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerFromDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerFromDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label translate>
+            USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__TO_DATE
+          </mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [min]="f?.fromDate?.value"
+              [matDatepicker]="pickerToDate"
+              formControlName="toDate"
+              [placeholder]="
+                'USER_PROFILES__MEDICAL_HISTORY_ADD__PLACEHOLDER__CHOOSE_DATE'
+                  | translate
+              "
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerToDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerToDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
 
-      <div class="form-field">
+      <!-- <div class="form-field">
         <mat-label translate>
           USER_PROFILES__MEDICAL_HISTORY_ADD__LABELS__TIME_RANGE
         </mat-label>
@@ -47,6 +100,7 @@
                   | translate
               "
               formControlName="fromDate"
+              disabled
             />
             <input
               matEndDate
@@ -55,15 +109,20 @@
                   | translate
               "
               formControlName="toDate"
+              disabled
             />
           </mat-date-range-input>
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
+            disabled="false"
           ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
+          <mat-date-range-picker
+            #picker
+            disabled="false"
+          ></mat-date-range-picker>
         </mat-form-field>
-      </div>
+      </div> -->
     </div>
 
     <div class="form-field">
@@ -88,20 +147,31 @@
       <button
         mat-stroked-button
         class="cancel-button"
-        (click)="onCancelClick(); $event.preventDefault()"
+        (click)="cancelClick(); $event.preventDefault()"
       >
         <span translate>
           USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__CANCEL
         </span>
       </button>
       <button
+        *ngIf="mode === 'EDIT'"
         mat-button
         class="save-button"
-        translate
-        (click)="onSaveClick(); $event.preventDefault()"
+        (click)="saveClick(); $event.preventDefault()"
       >
         <span translate>
           USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__SAVE
+        </span>
+      </button>
+
+      <button
+        *ngIf="mode === 'ADD'"
+        mat-button
+        class="create-button"
+        (click)="createClick(); $event.preventDefault()"
+      >
+        <span translate>
+          USER_PROFILES__MEDICAL_HISTORY_ADD__BUTTONS__CREATE
         </span>
       </button>
     </div>
