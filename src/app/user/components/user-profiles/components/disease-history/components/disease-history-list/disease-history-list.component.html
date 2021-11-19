@@ -1,6 +1,6 @@
 <div id="disease-history-list">
   <!-- empty list -->
-  <ng-container *ngIf="!diseaseHistoryList || diseaseHistoryList.length === 0">
+  <ng-container *ngIf="!dataSource || dataSource.length === 0">
     <div fxLayout="column" fxLayoutAlign="center center">
       <img
         src="/assets/images/empty.svg"
@@ -15,8 +15,8 @@
   </ng-container>
 
   <!-- edit list -->
-  <ng-container *ngIf="diseaseHistoryList && diseaseHistoryList.length > 0">
-    <div *ngFor="let diseaseHistory of diseaseHistoryList">
+  <ng-container *ngIf="dataSource && dataSource.length > 0">
+    <div *ngFor="let diseaseHistory of dataSource">
       <div
         class="disease-history-list-item"
         fxLayout="row"
@@ -72,6 +72,31 @@
         ></app-disease-history-form>
       </div>
     </div>
+
+    <ng-container
+      *ngIf="diseaseHistoryList$.value?.length > 3 && mode === 'VIEW'"
+    >
+      <div
+        class="show-button"
+        *ngIf="showLess$.value"
+        (click)="showLess$.next(false)"
+      >
+        <span translate>
+          USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__BUTTONS__SHOW_MORE
+        </span>
+        <mat-icon>expand_more</mat-icon>
+      </div>
+      <div
+        class="show-button"
+        *ngIf="!showLess$.value"
+        (click)="showLess$.next(true)"
+      >
+        <span translate>
+          USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__BUTTONS__SHOW_LESS
+        </span>
+        <mat-icon>expand_less</mat-icon>
+      </div>
+    </ng-container>
   </ng-container>
   <div
     class="actions"

@@ -2,9 +2,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChange,
+  SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,16 +27,19 @@ import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
   templateUrl: './disease-history-list.component.html',
   styleUrls: ['./disease-history-list.component.scss'],
 })
-export class DiseaseHistoryListComponent implements OnInit, OnDestroy {
+export class DiseaseHistoryListComponent
+  implements OnInit, OnDestroy, OnChanges
+{
   @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
   @Input() mode: 'VIEW' | 'EDIT' = 'VIEW';
 
   @Output() cancelEvent = new EventEmitter();
 
-  diseaseHistoryList: DiseaseHistory[] = [];
+  dataSource: DiseaseHistory[] = [];
   diseaseHistoryEditIdSet = new Set();
 
   subscription$ = new Subscription();
+  showLess$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     private userDiseaseHistoryService: UserDiseaseHistoryService,
@@ -129,17 +135,51 @@ export class DiseaseHistoryListComponent implements OnInit, OnDestroy {
     });
   }
 
-  subscribeMedicalHistoryListChange(): void {
+  reloadDataSource(): void {
+    const showLess = this.showLess$.value;
+    const diseaseHistoryList = this.diseaseHistoryList$.value;
+    if (this.mode === 'VIEW') {
+      if (diseaseHistoryList && diseaseHistoryList.length > 0) {
+        if (showLess) {
+          this.dataSource = diseaseHistoryList.slice(0, 3);
+        } else {
+          this.dataSource = diseaseHistoryList;
+        }
+      }
+    } else {
+      this.dataSource = diseaseHistoryList;
+    }
+  }
+
+  subscribeShowLessChange(): void {
+    const sub = this.showLess$.pipe(distinctUntilChanged()).subscribe(() => {
+      this.reloadDataSource();
+    });
+
+    this.subscription$.add(sub);
+  }
+  subscribeDiseaseHistoryListChange(): void {
     const sub = this.diseaseHistoryList$
       .pipe(distinctUntilChanged())
-      .subscribe((mDiseaseHistoryList) => {
-        this.diseaseHistoryList = mDiseaseHistoryList;
+      .subscribe(() => {
+        this.reloadDataSource();
       });
 
     this.subscription$.add(sub);
   }
   ngOnInit(): void {
-    this.subscribeMedicalHistoryListChange();
+    this.subscribeDiseaseHistoryListChange();
+    this.subscribeShowLessChange();
+  }
+
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    const modeSimpleChange: SimpleChange = simpleChanges.mode;
+    if (
+      modeSimpleChange &&
+      modeSimpleChange.currentValue !== modeSimpleChange.previousValue
+    ) {
+      this.reloadDataSource();
+    }
   }
 
   ngOnDestroy(): void {
