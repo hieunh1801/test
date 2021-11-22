@@ -35,6 +35,5 @@ export interface SearchRequest {
 export interface SearchResponse {
   id: number;
   name: string;
-  brandName: string;
-  summary: string;
+  type: string;
 }

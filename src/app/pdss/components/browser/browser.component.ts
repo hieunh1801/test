@@ -42,6 +42,12 @@ export class BrowserComponent implements OnInit, OnDestroy {
     { id: 50, name: 'CYP2C9' },
     { id: 21, name: 'CYP2D6' },
   ];
+  isSearch = false;
+  finalResults: Array<SearchResponse> | null;
+  genericResults: Array<SearchResponse> | null;
+  result: SearchResponse | null;
+  drugId: number;
+
   constructor(
     private pageLoadingService: PageLoadingService,
     private formBuilder: FormBuilder,
@@ -86,10 +92,12 @@ export class BrowserComponent implements OnInit, OnDestroy {
               );
               this.matSnackbarService.open(message, action);
             } else {
+              this.onGetResults(response.data.items);
             }
           },
           complete: () => {
             console.log('this.browserService.search done!!!');
+            this.isSearch = true;
           },
           error: (error) => {
             console.error(error.response);
@@ -103,5 +111,21 @@ export class BrowserComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  onGetResults(results: SearchResponse[]): void {
+    this.finalResults = results;
+  }
+
+  onGetGenericName({
+    drugId,
+    results,
+  }: {
+    drugId: number;
+    results: SearchResponse[];
+  }) {
+    const fiilterName = results.filter((result) => result.id == drugId);
+    console.log(fiilterName);
+    return fiilterName;
   }
 }
