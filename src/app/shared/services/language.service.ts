@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import enTranslation from '@asset/i18n/en.json';
 import krTranslation from '@asset/i18n/kr.json';
 import { LocalStorageService } from './local-storage.service';
+import { DateAdapter } from '@angular/material/core';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class LanguageService {
 
   constructor(
     private localStorageService: LocalStorageService,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private dateAdapter: DateAdapter<any>
   ) {}
 
   isLanguageValid(lang: string): boolean {
@@ -58,6 +60,7 @@ export class LanguageService {
 
     this.translateService.setTranslation(mSelectedLanguage, translateFile);
     this.translateService.setDefaultLang(mSelectedLanguage);
+    this.dateAdapter.setLocale(mSelectedLanguage);
     // console.log('localStorage -', mSelectedLanguage);
   }
 
@@ -72,6 +75,7 @@ export class LanguageService {
 
     // change current language
     this.selectedLanguage = lang;
+    this.dateAdapter.setLocale(lang);
     this.translateService.use(lang);
     this.localStorageService.set('lang', lang);
   }

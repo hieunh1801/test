@@ -1,0 +1,33 @@
+
+### getMedicalHistoryOfUser
+GET http://localhost:61128/customer-user/v1.0/en/users/100/profile/disease-history
+
+
+### add medical history
+POST http://localhost:61128/customer-user/v1.0/en/users/100/profile/disease-history
+Content-Type: application/json
+
+{
+  "disease": "Drug 1023 asdfasdf",
+  "note": "Drug 101 note",
+  "fromDate": "2010-11-18",
+  "toDate": "2012-11-18"
+}
+
+
+### put medical history
+PUT http://localhost:61128/customer-user/v1.0/en/users/1/profile/disease-history/1034
+Content-Type: application/json
+
+{
+  "drug": "Drug 102 Update",
+  "note": "Drug 101 note UPDATWE",
+  "fromDate": "2010-11-18",
+  "toDate": "2012-11-18"
+}
+
+
+
+### delete disease
+DELETE  http://localhost:61128/customer-user/v1.0/en/users/1/profile/disease-history/1004
+Content-Type: application/json

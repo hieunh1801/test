@@ -1,0 +1,31 @@
+
+### getMedicalHistoryOfUser
+GET http://localhost:61128/customer-user/v1.0/en/users/1/profile/medical-history
+
+
+### add medical history
+POST http://localhost:61128/customer-user/v1.0/en/users/1/profile/medical-history
+Content-Type: application/json
+
+{
+  "drug": "Drug 102",
+  "note": "Drug 101 note",
+  "fromDate": "2010-11-18",
+  "toDate": "2012-11-18"
+}
+
+
+### put medical history
+PUT http://localhost:61128/customer-user/v1.0/en/users/1/profile/medical-history/1019
+Content-Type: application/json
+
+{
+  "drug": "Drug 102 Update",
+  "note": "Drug 101 note UPDATWE",
+  "fromDate": "2010-11-18",
+  "toDate": "2012-11-18"
+}
+
+### DELETE
+DELETE  http://localhost:61128/customer-user/v1.0/en/users/1/profile/medical-history/1019
+Content-Type: application/json
