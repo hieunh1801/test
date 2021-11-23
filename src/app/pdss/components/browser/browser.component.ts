@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,18 +17,21 @@ import {
   SearchRequest,
   SearchResponse,
 } from './services/browser.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-browser',
   templateUrl: './browser.component.html',
   styleUrls: ['./browser.component.scss'],
 })
-export class BrowserComponent implements OnInit, OnDestroy {
+export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   searchForm = this.formBuilder.group({
     keyword: ['', Validators.required],
   });
 
   subscription$ = new Subscription();
+  pageChangeSub$: Subscription;
 
   listOfDrugs = [
     { id: 14, name: 'Abacarvir' },
@@ -43,10 +52,23 @@ export class BrowserComponent implements OnInit, OnDestroy {
     { id: 21, name: 'CYP2D6' },
   ];
   isSearch = false;
+  searchKeyword: string | null;
   finalResults: Array<SearchResponse> | null;
   genericResults: Array<SearchResponse> | null;
   result: SearchResponse | null;
   drugId: number;
+
+  // paging variables
+  searchCount: number = 0;
+  searchTotal: number = 0;
+  pageIndex: number = 0;
+  pageSize: number = 20;
+  previousCount: number = 0;
+
+  length: number = 0;
+  displayedColumns: string[] = ['name', 'type'];
+  dataSource: MatTableDataSource<SearchResponse> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private pageLoadingService: PageLoadingService,
@@ -54,7 +76,9 @@ export class BrowserComponent implements OnInit, OnDestroy {
     private browserService: BrowserService,
     private translateService: TranslateService,
     private matSnackbarService: MatSnackbarService
-  ) {}
+  ) {
+    this.dataSource = new MatTableDataSource(this.finalResults);
+  }
 
   ngOnInit(): void {}
 
@@ -62,11 +86,25 @@ export class BrowserComponent implements OnInit, OnDestroy {
     this.subscription$.unsubscribe();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  change(event: PageEvent) {
+    let startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.length) {
+      endIndex = this.length;
+    }
+    this.finalResults = this.finalResults.slice(startIndex, endIndex);
+  }
+
   search(): void {
     this.searchForm.markAllAsTouched();
     if (this.searchForm.valid) {
       const formValue = this.searchForm.value;
       const keyword = formValue.keyword;
+      this.searchKeyword = keyword;
 
       const searchRequest: SearchRequest = {
         keyword: formValue.keyword,
@@ -92,6 +130,8 @@ export class BrowserComponent implements OnInit, OnDestroy {
               );
               this.matSnackbarService.open(message, action);
             } else {
+              // this.paginator.length = response.data?.items.length;
+              this.searchTotal = response.data?.items.length;
               this.onGetResults(response.data.items);
             }
           },
@@ -114,18 +154,18 @@ export class BrowserComponent implements OnInit, OnDestroy {
   }
 
   onGetResults(results: SearchResponse[]): void {
-    this.finalResults = results;
-  }
-
-  onGetGenericName({
-    drugId,
-    results,
-  }: {
-    drugId: number;
-    results: SearchResponse[];
-  }) {
-    const fiilterName = results.filter((result) => result.id == drugId);
-    console.log(fiilterName);
-    return fiilterName;
+    const tempResults: SearchResponse[] = [];
+    for (let element of results) {
+      if (element.type == 'Brand') {
+        var generic = results.find(function (el) {
+          return el.id === element.id && el.type === 'Generic_Name';
+        });
+        var name = element.name + ' / ' + generic.name;
+        element.name = name;
+      }
+      tempResults.push(element);
+    }
+    this.finalResults = tempResults;
+    this.dataSource.data = tempResults;
   }
 }
