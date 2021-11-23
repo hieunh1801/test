@@ -1,0 +1,21 @@
+#basic-information-detail {
+  .title {
+    font-weight: 500;
+  }
+  .date {
+    margin-top: 16px;
+    font-size: 12px;
+
+    font-style: italic;
+    color: rgba($color: #000000, $alpha: 0.8);
+    mat-icon {
+      font-size: 12px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+  .add-button {
+    color: white;
+    background-color: var(--primary--color);
+  }
+}

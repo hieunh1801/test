@@ -1,0 +1,54 @@
+<ng-template
+  [ngIf]="demographic$?.value?.weightHeightHistories?.length > 0"
+  [ngIfElse]="emptyComponent"
+>
+  <div id="basic-information-detail">
+    <div
+      class="information"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign.lt-sm="start start"
+    >
+      <!-- <div>
+      <span class="title" translate>
+        USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__AGE </span
+      >{{ birthday | toAge }}
+    </div> -->
+      <div>
+        <span class="title" translate>
+          USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__WEIGHT </span
+        >{{ weight }} (kg)
+      </div>
+      <div>
+        <span class="title" translate>
+          USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__HEIGHT </span
+        >{{ height }} (m)
+      </div>
+      <div>
+        <span class="title" translate
+          >USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__BMI
+        </span>
+        {{ bmi }}
+      </div>
+    </div>
+    <div class="date" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon>schedule</mat-icon> at {{ date }}
+    </div>
+  </div>
+</ng-template>
+
+<!-- EMPTY COMPONENT -->
+<ng-template #emptyComponent>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <img
+      src="/assets/images/empty.svg"
+      alt="image"
+      width="40px"
+      height="40px"
+    />
+    <h3 translate>
+      USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__STRINGS__EMPTY
+    </h3>
+  </div>
+</ng-template>

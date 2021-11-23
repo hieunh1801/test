@@ -1,5 +1,14 @@
-#disease-history-form {
-  // border 3px
+.basic-information-form {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   ::ng-deep .mat-form-field-outline-start {
     border-radius: 3px 0 0 3px !important;
     min-width: 3px !important;
@@ -7,10 +16,6 @@
 
   ::ng-deep .mat-form-field-outline-end {
     border-radius: 0 3px 3px 0 !important;
-  }
-
-  .required {
-    color: red;
   }
 
   .form-field {
@@ -29,14 +34,23 @@
       display: inline-flex;
       align-items: center;
     }
+    .required {
+      color: red;
+    }
   }
 
-  .save-button,
-  .create-button {
-    color: white;
-    font-weight: 500;
-    background-color: var(--primary--color);
-    margin-left: 16px;
-    border-radius: 3px;
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .button-create {
+      color: white;
+      background-color: var(--primary--color);
+    }
+
+    .button-cancel {
+      margin-right: 16px;
+    }
   }
 }

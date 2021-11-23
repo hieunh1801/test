@@ -1,6 +1,6 @@
 
 ### USER PROFILES
-GET http://localhost:61127/portal/v1.0/en/user/profiles
+GET http://localhost:61127/portal/v1.0/en/user/profile
 Content-Type: application/json
 access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2MzcwNDM3NDUsImV4cCI6MTcyMzQ0Mzc0NX0.Y7zjkvNf43-2fRISuHEy0di4vJBqcdfjEmaI-hhKorw
 

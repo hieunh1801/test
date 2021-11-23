@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import {
+  Demographic,
   DiseaseHistory,
   MedicalHistory,
   UserProfile,
@@ -16,6 +17,7 @@ export class UserProfilesComponent implements OnInit {
   userProfile$ = new BehaviorSubject<UserProfile>(null);
   diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
   medicalHistoryList$ = new BehaviorSubject<MedicalHistory[]>([]);
+  demographic$ = new BehaviorSubject<Demographic>(null);
 
   subscription$ = new Subscription();
 
@@ -28,6 +30,7 @@ export class UserProfilesComponent implements OnInit {
         this.userProfile$.next(userProfile);
         this.diseaseHistoryList$.next(userProfile?.diseaseHistories || []);
         this.medicalHistoryList$.next(userProfile?.medicalHistories || []);
+        this.demographic$.next(userProfile?.demographic || null);
       }
     });
   }

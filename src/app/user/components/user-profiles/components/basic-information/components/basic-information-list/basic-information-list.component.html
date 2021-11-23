@@ -1,0 +1,40 @@
+<div id="weight-height-list">
+  <ng-container
+    *ngIf="weightHeightList && weightHeightList.length > 0; else empty"
+  >
+    <div
+      *ngFor="let weightHeight of weightHeightList"
+      class="list-item"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div
+        class="list-item-detail"
+        fxLayout="row"
+        fxLayoutAlign="flex-start center"
+      >
+        <mat-icon class="time-icon">schedule</mat-icon>
+        {{ weightHeight.date }}
+      </div>
+      <div class="list-item-detail">
+        {{ weightHeight.weight }}
+        {{
+          "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__KG" | translate
+        }}
+      </div>
+      <div class="list-item-detail">
+        {{ weightHeight.height }}
+        {{
+          "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__M" | translate
+        }}
+      </div>
+      <div class="list-item-detail">
+        <button mat-icon-button (click)="deleteItem(weightHeight.id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #empty> Nothing </ng-template>

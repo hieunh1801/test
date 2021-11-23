@@ -4,27 +4,37 @@
       USER__USER_PROFILES__MEDICAL_HISTORY__TITLES__MEDICAL_HISTORY
     </h2>
 
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menuEdit"
-      *ngIf="medicalHistoryList && medicalHistoryList.length > 0"
-    >
-      <mat-icon>more_horiz</mat-icon>
-    </button>
+    <div>
+      <button
+        mat-icon-button
+        (click)="changeMode('VIEW')"
+        *ngIf="medicalHistoryList && medicalHistoryList.length > 0"
+      >
+        <mat-icon>grid_view</mat-icon>
+      </button>
 
-    <button
-      mat-button
-      class="add-button"
-      *ngIf="
-        mode === MedicalHistoryMode.VIEW &&
-        (!medicalHistoryList || medicalHistoryList.length === 0)
-      "
-      (click)="changeMode(MedicalHistoryMode.ADD)"
-    >
-      <span translate>
-        USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD
-      </span>
-    </button>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menuEdit"
+        *ngIf="medicalHistoryList && medicalHistoryList.length > 0"
+      >
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+
+      <button
+        mat-button
+        class="add-button"
+        *ngIf="
+          mode === MedicalHistoryMode.VIEW &&
+          (!medicalHistoryList || medicalHistoryList.length === 0)
+        "
+        (click)="changeMode(MedicalHistoryMode.ADD)"
+      >
+        <span translate>
+          USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD
+        </span>
+      </button>
+    </div>
   </div>
   <mat-divider></mat-divider>
   <div class="content">
