@@ -34,7 +34,6 @@ export class DiseaseHistoryComponent implements OnInit, OnDestroy {
     const sub = this.diseaseHistoryList$
       .pipe(distinctUntilChanged())
       .subscribe((data) => {
-        console.log(data);
         this.diseaseHistoryList = data;
       });
     this.subscription$.add(sub);

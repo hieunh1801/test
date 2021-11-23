@@ -31,8 +31,9 @@ export interface UserProfile {
   createdActor?: string;
   updatedTime?: string;
   updatedActor?: string;
-  diseaseHistories: DiseaseHistory[];
-  medicalHistories: MedicalHistory[];
+  diseaseHistories?: DiseaseHistory[];
+  medicalHistories?: MedicalHistory[];
+  demographic?: Demographic;
 }
 
 export interface MedicalHistory {
@@ -61,4 +62,39 @@ export interface DiseaseHistory {
   createdActor?: string;
   updatedTime?: string;
   updatedActor?: string;
+}
+
+export interface WeightHeightHistory {
+  id: number;
+  weight?: number;
+  weightUnit?: any;
+  height?: number;
+  heightUnit?: any;
+  date?: string;
+  demographic?: any;
+}
+
+export interface Demographic {
+  id: number;
+  surname?: string;
+  givenName?: string;
+  fullName?: string;
+  gender?: number;
+  yearOfBirth?: string;
+  monthOfBirth?: string;
+  dayOfBirth?: string;
+  birthday?: string;
+  mobile?: string;
+  country?: any;
+  city?: string;
+  district?: string;
+  addressDetails?: string;
+  avatar?: string;
+  bloodType?: any;
+  ethnicity?: any;
+  createdTime?: string;
+  createdActor?: string;
+  updatedTime?: string;
+  updatedActor?: any;
+  weightHeightHistories: WeightHeightHistory[];
 }

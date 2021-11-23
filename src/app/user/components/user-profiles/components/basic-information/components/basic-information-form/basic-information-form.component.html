@@ -1,0 +1,106 @@
+<ng-container *ngIf="basicInformationForm">
+  <form [formGroup]="basicInformationForm" class="basic-information-form">
+    <div fxLayout="row" fxLayoutGap="16px" fxLayout.lt-md="column">
+      <div class="form-field">
+        <mat-label>
+          <span translate
+            >USER__USER_PROFILES__BASIC_INFORMATION_FORM__LABELS__WEIGHT</span
+          >
+          <span class="required">*</span>
+        </mat-label>
+        <mat-form-field appearance="outline">
+          <input type="number" matInput formControlName="weight" />
+          <span matSuffix translate
+            >USER__USER_PROFILES__BASIC_INFORMATION_FORM__STRINGS__KG</span
+          >
+          <mat-error
+            *ngIf="f?.weight?.dirty || f?.weight?.touched || f?.weight?.errors"
+          >
+            <mat-icon>error</mat-icon>
+            <span *ngIf="f?.weight?.errors?.required" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__REQUIRED_WEIGHT
+            </span>
+
+            <span *ngIf="f?.weight?.errors?.max" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__INVALID_WEIGHT
+            </span>
+
+            <span *ngIf="f?.weight?.errors?.min" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__INVALID_WEIGHT
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-label>
+          <span translate
+            >USER__USER_PROFILES__BASIC_INFORMATION_FORM__LABELS__HEIGHT</span
+          >
+
+          <span class="required">*</span>
+        </mat-label>
+        <mat-form-field appearance="outline">
+          <input type="number" matInput formControlName="height" />
+          <span matSuffix translate>
+            USER__USER_PROFILES__BASIC_INFORMATION_FORM__STRINGS__M
+          </span>
+          <mat-error
+            *ngIf="f?.height?.dirty || f?.height?.touched || f?.height?.errors"
+          >
+            <mat-icon>error</mat-icon>
+            <span *ngIf="f?.height?.errors?.required" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__REQUIRED_HEIGHT
+            </span>
+
+            <span *ngIf="f?.height?.errors?.max" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__INVALID_HEIGHT
+            </span>
+
+            <span *ngIf="f?.height?.errors?.min" translate>
+              USER__USER_PROFILES__BASIC_INFORMATION_FORM__ERRORS__INVALID_HEIGHT
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-label>
+          <span translate
+            >USER__USER_PROFILES__BASIC_INFORMATION_FORM__LABELS__DATE</span
+          >
+
+          <span class="required">*</span>
+        </mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            [min]="minDate"
+            [max]="maxDate"
+            [matDatepicker]="picker"
+            formControlName="date"
+            disabled
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        mat-stroked-button
+        class="button-cancel"
+        (click)="cancelClick($event)"
+      >
+        Cancel
+      </button>
+      <button mat-button class="button-create" (click)="createClick($event)">
+        Create
+      </button>
+    </div>
+  </form>
+</ng-container>

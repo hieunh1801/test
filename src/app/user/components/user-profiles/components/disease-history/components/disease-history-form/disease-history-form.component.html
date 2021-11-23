@@ -1,20 +1,20 @@
 <div id="disease-history-form">
   <h3 *ngIf="mode === 'CREATE'" translate>
-    USER_PROFILES__DISEASE_HISTORY_FORM__TITLE__ADD_NEW_DISEASE_HISTORY
+    USER__USER_PROFILES__DISEASE_HISTORY_FORM__TITLE__ADD_NEW_DISEASE_HISTORY
   </h3>
 
   <form *ngIf="diseaseForm" [formGroup]="diseaseForm">
     <div
       fxLayout="row"
       fxLayoutGap="16px"
-      fxLayout.lt-sm="column"
-      fxLayoutGap.lt-sm="0px"
+      fxLayout.lt-md="column"
+      fxLayoutGap.lt-md="0px"
     >
       <!-- disease -->
       <div class="form-field">
         <mat-label>
           <span translate
-            >USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__DISEASE</span
+            >USER__USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__DISEASE</span
           >
           <span class="required">*</span>
         </mat-label>
@@ -23,14 +23,14 @@
             matInput
             formControlName="disease"
             [placeholder]="
-              'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__DISEASE_NAME'
+              'USER__USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__DISEASE_NAME'
                 | translate
             "
           />
           <mat-error *ngIf="f?.disease?.dirty || f?.disease?.touched">
             <mat-icon>error</mat-icon>
             <span *ngIf="f?.disease?.errors?.required" translate>
-              USER_PROFILES__DISEASE_HISTORY_FORM__ERRORS__REQUIRED_DISEASE_NAME
+              USER__USER_PROFILES__DISEASE_HISTORY_FORM__ERRORS__REQUIRED_DISEASE_NAME
             </span>
           </mat-error>
         </mat-form-field>
@@ -46,7 +46,7 @@
       >
         <div class="form-field">
           <mat-label translate>
-            USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__FROM_DATE
+            USER__USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__FROM_DATE
           </mat-label>
           <mat-form-field appearance="outline">
             <input
@@ -55,7 +55,7 @@
               [max]="f?.toDate?.value"
               formControlName="fromDate"
               [placeholder]="
-                'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
+                'USER__USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
                   | translate
               "
               disabled
@@ -69,7 +69,7 @@
         </div>
         <div class="form-field">
           <mat-label translate>
-            USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__TO_DATE
+            USER__USER_PROFILES__DISEASE_HISTORY_FORM__LABELS__TO_DATE
           </mat-label>
           <mat-form-field appearance="outline">
             <input
@@ -78,7 +78,7 @@
               [matDatepicker]="pickerToDate"
               formControlName="toDate"
               [placeholder]="
-                'USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
+                'USER__USER_PROFILES__DISEASE_HISTORY_FORM__PLACEHOLDER__CHOOSE_DATE'
                   | translate
               "
               disabled
@@ -97,14 +97,14 @@
     <!-- note -->
     <div class="form-field">
       <mat-label translate>
-        USER_PROFILES__DISEASE_HISTORY_ADD__LABELS__NOTE
+        USER__USER_PROFILES__DISEASE_HISTORY_ADD__LABELS__NOTE
       </mat-label>
       <mat-form-field appearance="outline">
         <textarea
           matInput
           cdkTextareaAutosize
           [placeholder]="
-            'USER_PROFILES__DISEASE_HISTORY_ADD__PLACEHOLDER__DISEASE_DETAIL'
+            'USER__USER_PROFILES__DISEASE_HISTORY_ADD__PLACEHOLDER__DISEASE_DETAIL'
               | translate
           "
           formControlName="note"
@@ -122,7 +122,7 @@
         (click)="cancelClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CANCEL
+          USER__USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CANCEL
         </span>
       </button>
       <button
@@ -132,7 +132,7 @@
         (click)="saveClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__SAVE
+          USER__USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__SAVE
         </span>
       </button>
 
@@ -143,7 +143,7 @@
         (click)="createClick(); $event.preventDefault()"
       >
         <span translate>
-          USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CREATE
+          USER__USER_PROFILES__DISEASE_HISTORY_FORM__BUTTONS__CREATE
         </span>
       </button>
     </div>

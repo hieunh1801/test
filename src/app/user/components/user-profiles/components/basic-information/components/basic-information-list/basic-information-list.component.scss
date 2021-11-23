@@ -1,0 +1,12 @@
+#weight-height-list {
+  .list-item {
+    padding: 8px;
+    .time-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .list-item:hover {
+    background-color: #f2f2f2;
+  }
+}

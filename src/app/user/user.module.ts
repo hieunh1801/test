@@ -13,7 +13,6 @@ import { ChangePasswordComponent } from './components/user-settings/components/p
 import { PasswordSettingComponent } from './components/user-settings/components/password-setting/password-setting.component';
 import { CloseAccountComponent } from './components/user-settings/components/account-setting/components/close-account/close-account.component';
 import { IntroductionComponent } from './components/user-profiles/components/introduction/introduction.component';
-import { DemoGraphicComponent } from './components/user-profiles/components/demo-graphic/demo-graphic.component';
 import { MedicalHistoryComponent } from './components/user-profiles/components/medical-history/medical-history.component';
 import { LifeStyleComponent } from './components/user-profiles/components/life-style/life-style.component';
 import { MedicalHistoryAddComponent } from './components/user-profiles/components/medical-history/components/medical-history-add/medical-history-add.component';
@@ -22,6 +21,10 @@ import { MedicalHistoryListEditComponent } from './components/user-profiles/comp
 import { DiseaseHistoryComponent } from './components/user-profiles/components/disease-history/disease-history.component';
 import { DiseaseHistoryFormComponent } from './components/user-profiles/components/disease-history/components/disease-history-form/disease-history-form.component';
 import { DiseaseHistoryListComponent } from './components/user-profiles/components/disease-history/components/disease-history-list/disease-history-list.component';
+import { BasicInformationComponent } from './components/user-profiles/components/basic-information/basic-information.component';
+import { BasicInformationDetailComponent } from './components/user-profiles/components/basic-information/components/basic-information-detail/basic-information-detail.component';
+import { BasicInformationFormComponent } from './components/user-profiles/components/basic-information/components/basic-information-form/basic-information-form.component';
+import { BasicInformationListComponent } from './components/user-profiles/components/basic-information/components/basic-information-list/basic-information-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,6 @@ import { DiseaseHistoryListComponent } from './components/user-profiles/componen
     ChangePasswordComponent,
     CloseAccountComponent,
     IntroductionComponent,
-    DemoGraphicComponent,
     MedicalHistoryComponent,
     LifeStyleComponent,
     MedicalHistoryAddComponent,
@@ -44,6 +46,10 @@ import { DiseaseHistoryListComponent } from './components/user-profiles/componen
     DiseaseHistoryComponent,
     DiseaseHistoryFormComponent,
     DiseaseHistoryListComponent,
+    BasicInformationComponent,
+    BasicInformationDetailComponent,
+    BasicInformationFormComponent,
+    BasicInformationListComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })

@@ -20,6 +20,7 @@ import { TrimPipe } from './pipes/trim.pipe';
 import { ReferencesPipe } from './pipes/references.pipe';
 import { MaterialModule } from '@material/material.module';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ToAgePipe } from './pipes/to-age.pipe';
 
 const COMPONENTS = [
   FooterComponent,
@@ -43,7 +44,13 @@ const httpInterceptorProviders = [
 
 @NgModule({
   //
-  declarations: [...COMPONENTS, TrimPipe, ReferencesPipe, ConfirmDialogComponent],
+  declarations: [
+    ...COMPONENTS,
+    TrimPipe,
+    ReferencesPipe,
+    ConfirmDialogComponent,
+    ToAgePipe,
+  ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
     CommonModule,
@@ -60,6 +67,7 @@ const httpInterceptorProviders = [
     FlexLayoutModule,
     TrimPipe,
     ReferencesPipe,
+    ToAgePipe,
   ],
 })
 export class SharedModule {}
