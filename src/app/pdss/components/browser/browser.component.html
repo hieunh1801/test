@@ -63,14 +63,41 @@
     fxLayout.xs="column"
     [fxHide]="!isSearch"
   >
-    <div fxFlex="100">
+    <div
+      fxFlex="15"
+      fxHide.lt-md
+      fxShow.gt-sm
+      style="border: 1px solid #ccc; padding: 10px; height: 200px"
+    >
+      <h2>Filters</h2>
+      <h3 style="margin: 0; padding: 0; font-weight: 500">Categories</h3>
+      <form class="search-form" [formGroup]="filterForm">
+        <mat-checkbox
+          formControlName="isBrand"
+          name="isBrand"
+          (change)="onChange($event)"
+          >Brands</mat-checkbox
+        >
+        ({{ brandCount }})<br />
+        <mat-checkbox
+          formControlName="isDrug"
+          name="isDrug"
+          (change)="onChange($event)"
+          >Drugs</mat-checkbox
+        >
+        ({{ drugCount }})<br />
+        <mat-checkbox
+          formControlName="isGene"
+          name="isGene"
+          (change)="onChange($event)"
+          >Genes</mat-checkbox
+        >
+        ({{ geneCount }})<br />
+      </form>
+    </div>
+
+    <div fxFlex="85">
       <h2>Results ({{ searchTotal }})</h2>
-      <mat-paginator
-        showFirstLastButtons="true"
-        [length]="searchTotal"
-        [pageSize]="pageSize"
-        (page)="change($event)"
-      ></mat-paginator>
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
           <mat-header-cell mat-header-cell *matHeaderCellDef
@@ -118,6 +145,12 @@
           *matRowDef="let row; columns: displayedColumns"
         ></mat-row>
       </table>
+      <mat-paginator
+        showFirstLastButtons="true"
+        [length]="searchTotal"
+        [pageSize]="pageSize"
+        (page)="change($event)"
+      ></mat-paginator>
     </div>
   </div>
 </div>

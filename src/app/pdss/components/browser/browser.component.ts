@@ -19,7 +19,6 @@ import {
 } from './services/browser.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { HighlightSearchPipe } from '../../../shared/pipes/highlight-search.pipe';
 
 @Component({
   selector: 'app-browser',
@@ -29,6 +28,12 @@ import { HighlightSearchPipe } from '../../../shared/pipes/highlight-search.pipe
 export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   searchForm = this.formBuilder.group({
     keyword: ['', Validators.required],
+  });
+
+  filterForm = this.formBuilder.group({
+    isBrand: [''],
+    isDrug: [''],
+    isGene: [''],
   });
 
   subscription$ = new Subscription();
@@ -58,6 +63,12 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   genericResults: Array<SearchResponse> | null;
   result: SearchResponse | null;
   drugId: number;
+  geneCount: number;
+  drugCount: number;
+  brandCount: number;
+  isDrug: boolean;
+  isGene: boolean;
+  isBrand: boolean;
 
   // paging variables
   searchCount: number = 0;
@@ -166,7 +177,61 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       tempResults.push(element);
     }
+    this.brandCount = results.filter((el) => el.type === 'Brand').length;
+    if (this.brandCount > 0) {
+      this.isBrand = true;
+    } else {
+      this.isBrand = false;
+    }
+    this.drugCount = results.filter((el) => el.type === 'Generic_Name').length;
+    if (this.drugCount > 0) {
+      this.isDrug = true;
+    } else {
+      this.isDrug = false;
+    }
+    this.geneCount = results.filter((el) => el.type === 'gene').length;
+    if (this.geneCount > 0) {
+      this.isGene = true;
+    } else {
+      this.isGene = false;
+    }
+
+    this.filterForm.patchValue({
+      isBrand: this.isBrand,
+      isDrug: this.isDrug,
+      isGene: this.isGene,
+    });
+
     this.finalResults = tempResults;
     this.dataSource.data = tempResults;
+  }
+
+  onChange($event: Event) {
+    const tempResults: SearchResponse[] = [];
+    this.filterForm.markAllAsTouched();
+    if (this.filterForm.valid) {
+      const formValue = this.filterForm.value;
+      const isDrug = formValue.isDrug;
+      const isGene = formValue.isGene;
+      const isBrand = formValue.isBrand;
+
+      for (let element of this.finalResults) {
+        if (element.type == 'Brand') {
+          if (isBrand == true) {
+            tempResults.push(element);
+          }
+        } else if (element.type == 'Generic_Name') {
+          if (isDrug == true) {
+            tempResults.push(element);
+          }
+        } else if (element.type == 'gene') {
+          if (isGene == true) {
+            tempResults.push(element);
+          }
+        }
+      }
+      this.dataSource.data = tempResults;
+      // console.log(this.finalResults);
+    }
   }
 }
