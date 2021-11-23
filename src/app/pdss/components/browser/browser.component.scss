@@ -3,10 +3,12 @@
   max-width: var(--primary--screen);
   margin: auto;
   padding: 16px;
+  margin-bottom: 40px;
 }
 
 a {
   text-decoration: none;
+  color: #000;
 }
 
 table {
@@ -46,4 +48,36 @@ table {
 
 .mat-icon-button.mat-success {
   color: #155724;
+}
+
+.brand {
+  padding: 4px 8px;
+  border: 1px solid #ff4081;
+  background-color: #ff4081;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+.drug {
+  padding: 4px 8px;
+  border: 1px solid #155724;
+  background-color: #155724;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+.gene {
+  padding: 4px 8px;
+  border: 1px solid #3f51b5;
+  background-color: #3f51b5;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+:host ::ng-deep .highlight {
+  font-weight: bold;
+  color: #3f51b5;
 }

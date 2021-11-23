@@ -65,45 +65,6 @@
   >
     <div fxFlex="100">
       <h2>Results ({{ searchTotal }})</h2>
-
-      <!--
-      <mat-selection-list #result [multiple]="false">
-        <mat-list-option
-          *ngFor="let result of finalResults"
-          [value]="result.name"
-        >
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10">
-            <div></div>
-          </div>
-          {{ result.name }}
-          <span *ngIf="result.type == 'Brand'">
-            <button mat-flat-button color="accent">Brand</button>
-          </span>
-          <span *ngIf="result.type == 'Generic_Name'">
-            <button mat-flat-button color="success">Drug</button>
-          </span>
-          <span *ngIf="result.type == 'Gene'">
-            <button mat-flat-button color="primary">Gene</button>
-          </span>
-        </mat-list-option>
-      </mat-selection-list>
-      -->
-      <!--<a [routerLink]="['/pdss/drug', drug.id, 'detail']">{{
-            drug.name
-          }}</a>
-        
-          <span *ngIf="result.type == 'Brand'">{{
-            result.name +
-              " / " +
-              onGetGenericName(result.id, finalResults) +
-              " " +
-              result.type
-          }}</span>
-          
-          <span *ngIf="result.type != 'Brand'">{{
-            result.name + " " + result.type
-          }}</span>
-        -->
       <mat-paginator
         showFirstLastButtons="true"
         [length]="searchTotal"
@@ -116,9 +77,20 @@
             >Name</mat-header-cell
           >
           <mat-cell *matCellDef="let result">
-            <a [routerLink]="['/pdss/drug', result.id, 'detail']">{{
-              result.name
-            }}</a>
+            <a
+              *ngIf="result.type != 'gene'"
+              [routerLink]="['/pdss/drug', result.id, 'detail']"
+              ><p
+                [innerHTML]="result.name | highlightSearch: searchKeyword"
+              ></p>
+            </a>
+            <a
+              *ngIf="result.type === 'gene'"
+              [routerLink]="['/pdss/gene', result.id, 'detail']"
+              ><p
+                [innerHTML]="result.name | highlightSearch: searchKeyword"
+              ></p>
+            </a>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="type">
@@ -127,13 +99,16 @@
           >
           <mat-cell *matCellDef="let result">
             <span *ngIf="result.type == 'Brand'">
-              <button mat-flat-button color="accent">Brand</button>
+              <!--<button mat-flat-button color="accent">brand</button>-->
+              <span class="brand">brand</span>
             </span>
             <span *ngIf="result.type == 'Generic_Name'">
-              <button mat-flat-button color="success">Drug</button>
+              <!--<button mat-flat-button color="success">drug</button>-->
+              <span class="drug">drug</span>
             </span>
             <span *ngIf="result.type == 'gene'">
-              <button mat-flat-button color="primary">Gene</button>
+              <!--<button mat-flat-button color="primary">gene</button>-->
+              <span class="gene">gene</span>
             </span>
           </mat-cell>
         </ng-container>

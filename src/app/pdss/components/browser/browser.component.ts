@@ -19,6 +19,7 @@ import {
 } from './services/browser.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { HighlightSearchPipe } from '../../../shared/pipes/highlight-search.pipe';
 
 @Component({
   selector: 'app-browser',
