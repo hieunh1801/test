@@ -1,0 +1,93 @@
+#page {
+  min-height: 80vh;
+  background-color: #f2f2f2;
+}
+#gene-page {
+  max-width: var(--secondary--screen);
+  margin: auto;
+  padding: 16px;
+
+  .section {
+    background-color: white;
+    // border: solid 1px #d8d8d8;
+    border-radius: 3px;
+  }
+  .section:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  #gene-info {
+    .title {
+      padding: 16px 16px 0 16px;
+    }
+    .content {
+      padding: 0px;
+    }
+
+    .add-button {
+      color: white;
+      background-color: var(--primary--color);
+    }
+
+    .sub-title {
+      margin: 10px 0px 3px 0px;
+      font-size: 16px;
+      padding-bottom: 3px;
+    }
+
+    .sub-content {
+      margin: 3px 5px;
+    }
+  }
+}
+
+.brand {
+  padding: 4px 8px;
+  border: 1px solid #ff4081;
+  background-color: #ff4081;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+.drug {
+  padding: 4px 8px;
+  border: 1px solid #155724;
+  background-color: #155724;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+.gene {
+  padding: 4px 8px;
+  border: 1px solid #3f51b5;
+  background-color: #3f51b5;
+  font-weight: 400;
+  border-radius: 900px;
+  color: #fff;
+}
+
+.ex-link {
+  width: 420px;
+}
+.w100 {
+  width: 90px;
+}
+.ex-link td.link {
+  color: #5399cc;
+}
+
+a,
+a:visited {
+  color: #5399cc;
+  text-decoration: none;
+}
+
+.default-margin {
+  margin: 15px 0px;
+}
+
+.bold {
+  font-weight: 500;
+}

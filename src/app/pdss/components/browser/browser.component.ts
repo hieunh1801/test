@@ -65,6 +65,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   geneCount: number;
   drugCount: number;
   brandCount: number;
+  finalCount: number;
   isDrug: boolean;
   isGene: boolean;
   isBrand: boolean;
@@ -166,16 +167,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onGetResults(results: SearchResponse[]): void {
     const tempResults: SearchResponse[] = [];
-    for (let element of results) {
-      if (element.type == 'Brand') {
-        var generic = results.find(function (el) {
-          return el.id === element.id && el.type === 'Generic_Name';
-        });
-        var name = element.name + ' / ' + generic.name;
-        element.name = name;
-      }
-      tempResults.push(element);
-    }
     this.brandCount = results.filter((el) => el.type === 'Brand').length;
     if (this.brandCount > 0) {
       this.isBrand = true;
@@ -193,6 +184,29 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       this.isGene = true;
     } else {
       this.isGene = false;
+    }
+
+    const fcount = this.drugCount + this.brandCount;
+    if (this.isBrand == true && this.isDrug == true) {
+      this.finalCount = fcount - this.drugCount;
+    } else {
+      this.finalCount = fcount;
+    }
+    for (let element of results) {
+      if (element.type == 'Brand') {
+        var generic = results.find(function (el) {
+          return el.id === element.id && el.type === 'Generic_Name';
+        });
+        var name = element.name + ' (' + generic.name + ')';
+        element.name = name;
+        tempResults.push(element);
+      } else if (element.type == 'Generic_Name') {
+        if (this.isBrand != true) {
+          tempResults.push(element);
+        }
+      } else if (element.type == 'gene') {
+        tempResults.push(element);
+      }
     }
 
     this.filterForm.patchValue({
@@ -218,6 +232,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         if (element.type == 'Brand') {
           if (isBrand == true) {
             tempResults.push(element);
+          } else {
           }
         } else if (element.type == 'Generic_Name') {
           if (isDrug == true) {

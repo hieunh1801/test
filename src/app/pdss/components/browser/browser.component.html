@@ -72,6 +72,7 @@
       <h2>Filters</h2>
       <h3 style="margin: 0; padding: 0; font-weight: 500">Categories</h3>
       <form class="search-form" [formGroup]="filterForm">
+        <!--
         <mat-checkbox
           formControlName="isBrand"
           name="isBrand"
@@ -79,13 +80,14 @@
           >Brands</mat-checkbox
         >
         ({{ brandCount }})<br />
+        -->
         <mat-checkbox
           formControlName="isDrug"
           name="isDrug"
           (change)="onChange($event)"
           >Drugs</mat-checkbox
         >
-        ({{ drugCount }})<br />
+        ({{ finalCount }})<br />
         <mat-checkbox
           formControlName="isGene"
           name="isGene"
@@ -103,20 +105,20 @@
           <mat-header-cell mat-header-cell *matHeaderCellDef
             >Name</mat-header-cell
           >
-          <mat-cell *matCellDef="let result">
+          <mat-cell *matCellDef="let result" style="vertical-align: middle">
             <a
               *ngIf="result.type != 'gene'"
               [routerLink]="['/pdss/drug', result.id, 'detail']"
-              ><p
+              ><span
                 [innerHTML]="result.name | highlightSearch: searchKeyword"
-              ></p>
+              ></span>
             </a>
             <a
               *ngIf="result.type === 'gene'"
               [routerLink]="['/pdss/gene', result.id, 'detail']"
-              ><p
+              ><span
                 [innerHTML]="result.name | highlightSearch: searchKeyword"
-              ></p>
+              ></span>
             </a>
           </mat-cell>
         </ng-container>
@@ -125,16 +127,17 @@
             >Type</mat-header-cell
           >
           <mat-cell *matCellDef="let result">
-            <span *ngIf="result.type == 'Brand'">
-              <!--<button mat-flat-button color="accent">brand</button>-->
-              <span class="brand">brand</span>
+            <span
+              *ngIf="result.type == 'Brand' || result.type == 'Generic_Name'"
+            >
+              <span class="brand">drug</span>
             </span>
-            <span *ngIf="result.type == 'Generic_Name'">
-              <!--<button mat-flat-button color="success">drug</button>-->
-              <span class="drug">drug</span>
-            </span>
+            <!-- 
+              <span *ngIf="result.type == 'Generic_Name'">
+                <span class="drug">drug</span>              
+              </span>
+            -->
             <span *ngIf="result.type == 'gene'">
-              <!--<button mat-flat-button color="primary">gene</button>-->
               <span class="gene">gene</span>
             </span>
           </mat-cell>

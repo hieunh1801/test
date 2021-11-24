@@ -1,0 +1,204 @@
+<div id="drug-detail-page">
+  <div class="section">
+    <div id="drug-info">
+      <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+        <h2>Abacavir</h2>
+        <div class="default-margin">
+          synonyms<br />
+          Declare Word<br />
+        </div>
+        <table style="width: 300px">
+          <ng-container matColumnDef="guideline">
+            <th mat-header-cell *matHeaderCellDef>GL</th>
+            <td>
+              <img
+                src="../../../../../../assets/pgx/guideline_yes.png"
+                width="50px"
+              />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="drugLabel">
+            <td>
+              <img
+                src="../../../../../../assets/pgx/druglabel_yes.png"
+                width="50px"
+              />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="ca">
+            <td>
+              <img
+                src="../../../../../../assets/pgx/clinicalannotation_yes.png"
+                width="50px"
+              />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="va">
+            <td>
+              <img
+                src="../../../../../../assets/pgx/variantannotation_yes.jpg"
+                width="50px"
+              />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="spmed">
+            <td>
+              <img
+                src="../../../../../../assets/pgx/spmed_yes.png"
+                width="50px"
+              />
+            </td>
+          </ng-container>
+        </table>
+
+        <div class="default-margin">
+          <img
+            src="../../../../../../assets/pgx/drug_info_icon.png"
+            style="width: 80%"
+          />
+        </div>
+        <div class="default-margin">
+          <h3>What is Abacavir</h3>
+          <h4 class="sub-title">Summary</h4>
+          <div class="sub-content">
+            뉴클레오시드 역전사효소 억제제(nucleoside reverse transcriptase
+            inhibitor). Abacavir는 구아노신 유사체로서 carbovir triphosphate로
+            인산화되어 HIV 바이러스의 RNA-의존적 DNA polymerase를 방해함으로써
+            바이러스 복제를 억제한다.<br />
+            Nucleoside reverse transcriptase inhibitor. Abacavir is a guanosine
+            analog that is phosphorylated with carbovir triphosphate and
+            inhibits viral replication by interfering with the RNA-dependent DNA
+            polymerase of the HIV virus.
+          </div>
+          <h4 class="sub-title">Indication</h4>
+          <div class="sub-content">
+            아바카비르는 다른 항레트로 바이러스제와 병용하여 HIV-1 감염 치료에
+            사용합니다. <br />[DrugBank] For the treatment of HIV-1 infection,
+            in combination with other antiretroviral agents.
+          </div>
+
+          <h4 class="sub-title">Toxicity</h4>
+          <div class="sub-content">
+            동물 실험(쥐) 결과 일부 실험체에서 심근변성이 발견되었습니다_ 그리고
+            성인 HIV-1 환자 대상의 임상시험 결과 가장 흔하게 보고된 중증도
+            부작용 (발생률 10% 이상)은 메스꺼움 두통 불쾌감 및 피로 구토
+            수면장애입니다_ HLA-B*57:01 대립유전자에 의해 심각한 과민반응이
+            나타날 수 있으며 이러한 약물과민반응은 치료 시작 후 6주 이내에
+            나타납니다_ 미국 FDA는 환자에게 아바카비르 처방 전 HLA-B*57:01
+            대립유전자 검사를 시행하는 것을 권장합니다<br />[DrugBank] Some
+            myocardial degeneration has been noticed in rats and mice. The most
+            commonly reported adverse reactions of at least moderate intensity
+            (incidence ≥10%) in adult HIV-1 clinical trials were nausea,
+            headache, malaise and fatigue, nausea and vomiting, and dreams/sleep
+            disorders. Serious hypersensitivity reactions have been associated
+            with abacavir which has been strongly linked to the presence of the
+            HLA-B*57:01 allele. This reaction manifests itself in patients
+            within the first 6 weeks of treatment. Patients should be tested for
+            the presence of this allele as recommended by the U.S Food and Drug
+            Administration (FDA).
+          </div>
+        </div>
+        <div class="default-margin">
+          <h3>Related genes</h3>
+          <span class="brand">HLA-B</span>
+        </div>
+        <div class="default-margin">
+          <h3>Brand Information</h3>
+          <div class="content">
+            <ul>
+              <li>지아겐정300밀리그램(아바카비르황산염)</li>
+              <li>키벡사정</li>
+              <li>트리멕정</li>
+            </ul>
+            <!--
+              <mat-selection-list [multiple]="false">
+                <mat-list-option>
+                  지아겐정300밀리그램(아바카비르황산염)
+                </mat-list-option>
+                <mat-list-option>키벡사정</mat-list-option>
+                <mat-list-option>트리멕정</mat-list-option>
+              </mat-selection-list>
+              -->
+          </div>
+        </div>
+        <div class="default-margin">
+          <h3>External Information</h3>
+          <table class="ex-link">
+            <tr>
+              <td class="w100" style="width: 100px">PharmGKB</td>
+              <td class="link">
+                <a
+                  href="https://www.pharmgkb.org/chemical/PA448004"
+                  target="_blank"
+                  >PA448004</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="w100">RxNorm</td>
+              <td class="link">190521</td>
+            </tr>
+            <tr>
+              <td class="w100">PubChem</td>
+              <td class="link">
+                <a
+                  href="https:  //pubchem.ncbi.nlm.nih.gov/compound/441300"
+                  target="_blank"
+                  >441300</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="w100">MeSH</td>
+              <td class="link">C106538</td>
+            </tr>
+            <tr>
+              <td class="w100">ATC</td>
+              <td class="link">
+                J05AF06(abacavir)<br />
+                J05AR02(lamivudine and abacavir)<br />
+                J05AR04(zidovudine lamivudine and abacavir)<br />J05AR13(lamivudine
+                abacavir and dolutegravir)
+              </td>
+            </tr>
+            <tr>
+              <td class="w100">UMLS</td>
+              <td class="link">C0663655(abacavir)</td>
+            </tr>
+            <tr>
+              <td class="w100">NDFRT</td>
+              <td class="link">N000002</td>
+            </tr>
+          </table>
+        </div>
+        <div class="default-margin">
+          <h3>Reference</h3>
+          <div class="contents">
+            <ol>
+              <li>
+                Kis B, Snipes JA, Busija DW: Acetaminophen and the
+                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
+                uncertainties. J Pharmacol Exp Ther.
+                <span class="bold">[Article]</span>
+              </li>
+              <li>
+                Kis B, Snipes JA,Busija DW: Acetaminophen and the
+                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
+                uncertainties. J Pharmacol Exp Ther. 2005 Oct;315(1):1-7. Epub
+                2005 May 6.
+                <span class="bold">[Article]</span>
+              </li>
+              <li>
+                Aronoff DM, Oates JA, Boutaud O: New insights into the mechanism
+                of action of acetaminophen: Its clinical pharmacologic
+                characteristics reflect its inhibition of the two prostaglandin
+                H2 synthases. Clin Pharmacol Ther. 2006 Jan;79(1):9-19.
+                <span class="bold">[Article]</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

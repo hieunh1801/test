@@ -25,7 +25,8 @@ import { DrugGeneInterpretationTableComponent } from './components/my-report/com
 import { DrugGeneInterpretationListComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/components/drug-gene-interpretation-list/drug-gene-interpretation-list.component';
 import { ReferenceListDialogComponent } from './components/my-report/components/drug-recommendation-table/components/drug-recommendation-table-row-expanded/components/reference-list-dialog/reference-list-dialog.component';
 import { DrugTableStatisticComponent } from './components/my-report/components/drug-recommendation-table/components/drug-table-statistic/drug-table-statistic.component';
-import { DrugDetailComponent } from './components/browser/components/drug-detail/drug-detail.component';
+import { GeneComponent } from './components/browser/components/gene/gene.component';
+import { DrugComponent } from './components/browser/components/drug/drug.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DrugDetailComponent } from './components/browser/components/drug-detail
     ReportGeneticResultTableComponent,
     ReportAdditionalInformationListComponent,
     DrugRecommendationTableComponent,
-    DrugDetailComponent,
+    GeneComponent,
+    DrugComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
