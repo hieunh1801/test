@@ -14,10 +14,10 @@ import {
   ConfirmDialogOutput,
 } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
+import { UserMedicalHistoryService } from '@user/services/user-medical-history.service';
+import { MedicalHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { UserMedicalHistoryService } from 'src/app/user/services/user-medical-history.service';
-import { MedicalHistory } from 'src/app/user/services/user-profile.service';
 
 @Component({
   selector: 'app-medical-history-list-edit',

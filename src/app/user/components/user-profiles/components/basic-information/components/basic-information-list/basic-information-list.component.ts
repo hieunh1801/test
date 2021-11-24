@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -6,11 +13,11 @@ import {
   ConfirmDialogInput,
   ConfirmDialogOutput,
 } from '@shared/components/confirm-dialog/confirm-dialog.component';
-import { BehaviorSubject, Subscription } from 'rxjs';
 import {
   Demographic,
   WeightHeightHistory,
-} from 'src/app/user/services/user-profile.service';
+} from '@user/services/user-profile.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-basic-information-list',
@@ -20,6 +27,7 @@ import {
 export class BasicInformationListComponent implements OnInit, OnDestroy {
   @Input() demographic$ = new BehaviorSubject<Demographic>(null);
 
+  @Output() cancelEvent = new EventEmitter();
   weightHeightList: WeightHeightHistory[] = null;
 
   subscription$ = new Subscription();
@@ -61,5 +69,8 @@ export class BasicInformationListComponent implements OnInit, OnDestroy {
         // dleete
       }
     });
+  }
+  cancelClick(): void {
+    this.cancelEvent.emit();
   }
 }

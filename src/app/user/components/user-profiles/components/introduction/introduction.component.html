@@ -1,65 +1,10 @@
 <div id="introduction">
-  <div class="head" fxLayout="row" fxLayoutGap="16px" fxLayout.lt-sm="column">
-    <div>
-      <img
-        class="avatar"
-        ngClass.lt-sm="avatar-mobile"
-        src="https://lh3.googleusercontent.com/proxy/mKWbtmsDCr24ESDUWrN1urmNfqj1kFK5r5NWQuO1jDvSssF6CV7GLMIPSLpfrs27zJfRm4FrYd8bXwVtEL6A17InVQpnD4hRJFtjhd7fqqiGmxb0WNZqs9ux10jV9A"
-      />
-    </div>
-    <div class="user-information" fxFlex>
-      <h2>Nguyen Huu Hieu</h2>
-      <div class="grid" ngClass.lt-sm="grid-mobile">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>event</mat-icon>
-          </span>
-          <span>1998/18/01</span>
-        </div>
+  <app-introduction-detail
+    *ngIf="mode === 'VIEW'"
+    [userProfile$]="userProfile$"
+    (editEvent)="mode = 'EDIT'"
+  ></app-introduction-detail>
 
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>transgender</mat-icon>
-          </span>
-          <span>Male</span>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>phone_in_talk</mat-icon>
-          </span>
-          <span>0123456789</span>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>mail_outline</mat-icon>
-          </span>
-          <span>abc@spmed.com</span>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>home</mat-icon>
-          </span>
-          <span
-            >6073 Fieldstone Court,6073 Fieldstone Court, 6073 Fieldstone Court,
-            6073 Fieldstone Court</span
-          >
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span>
-            <mat-icon>flag</mat-icon>
-          </span>
-          <span>Vietnam</span>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <span class="member">Premium</span>
-          <span>Membership</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-introduction-form *ngIf="mode === 'EDIT'" [userProfile$]="userProfile$">
+  </app-introduction-form>
 </div>

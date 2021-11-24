@@ -11,11 +11,11 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import { MustMatch } from '@shared/validators/must-match.validator';
 import { mustNotMatchValidator } from '@shared/validators/must-not-match.validator';
-import { finalize } from 'rxjs/operators';
 import {
   ChangePasswordExceptionCode,
   UserSettingsService,
-} from 'src/app/user/services/user-settings.service';
+} from '@user/services/user-settings.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-change-password',

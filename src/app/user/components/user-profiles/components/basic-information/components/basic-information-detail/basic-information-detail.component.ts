@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Demographic } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Demographic } from 'src/app/user/services/user-profile.service';
 
 @Component({
   selector: 'app-basic-information-detail',
@@ -20,8 +20,6 @@ export class BasicInformationDetailComponent implements OnInit, OnDestroy {
 
   subscribeDemographicChange(): void {
     const sub = this.demographic$.subscribe((demographic) => {
-      console.log(demographic);
-
       this.birthday = demographic?.birthday
         ? new Date(demographic.birthday)
         : null;

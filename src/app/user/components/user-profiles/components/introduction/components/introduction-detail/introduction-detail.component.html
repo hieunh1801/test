@@ -1,0 +1,59 @@
+<div
+  class="introduction-detail"
+  fxLayout="row"
+  fxLayoutGap="16px"
+  fxLayout.lt-sm="column"
+>
+  <div fxLayoutAlign="center center">
+    <img
+      class="avatar"
+      ngClass.lt-sm="avatar-mobile"
+      [src]="demographic?.avatar || defaultImageUrl"
+    />
+  </div>
+  <div class="user-information" fxFlex>
+    <h2>{{ demographic?.fullName }}</h2>
+    <div class="grid" ngClass.lt-sm="grid-mobile">
+      <div class="field">
+        <mat-icon>event</mat-icon>
+        <span>{{ demographic?.birthday }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>transgender</mat-icon>
+        <span>{{ demographic?.gender | genderToString }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>phone_in_talk</mat-icon>
+        <span>{{ demographic?.mobile }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>mail_outline</mat-icon>
+        <span>{{ email }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>home</mat-icon>
+        <span>{{ demographic?.addressDetails }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>flag</mat-icon>
+        <span>{{ demographic?.country }}</span>
+      </div>
+
+      <div class="field">
+        <span class="member">Premium</span>
+        <span>Membership</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-icon-button (click)="editClick()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</div>

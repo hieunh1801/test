@@ -22,6 +22,7 @@ import { MaterialModule } from '@material/material.module';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ToAgePipe } from './pipes/to-age.pipe';
 import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
+import { GenderToStringPipe } from './pipes/gender-to-string.pipe';
 
 const COMPONENTS = [
   FooterComponent,
@@ -52,6 +53,7 @@ const httpInterceptorProviders = [
     ConfirmDialogComponent,
     ToAgePipe,
     HighlightSearchPipe,
+    GenderToStringPipe,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -71,6 +73,7 @@ const httpInterceptorProviders = [
     ReferencesPipe,
     ToAgePipe,
     HighlightSearchPipe,
+    GenderToStringPipe,
   ],
 })
 export class SharedModule {}

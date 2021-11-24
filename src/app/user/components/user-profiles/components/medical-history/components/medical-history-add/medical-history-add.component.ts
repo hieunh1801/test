@@ -5,8 +5,8 @@ import { DateUtilService } from '@shared/services/date-util.service';
 import {
   MedicalHistoryPostRequest,
   MedicalHistoryPutRequest,
-} from 'src/app/user/services/user-medical-history.service';
-import { MedicalHistory } from 'src/app/user/services/user-profile.service';
+} from '@user/services/user-medical-history.service';
+import { MedicalHistory } from '@user/services/user-profile.service';
 
 @Component({
   selector: 'app-medical-history-add',

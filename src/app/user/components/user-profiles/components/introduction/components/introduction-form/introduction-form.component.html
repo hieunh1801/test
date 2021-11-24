@@ -1,0 +1,12 @@
+<ng-container *ngIf="userProfile$.value">
+  <div id="introduction-form">
+    <form [formGroup]="demographicForm">
+      <div class="avatar">
+        <img [src]="f?.avatar?.value || defaultAvatarUrl" alt="avatar" />
+        <div class="avatar-overlay">
+          <mat-icon>photo_camera</mat-icon>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>
