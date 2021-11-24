@@ -17,10 +17,10 @@ import {
   ConfirmDialogOutput,
 } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
+import { UserDiseaseHistoryService } from '@user/services/user-disease-history.service';
+import { DiseaseHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { UserDiseaseHistoryService } from 'src/app/user/services/user-disease-history.service';
-import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
 
 @Component({
   selector: 'app-disease-history-list',

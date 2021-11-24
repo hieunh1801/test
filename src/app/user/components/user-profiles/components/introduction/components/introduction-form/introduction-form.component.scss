@@ -1,0 +1,46 @@
+#introduction-form {
+  .avatar {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    img {
+      display: block;
+      object-fit: cover;
+      width: 250px;
+      height: 250px;
+      max-width: 100%;
+    }
+    .avatar-overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      background-color: #f2f2f2;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      mat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: dashed 1px gray;
+      }
+    }
+  }
+
+  .avatar:hover {
+    cursor: pointer;
+    .avatar-overlay {
+      opacity: 0.6;
+    }
+  }
+}

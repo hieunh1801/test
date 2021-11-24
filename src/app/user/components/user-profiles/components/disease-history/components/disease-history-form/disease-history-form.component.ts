@@ -5,8 +5,8 @@ import { DateUtilService } from '@shared/services/date-util.service';
 import {
   DiseaseHistoryPostRequest,
   DiseaseHistoryPutRequest,
-} from 'src/app/user/services/user-disease-history.service';
-import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
+} from '@user/services/user-disease-history.service';
+import { DiseaseHistory } from '@user/services/user-profile.service';
 
 @Component({
   selector: 'app-disease-history-form',

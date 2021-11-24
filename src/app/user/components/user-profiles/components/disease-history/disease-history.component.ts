@@ -2,13 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { distinctUntilChanged, finalize } from 'rxjs/operators';
 import {
   DiseaseHistoryPostRequest,
   UserDiseaseHistoryService,
-} from 'src/app/user/services/user-disease-history.service';
-import { DiseaseHistory } from 'src/app/user/services/user-profile.service';
+} from '@user/services/user-disease-history.service';
+import { DiseaseHistory } from '@user/services/user-profile.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { distinctUntilChanged, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-disease-history',

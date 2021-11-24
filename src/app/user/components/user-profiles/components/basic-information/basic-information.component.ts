@@ -1,9 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Demographic } from '@user/services/user-profile.service';
 import { BehaviorSubject } from 'rxjs';
-import {
-  Demographic,
-  WeightHeightHistory,
-} from 'src/app/user/services/user-profile.service';
 
 @Component({
   selector: 'app-basic-information',

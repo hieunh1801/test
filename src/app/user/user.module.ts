@@ -25,6 +25,8 @@ import { BasicInformationComponent } from './components/user-profiles/components
 import { BasicInformationDetailComponent } from './components/user-profiles/components/basic-information/components/basic-information-detail/basic-information-detail.component';
 import { BasicInformationFormComponent } from './components/user-profiles/components/basic-information/components/basic-information-form/basic-information-form.component';
 import { BasicInformationListComponent } from './components/user-profiles/components/basic-information/components/basic-information-list/basic-information-list.component';
+import { IntroductionDetailComponent } from './components/user-profiles/components/introduction/components/introduction-detail/introduction-detail.component';
+import { IntroductionFormComponent } from './components/user-profiles/components/introduction/components/introduction-form/introduction-form.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { BasicInformationListComponent } from './components/user-profiles/compon
     BasicInformationDetailComponent,
     BasicInformationFormComponent,
     BasicInformationListComponent,
+    IntroductionDetailComponent,
+    IntroductionFormComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })

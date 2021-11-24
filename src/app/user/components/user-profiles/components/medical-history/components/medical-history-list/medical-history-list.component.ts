@@ -7,8 +7,8 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
+import { MedicalHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { MedicalHistory } from 'src/app/user/services/user-profile.service';
 
 @Component({
   selector: 'app-medical-history-list',
