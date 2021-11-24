@@ -12,6 +12,7 @@ import { SingleGeneServiceComponent } from '@pdss/components/products/components
 import { ProductsComponent } from '@pdss/components/products/products.component';
 import { UtilityComponent } from '@pdss/components/utility/utility.component';
 import { PdssComponent } from '@pdss/pdss.component';
+import { DrugDetailComponent } from '@pdss/components/browser/components/drug-detail/drug-detail.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,14 @@ const routes: Routes = [
       {
         path: 'browser',
         component: BrowserComponent,
+      },
+      {
+        path: 'drug/:id/detail',
+        component: DrugDetailComponent,
+      },
+      {
+        path: 'gene/:id/detail',
+        component: DrugDetailComponent,
       },
       {
         path: 'utility',
