@@ -28,7 +28,9 @@ export class GeneComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.geneId = +this.route.snapshot.queryParamMap.get('id');
+    const sub = this.route.params.subscribe((params) => {
+      this.geneId = +params['id'];
+    });
     this.loadGeneDetail();
   }
   ngOnDestroy(): void {

@@ -29,7 +29,9 @@ export class DrugComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.drugId = +this.route.snapshot.queryParamMap.get('id');
+    const sub = this.route.params.subscribe((params) => {
+      this.drugId = +params['id'];
+    });
     this.loadDrugDetail();
   }
 
