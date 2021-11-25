@@ -1,5 +1,5 @@
 <ng-template
-  [ngIf]="demographic$?.value?.weightHeightHistories?.length > 0"
+  [ngIf]="weightHeightHistoryList?.length > 0"
   [ngIfElse]="emptyComponent"
 >
   <div id="basic-information-detail">
@@ -10,11 +10,6 @@
       fxLayout.lt-sm="column"
       fxLayoutAlign.lt-sm="flex-start start"
     >
-      <!-- <div>
-      <span class="title" translate>
-        USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__AGE </span
-      >{{ birthday | toAge }}
-    </div> -->
       <div>
         <span class="title" translate>
           USER__USER_PROFILES__BASIC_INFORMATION__BASIC_INFORMATION_DETAIL__LABELS__WEIGHT </span

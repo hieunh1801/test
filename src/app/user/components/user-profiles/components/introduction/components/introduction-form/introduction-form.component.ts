@@ -37,11 +37,6 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
   }
 
   initForm(demographic: Demographic): void {
-    console.log(
-      '🚀 ~ file: introduction-form.component.ts ~ line 37 ~ IntroductionFormComponent ~ initForm ~ demographic',
-      demographic
-    );
-
     if (demographic) {
       const {
         avatar,

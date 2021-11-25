@@ -6,6 +6,7 @@ import {
   MedicalHistory,
   UserProfile,
   UserProfileService,
+  WeightHeightHistory,
 } from '../../services/user-profile.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class UserProfilesComponent implements OnInit {
   diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
   medicalHistoryList$ = new BehaviorSubject<MedicalHistory[]>([]);
   demographic$ = new BehaviorSubject<Demographic>(null);
+  weightHeightHistoryList$ = new BehaviorSubject<WeightHeightHistory[]>([]);
 
   subscription$ = new Subscription();
 
@@ -31,6 +33,9 @@ export class UserProfilesComponent implements OnInit {
         this.diseaseHistoryList$.next(userProfile?.diseaseHistories || []);
         this.medicalHistoryList$.next(userProfile?.medicalHistories || []);
         this.demographic$.next(userProfile?.demographic || null);
+        this.weightHeightHistoryList$.next(
+          userProfile?.weightHeightHistories || []
+        );
       }
     });
   }

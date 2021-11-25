@@ -9,8 +9,9 @@
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
-        *ngIf="demographic$.value?.weightHeightHistories?.length > 0"
+        *ngIf="weightHeightHistoryList?.length > 0"
       >
+        Menu
         <mat-icon>more_horiz</mat-icon>
       </button>
       <!-- button add - when no information founded -->
@@ -20,8 +21,8 @@
         *ngIf="
           mode &&
           mode === 'VIEW' &&
-          (demographic$.value?.weightHeightHistories === null ||
-            demographic$.value?.weightHeightHistories.length === 0)
+          (weightHeightHistoryList === null ||
+            weightHeightHistoryList.length === 0)
         "
         (click)="changeMode('ADD')"
       >
@@ -36,20 +37,22 @@
     <!-- view mode -->
     <app-basic-information-detail
       *ngIf="mode === 'VIEW'"
-      [demographic$]="demographic$"
+      [weightHeightHistoryList$]="weightHeightHistoryList$"
     ></app-basic-information-detail>
 
     <!-- add mode -->
     <app-basic-information-form
       *ngIf="mode === 'ADD'"
       (cancelEvent)="mode = 'VIEW'"
+      (createEvent)="postData($event)"
     ></app-basic-information-form>
 
     <!-- edit mode -->
     <app-basic-information-list
       *ngIf="mode === 'EDIT'"
-      [demographic$]="demographic$"
+      [weightHeightHistoryList$]="weightHeightHistoryList$"
       (cancelEvent)="mode = 'VIEW'"
+      (deleteEvent)="deleteItem($event)"
     ></app-basic-information-list>
   </div>
 </div>

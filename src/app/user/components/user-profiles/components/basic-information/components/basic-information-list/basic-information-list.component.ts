@@ -6,18 +6,9 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { TranslateService } from '@ngx-translate/core';
-import {
-  ConfirmDialogComponent,
-  ConfirmDialogInput,
-  ConfirmDialogOutput,
-} from '@shared/components/confirm-dialog/confirm-dialog.component';
-import {
-  Demographic,
-  WeightHeightHistory,
-} from '@user/services/user-profile.service';
+import { WeightHeightHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-basic-information-list',
@@ -25,51 +16,43 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   styleUrls: ['./basic-information-list.component.scss'],
 })
 export class BasicInformationListComponent implements OnInit, OnDestroy {
-  @Input() demographic$ = new BehaviorSubject<Demographic>(null);
+  @Input() weightHeightHistoryList$ = new BehaviorSubject<
+    WeightHeightHistory[]
+  >(null);
 
   @Output() cancelEvent = new EventEmitter();
-  weightHeightList: WeightHeightHistory[] = null;
+  @Output() deleteEvent = new EventEmitter<number>();
+
+  weightHeightHistoryList: WeightHeightHistory[] = null;
 
   subscription$ = new Subscription();
 
-  constructor(
-    private matDialog: MatDialog,
-    private translateService: TranslateService
-  ) {}
+  constructor() {}
 
-  subscribeDemographicChange(): void {
-    const sub = this.demographic$.subscribe((demographic) => {
-      this.weightHeightList = demographic?.weightHeightHistories || [];
-    });
+  subscribeWeightHeightHistoryListChange(): void {
+    const sub = this.weightHeightHistoryList$
+      .pipe(distinctUntilChanged())
+      .subscribe((weightHeightHistoryList) => {
+        if (!!!weightHeightHistoryList) {
+          return;
+        }
+        this.weightHeightHistoryList = weightHeightHistoryList;
+      });
     this.subscription$.add(sub);
   }
 
   ngOnInit(): void {
-    this.subscribeDemographicChange();
+    this.subscribeWeightHeightHistoryListChange();
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
 
-  deleteItem(id: number): void {
-    const dialogInput: ConfirmDialogInput = {
-      title: this.translateService.instant(
-        'USER__USER_PROFILES__BASIC_INFORMATION_LIST__CONFIRM_DELETE_DIALOG_TITLE'
-      ),
-      content: this.translateService.instant(
-        'USER__USER_PROFILES__BASIC_INFORMATION_LIST__CONFIRM_DELETE_DIALOG_CONTENT'
-      ),
-    };
-    const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
-      data: dialogInput,
-    });
-    dialogRef.afterClosed().subscribe((dialogOutput: ConfirmDialogOutput) => {
-      if (dialogOutput?.action === 'yes') {
-        // dleete
-      }
-    });
+  deleteItemClick(id: number): void {
+    this.deleteEvent.emit(id);
   }
+
   cancelClick(): void {
     this.cancelEvent.emit();
   }

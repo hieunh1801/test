@@ -1,0 +1,29 @@
+
+### GET ALL
+GET http://localhost:61128/customer-user/v1.0/en/users/1/profile/weight-height-history
+
+
+### POST
+POST http://localhost:61128/customer-user/v1.0/en/users/1/profile/weight-height-history
+Content-Type: application/json
+
+{
+  "weight": 10,
+  "height": 29,
+  "date": "2021-11-24"
+}
+
+
+### PUT
+PUT http://localhost:61128/customer-user/v1.0/en/users/1/profile/weight-height-history/1042
+Content-Type: application/json
+
+{
+  "weight": 103,
+  "height": 29,
+  "date": "2021-11-24"
+}
+
+
+### DELETE
+DELETE http://localhost:61128/customer-user/v1.0/en/users/1/profile/weight-height-history/1042

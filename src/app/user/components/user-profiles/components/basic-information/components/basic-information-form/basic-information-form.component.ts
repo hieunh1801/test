@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { greaterThan } from '@shared/validators/greater-than.validator';
-import { lessThan } from '@shared/validators/less-than.validator';
+import { WeightHeightHistoryPostRequest } from '@user/services/user-basic-information.service';
 
 @Component({
   selector: 'app-basic-information-form',
@@ -17,10 +15,7 @@ export class BasicInformationFormComponent implements OnInit {
   maxDate = new Date();
   minDate = new Date('1900-01-01');
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private translateService: TranslateService
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   initForm(): void {
     this.basicInformationForm = this.formBuilder.group({
@@ -37,7 +32,6 @@ export class BasicInformationFormComponent implements OnInit {
   }
   ngOnInit(): void {
     this.initForm();
-    console.log('FORM');
   }
 
   get f(): any {
@@ -53,5 +47,15 @@ export class BasicInformationFormComponent implements OnInit {
     event.preventDefault();
 
     this.basicInformationForm.markAllAsTouched();
+    if (this.basicInformationForm.valid) {
+      const formValue = this.basicInformationForm.value;
+      const postRequest: WeightHeightHistoryPostRequest = {
+        weight: formValue.weight,
+        height: formValue.height,
+        date: formValue.date,
+      };
+
+      this.createEvent.emit(postRequest);
+    }
   }
 }

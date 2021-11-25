@@ -1,0 +1,27 @@
+### get user demographic
+
+GET http://localhost:61127/portal/v1.0/en/user/profile/demographic
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+
+### PUT
+PUT http://localhost:61127/portal/v1.0/en/user/profile/demographic
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+{
+  "surname": "Nguyen",
+  "givenName": "Huu Hieu",
+  "gender": 1,
+  "birthday": null,
+  "mobile": "123456",
+  "country": "Vietnam",
+  "city": null,
+  "district": null,
+  "addressDetails": null,
+  "avatar": null,
+  "bloodType": "AB+",
+  "ethnicity": null,
+  "nationality": null,
+  "updatedActor": "hieunguyen"
+}
