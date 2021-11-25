@@ -1,5 +1,5 @@
 // import { DrugBizGroup } from '../drug-biz-group/drug-biz-group';
-// import { Gene, VirtualVariant } from '../gene-detail/gene';
+import { Gene } from '../gene/gene';
 import { DrugKr } from './drug-kr';
 
 export class Drug {
@@ -47,7 +47,7 @@ export class Drug {
   updatedTime: string;
   updatedActor: string;
 
-  // genes: Array<Gene>;
+  genes: Array<Gene>;
   // bizGroups: Array<DrugBizGroup>;
   kr: DrugKr;
 

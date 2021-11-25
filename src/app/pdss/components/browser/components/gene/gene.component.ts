@@ -8,6 +8,7 @@ import { PageLoadingService } from '@shared/services/page-loading.service';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { finalize } from 'rxjs/operators';
+import { LanguageService } from '@shared/services/language.service';
 
 @Component({
   selector: 'app-gene',
@@ -24,7 +25,8 @@ export class GeneComponent implements OnInit, OnDestroy {
     private geneService: GeneService,
     private pageLoadingService: PageLoadingService,
     private matSnackbarService: MatSnackbarService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    public languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class GeneComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response?.data?.items?.[0]) {
-            this.onGetGene(response.data.items);
+            this.onGetGene(response.data.items[0]);
           } else {
             this.gene = null;
           }

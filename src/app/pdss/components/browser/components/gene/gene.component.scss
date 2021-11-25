@@ -41,6 +41,15 @@
   }
 }
 
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a.white {
+  color: #fff;
+}
+
 .brand {
   padding: 4px 8px;
   border: 1px solid #ff4081;
@@ -51,6 +60,7 @@
 }
 
 .drug {
+  margin: 3px;
   padding: 4px 8px;
   border: 1px solid #155724;
   background-color: #155724;
@@ -78,8 +88,8 @@
   color: #5399cc;
 }
 
-a,
-a:visited {
+.ex-link td.link a,
+.ex-link td.link a:visited {
   color: #5399cc;
   text-decoration: none;
 }

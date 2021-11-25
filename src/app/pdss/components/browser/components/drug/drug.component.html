@@ -1,15 +1,16 @@
 <div id="drug-detail-page">
   <div class="section">
     <div id="drug-info">
-      <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
-        <h2>Abacavir</h2>
-        <div class="default-margin">
-          synonyms<br />
-          Declare Word<br />
-        </div>
+      <div
+        class="title"
+        fxLayout="column"
+        fxLayoutAlign="space-between left"
+        *ngIf="!!drug"
+      >
+        <h1 class="bold">{{ drug.name | titlecase }}</h1>
+        <div class="default-margin"></div>
         <table style="width: 300px">
           <ng-container matColumnDef="guideline">
-            <th mat-header-cell *matHeaderCellDef>GL</th>
             <td>
               <img
                 src="../../../../../../assets/pgx/guideline_yes.png"
@@ -58,119 +59,131 @@
           />
         </div>
         <div class="default-margin">
-          <h3>What is Abacavir</h3>
-          <h4 class="sub-title">Summary</h4>
-          <div class="sub-content">
-            뉴클레오시드 역전사효소 억제제(nucleoside reverse transcriptase
-            inhibitor). Abacavir는 구아노신 유사체로서 carbovir triphosphate로
-            인산화되어 HIV 바이러스의 RNA-의존적 DNA polymerase를 방해함으로써
-            바이러스 복제를 억제한다.<br />
-            Nucleoside reverse transcriptase inhibitor. Abacavir is a guanosine
-            analog that is phosphorylated with carbovir triphosphate and
-            inhibits viral replication by interfering with the RNA-dependent DNA
-            polymerase of the HIV virus.
+          <h2>What is {{ drug.name | titlecase }}</h2>
+          <div *ngIf="!!drug.summary">
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'en'"
+            >
+              {{ drug.summary }}
+            </div>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'kr'"
+            >
+              {{ drug.kr.summary }}
+            </div>
           </div>
-          <h4 class="sub-title">Indication</h4>
-          <div class="sub-content">
-            아바카비르는 다른 항레트로 바이러스제와 병용하여 HIV-1 감염 치료에
-            사용합니다. <br />[DrugBank] For the treatment of HIV-1 infection,
-            in combination with other antiretroviral agents.
+          <div *ngIf="!!drug.indicationSummarySpmed">
+            <h2 class="sub-title">Indication</h2>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'en'"
+            >
+              {{ drug.indicationSummarySpmed }}
+            </div>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'kr'"
+            >
+              {{ drug.kr.indicationSummarySpmed }}
+            </div>
           </div>
+          <div *ngIf="!!drug.toxicitySummarySpmed">
+            <h2 class="sub-title">Toxicity</h2>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'en'"
+            >
+              {{ drug.toxicitySummarySpmed }}
+            </div>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'kr'"
+            >
+              {{ drug.kr.toxicitySummarySpmed }}
+            </div>
+          </div>
+        </div>
 
-          <h4 class="sub-title">Toxicity</h4>
-          <div class="sub-content">
-            동물 실험(쥐) 결과 일부 실험체에서 심근변성이 발견되었습니다_ 그리고
-            성인 HIV-1 환자 대상의 임상시험 결과 가장 흔하게 보고된 중증도
-            부작용 (발생률 10% 이상)은 메스꺼움 두통 불쾌감 및 피로 구토
-            수면장애입니다_ HLA-B*57:01 대립유전자에 의해 심각한 과민반응이
-            나타날 수 있으며 이러한 약물과민반응은 치료 시작 후 6주 이내에
-            나타납니다_ 미국 FDA는 환자에게 아바카비르 처방 전 HLA-B*57:01
-            대립유전자 검사를 시행하는 것을 권장합니다<br />[DrugBank] Some
-            myocardial degeneration has been noticed in rats and mice. The most
-            commonly reported adverse reactions of at least moderate intensity
-            (incidence ≥10%) in adult HIV-1 clinical trials were nausea,
-            headache, malaise and fatigue, nausea and vomiting, and dreams/sleep
-            disorders. Serious hypersensitivity reactions have been associated
-            with abacavir which has been strongly linked to the presence of the
-            HLA-B*57:01 allele. This reaction manifests itself in patients
-            within the first 6 weeks of treatment. Patients should be tested for
-            the presence of this allele as recommended by the U.S Food and Drug
-            Administration (FDA).
+        <div class="default-margin">
+          <h2>Related genes</h2>
+          <div
+            fxLayout="row wrap"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start left"
+          >
+            <div class="brand" *ngFor="let gene of drug.genes">
+              <a
+                class="white"
+                [routerLink]="['/pdss/gene', gene.id, 'detail']"
+                >{{ gene.symbol }}</a
+              >
+            </div>
           </div>
         </div>
+
         <div class="default-margin">
-          <h3>Related genes</h3>
-          <span class="brand">HLA-B</span>
-        </div>
-        <div class="default-margin">
-          <h3>Brand Information</h3>
+          <h2>Synonyms Information</h2>
           <div class="content">
             <ul>
-              <li>지아겐정300밀리그램(아바카비르황산염)</li>
-              <li>키벡사정</li>
-              <li>트리멕정</li>
+              <li *ngFor="let synonym of drugSynonyms">
+                <span *ngIf="synonym.type !== 'Generic_Name'">{{
+                  synonym.synonyms
+                }}</span>
+              </li>
             </ul>
-            <!--
-              <mat-selection-list [multiple]="false">
-                <mat-list-option>
-                  지아겐정300밀리그램(아바카비르황산염)
-                </mat-list-option>
-                <mat-list-option>키벡사정</mat-list-option>
-                <mat-list-option>트리멕정</mat-list-option>
-              </mat-selection-list>
-              -->
           </div>
         </div>
         <div class="default-margin">
-          <h3>External Information</h3>
+          <h2>External Information</h2>
           <table class="ex-link">
-            <tr>
+            <tr *ngIf="drug.idPharmgkb">
               <td class="w100" style="width: 100px">PharmGKB</td>
               <td class="link">
                 <a
-                  href="https://www.pharmgkb.org/chemical/PA448004"
+                  href="https://www.pharmgkb.org/chemical/{{ drug.idPharmgkb }}"
                   target="_blank"
-                  >PA448004</a
+                >
+                  {{ drug.idPharmgkb }}
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="drug.idDrugbank">
+              <td class="w100" style="width: 100px">Drugbank</td>
+              <td class="link">
+                <a
+                  href="https://go.drugbank.com/drugs/{{ drug.idDrugbank }}"
+                  target="_blank"
+                  >{{ drug.idDrugbank }}</a
                 >
               </td>
             </tr>
-            <tr>
-              <td class="w100">RxNorm</td>
-              <td class="link">190521</td>
-            </tr>
-            <tr>
+            <tr *ngIf="drug.pubchemCompoundIdentifier">
               <td class="w100">PubChem</td>
               <td class="link">
                 <a
-                  href="https:  //pubchem.ncbi.nlm.nih.gov/compound/441300"
+                  href="https:  //pubchem.ncbi.nlm.nih.gov/compound/{{
+                    drug.pubchemCompoundIdentifier
+                  }}"
                   target="_blank"
-                  >441300</a
+                  >{{ drug.pubchemCompoundIdentifier }}</a
                 >
               </td>
             </tr>
-            <tr>
-              <td class="w100">MeSH</td>
-              <td class="link">C106538</td>
+            <tr *ngIf="drug.rxnormIdentifier">
+              <td class="w100">RxNorm</td>
+              <td>{{ drug.rxnormIdentifier }}</td>
             </tr>
             <tr>
-              <td class="w100">ATC</td>
-              <td class="link">
-                J05AF06(abacavir)<br />
-                J05AR02(lamivudine and abacavir)<br />
-                J05AR04(zidovudine lamivudine and abacavir)<br />J05AR13(lamivudine
-                abacavir and dolutegravir)
+              <td class="w100">External Vocabulary</td>
+              <td>
+                <div *ngFor="let item of exVoca; index as i">{{ item }}</div>
               </td>
-            </tr>
-            <tr>
-              <td class="w100">UMLS</td>
-              <td class="link">C0663655(abacavir)</td>
-            </tr>
-            <tr>
-              <td class="w100">NDFRT</td>
-              <td class="link">N000002</td>
             </tr>
           </table>
         </div>
+        <!--
         <div class="default-margin">
           <h3>Reference</h3>
           <div class="contents">
@@ -198,6 +211,7 @@
             </ol>
           </div>
         </div>
+        -->
       </div>
     </div>
   </div>

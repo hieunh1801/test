@@ -24,6 +24,8 @@ export class GeneService {
     // Calling API for getting all guidelines
     return this.httpClient
       .get(url)
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+      .pipe
+      // tap((data) => console.log(JSON.stringify(data)));
+      ();
   }
 }

@@ -24,6 +24,22 @@ export class DrugService {
     // Calling API for getting all guidelines
     return this.httpClient
       .get(url)
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+      .pipe
+      //tap((data) => console.log(JSON.stringify(data)));
+      ();
+  }
+
+  /**
+   * Get drug detaiils
+   */
+  getDrugSynonymsById(id: number): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drugsynonyms/${id}`;
+
+    // Calling API for getting all guidelines
+    return this.httpClient
+      .get(url)
+      .pipe
+      // tap((data) => console.log(JSON.stringify(data))));
+      ();
   }
 }

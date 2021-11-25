@@ -1,12 +1,15 @@
 <div id="gene-page">
   <div class="section">
     <div id="gene-info">
-      <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
-        <h2>CYP2C9</h2>
-        <div class="default-margin">
-          synonyms<br />
-          Cytochrome P450 2C9<br />
-        </div>
+      <div
+        class="title"
+        fxLayout="column"
+        fxLayoutAlign="space-between left"
+        *ngIf="!!gene"
+      >
+        <h1 class="bold">{{ gene.symbol }}</h1>
+        <h3>{{ gene.scientificName }}</h3>
+        <div class="default-margin"></div>
         <table style="width: 300px">
           <ng-container matColumnDef="guideline">
             <th mat-header-cell *matHeaderCellDef>GL</th>
@@ -57,113 +60,89 @@
             style="width: 80%"
           />
         </div>
+
         <div class="default-margin">
-          <h3>What is CYP2C9</h3>
-          <h4 class="sub-title">Summary</h4>
-          <div class="sub-content">
-            CYP2C9는 사이토크롬 P450 슈퍼패밀리의 하나로써 전체 CYP450 효소의 약
-            20%를 구성하고 있습니다. 1상 대사를 받는 약물의 약 15-20%가 CYP2C9에
-            의해 대사되며, arachidonic acid, linoleic acid, NSAIDs,
-            ARB(angiotensin receptor blocker), sulfonylurea계 약물, warfarin,
-            phenytoin 등의 대사에 관여합니다. 치료약물 등의 환경적 인자들이
-            CYP2C9의 발현에 영향을 주고 약물 반응이나 체내동태에 영향을 줍니다.
-            특히, rifampin 등에 의해 CYP2C9의 발현이 증가되며, amiodarone,
-            fluconazole등에 의해 CYP2C9활성이 감소하게 됩니다. 다른
-            CYP450유전자들과 마찬가지로 CYP2C9의 유전적 다형성이 존재하며 간에서
-            발현과 효소 활성에 영향을 주어 CYP2C9기질 약물의 대사에 개인간의
-            차이를 보이기도 합니다. CYP2C9기질의 대사능력에 따라 EM(Extensive
-            Metabolizer), IM(Intermediate Metabolizer), PM(Poor Metabolizer)으로
-            분류됩니다. 기능이 결여된 변이형 PM으로 분류되는 유전형에는
-            CYP2C9*2와 CYP2C9*3가 있습니다. 아시아 인구의 약 3-6 %가 CYP2C9
-            기능이 없는 변이(PM)를 가지며, 백인에서는 약 6-15% 빈도를 보입니다.
-            한국인 유전적 특성을 반영한 와파린
-            용량예측사이트(https://spmed.kr/wardosing.php)에서 유전형결과, 식이,
-            병용약물 등을 입력하면 항정상태 와파린 추정용량 계산이 가능합니다<br />
-            CYP2C9 is one of the cytochrome P450 superfamily and constitutes
-            about 20% of all CYP450 enzymes. About 15-20% of drugs undergoing
-            phase 1 metabolism are metabolized by CYP2C9, arachidonic acid,
-            linoleic acid, NSAIDs, It is involved in the metabolism of ARB
-            (angiotensin receptor blocker), sulfonylurea-based drugs, warfarin,
-            phenytoin, etc. Environmental factors such as therapeutic drugs
-            affect the expression of CYP2C9 and affect drug reactions and body
-            kinetics, especially rifampin, etc. CYP2C9 expression is increased
-            by this, and CYP2C9 activity is decreased by amiodarone,
-            fluconazole, etc. Like other CYP450 genes, there is a genetic
-            polymorphism of CYP2C9. According to the metabolic ability of CYP2C9
-            substrate, it is classified into EM (Extensive Metabolizer), IM
-            (Intermediate Metabolizer), PM (Poor Metabolizer). And CYP2C9*3.
-            About 3-6% of the Asian population has a CYP2C9 non-functional
-            mutation (PM), with a frequency of about 6-15% in Caucasians. If you
-            enter the genotyping results, diet, and concomitant drugs on the
-            warfarin dose prediction site (https://spmed.kr/wardosing.php) that
-            reflects the genetic characteristics of Koreans, you can calculate
-            the estimated steady state warfarin dose.
+          <h2>What is {{ gene.symbol }}</h2>
+          <div *ngIf="!!gene.summary">
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'en'"
+            >
+              {{ gene.summary }}
+            </div>
+            <div
+              class="sub-content"
+              *ngIf="this.languageService.currentLanguage == 'kr'"
+            >
+              {{ gene.kr.summary }}
+            </div>
           </div>
         </div>
+
         <div class="default-margin">
-          <h3>Related drugs</h3>
-          <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-            <span class="drug">acenocoumarol</span>
-            <span class="drug">candesartan</span>
-            <span class="drug">celecoxib</span>
-            <span class="drug">declofenac</span>
-            <span class="drug">glibenclamide</span>
-            <span class="drug">gliclazide</span>
-            <span class="drug">Glimepiride</span>
-            <span class="drug">ibuprofen</span>
-            <span class="drug">irbesartan</span>
-            <span class="drug">losartan</span>
+          <h2>Related drugs</h2>
+          <div
+            fxLayout="row wrap"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start left"
+          >
+            <div class="drug" *ngFor="let drug of gene.drugs">
+              <a
+                class="white"
+                [routerLink]="['/pdss/drug', drug.id, 'detail']"
+                >{{ drug.name }}</a
+              >
+            </div>
           </div>
         </div>
+
         <div class="default-margin">
-          <h3>External Information</h3>
+          <h2>External Information</h2>
           <table class="ex-link">
-            <tr>
+            <tr *ngIf="gene.idPharmgkb">
               <td class="w100" style="width: 100px">PharmGKB</td>
               <td class="link">
-                <a href="https://www.pharmgkb.org/gene/PA126" target="_blank"
-                  >PA126</a
+                <a
+                  href="https://www.pharmgkb.org/gene/{{ gene.idPharmgkb }}"
+                  target="_blank"
                 >
+                  {{ gene.idPharmgkb }}
+                </a>
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="gene.idNcbi">
               <td class="w100">NCBI</td>
               <td class="link">
-                <a href="https://www.ncbi.nlm.nih.gov/gene/1559" target="_blank"
-                  >1559</a
+                <a
+                  href="https://www.ncbi.nlm.nih.gov/gene/{{ gene.idNcbi }}"
+                  target="_blank"
+                  >{{ gene.idNcbi }}</a
                 >
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="gene.idHgnc">
               <td class="w100">HGNC</td>
               <td class="link">
                 <a
-                  href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:2623"
+                  href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:{{
+                    gene.idHgnc
+                  }}"
                   target="_blank"
-                  >2623</a
+                  >{{ gene.idHgnc }}</a
                 >
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="gene.idEnsembl">
               <td class="w100">Ensembl</td>
               <td class="link">
-                <a href="https://www.ensembl.org/id/" target="_blank"
-                  >ENSG00000138109</a
+                <a
+                  href="https://www.ensembl.org/id/{{ gene.idEnsembl }}"
+                  target="_blank"
+                  >{{ gene.idEnsembl }}</a
                 >
               </td>
             </tr>
           </table>
-        </div>
-        <div class="default-margin">
-          <h3>Reference</h3>
-          <div class="contents">
-            <ol>
-              <li>
-                Lab Med Online Vol. 6, No. 3: 119-133, July 2016.
-                <span class="bold">[Article]</span>
-              </li>
-            </ol>
-          </div>
         </div>
       </div>
     </div>
