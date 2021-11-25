@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { DateUtilService } from '@shared/services/date-util.service';
 import {
   DiseaseHistoryPostRequest,
@@ -46,7 +45,6 @@ export class DiseaseHistoryFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private translateService: TranslateService,
     private dateUtilService: DateUtilService
   ) {}
 

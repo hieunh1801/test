@@ -17,7 +17,10 @@ import {
   ConfirmDialogOutput,
 } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
-import { UserDiseaseHistoryService } from '@user/services/user-disease-history.service';
+import {
+  DiseaseHistoryPutRequest,
+  UserDiseaseHistoryService,
+} from '@user/services/user-disease-history.service';
 import { DiseaseHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -34,6 +37,11 @@ export class DiseaseHistoryListComponent
   @Input() mode: 'VIEW' | 'EDIT' = 'VIEW';
 
   @Output() cancelEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter<number>();
+  @Output() updateEvent = new EventEmitter<{
+    diseaseHistoryId: number;
+    putRequest: DiseaseHistoryPutRequest;
+  }>();
 
   dataSource: DiseaseHistory[] = [];
   diseaseHistoryEditIdSet = new Set();
@@ -41,20 +49,7 @@ export class DiseaseHistoryListComponent
   subscription$ = new Subscription();
   showLess$ = new BehaviorSubject<boolean>(true);
 
-  constructor(
-    private userDiseaseHistoryService: UserDiseaseHistoryService,
-    private translateService: TranslateService,
-    private matSnackbarService: MatSnackbarService,
-    private matDialog: MatDialog
-  ) {}
-
-  loadDiseaseHistoryList(): void {
-    this.userDiseaseHistoryService
-      .getAllUserDiseaseHistory()
-      .subscribe((response) => {
-        this.diseaseHistoryList$.next(response?.data?.items || []);
-      });
-  }
+  constructor() {}
 
   isEditItem(diseaseHistoryId: number): boolean {
     return this.diseaseHistoryEditIdSet.has(diseaseHistoryId);
@@ -76,63 +71,24 @@ export class DiseaseHistoryListComponent
     this.diseaseHistoryEditIdSet = mSet;
   }
 
-  updateItem({ diseaseHistoryId, putRequest }): void {
-    if (diseaseHistoryId) {
-      this.userDiseaseHistoryService
-        .putUserDiseaseHistory(diseaseHistoryId, putRequest)
-        .subscribe({
-          next: (response) => {
-            if (response?.status?.code === 'success') {
-              this.loadDiseaseHistoryList();
-              this.toggleEdit(diseaseHistoryId);
-              this.matSnackbarService.openUpdateSuccess();
-            } else {
-              this.matSnackbarService.openUpdateFailed();
-            }
-          },
-          error: (error) => {
-            console.error(error);
-            this.matSnackbarService.openUpdateFailed();
-          },
-        });
+  updateItem({
+    diseaseHistoryId,
+    putRequest,
+  }: {
+    diseaseHistoryId: number;
+    putRequest: DiseaseHistoryPutRequest;
+  }): void {
+    if (!diseaseHistoryId) {
+      return;
     }
+    this.updateEvent.emit({ diseaseHistoryId, putRequest });
   }
 
   deleteItem(diseaseHistoryId: number): void {
     if (!diseaseHistoryId) {
       return;
     }
-    const dialogInput: ConfirmDialogInput = {
-      title: this.translateService.instant(
-        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__CONFIRM_DELETE'
-      ),
-      content: this.translateService.instant(
-        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__ARE_YOUR_SURE_TO_DELETE'
-      ),
-    };
-    const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
-      data: dialogInput,
-    });
-    dialogRef.afterClosed().subscribe((dialogOutput: ConfirmDialogOutput) => {
-      if (dialogOutput.action === 'yes') {
-        this.userDiseaseHistoryService
-          .deleteUserDiseaseHistory(diseaseHistoryId)
-          .subscribe({
-            next: (response) => {
-              if (response?.status?.code === 'success') {
-                this.loadDiseaseHistoryList();
-                this.matSnackbarService.openDeleteSuccess();
-              } else {
-                this.matSnackbarService.openDeleteFailed();
-              }
-            },
-            error: (error) => {
-              console.error(error);
-              this.matSnackbarService.openUpdateFailed();
-            },
-          });
-      }
-    });
+    this.deleteEvent.emit(diseaseHistoryId);
   }
 
   reloadDataSource(): void {

@@ -4,14 +4,6 @@
       USER__USER_PROFILES__DISEASE_HISTORY__TITLES__DISEASE_HISTORY
     </h2>
     <div>
-      <!-- <button
-        mat-icon-button
-        (click)="changeMode('VIEW')"
-        *ngIf="diseaseHistoryList && diseaseHistoryList.length > 0"
-      >
-        <mat-icon>grid_view</mat-icon>
-      </button> -->
-
       <button
         mat-icon-button
         [matMenuTriggerFor]="menuEdit"
@@ -49,7 +41,9 @@
       *ngIf="mode === 'EDIT' || mode === 'VIEW'"
       [mode]="mode"
       [diseaseHistoryList$]="diseaseHistoryList$"
-      (cancelEvent)="changeMode('VIEW') && reloadMedicalHistoryList()"
+      (deleteEvent)="deleteItem($event)"
+      (cancelEvent)="changeMode('VIEW')"
+      (updateEvent)="updateItem($event)"
     >
     </app-disease-history-list>
   </div>
