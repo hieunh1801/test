@@ -5,14 +5,6 @@
     </h2>
 
     <div>
-      <!-- <button
-        mat-icon-button
-        (click)="changeMode('VIEW')"
-        *ngIf="medicalHistoryList && medicalHistoryList.length > 0"
-      >
-        <mat-icon>grid_view</mat-icon>
-      </button> -->
-
       <button
         mat-icon-button
         [matMenuTriggerFor]="menuEdit"
@@ -25,10 +17,10 @@
         mat-button
         class="add-button"
         *ngIf="
-          mode === MedicalHistoryMode.VIEW &&
+          mode$.value === 'VIEW' &&
           (!medicalHistoryList || medicalHistoryList.length === 0)
         "
-        (click)="changeMode(MedicalHistoryMode.ADD)"
+        (click)="changeMode('ADD')"
       >
         <span translate>
           USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD
@@ -40,34 +32,30 @@
   <div class="content">
     <!-- view -->
     <app-medical-history-list
+      *ngIf="mode$.value !== 'ADD'"
+      [mode$]="mode$"
+      [showLess$]="showLess$"
       [medicalHistoryList$]="medicalHistoryList$"
-      *ngIf="mode === MedicalHistoryMode.VIEW"
+      (showLessEvent)="showLessEvent($event)"
+      (updateEvent)="updateItem($event)"
+      (deleteEvent)="deleteItem($event)"
+      (cancelEvent)="changeMode('VIEW')"
     ></app-medical-history-list>
 
-    <!-- add -->
+    <!-- list view -->
     <app-medical-history-form
-      *ngIf="mode === MedicalHistoryMode.ADD"
-      (cancelEvent)="changeMode(MedicalHistoryMode.VIEW)"
+      *ngIf="mode$.value === 'ADD'"
+      (cancelEvent)="changeMode('VIEW')"
       (createEvent)="create($event)"
     ></app-medical-history-form>
-
-    <!-- edit -->
-    <app-medical-history-list-edit
-      *ngIf="mode === MedicalHistoryMode.EDIT"
-      [medicalHistoryList$]="medicalHistoryList$"
-      (cancelEvent)="
-        changeMode(MedicalHistoryMode.VIEW) && reloadMedicalHistoryList()
-      "
-    >
-    </app-medical-history-list-edit>
   </div>
 </div>
 
 <mat-menu #menuEdit="matMenu">
-  <button mat-menu-item (click)="changeMode(MedicalHistoryMode.ADD)">
+  <button mat-menu-item (click)="changeMode('ADD')">
     <span translate> USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__ADD </span>
   </button>
-  <button mat-menu-item (click)="changeMode(MedicalHistoryMode.EDIT)">
+  <button mat-menu-item (click)="changeMode('EDIT')">
     <span translate> USER__USER_PROFILES__MEDICAL_HISTORY__BUTTONS__EDIT </span>
   </button>
 </mat-menu>
