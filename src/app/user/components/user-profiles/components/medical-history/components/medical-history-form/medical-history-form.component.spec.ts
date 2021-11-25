@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MedicalHistoryAddComponent } from './medical-history-add.component';
+import { MedicalHistoryFormComponent } from './medical-history-form.component';
 
-describe('MedicalHistoryAddComponent', () => {
-  let component: MedicalHistoryAddComponent;
-  let fixture: ComponentFixture<MedicalHistoryAddComponent>;
+describe('MedicalHistoryFormComponent', () => {
+  let component: MedicalHistoryFormComponent;
+  let fixture: ComponentFixture<MedicalHistoryFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MedicalHistoryAddComponent ]
+      declarations: [ MedicalHistoryFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MedicalHistoryAddComponent);
+    fixture = TestBed.createComponent(MedicalHistoryFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

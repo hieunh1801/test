@@ -15,7 +15,6 @@ import { CloseAccountComponent } from './components/user-settings/components/acc
 import { IntroductionComponent } from './components/user-profiles/components/introduction/introduction.component';
 import { MedicalHistoryComponent } from './components/user-profiles/components/medical-history/medical-history.component';
 import { LifeStyleComponent } from './components/user-profiles/components/life-style/life-style.component';
-import { MedicalHistoryAddComponent } from './components/user-profiles/components/medical-history/components/medical-history-add/medical-history-add.component';
 import { MedicalHistoryListComponent } from './components/user-profiles/components/medical-history/components/medical-history-list/medical-history-list.component';
 import { MedicalHistoryListEditComponent } from './components/user-profiles/components/medical-history/components/medical-history-list-edit/medical-history-list-edit.component';
 import { DiseaseHistoryComponent } from './components/user-profiles/components/disease-history/disease-history.component';
@@ -27,6 +26,7 @@ import { BasicInformationFormComponent } from './components/user-profiles/compon
 import { BasicInformationListComponent } from './components/user-profiles/components/basic-information/components/basic-information-list/basic-information-list.component';
 import { IntroductionDetailComponent } from './components/user-profiles/components/introduction/components/introduction-detail/introduction-detail.component';
 import { IntroductionFormComponent } from './components/user-profiles/components/introduction/components/introduction-form/introduction-form.component';
+import { MedicalHistoryFormComponent } from './components/user-profiles/components/medical-history/components/medical-history-form/medical-history-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { IntroductionFormComponent } from './components/user-profiles/components
     IntroductionComponent,
     MedicalHistoryComponent,
     LifeStyleComponent,
-    MedicalHistoryAddComponent,
     MedicalHistoryListComponent,
     MedicalHistoryListEditComponent,
     DiseaseHistoryComponent,
@@ -54,6 +53,7 @@ import { IntroductionFormComponent } from './components/user-profiles/components
     BasicInformationListComponent,
     IntroductionDetailComponent,
     IntroductionFormComponent,
+    MedicalHistoryFormComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })
