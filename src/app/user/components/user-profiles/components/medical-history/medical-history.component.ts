@@ -88,6 +88,7 @@ export class MedicalHistoryComponent implements OnInit, OnDestroy {
         const isSuccess = statusResponse.code === 'success';
         if (isSuccess) {
           this.reloadMedicalHistoryList();
+          this.changeMode('VIEW');
           this.matSnackbarService.openCreateSuccess();
         } else {
           this.matSnackbarService.openCreateFailed();
