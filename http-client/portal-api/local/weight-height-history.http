@@ -1,0 +1,33 @@
+
+### GET ALL
+GET http://localhost:61127/portal/v1.0/en/user/profile/demographic/weight-height-history
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+
+### POST
+POST http://localhost:61127/portal/v1.0/en/user/profile/demographic/weight-height-history
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+{
+  "weight": 10,
+  "height": 29,
+  "date": "2021-11-24"
+}
+
+
+### PUT
+PUT http://localhost:61127/portal/v1.0/en/user/profile/demographic/weight-height-history/1035
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+{
+  "weight": 103,
+  "height": 29,
+  "date": "2021-11-24"
+}
+
+
+### DELETE
+DELETE http://localhost:61127/portal/v1.0/en/users/profile/demographic/weight-height-history/1035
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618

@@ -34,6 +34,7 @@ export interface UserProfile {
   diseaseHistories?: DiseaseHistory[];
   medicalHistories?: MedicalHistory[];
   demographic?: Demographic;
+  weightHeightHistories: WeightHeightHistory[];
 }
 
 export interface MedicalHistory {
@@ -67,11 +68,10 @@ export interface DiseaseHistory {
 export interface WeightHeightHistory {
   id: number;
   weight?: number;
-  weightUnit?: any;
+  // weightUnit?: any;
   height?: number;
-  heightUnit?: any;
+  // heightUnit?: string;
   date?: string;
-  demographic?: any;
 }
 
 export interface Demographic {
@@ -85,16 +85,16 @@ export interface Demographic {
   dayOfBirth?: string;
   birthday?: string;
   mobile?: string;
-  country?: any;
+  country?: string;
   city?: string;
   district?: string;
   addressDetails?: string;
   avatar?: string;
-  bloodType?: any;
-  ethnicity?: any;
+  bloodType?: string;
+  ethnicity?: string;
+  nationality?: string;
   createdTime?: string;
   createdActor?: string;
   updatedTime?: string;
-  updatedActor?: any;
-  weightHeightHistories: WeightHeightHistory[];
+  updatedActor?: string;
 }

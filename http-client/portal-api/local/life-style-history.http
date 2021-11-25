@@ -1,0 +1,61 @@
+
+### GET ALL
+GET http://localhost:61127/portal/v1.0/en/user/profile/life-style-history
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+
+### POST
+POST http://localhost:61127/portal/v1.0/en/user/profile/life-style-history
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+
+{
+  "alcohol": 1,
+  "alcoholAmount": 29,
+  "alcoholUnit": "ml",
+  "alcoholPerTimeUnit": "day",
+
+  "coffee": 1,
+  "coffeeAmount": 2,
+  "coffeeUnit": "cup",
+  "coffeePerTimeUnit": "day",
+
+  "smoking": 1,
+  "smokingAmount": 29,
+  "smokingUnit": "ml",
+  "smokingPerTimeUnit": "day",
+
+  "date": "2021-10-11",
+  "createdActor": "hieunguyen"
+}
+
+
+### PUT
+PUT http://localhost:61127/portal/v1.0/en/user/profile/life-style-history/56
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618
+
+{
+   "alcohol": 1,
+  "alcoholAmount": 29,
+  "alcoholUnit": "ml",
+  "alcoholPerTimeUnit": "day",
+
+  "coffee": 1,
+  "coffeeAmount": 2,
+  "coffeeUnit": "cup",
+  "coffeePerTimeUnit": "234",
+
+  "smoking": 1,
+  "smokingAmount": 29,
+  "smokingUnit": "ml",
+  "smokingPerTimeUnit": "day",
+
+  "date": "2021-10-11"
+}
+
+
+### DELETE
+DELETE http://localhost:61127/portal/v1.0/en/user/profile/life-style-history/57
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2Mzc3MjMxODAsImV4cCI6MTcyNDEyMzE4MH0.eOsD4Axzk3nWaHVkQw4H9rwL956myNXUkdefKPUr618

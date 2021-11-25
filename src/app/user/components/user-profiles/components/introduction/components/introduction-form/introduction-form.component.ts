@@ -11,9 +11,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class IntroductionFormComponent implements OnInit, OnDestroy {
   @Input() userProfile$ = new BehaviorSubject<UserProfile>(null);
 
-  defaultAvatarUrl =
-    'https://64.media.tumblr.com/da729f1f5aaaced34436e749c0a4aa40/tumblr_oabfcd8Sf11rbky0ho1_640.jpg';
-
+  defaultAvatarUrl = '/assets/images/default-avatar.png';
   demographicForm: FormGroup = null;
 
   subscription$ = new Subscription();
@@ -37,11 +35,6 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
   }
 
   initForm(demographic: Demographic): void {
-    console.log(
-      '🚀 ~ file: introduction-form.component.ts ~ line 37 ~ IntroductionFormComponent ~ initForm ~ demographic',
-      demographic
-    );
-
     if (demographic) {
       const {
         avatar,

@@ -1,9 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogInput,
+  ConfirmDialogOutput,
+} from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import {
   DiseaseHistoryPostRequest,
+  DiseaseHistoryPutRequest,
   UserDiseaseHistoryService,
 } from '@user/services/user-disease-history.service';
 import { DiseaseHistory } from '@user/services/user-profile.service';
@@ -17,17 +24,19 @@ import { distinctUntilChanged, finalize } from 'rxjs/operators';
 })
 export class DiseaseHistoryComponent implements OnInit, OnDestroy {
   @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>(null);
+  showLess$ = new BehaviorSubject<boolean>(true);
+  mode$ = new BehaviorSubject<'VIEW' | 'ADD' | 'EDIT'>('VIEW');
 
-  diseaseHistoryList: DiseaseHistory[] = [];
   subscription$ = new Subscription();
 
-  mode: 'VIEW' | 'ADD' | 'EDIT' = 'VIEW';
+  diseaseHistoryList: DiseaseHistory[] = [];
 
   constructor(
     private userDiseaseHistoryService: UserDiseaseHistoryService,
     private pageLoadingService: PageLoadingService,
     private matSnackbarService: MatSnackbarService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private matDialog: MatDialog
   ) {}
 
   subscribeDiseaseHistoryListChange(): void {
@@ -46,16 +55,18 @@ export class DiseaseHistoryComponent implements OnInit, OnDestroy {
         const data = response?.data?.items || null;
         if (data) {
           this.diseaseHistoryList$.next(data);
-          this.changeMode('VIEW');
         }
       });
   }
 
-  changeMode(mode: 'VIEW' | 'ADD' | 'EDIT'): void {
-    if (mode) {
-      this.mode = mode;
-    }
+  changeShowLess({ showLess }: { showLess: boolean }): void {
+    this.showLess$.next(showLess);
   }
+
+  changeMode(mode: 'VIEW' | 'ADD' | 'EDIT'): void {
+    this.mode$.next(mode);
+  }
+
   ngOnInit(): void {
     this.subscribeDiseaseHistoryListChange();
   }
@@ -78,10 +89,75 @@ export class DiseaseHistoryComponent implements OnInit, OnDestroy {
         const isSuccess = statusResponse.code === 'success';
         if (isSuccess) {
           this.reloadDiseaseHistoryList();
+          this.changeMode('VIEW');
           this.matSnackbarService.openCreateSuccess();
         } else {
           this.matSnackbarService.openCreateFailed();
         }
       });
+  }
+
+  deleteItem(diseaseHistoryId: number): void {
+    if (!diseaseHistoryId) {
+      return;
+    }
+    const dialogInput: ConfirmDialogInput = {
+      title: this.translateService.instant(
+        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__CONFIRM_DELETE'
+      ),
+      content: this.translateService.instant(
+        'USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__CONFIRM_DELETE__ARE_YOUR_SURE_TO_DELETE'
+      ),
+    };
+    const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
+      data: dialogInput,
+    });
+    dialogRef.afterClosed().subscribe((dialogOutput: ConfirmDialogOutput) => {
+      if (dialogOutput.action === 'yes') {
+        this.userDiseaseHistoryService
+          .deleteUserDiseaseHistory(diseaseHistoryId)
+          .subscribe({
+            next: (response) => {
+              if (response?.status?.code === 'success') {
+                this.reloadDiseaseHistoryList();
+                this.matSnackbarService.openDeleteSuccess();
+              } else {
+                this.matSnackbarService.openDeleteFailed();
+              }
+            },
+            error: (error) => {
+              console.error(error);
+              this.matSnackbarService.openUpdateFailed();
+            },
+          });
+      }
+    });
+  }
+
+  updateItem({
+    diseaseHistoryId,
+    putRequest,
+  }: {
+    diseaseHistoryId: number;
+    putRequest: DiseaseHistoryPutRequest;
+  }): void {
+    if (diseaseHistoryId) {
+      this.userDiseaseHistoryService
+        .putUserDiseaseHistory(diseaseHistoryId, putRequest)
+        .subscribe({
+          next: (response) => {
+            if (response?.status?.code === 'success') {
+              this.reloadDiseaseHistoryList();
+              this.matSnackbarService.openUpdateSuccess();
+            } else {
+              this.matSnackbarService.openUpdateFailed();
+            }
+          },
+          error: (error) => {
+            console.error(error);
+            this.matSnackbarService.openUpdateFailed();
+          },
+        });
+    }
   }
 }

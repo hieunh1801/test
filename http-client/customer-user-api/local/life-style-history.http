@@ -1,0 +1,57 @@
+
+### GET ALL
+GET http://localhost:61128/customer-user/v1.0/en/users/3/profile/life-style-history
+
+
+### POST
+POST http://localhost:61128/customer-user/v1.0/en/users/3/profile/life-style-history
+Content-Type: application/json
+
+{
+  "alcohol": 1,
+  "alcoholAmount": 29,
+  "alcoholUnit": "ml",
+  "alcoholPerTimeUnit": "day",
+
+  "coffee": 1,
+  "coffeeAmount": 2,
+  "coffeeUnit": "cup",
+  "coffeePerTimeUnit": "day",
+
+  "smoking": 1,
+  "smokingAmount": 29,
+  "smokingUnit": "ml",
+  "smokingPerTimeUnit": "day",
+
+  "date": "2021-10-11",
+  "createdActor": "hieunguyen"
+}
+
+
+### PUT
+PUT http://localhost:61128/customer-user/v1.0/en/users/3/profile/life-style-history/18
+Content-Type: application/json
+
+{
+   "alcohol": 1,
+  "alcoholAmount": 29,
+  "alcoholUnit": "ml",
+  "alcoholPerTimeUnit": "day",
+
+  "coffee": 1,
+  "coffeeAmount": 2,
+  "coffeeUnit": "cup",
+  "coffeePerTimeUnit": "234",
+
+  "smoking": 1,
+  "smokingAmount": 29,
+  "smokingUnit": "ml",
+  "smokingPerTimeUnit": "day",
+
+  "date": "2021-10-11",
+  "updatedActor": "hieunguyen"
+}
+
+
+### DELETE
+DELETE http://localhost:61128/customer-user/v1.0/en/users/3/profile/life-style-history/18

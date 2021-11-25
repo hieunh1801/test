@@ -1,0 +1,26 @@
+### get user demographic
+
+GET http://localhost:61128/customer-user/v1.0/en/users/329/profile/demographic
+
+
+
+### PUT
+PUT http://localhost:61128/customer-user/v1.0/en/users/329/profile/demographic
+Content-Type: application/json
+
+{
+  "surname": "Nguyen",
+  "givenName": "Huu Hieu",
+  "gender": 1,
+  "birthday": "1998-01-18",
+  "mobile": "123456",
+  "country": "Vietnam",
+  "city": null,
+  "district": null,
+  "addressDetails": null,
+  "avatar": null,
+  "bloodType": "AB+",
+  "ethnicity": null,
+  "nationality": null,
+  "updatedActor": "hieunguyen"
+}

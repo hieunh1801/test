@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -77,4 +77,15 @@ import { OverlayModule } from '@angular/cdk/overlay';
     OverlayModule,
   ],
 })
-export class MaterialModule {}
+export class MaterialModule {
+  constructor(public matIconRegistry: MatIconRegistry) {
+    // matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+  }
+
+  static forRoot(): ModuleWithProviders<MaterialModule> {
+    return {
+      ngModule: MaterialModule,
+      providers: [MatIconRegistry],
+    };
+  }
+}

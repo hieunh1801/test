@@ -1,13 +1,24 @@
-<div id="medical-history-list">
-  <ng-container *ngIf="dataSource && dataSource.length > 0">
-    <div>
-      <div *ngFor="let medicalHistory of dataSource">
+<ng-template
+  [ngIf]="dataSource && dataSource.length > 0"
+  [ngIfElse]="emptyData"
+>
+  <div id="medical-history-list">
+    <div *ngFor="let medicalHistory of dataSource" fxLayout="column">
+      <div
+        fxFlex
+        fxLayout="row"
+        class="medical-history-list-item"
+        [ngClass]="{ 'edit-item': isEditItem(medicalHistory?.id) }"
+      >
+        <!-- list-item -->
         <div
-          class="medical-history-list-item"
+          fxFlex
           fxLayout="row"
-          fxLayoutAlign="space-between stretch"
+          fxLayoutAlign="space-between center"
+          fxLayoutGap="0px"
           fxLayout.lt-sm="column"
           fxLayoutAlign.lt-sm="none"
+          fxLayoutGap.lt-sm="8px"
         >
           <span fxFlex="20" class="drug-name">{{ medicalHistory?.drug }}</span>
           <span fxFlex="50" class="note">{{ medicalHistory?.note }}</span>
@@ -31,14 +42,52 @@
             </ng-container>
           </span>
         </div>
+
+        <!-- list-item-action -->
+        <div class="actions" *ngIf="mode$.value === 'EDIT'" fxLayout="row">
+          <button mat-icon-button (click)="toggleEditItem(medicalHistory.id)">
+            <mat-icon class="edit-button">edit_outline</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteItem(medicalHistory.id)">
+            <mat-icon class="delete-button">delete_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- edit -->
+      <div
+        class="medical-history-list-item-edit"
+        *ngIf="isEditItem(medicalHistory.id)"
+      >
+        <app-medical-history-form
+          [medicalHistory]="medicalHistory"
+          (cancelEvent)="toggleEditItem(medicalHistory.id)"
+          (saveEvent)="updateItem($event)"
+        ></app-medical-history-form>
       </div>
     </div>
 
-    <ng-container *ngIf="medicalHistoryList$.value?.length > 3">
+    <div
+      class="actions"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      *ngIf="mode$.value === 'EDIT'"
+    >
+      <button mat-stroked-button (click)="cancelClick()">
+        <span translate>
+          USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST_EDIT__BUTTONS__CANCEL
+        </span>
+      </button>
+    </div>
+
+    <!-- show less, show more -->
+    <ng-container
+      *ngIf="medicalHistoryList$.value?.length > 3 && mode$.value === 'VIEW'"
+    >
       <div
         class="show-button"
         *ngIf="showLess$.value"
-        (click)="showLess$.next(false)"
+        (click)="showMoreClick()"
       >
         <span translate>
           USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__BUTTONS__SHOW_MORE
@@ -48,7 +97,7 @@
       <div
         class="show-button"
         *ngIf="!showLess$.value"
-        (click)="showLess$.next(true)"
+        (click)="showLessClick()"
       >
         <span translate>
           USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__BUTTONS__SHOW_LESS
@@ -56,22 +105,23 @@
         <mat-icon>expand_less</mat-icon>
       </div>
     </ng-container>
-  </ng-container>
-  <ng-container *ngIf="!dataSource || dataSource.length === 0">
-    <div
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      id="medical-history-empty "
-    >
-      <img
-        src="/assets/images/empty.svg"
-        alt="image"
-        width="40px"
-        height="40px"
-      />
-      <h3 translate>
-        USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__STRINGS__EMPTY
-      </h3>
-    </div>
-  </ng-container>
-</div>
+  </div>
+</ng-template>
+
+<ng-template #emptyData>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    id="medical-history-empty "
+  >
+    <img
+      src="/assets/images/empty.svg"
+      alt="image"
+      width="40px"
+      height="40px"
+    />
+    <h3 translate>
+      USER__USER_PROFILES__MEDICAL_HISTORY__MEDICAL_HISTORY_LIST__STRINGS__EMPTY
+    </h3>
+  </div>
+</ng-template>

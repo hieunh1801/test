@@ -20,8 +20,7 @@ export class IntroductionDetailComponent implements OnInit, OnDestroy {
 
   @Output() editEvent = new EventEmitter();
 
-  defaultImageUrl =
-    'https://i.pinimg.com/originals/0e/9a/ba/0e9aba47d9430b80e41c09b9cfce595f.png';
+  defaultImageUrl = '/assets/images/default-avatar.png';
 
   demographic: Demographic = null;
   email: string = null;

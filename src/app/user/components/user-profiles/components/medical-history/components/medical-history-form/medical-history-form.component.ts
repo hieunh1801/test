@@ -1,24 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { DateUtilService } from '@shared/services/date-util.service';
 import {
   MedicalHistoryPostRequest,
   MedicalHistoryPutRequest,
 } from '@user/services/user-medical-history.service';
 import { MedicalHistory } from '@user/services/user-profile.service';
+import { number } from 'echarts';
 
 @Component({
-  selector: 'app-medical-history-add',
-  templateUrl: './medical-history-add.component.html',
-  styleUrls: ['./medical-history-add.component.scss'],
+  selector: 'app-medical-history-form',
+  templateUrl: './medical-history-form.component.html',
+  styleUrls: ['./medical-history-form.component.scss'],
 })
-export class MedicalHistoryAddComponent implements OnInit {
+export class MedicalHistoryFormComponent implements OnInit {
   @Input() medicalHistory: MedicalHistory = null;
 
   @Output() cancelEvent = new EventEmitter();
-  @Output() createEvent = new EventEmitter();
-  @Output() saveEvent = new EventEmitter();
+  @Output() createEvent = new EventEmitter<MedicalHistoryPostRequest>();
+  @Output() saveEvent = new EventEmitter<{
+    medicalHistoryId: number;
+    putRequest: MedicalHistoryPutRequest;
+  }>();
 
   mode: 'ADD' | 'EDIT' = null;
   medicalForm: FormGroup = null;
@@ -45,7 +48,6 @@ export class MedicalHistoryAddComponent implements OnInit {
   }
   constructor(
     private formBuilder: FormBuilder,
-    private translateService: TranslateService,
     private dateUtilService: DateUtilService
   ) {}
 

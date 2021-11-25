@@ -3,4 +3,4 @@ GET http://localhost:61128/customer-user/ping
 
 
 ### user profiles
-GET http://localhost:61128/customer-user/v1.0/en/users/3/profile
+GET http://localhost:61128/customer-user/v1.0/en/users/1/profile
