@@ -12,7 +12,7 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
   @Input() userProfile$ = new BehaviorSubject<UserProfile>(null);
 
   defaultAvatarUrl =
-    'https://64.media.tumblr.com/da729f1f5aaaced34436e749c0a4aa40/tumblr_oabfcd8Sf11rbky0ho1_640.jpg';
+    'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w';
 
   demographicForm: FormGroup = null;
 

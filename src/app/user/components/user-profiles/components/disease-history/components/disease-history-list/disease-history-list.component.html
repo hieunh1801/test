@@ -43,15 +43,17 @@
         </div>
 
         <!-- list-item-actions -->
-        <div class="actions" *ngIf="mode == 'EDIT'" fxLayout="row">
+        <div class="actions" *ngIf="mode$.value == 'EDIT'" fxLayout="row">
           <button mat-icon-button (click)="toggleEdit(diseaseHistory.id)">
             <mat-icon class="edit-button">edit</mat-icon>
           </button>
           <button mat-icon-button (click)="deleteItem(diseaseHistory.id)">
-            <mat-icon class="delete-button">delete</mat-icon>
+            <mat-icon class="delete-button">delete_outline</mat-icon>
           </button>
         </div>
       </div>
+
+      <!-- Edit form -->
       <div
         class="disease-history-list-item-edit"
         *ngIf="isEditItem(diseaseHistory.id)"
@@ -65,7 +67,7 @@
     </div>
 
     <ng-container
-      *ngIf="diseaseHistoryList$.value?.length > 3 && mode === 'VIEW'"
+      *ngIf="diseaseHistoryList$.value?.length > 3 && mode$.value === 'VIEW'"
     >
       <div
         class="show-button"
@@ -93,9 +95,9 @@
   <!-- actions -->
   <div
     class="actions"
-    *ngIf="mode == 'EDIT'"
+    *ngIf="mode$.value == 'EDIT'"
     fxLayout="row"
-    fxLayoutAlign="end center"
+    fxLayoutAlign="flex-end center"
   >
     <button mat-stroked-button (click)="cancelClick()">
       <span translate>

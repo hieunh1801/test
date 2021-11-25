@@ -13,9 +13,9 @@
         <!-- list-item -->
         <div
           fxFlex
-          class="medical-history-list-item"
           fxLayout="row"
           fxLayoutAlign="space-between center"
+          fxLayoutGap="0px"
           fxLayout.lt-sm="column"
           fxLayoutAlign.lt-sm="none"
           fxLayoutGap.lt-sm="8px"
@@ -46,10 +46,10 @@
         <!-- list-item-action -->
         <div class="actions" *ngIf="mode$.value === 'EDIT'" fxLayout="row">
           <button mat-icon-button (click)="toggleEditItem(medicalHistory.id)">
-            <mat-icon class="edit-button">edit</mat-icon>
+            <mat-icon class="edit-button">edit_outline</mat-icon>
           </button>
           <button mat-icon-button (click)="deleteItem(medicalHistory.id)">
-            <mat-icon class="delete-button">delete</mat-icon>
+            <mat-icon class="delete-button">delete_outline</mat-icon>
           </button>
         </div>
       </div>

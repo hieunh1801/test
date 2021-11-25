@@ -16,7 +16,7 @@
         mat-button
         class="add-button"
         *ngIf="
-          mode === 'VIEW' &&
+          mode$.value === 'VIEW' &&
           (!diseaseHistoryList || diseaseHistoryList.length === 0)
         "
         (click)="changeMode('ADD')"
@@ -31,16 +31,18 @@
   <div class="content">
     <!-- add -->
     <app-disease-history-form
-      *ngIf="mode === 'ADD'"
+      *ngIf="mode$.value === 'ADD'"
       (cancelEvent)="changeMode('VIEW')"
       (createEvent)="create($event)"
     ></app-disease-history-form>
 
     <!-- view -->
     <app-disease-history-list
-      *ngIf="mode === 'EDIT' || mode === 'VIEW'"
-      [mode]="mode"
+      *ngIf="mode$.value === 'EDIT' || mode$.value === 'VIEW'"
+      [mode$]="mode$"
+      [showLess$]="showLess$"
       [diseaseHistoryList$]="diseaseHistoryList$"
+      (showLessEvent)="changeShowLess($event)"
       (deleteEvent)="deleteItem($event)"
       (cancelEvent)="changeMode('VIEW')"
       (updateEvent)="updateItem($event)"

@@ -24,11 +24,12 @@ import { distinctUntilChanged, finalize } from 'rxjs/operators';
 })
 export class DiseaseHistoryComponent implements OnInit, OnDestroy {
   @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>(null);
+  showLess$ = new BehaviorSubject<boolean>(true);
+  mode$ = new BehaviorSubject<'VIEW' | 'ADD' | 'EDIT'>('VIEW');
 
-  diseaseHistoryList: DiseaseHistory[] = [];
   subscription$ = new Subscription();
 
-  mode: 'VIEW' | 'ADD' | 'EDIT' = 'VIEW';
+  diseaseHistoryList: DiseaseHistory[] = [];
 
   constructor(
     private userDiseaseHistoryService: UserDiseaseHistoryService,
@@ -58,11 +59,14 @@ export class DiseaseHistoryComponent implements OnInit, OnDestroy {
       });
   }
 
-  changeMode(mode: 'VIEW' | 'ADD' | 'EDIT'): void {
-    if (mode) {
-      this.mode = mode;
-    }
+  changeShowLess({ showLess }: { showLess: boolean }): void {
+    this.showLess$.next(showLess);
   }
+
+  changeMode(mode: 'VIEW' | 'ADD' | 'EDIT'): void {
+    this.mode$.next(mode);
+  }
+
   ngOnInit(): void {
     this.subscribeDiseaseHistoryListChange();
   }

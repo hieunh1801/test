@@ -9,18 +9,7 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { TranslateService } from '@ngx-translate/core';
-import {
-  ConfirmDialogComponent,
-  ConfirmDialogInput,
-  ConfirmDialogOutput,
-} from '@shared/components/confirm-dialog/confirm-dialog.component';
-import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
-import {
-  DiseaseHistoryPutRequest,
-  UserDiseaseHistoryService,
-} from '@user/services/user-disease-history.service';
+import { DiseaseHistoryPutRequest } from '@user/services/user-disease-history.service';
 import { DiseaseHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -30,12 +19,12 @@ import { distinctUntilChanged } from 'rxjs/operators';
   templateUrl: './disease-history-list.component.html',
   styleUrls: ['./disease-history-list.component.scss'],
 })
-export class DiseaseHistoryListComponent
-  implements OnInit, OnDestroy, OnChanges
-{
+export class DiseaseHistoryListComponent implements OnInit, OnDestroy {
   @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
-  @Input() mode: 'VIEW' | 'EDIT' = 'VIEW';
+  @Input() mode$ = new BehaviorSubject<'VIEW' | 'EDIT'>(null);
+  @Input() showLess$ = new BehaviorSubject<boolean>(null);
 
+  @Output() showLessEvent = new EventEmitter<{ showLess: boolean }>();
   @Output() cancelEvent = new EventEmitter();
   @Output() deleteEvent = new EventEmitter<number>();
   @Output() updateEvent = new EventEmitter<{
@@ -47,9 +36,14 @@ export class DiseaseHistoryListComponent
   diseaseHistoryEditIdSet = new Set();
 
   subscription$ = new Subscription();
-  showLess$ = new BehaviorSubject<boolean>(true);
 
   constructor() {}
+
+  ngOnInit(): void {
+    this.subscribeDiseaseHistoryListChange();
+    this.subscribeShowLessChange();
+    this.subscribeModeChange();
+  }
 
   isEditItem(diseaseHistoryId: number): boolean {
     return this.diseaseHistoryEditIdSet.has(diseaseHistoryId);
@@ -94,14 +88,14 @@ export class DiseaseHistoryListComponent
   reloadDataSource(): void {
     const showLess = this.showLess$.value;
     const diseaseHistoryList = this.diseaseHistoryList$.value;
-    if (this.mode === 'VIEW') {
-      if (diseaseHistoryList && diseaseHistoryList.length > 0) {
-        if (showLess) {
-          this.dataSource = diseaseHistoryList.slice(0, 3);
-        } else {
-          this.dataSource = diseaseHistoryList;
-        }
-      }
+    const mode = this.mode$.value;
+    if (
+      mode === 'VIEW' &&
+      diseaseHistoryList &&
+      diseaseHistoryList.length > 0 &&
+      showLess
+    ) {
+      this.dataSource = diseaseHistoryList.slice(0, 3);
     } else {
       this.dataSource = diseaseHistoryList;
     }
@@ -111,7 +105,6 @@ export class DiseaseHistoryListComponent
     const sub = this.showLess$.pipe(distinctUntilChanged()).subscribe(() => {
       this.reloadDataSource();
     });
-
     this.subscription$.add(sub);
   }
   subscribeDiseaseHistoryListChange(): void {
@@ -123,19 +116,12 @@ export class DiseaseHistoryListComponent
 
     this.subscription$.add(sub);
   }
-  ngOnInit(): void {
-    this.subscribeDiseaseHistoryListChange();
-    this.subscribeShowLessChange();
-  }
 
-  ngOnChanges(simpleChanges: SimpleChanges): void {
-    const modeSimpleChange: SimpleChange = simpleChanges.mode;
-    if (
-      modeSimpleChange &&
-      modeSimpleChange.currentValue !== modeSimpleChange.previousValue
-    ) {
+  subscribeModeChange(): void {
+    const sub = this.mode$.pipe(distinctUntilChanged()).subscribe(() => {
       this.reloadDataSource();
-    }
+    });
+    this.subscription$.add(sub);
   }
 
   ngOnDestroy(): void {
