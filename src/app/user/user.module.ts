@@ -25,7 +25,6 @@ import { BasicInformationFormComponent } from './components/user-profiles/compon
 import { BasicInformationListComponent } from './components/user-profiles/components/basic-information/components/basic-information-list/basic-information-list.component';
 import { IntroductionDetailComponent } from './components/user-profiles/components/introduction/components/introduction-detail/introduction-detail.component';
 import { IntroductionFormComponent } from './components/user-profiles/components/introduction/components/introduction-form/introduction-form.component';
-
 import { LifeStyleComponent } from './components/user-profiles/components/life-style/life-style.component';
 
 @NgModule({

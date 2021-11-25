@@ -1,10 +1,15 @@
 <div id="introduction">
   <app-introduction-detail
-    *ngIf="mode === 'VIEW'"
+    *ngIf="mode$.value === 'VIEW'"
     [userProfile$]="userProfile$"
-    (editEvent)="mode = 'EDIT'"
+    (editEvent)="changeMode('EDIT')"
   ></app-introduction-detail>
 
-  <app-introduction-form *ngIf="mode === 'EDIT'" [userProfile$]="userProfile$">
+  <app-introduction-form
+    *ngIf="mode$.value === 'EDIT'"
+    [userProfile$]="userProfile$"
+    (cancelEvent)="changeMode('VIEW')"
+    (saveEvent)="updateData($event)"
+  >
   </app-introduction-form>
 </div>

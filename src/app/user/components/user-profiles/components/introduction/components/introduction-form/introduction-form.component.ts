@@ -1,5 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DateUtilService } from '@shared/services/date-util.service';
+import { DemographicPutRequest } from '@user/services/user-demographic.service';
 import { Demographic, UserProfile } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
@@ -11,12 +20,20 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class IntroductionFormComponent implements OnInit, OnDestroy {
   @Input() userProfile$ = new BehaviorSubject<UserProfile>(null);
 
+  @Output() cancelEvent = new EventEmitter<boolean>();
+  @Output() saveEvent = new EventEmitter<{
+    putRequest: DemographicPutRequest;
+  }>();
+
   defaultAvatarUrl = '/assets/images/default-avatar.png';
   demographicForm: FormGroup = null;
 
   subscription$ = new Subscription();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dateUtilService: DateUtilService
+  ) {}
 
   ngOnInit(): void {
     this.subscribeUserProfileChange();
@@ -46,6 +63,7 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
         city,
         country,
         addressDetails,
+        nationality,
       } = demographic;
       this.demographicForm = this.formBuilder.group({
         avatar: [avatar],
@@ -59,7 +77,7 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
 
         city: [city],
         country: [country],
-        nationality: [null],
+        nationality: [nationality],
         addressDetails: [addressDetails],
       });
     } else {
@@ -83,5 +101,42 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
 
   get f(): any {
     return this.demographicForm.controls;
+  }
+
+  cancelClick(): void {
+    this.cancelEvent.emit();
+  }
+
+  uploadAvatar(event: any): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.demographicForm.patchValue({
+        avatar: reader.result,
+      });
+    };
+  }
+
+  saveClick(): void {
+    this.demographicForm.markAllAsTouched();
+    if (this.demographicForm.valid) {
+      const formValue = this.demographicForm.value;
+
+      const putRequest: DemographicPutRequest = {
+        avatar: formValue?.avatar,
+        givenName: formValue?.givenName,
+        surname: formValue?.surname,
+        gender: formValue?.gender,
+        birthday: this.dateUtilService.toDateString(formValue?.birthday),
+        mobile: formValue?.mobile,
+        nationality: formValue?.nationality,
+        city: formValue?.city,
+        country: formValue?.country,
+        addressDetails: formValue?.addressDetails,
+      };
+
+      this.saveEvent.emit({ putRequest });
+    }
   }
 }
