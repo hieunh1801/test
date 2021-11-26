@@ -33,8 +33,7 @@ export class BasicInformationComponent implements OnInit {
     private basicInformationService: UserBasicInformationService,
     private matSnackbarService: MatSnackbarService,
     private matDialog: MatDialog,
-    private translateService: TranslateService,
-    private userBasicInformationService: UserBasicInformationService
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -64,9 +63,10 @@ export class BasicInformationComponent implements OnInit {
     this.basicInformationService
       .getAllUserWeightHeightHistory()
       .subscribe((response) => {
-        const weightHeightHistoryList = response?.data?.items || null;
-        if (!!weightHeightHistoryList) {
-          this.weightHeightHistoryList$.next(weightHeightHistoryList);
+        const weightHeightHistoryList = response?.data?.items || [];
+        this.weightHeightHistoryList$.next(weightHeightHistoryList);
+        if (!weightHeightHistoryList || weightHeightHistoryList.length === 0) {
+          this.changeMode('VIEW');
         }
       });
   }
@@ -85,23 +85,21 @@ export class BasicInformationComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((dialogOutput: ConfirmDialogOutput) => {
         if (dialogOutput?.action === 'yes') {
-          this.userBasicInformationService
-            .deleteWeightHeightHistory(id)
-            .subscribe({
-              next: (response) => {
-                const isSuccess = response?.status?.code === 'success';
-                if (isSuccess) {
-                  this.reloadWeightHeightHistoryList();
-                  this.matSnackbarService.openDeleteSuccess();
-                } else {
-                  this.matSnackbarService.openDeleteFailed();
-                }
-              },
-              error: (error) => {
-                console.error(error);
+          this.basicInformationService.deleteWeightHeightHistory(id).subscribe({
+            next: (response) => {
+              const isSuccess = response?.status?.code === 'success';
+              if (isSuccess) {
+                this.reloadWeightHeightHistoryList();
+                this.matSnackbarService.openDeleteSuccess();
+              } else {
                 this.matSnackbarService.openDeleteFailed();
-              },
-            });
+              }
+            },
+            error: (error) => {
+              console.error(error);
+              this.matSnackbarService.openDeleteFailed();
+            },
+          });
         }
       });
     }

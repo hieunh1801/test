@@ -1,0 +1,200 @@
+<div id="life-style-form" *ngIf="lifeStyleForm">
+  <form [formGroup]="lifeStyleForm">
+    <div
+      class="group"
+      fxLayoutAlign="flex-start center"
+      fxLayoutGap="16px"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign.lt-sm="flex-start flex-start"
+    >
+      <div
+        class="title"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+      >
+        <mat-icon>coffee</mat-icon>
+        <mat-label translate
+          >USER__USER_PROFILES__LIFE_STYLE_FORM__TITLES__COFFEE</mat-label
+        >
+        <mat-slide-toggle formControlName="coffee"></mat-slide-toggle>
+      </div>
+
+      <div
+        class="content"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+        ngClass.lt-sm="content-mobile"
+        *ngIf="f?.coffee?.value"
+      >
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="coffeeAmount" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="coffeeUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of coffeeUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        &nbsp;/&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="coffeePerTimeUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of perTimeUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div
+      class="group"
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="flex-start center"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign.lt-sm="flex-start flex-start"
+    >
+      <div
+        class="title"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+      >
+        <mat-icon>smoking_rooms</mat-icon>
+        <mat-label translate
+          >USER__USER_PROFILES__LIFE_STYLE_FORM__TITLES__SMOKING</mat-label
+        >
+        <mat-slide-toggle formControlName="smoking"></mat-slide-toggle>
+      </div>
+
+      <div
+        class="content"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+        ngClass.lt-sm="content-mobile"
+        *ngIf="f?.smoking?.value"
+      >
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="smokingAmount" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="smokingUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of smokingUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        /&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="smokingPerTimeUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of perTimeUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      class="group"
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="flex-start center"
+      ngClass.lt-sm="content-mobile"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign.lt-sm="flex-start flex-start"
+    >
+      <div
+        class="title"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+      >
+        <mat-icon>local_bar</mat-icon>
+        <mat-label translate
+          >USER__USER_PROFILES__LIFE_STYLE_FORM__TITLES__ALCOHOL</mat-label
+        >
+        <mat-slide-toggle formControlName="alcohol"></mat-slide-toggle>
+      </div>
+
+      <div
+        class="content"
+        fxLayout="row"
+        fxLayoutGap="16px"
+        fxLayoutAlign="flex-start center"
+        *ngIf="f?.alcohol?.value"
+      >
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="alcoholAmount" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="alcoholUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of alcoholUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        /&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="alcoholPerTimeUnit">
+            <mat-option
+              [value]="option.value"
+              *ngFor="let option of perTimeUnitOptions"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="group" fxLayoutGap="20px">
+      <mat-label translate>
+        USER__USER_PROFILES__LIFE_STYLE_FORM__STRINGS__AT
+      </mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="atDatePicker"
+          [max]="f?.toDate?.value"
+          formControlName="date"
+          disabled
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="atDatePicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #atDatePicker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div
+      class="actions"
+      fxLayout="row"
+      fxLayoutAlign="flex-end center"
+      fxLayoutGap="10px"
+    >
+      <button mat-stroked-button (click)="cancelClick($event)">
+        {{
+          "USER__USER_PROFILES__LIFE_STYLE_FORM__BUTTONS__CANCEL" | translate
+        }}
+      </button>
+      <button mat-button class="button-create" (click)="createClick($event)">
+        {{
+          "USER__USER_PROFILES__LIFE_STYLE_FORM__BUTTONS__CREATE" | translate
+        }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -3,6 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import {
   Demographic,
   DiseaseHistory,
+  LifeStyleHistory,
   MedicalHistory,
   UserProfile,
   UserProfileService,
@@ -20,7 +21,7 @@ export class UserProfilesComponent implements OnInit {
   medicalHistoryList$ = new BehaviorSubject<MedicalHistory[]>([]);
   demographic$ = new BehaviorSubject<Demographic>(null);
   weightHeightHistoryList$ = new BehaviorSubject<WeightHeightHistory[]>([]);
-
+  lifeStyleHistoryList$ = new BehaviorSubject<LifeStyleHistory[]>(null);
   subscription$ = new Subscription();
 
   constructor(private userProfileService: UserProfileService) {}
@@ -36,6 +37,7 @@ export class UserProfilesComponent implements OnInit {
         this.weightHeightHistoryList$.next(
           userProfile?.weightHeightHistories || []
         );
+        this.lifeStyleHistoryList$.next(userProfile?.lifeStyleHistories || []);
       }
     });
   }

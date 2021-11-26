@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '@shared/guards/auth.guard';
 import { UserProfilesComponent } from './components/user-profiles/user-profiles.component';
 import { AccountSettingComponent } from './components/user-settings/components/account-setting/account-setting.component';
 import { EmailAndNotificationSettingComponent } from './components/user-settings/components/email-and-notification-setting/email-and-notification-setting.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
       {
         path: 'settings',
         component: UserSettingComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'email-and-notification',
@@ -34,6 +36,7 @@ const routes: Routes = [
       {
         path: 'profiles',
         component: UserProfilesComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: '',

@@ -1,0 +1,82 @@
+#life-style-form {
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  // form border
+
+  // form height
+  // ::ng-deep {
+  //   // form order
+  //   .mat-form-field-outline-start {
+  //     border-radius: 3px 0 0 3px !important;
+  //     min-width: 3px !important;
+  //   }
+
+  //   .mat-form-field-outline-end {
+  //     border-radius: 0 3px 3px 0 !important;
+  //   }
+
+  //   // form height
+  //   .mat-form-field-appearance-outline .mat-form-field-infix {
+  //     padding: 0 0 0.5em 0;
+  //   }
+  //   .mat-form-field-wrapper {
+  //     padding-bottom: 0.5em;
+  //   }
+  // }
+
+  ::ng-deep .mat-form-field {
+    font-size: 12px;
+
+    .mat-input-element {
+    }
+    .mat-form-field-label {
+    }
+    .mat-form-field-underline {
+      background-color: white; // remove underline
+    }
+    .mat-form-field-ripple {
+    }
+    .mat-form-field-required-marker {
+    }
+    .mat-form-field-infix {
+      width: 120px !important;
+    }
+  }
+
+  ::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-underline {
+      background-color: white; // remove underline
+    }
+  }
+
+  .group {
+    mat-label {
+      min-width: 60px;
+    }
+    margin-bottom: 16px;
+  }
+  .button-create {
+    background-color: var(--primary--color);
+    color: white;
+    font-weight: 500;
+  }
+
+  .content-mobile {
+    ::ng-deep .mat-form-field {
+      width: 100%;
+      .mat-form-field-infix {
+        width: 60px !important;
+      }
+    }
+  }
+}

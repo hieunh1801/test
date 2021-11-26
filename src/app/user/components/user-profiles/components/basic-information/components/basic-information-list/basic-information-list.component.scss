@@ -9,4 +9,9 @@
   .list-item:hover {
     background-color: #f2f2f2;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

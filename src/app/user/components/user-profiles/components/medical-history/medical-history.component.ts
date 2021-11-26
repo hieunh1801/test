@@ -61,8 +61,9 @@ export class MedicalHistoryComponent implements OnInit, OnDestroy {
       .getAllUserMedicalHistory()
       .subscribe((response) => {
         const data = response?.data?.items || null;
-        if (data) {
-          this.medicalHistoryList$.next(data);
+        this.medicalHistoryList$.next(data);
+        if (!data || data.length === 0) {
+          this.changeMode('VIEW');
         }
       });
   }
