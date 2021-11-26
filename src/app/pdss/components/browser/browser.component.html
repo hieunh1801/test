@@ -1,78 +1,89 @@
-<div class="browser" fxLayout="column" fxLayoutGap="20px">
-  <form class="search-form" [formGroup]="searchForm">
-    <div>
-      <h2>Drug/Gene Browser</h2>
-      <p>Some results below may be the things you are looking for</p>
-    </div>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label
-        >찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin /
-        Tyrenol)</mat-label
-      >
-      <input
-        type="text"
-        formControlName="keyword"
-        name="keyword"
-        matInput
-        (keydown.enter)="search()"
-      />
-      <button
-        type="button"
-        mat-button
-        matSuffix
-        mat-icon-button
-        aria-label="Autofill"
-        (click)="search()"
-      >
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-  </form>
+<div id="page">
+  <div id="browser-page">
+    <div class="section">
+      <div id="browser-info">
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <form class="search-form" [formGroup]="searchForm">
+            <h1 class="bold">Drug/Gene Browser</h1>
+            <p>Some results below may be the things you are looking for</p>
 
-  <div
-    fxLayout="row"
-    fxLayoutGap="20px"
-    fxLayout.xs="column"
-    [fxHide]="isSearch"
-  >
-    <div fxFlex="50">
-      <h3>Drugs</h3>
-      <mat-selection-list #drugs [multiple]="false">
-        <mat-list-option *ngFor="let drug of listOfDrugs" [value]="drug.name">
-          <a [routerLink]="['/pdss/drug', drug.id, 'detail']">{{
-            drug.name
-          }}</a>
-        </mat-list-option>
-      </mat-selection-list>
-    </div>
-    <div fxFlex="50">
-      <h3>Genes</h3>
-      <mat-selection-list #genes [multiple]="false">
-        <mat-list-option *ngFor="let gene of listOfGenes" [value]="gene">
-          <a [routerLink]="['/pdss/gene', gene.id, 'detail']">{{
-            gene.name
-          }}</a>
-        </mat-list-option>
-      </mat-selection-list>
-    </div>
-  </div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label
+                >찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin /
+                Tyrenol)</mat-label
+              >
+              <input
+                type="text"
+                formControlName="keyword"
+                name="keyword"
+                matInput
+                (keydown.enter)="search()"
+              />
+              <button
+                type="button"
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Autofill"
+                (click)="search()"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
 
-  <div
-    fxLayout="row"
-    fxLayoutGap="20px"
-    fxLayout.xs="column"
-    [fxHide]="!isSearch"
-  >
-    <div
-      fxFlex="15"
-      fxHide.lt-md
-      fxShow.gt-sm
-      style="border: 1px solid #ccc; padding: 10px; height: 200px"
-    >
-      <h2>Filters</h2>
-      <h3 style="margin: 0; padding: 0; font-weight: 500">Categories</h3>
-      <form class="search-form" [formGroup]="filterForm">
-        <!--
+          <div
+            fxLayout="row"
+            fxLayoutGap="20px"
+            fxLayout.xs="column"
+            [fxHide]="isSearch"
+          >
+            <div fxFlex="50">
+              <h3>Drugs</h3>
+              <mat-selection-list #drugs [multiple]="false">
+                <mat-list-option
+                  *ngFor="let drug of listOfDrugs"
+                  [value]="drug.name"
+                >
+                  <a [routerLink]="['/pdss/drug', drug.id, 'detail']">{{
+                    drug.name
+                  }}</a>
+                </mat-list-option>
+              </mat-selection-list>
+            </div>
+            <div fxFlex="50">
+              <h3>Genes</h3>
+              <mat-selection-list #genes [multiple]="false">
+                <mat-list-option
+                  *ngFor="let gene of listOfGenes"
+                  [value]="gene"
+                >
+                  <a [routerLink]="['/pdss/gene', gene.id, 'detail']">{{
+                    gene.name
+                  }}</a>
+                </mat-list-option>
+              </mat-selection-list>
+            </div>
+          </div>
+
+          <div
+            fxLayout="row"
+            fxLayoutGap="20px"
+            fxLayout.xs="column"
+            [fxHide]="!isSearch"
+          >
+            <div
+              fxFlex="15"
+              fxHide.lt-md
+              fxShow.gt-sm
+              style="border: 1px solid #ccc; padding: 10px; height: 200px"
+            >
+              <h2>Filters</h2>
+              <h3 style="margin: 0; padding: 0; font-weight: 500">
+                Categories
+              </h3>
+              <form class="search-form" [formGroup]="filterForm">
+                <!--
         <mat-checkbox
           formControlName="isBrand"
           name="isBrand"
@@ -81,79 +92,94 @@
         >
         ({{ brandCount }})<br />
         -->
-        <mat-checkbox
-          formControlName="isDrug"
-          name="isDrug"
-          (change)="onChange($event)"
-          >Drugs</mat-checkbox
-        >
-        ({{ finalCount }})<br />
-        <mat-checkbox
-          formControlName="isGene"
-          name="isGene"
-          (change)="onChange($event)"
-          >Genes</mat-checkbox
-        >
-        ({{ geneCount }})<br />
-      </form>
-    </div>
+                <mat-checkbox
+                  formControlName="isDrug"
+                  name="isDrug"
+                  (change)="onChange($event)"
+                  >Drugs</mat-checkbox
+                >
+                ({{ finalCount }})<br />
+                <mat-checkbox
+                  formControlName="isGene"
+                  name="isGene"
+                  (change)="onChange($event)"
+                  >Genes</mat-checkbox
+                >
+                ({{ geneCount }})<br />
+              </form>
+            </div>
 
-    <div fxFlex="85">
-      <h2>Results ({{ searchTotal }})</h2>
-      <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="name">
-          <mat-header-cell mat-header-cell *matHeaderCellDef
-            >Name</mat-header-cell
-          >
-          <mat-cell *matCellDef="let result" style="vertical-align: middle">
-            <a
-              *ngIf="result.type != 'gene'"
-              [routerLink]="['/pdss/drug', result.id, 'detail']"
-              ><span
-                [innerHTML]="result.name | highlightSearch: searchKeyword"
-              ></span>
-            </a>
-            <a
-              *ngIf="result.type === 'gene'"
-              [routerLink]="['/pdss/gene', result.id, 'detail']"
-              ><span
-                [innerHTML]="result.name | highlightSearch: searchKeyword"
-              ></span>
-            </a>
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="type">
-          <mat-header-cell mat-header-cell *matHeaderCellDef
-            >Type</mat-header-cell
-          >
-          <mat-cell *matCellDef="let result">
-            <span
-              *ngIf="result.type == 'Brand' || result.type == 'Generic_Name'"
-            >
-              <span class="brand">drug</span>
-            </span>
-            <!-- 
+            <div fxFlex="85">
+              <h2>Results ({{ searchTotal }})</h2>
+              <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="name">
+                  <mat-header-cell mat-header-cell *matHeaderCellDef
+                    >Name</mat-header-cell
+                  >
+                  <mat-cell
+                    *matCellDef="let result"
+                    style="vertical-align: middle"
+                  >
+                    <a
+                      *ngIf="result.type != 'gene'"
+                      [routerLink]="['/pdss/drug', result.id, 'detail']"
+                      ><span
+                        [innerHTML]="
+                          result.name | highlightSearch: searchKeyword
+                        "
+                      ></span>
+                    </a>
+                    <a
+                      *ngIf="result.type === 'gene'"
+                      [routerLink]="['/pdss/gene', result.id, 'detail']"
+                      ><span
+                        [innerHTML]="
+                          result.name | highlightSearch: searchKeyword
+                        "
+                      ></span>
+                    </a>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                  <mat-header-cell mat-header-cell *matHeaderCellDef
+                    >Type</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let result">
+                    <span
+                      *ngIf="
+                        result.type == 'Brand' || result.type == 'Generic_Name'
+                      "
+                    >
+                      <span class="brand">drug</span>
+                    </span>
+                    <!-- 
               <span *ngIf="result.type == 'Generic_Name'">
                 <span class="drug">drug</span>              
               </span>
             -->
-            <span *ngIf="result.type == 'gene'">
-              <span class="gene">gene</span>
-            </span>
-          </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row
-          matRipple
-          *matRowDef="let row; columns: displayedColumns"
-        ></mat-row>
-      </table>
-      <mat-paginator
-        showFirstLastButtons="true"
-        [length]="searchTotal"
-        [pageSize]="pageSize"
-        (page)="change($event)"
-      ></mat-paginator>
+                    <span *ngIf="result.type == 'gene'">
+                      <span class="gene">gene</span>
+                    </span>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+                <mat-row
+                  matRipple
+                  *matRowDef="let row; columns: displayedColumns"
+                ></mat-row>
+              </table>
+              <mat-paginator
+                showFirstLastButtons="true"
+                [length]="searchTotal"
+                [pageSize]="pageSize"
+                (page)="change($event)"
+              ></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
