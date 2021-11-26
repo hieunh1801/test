@@ -172,7 +172,7 @@
         </div>
 
         <div class="default-margin">
-          <h2>Related genes ({{ drug.genes.length }})</h2>
+          <h2>Related genes ({{ drug?.genes?.length }})</h2>
           <div
             fxLayout="row wrap"
             fxLayout.lt-sm="column"
@@ -188,7 +188,7 @@
           </div>
         </div>
 
-        <div class="default-margin" *ngIf="drugSynonyms !== null">
+        <div class="default-margin" *ngIf="drugSynonyms?.length > 0">
           <h2>Synonyms Information ({{ drugSynonyms.length }})</h2>
           <div class="content">
             <ul>
