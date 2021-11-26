@@ -228,7 +228,11 @@
       <span translate>LAYOUT__HEADER__CONTACT</span>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item [routerLink]="['..', 'user', 'profiles']">
+    <button
+      mat-menu-item
+      [routerLink]="['..', 'user', 'profiles']"
+      (click)="isOpenMenuMobile = false"
+    >
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <span translate>LAYOUT__HEADER__PROFILES</span>
         <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
@@ -236,11 +240,19 @@
         >
       </div>
     </button>
-    <button mat-menu-item [routerLink]="['..', 'user', 'settings']">
+    <button
+      mat-menu-item
+      [routerLink]="['..', 'user', 'settings']"
+      (click)="isOpenMenuMobile = false"
+    >
       <span translate>LAYOUT__HEADER__SETTINGS</span>
     </button>
     <button mat-menu-item>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        (click)="isOpenMenuMobile = false"
+      >
         <span translate>LAYOUT__HEADER__MEMBERSHIP</span>
         <mat-chip-list>
           <mat-chip>Doctor</mat-chip>
@@ -248,13 +260,28 @@
       </div>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item [fxHide]="isLogin" routerLink="/auth/login">
+    <button
+      mat-menu-item
+      [fxHide]="isLogin"
+      routerLink="/auth/login"
+      (click)="isOpenMenuMobile = false"
+    >
       <span translate>LAYOUT__HEADER__LOGIN</span>
     </button>
-    <button mat-menu-item routerLink="/auth/register" [fxHide]="isLogin">
+    <button
+      mat-menu-item
+      routerLink="/auth/register"
+      [fxHide]="isLogin"
+      (click)="isOpenMenuMobile = false"
+    >
       <span translate>LAYOUT__HEADER__SIGN_UP</span>
     </button>
-    <button mat-menu-item [fxHide]="!isLogin" (click)="logout()">
+    <button
+      mat-menu-item
+      [fxHide]="!isLogin"
+      (click)="logout()"
+      (click)="isOpenMenuMobile = false"
+    >
       <span translate>LAYOUT__HEADER__LOGOUT</span>
     </button>
     <mat-divider></mat-divider>
