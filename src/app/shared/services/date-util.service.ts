@@ -9,6 +9,9 @@ export class DateUtilService {
   public toDate(dateString: string | number): Date {
     if (dateString) {
       try {
+        if (!dateString) {
+          return null;
+        }
         return new Date(dateString);
       } catch (error) {
         console.error(error);
@@ -20,6 +23,9 @@ export class DateUtilService {
 
   public toDateString(date: Date): string {
     try {
+      if (!date) {
+        return null;
+      }
       date = new Date(date);
       const [day, month, year] = [
         `${date.getDate()}`.padStart(2, '0'),
@@ -35,6 +41,10 @@ export class DateUtilService {
 
   public toDateTimeString(date: Date): string {
     try {
+      if (!date) {
+        return null;
+      }
+
       date = new Date(date);
       const [year, month, day] = [
         date.getFullYear(),

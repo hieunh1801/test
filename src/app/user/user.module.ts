@@ -25,8 +25,10 @@ import { BasicInformationFormComponent } from './components/user-profiles/compon
 import { BasicInformationListComponent } from './components/user-profiles/components/basic-information/components/basic-information-list/basic-information-list.component';
 import { IntroductionDetailComponent } from './components/user-profiles/components/introduction/components/introduction-detail/introduction-detail.component';
 import { IntroductionFormComponent } from './components/user-profiles/components/introduction/components/introduction-form/introduction-form.component';
-
 import { LifeStyleComponent } from './components/user-profiles/components/life-style/life-style.component';
+import { LifeStyleDetailComponent } from './components/user-profiles/components/life-style/components/life-style-detail/life-style-detail.component';
+import { LifeStyleListComponent } from './components/user-profiles/components/life-style/components/life-style-list/life-style-list.component';
+import { LifeStyleFormComponent } from './components/user-profiles/components/life-style/components/life-style-form/life-style-form.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import { LifeStyleComponent } from './components/user-profiles/components/life-s
     IntroductionDetailComponent,
     IntroductionFormComponent,
     MedicalHistoryFormComponent,
+    LifeStyleDetailComponent,
+    LifeStyleListComponent,
+    LifeStyleFormComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })

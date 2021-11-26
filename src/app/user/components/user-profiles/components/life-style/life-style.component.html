@@ -1,7 +1,60 @@
 <div id="life-style">
-  <div class="title">
-    <h2>Life Style</h2>
+  <div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 translate>USER__USER_PROFILES__LIFE_STYLE__TITLES__LIFE_STYLE</h2>
+    <div fxLayout="row">
+      <!-- button change to view mode -->
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menuEdit"
+        *ngIf="lifeStyleHistoryList?.length > 0"
+      >
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+
+      <!-- button add - when no information founded -->
+      <button
+        mat-button
+        class="add-button"
+        *ngIf="
+          mode$?.value === 'VIEW' &&
+          (lifeStyleHistoryList === null || lifeStyleHistoryList.length === 0)
+        "
+        (click)="changeMode('ADD')"
+      >
+        <span translate> USER__USER_PROFILES__LIFE_STYLE__BUTTONS__ADD </span>
+      </button>
+    </div>
   </div>
   <mat-divider></mat-divider>
-  <div class="content">This is content</div>
+  <div class="content">
+    <!-- view mode -->
+    <app-life-style-detail
+      *ngIf="mode$?.value === 'VIEW'"
+      [lifeStyleHistoryList$]="lifeStyleHistoryList$"
+    ></app-life-style-detail>
+
+    <!-- add mode -->
+    <app-life-style-form
+      *ngIf="mode$?.value === 'ADD'"
+      (cancelEvent)="changeMode('VIEW')"
+      (createEvent)="postData($event)"
+    ></app-life-style-form>
+    <!-- edit mode -->
+    <app-life-style-list
+      *ngIf="mode$?.value === 'EDIT'"
+      (cancelEvent)="changeMode('VIEW')"
+      (deleteItemEvent)="deleteItem($event)"
+      [lifeStyleHistoryList$]="lifeStyleHistoryList$"
+    >
+    </app-life-style-list>
+  </div>
 </div>
+
+<mat-menu #menuEdit="matMenu">
+  <button mat-menu-item (click)="changeMode('ADD')">
+    <span translate> USER__USER_PROFILES__LIFE_STYLE__BUTTONS__ADD </span>
+  </button>
+  <button mat-menu-item (click)="changeMode('EDIT')">
+    <span translate> USER__USER_PROFILES__LIFE_STYLE__BUTTONS__EDIT </span>
+  </button>
+</mat-menu>

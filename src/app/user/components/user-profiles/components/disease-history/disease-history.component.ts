@@ -53,8 +53,9 @@ export class DiseaseHistoryComponent implements OnInit, OnDestroy {
       .getAllUserDiseaseHistory()
       .subscribe((response) => {
         const data = response?.data?.items || null;
-        if (data) {
-          this.diseaseHistoryList$.next(data);
+        this.diseaseHistoryList$.next(data);
+        if (!data || data.length === 0) {
+          this.changeMode('VIEW');
         }
       });
   }

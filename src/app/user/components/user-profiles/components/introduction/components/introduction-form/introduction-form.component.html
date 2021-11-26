@@ -1,12 +1,99 @@
 <ng-container *ngIf="userProfile$.value">
   <div id="introduction-form">
-    <form [formGroup]="demographicForm">
-      <div class="avatar">
-        <img [src]="f?.avatar?.value || defaultAvatarUrl" alt="avatar" />
-        <div class="avatar-overlay">
-          <mat-icon>photo_camera</mat-icon>
+    <form
+      [formGroup]="demographicForm"
+      fxLayout="row"
+      fxLayoutAlign="none"
+      fxLayout.lt-md="column"
+    >
+      <div
+        class="avatar-wrapper"
+        fxLayoutAlign="flex-start flex-start"
+        fxLayoutAlign.lt-md="center center"
+        (click)="avatarFile.click()"
+      >
+        <input
+          #avatarFile
+          type="file"
+          id="actual-btn"
+          hidden
+          accept="image/png, image/gif, image/jpeg"
+          (change)="uploadAvatar($event)"
+        />
+        <div class="avatar">
+          <img [src]="f?.avatar?.value || defaultAvatarUrl" alt="avatar" />
+          <div class="avatar-overlay">
+            <mat-icon>photo_camera</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex class="grid" ngClass.lt-md="grid-mobile">
+        <div class="form-field">
+          <mat-label>Given Name</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="givenName" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Surname</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="surname" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Birthday</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [matDatepicker]="birthdayPicker"
+              formControlName="birthday"
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="birthdayPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #birthdayPicker disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Mobile</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="mobile" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Nationality</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="nationality" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Country</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="country" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>City</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="city" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-label>Address Details</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="addressDetails" />
+          </mat-form-field>
         </div>
       </div>
     </form>
+    <div class="actions" fxLayout="row" fxLayoutAlign="flex-end center">
+      <button mat-stroked-button class="button-cancel" (click)="cancelClick()">
+        Cancel
+      </button>
+      <button mat-button class="button-save" (click)="saveClick()">Save</button>
+    </div>
   </div>
 </ng-container>

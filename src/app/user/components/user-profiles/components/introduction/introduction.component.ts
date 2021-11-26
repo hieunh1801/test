@@ -1,5 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Demographic, UserProfile } from '@user/services/user-profile.service';
+import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
+import {
+  DemographicPutRequest,
+  UserDemographicService,
+} from '@user/services/user-demographic.service';
+import {
+  Demographic,
+  UserProfile,
+  UserProfileService,
+} from '@user/services/user-profile.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -10,15 +19,55 @@ import { BehaviorSubject } from 'rxjs';
 export class IntroductionComponent implements OnInit {
   @Input() userProfile$ = new BehaviorSubject<UserProfile>(null);
 
-  mode: 'VIEW' | 'EDIT' = 'EDIT';
+  mode$ = new BehaviorSubject<'VIEW' | 'EDIT'>(null);
 
-  constructor() {}
+  constructor(
+    private userDemographicService: UserDemographicService,
+    private userProfileService: UserProfileService,
+    private matSnackbarService: MatSnackbarService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initState();
+  }
 
-  handleEditEvent(): void {
-    console.log(
-      '🚀 ~ file: introduction.component.ts ~ line 20 ~ IntroductionComponent ~ handleEditEvent ~ void'
-    );
+  initState(): void {
+    this.mode$.next('VIEW');
+  }
+
+  reloadUserProfile(callbackFunction: Function): void {
+    this.userProfileService.getUserProfile().subscribe((response) => {
+      const userProfile = response?.data?.items?.[0] || null;
+      if (userProfile) {
+        this.userProfile$.next(userProfile);
+        callbackFunction();
+      }
+    });
+  }
+
+  handleEditEvent(): void {}
+
+  changeMode(mode: 'VIEW' | 'EDIT'): void {
+    this.mode$.next(mode);
+  }
+
+  updateData({ putRequest }: { putRequest: DemographicPutRequest }): void {
+    this.userDemographicService.puUserDemographic(putRequest).subscribe({
+      next: (response) => {
+        const isSuccess = response.status.code === 'success';
+        if (isSuccess) {
+          this.reloadUserProfile(() => {
+            this.changeMode('VIEW');
+          });
+          this.matSnackbarService.openUpdateSuccess();
+        } else {
+          this.matSnackbarService.openUpdateFailed();
+        }
+      },
+      error: (error) => {
+        console.error(error);
+        this.matSnackbarService.openUpdateFailed();
+      },
+    });
   }
 }

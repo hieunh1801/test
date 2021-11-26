@@ -35,6 +35,7 @@ export interface UserProfile {
   medicalHistories?: MedicalHistory[];
   demographic?: Demographic;
   weightHeightHistories: WeightHeightHistory[];
+  lifeStyleHistories: LifeStyleHistory[];
 }
 
 export interface MedicalHistory {
@@ -97,4 +98,23 @@ export interface Demographic {
   createdActor?: string;
   updatedTime?: string;
   updatedActor?: string;
+}
+
+export interface LifeStyleHistory {
+  id: number;
+  alcohol: number;
+  alcoholAmount: number;
+  alcoholUnit: string;
+  alcoholPerTimeUnit: string;
+  coffee: number;
+  coffeeAmount: number;
+  coffeeUnit: string;
+  coffeePerTimeUnit: string;
+  smoking: number;
+  smokingAmount: number;
+  smokingUnit: string;
+  smokingPerTimeUnit: string;
+  date: string;
+  createdTime: string;
+  createdActor: string;
 }

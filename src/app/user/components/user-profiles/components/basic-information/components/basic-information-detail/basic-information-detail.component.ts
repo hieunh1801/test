@@ -33,6 +33,11 @@ export class BasicInformationDetailComponent implements OnInit, OnDestroy {
     const sub = this.weightHeightHistoryList$.subscribe(
       (weightHeightHistoryList) => {
         if (!!!weightHeightHistoryList) {
+          this.weight = null;
+          this.height = null;
+          this.date = null;
+          this.bmi = null;
+          this.weightHeightHistoryList = null;
           return;
         }
 

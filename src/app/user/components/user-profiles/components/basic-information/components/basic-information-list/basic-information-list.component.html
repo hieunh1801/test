@@ -9,25 +9,29 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
     >
-      <div
-        class="list-item-detail"
-        fxLayout="row"
-        fxLayoutAlign="flex-start center"
-      >
-        <mat-icon class="time-icon">schedule</mat-icon>
-        {{ weightHeight.date }}
-      </div>
-      <div class="list-item-detail">
-        {{ weightHeight.weight }}
-        {{
-          "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__KG" | translate
-        }}
-      </div>
-      <div class="list-item-detail">
-        {{ weightHeight.height }}
-        {{
-          "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__M" | translate
-        }}
+      <div fxFlex class="grid" ngClass.lt-sm="grid-mobile">
+        <div class="list-item-detail">
+          {{ weightHeight.weight }}
+          {{
+            "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__KG"
+              | translate
+          }}
+        </div>
+        <div class="list-item-detail">
+          {{ weightHeight.height }}
+          {{
+            "USER__USER_PROFILES__BASIC_INFORMATION_LIST__STRINGS__M"
+              | translate
+          }}
+        </div>
+        <div
+          class="list-item-detail"
+          fxLayout="row"
+          fxLayoutAlign="flex-start center"
+        >
+          <mat-icon class="time-icon">schedule</mat-icon>
+          {{ weightHeight.date }}
+        </div>
       </div>
       <div class="list-item-detail">
         <button mat-icon-button (click)="deleteItemClick(weightHeight.id)">
@@ -46,4 +50,24 @@
   </div>
 </ng-template>
 
-<ng-template #empty> Nothing </ng-template>
+<ng-template #empty>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <img
+      src="/assets/images/empty.svg"
+      alt="image"
+      width="40px"
+      height="40px"
+    />
+    <h3 translate>
+      USER__USER_PROFILES__DISEASE_HISTORY__DISEASE_HISTORY_LIST__STRINGS__EMPTY
+    </h3>
+  </div>
+  <div class="actions" fxLayout="row" fxLayoutAlign="flex-end center">
+    <button mat-stroked-button (click)="cancelClick()">
+      {{
+        "USER__USER_PROFILES__BASIC_INFORMATION_LIST__BUTTONS__CANCEL"
+          | translate
+      }}
+    </button>
+  </div>
+</ng-template>

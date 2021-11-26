@@ -1,5 +1,6 @@
 #introduction-form {
   .avatar {
+    margin-right: 20px;
     position: relative;
     width: 250px;
     height: 250px;
@@ -42,5 +43,44 @@
     .avatar-overlay {
       opacity: 0.6;
     }
+  }
+
+  .button-save {
+    background-color: var(--primary--color);
+    color: white;
+    font-weight: 500;
+  }
+
+  .button-cancel {
+    margin-right: 16px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px 0px;
+    grid-column-gap: 16px;
+
+    ::ng-deep .mat-form-field-outline-start {
+      border-radius: 3px 0 0 3px !important;
+      min-width: 3px !important;
+    }
+
+    ::ng-deep .mat-form-field-outline-end {
+      border-radius: 0 3px 3px 0 !important;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+
+      mat-label {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .grid-mobile {
+    grid-template-columns: 1fr;
   }
 }
