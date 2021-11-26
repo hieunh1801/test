@@ -12,55 +12,114 @@
         <div class="default-margin"></div>
         <table style="width: 300px">
           <ng-container matColumnDef="guideline">
-            <th mat-header-cell *matHeaderCellDef>GL</th>
             <td>
-              <img
-                src="../../../../../../assets/pgx/guideline_yes.png"
-                width="50px"
-              />
+              <div *ngIf="gene.hasPharmgkbGuideline > 0; else noPgkbGuide">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/guideline_yes.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
+                />
+              </div>
+              <ng-template #noPgkbGuide>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/guideline_no.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="drugLabel">
             <td>
-              <img
-                src="../../../../../../assets/pgx/druglabel_yes.png"
-                width="50px"
-              />
+              <div *ngIf="gene.hasPharmgkbDruglabel > 0; else noPgkbLabel">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/druglabel_yes.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
+                />
+              </div>
+              <ng-template #noPgkbLabel>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/druglabel_no.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="ca">
             <td>
-              <img
-                src="../../../../../../assets/pgx/clinicalannotation_yes.png"
-                width="50px"
-              />
+              <div *ngIf="gene.hasPharmgkbCa > 0; else noPgkbCa">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/clinicalannotation_yes.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbCa }} PGKB Clinical Annotation"
+                />
+              </div>
+              <ng-template #noPgkbCa>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/clinicalannotation_no.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbCa }} PGKB Clinical Annotation"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="va">
             <td>
-              <img
-                src="../../../../../../assets/pgx/variantannotation_yes.jpg"
-                width="50px"
-              />
+              <div *ngIf="gene.hasPharmgkbVa > 0; else noPgkbVa">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/variantannotation_yes.jpg"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbVa }} PGKB Variant Annotation"
+                />
+              </div>
+              <ng-template #noPgkbVa>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/variantannotation_no.jpg"
+                  width="60px"
+                  matTooltip="{{ gene.hasPharmgkbVa }} PGKB Variant Annotation"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="spmed">
             <td>
-              <img
-                src="../../../../../../assets/pgx/spmed_yes.png"
-                width="50px"
-              />
+              <div *ngIf="gene.hasSpmedGuideline > 0; else noSpmed">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/spmed_yes.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                />
+              </div>
+              <ng-template #noSpmed>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/spmed_no.png"
+                  width="60px"
+                  matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                />
+              </ng-template>
             </td>
           </ng-container>
         </table>
-
+        <!--
         <div class="default-margin">
           <img
             src="../../../../../../assets/pgx/drug_info_icon.png"
             style="width: 80%"
           />
         </div>
-
+        -->
         <div class="default-margin">
           <h2>What is {{ gene.symbol }}</h2>
           <div *ngIf="!!gene.summary">

@@ -80,7 +80,11 @@ export class DrugComponent implements OnInit, OnDestroy {
     this.drug = drug;
     this.noOfGenes = !!this.drug.genes ? this.drug.genes.length : 0;
     this.showGenes = !!this.drug.genes;
-    this.exVoca = this.drug.externalVocabulary.split('\t');
+    if (!!this.drug.externalVocabulary) {
+      this.exVoca = this.drug.externalVocabulary.split('\t');
+    } else {
+      this.exVoca = null;
+    }
   }
 
   loadDrugSynonyms(): void {

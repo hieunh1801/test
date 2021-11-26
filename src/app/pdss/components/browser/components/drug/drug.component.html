@@ -12,52 +12,113 @@
         <table style="width: 300px">
           <ng-container matColumnDef="guideline">
             <td>
-              <img
-                src="../../../../../../assets/pgx/guideline_yes.png"
-                width="50px"
-              />
+              <div *ngIf="drug.hasPharmgkbGuideline > 0; else noPgkbGuide">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/guideline_yes.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbGuideline }} PGKB Guideline"
+                />
+              </div>
+              <ng-template #noPgkbGuide>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/guideline_no.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbGuideline }} PGKB Guideline"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="drugLabel">
             <td>
-              <img
-                src="../../../../../../assets/pgx/druglabel_yes.png"
-                width="50px"
-              />
+              <div *ngIf="drug.hasPharmgkbDruglabel > 0; else noPgkbLabel">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/druglabel_yes.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbDruglabel }} PGKB Drug Label"
+                />
+              </div>
+              <ng-template #noPgkbLabel>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/druglabel_no.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbDruglabel }} PGKB Drug Label"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="ca">
             <td>
-              <img
-                src="../../../../../../assets/pgx/clinicalannotation_yes.png"
-                width="50px"
-              />
+              <div *ngIf="drug.hasPharmgkbCa > 0; else noPgkbCa">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/clinicalannotation_yes.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbCa }} PGKB Clinical Annotation"
+                />
+              </div>
+              <ng-template #noPgkbCa>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/clinicalannotation_no.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbCa }} PGKB Clinical Annotation"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="va">
             <td>
-              <img
-                src="../../../../../../assets/pgx/variantannotation_yes.jpg"
-                width="50px"
-              />
+              <div *ngIf="drug.hasPharmgkbVa > 0; else noPgkbVa">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/variantannotation_yes.jpg"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbVa }} PGKB Variant Annotation"
+                />
+              </div>
+              <ng-template #noPgkbVa>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/variantannotation_no.jpg"
+                  width="60px"
+                  matTooltip="{{ drug.hasPharmgkbVa }} PGKB Variant Annotation"
+                />
+              </ng-template>
             </td>
           </ng-container>
           <ng-container matColumnDef="spmed">
             <td>
-              <img
-                src="../../../../../../assets/pgx/spmed_yes.png"
-                width="50px"
-              />
+              <div *ngIf="drug.hasSpmedGuideline > 0; else noSpmed">
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/spmed_yes.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                />
+              </div>
+              <ng-template #noSpmed>
+                <img
+                  mat-card-avatar
+                  src="../../../../../../assets/pgx/spmed_no.png"
+                  width="60px"
+                  matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                />
+              </ng-template>
             </td>
           </ng-container>
         </table>
-
+        <!--
         <div class="default-margin">
           <img
             src="../../../../../../assets/pgx/drug_info_icon.png"
             style="width: 80%"
           />
         </div>
+        -->
         <div class="default-margin">
           <h2>What is {{ drug.name | titlecase }}</h2>
           <div *ngIf="!!drug.summary">
@@ -89,7 +150,11 @@
               {{ drug.kr.indicationSummarySpmed }}
             </div>
           </div>
-          <div *ngIf="!!drug.toxicitySummarySpmed">
+          <div
+            *ngIf="
+              !!drug.toxicitySummarySpmed || !!drug.kr.toxicitySummarySpmed
+            "
+          >
             <h2 class="sub-title">Toxicity</h2>
             <div
               class="sub-content"
@@ -107,7 +172,7 @@
         </div>
 
         <div class="default-margin">
-          <h2>Related genes</h2>
+          <h2>Related genes ({{ drug.genes.length }})</h2>
           <div
             fxLayout="row wrap"
             fxLayout.lt-sm="column"
@@ -123,8 +188,8 @@
           </div>
         </div>
 
-        <div class="default-margin">
-          <h2>Synonyms Information</h2>
+        <div class="default-margin" *ngIf="drugSynonyms !== null">
+          <h2>Synonyms Information ({{ drugSynonyms.length }})</h2>
           <div class="content">
             <ul>
               <li *ngFor="let synonym of drugSynonyms">
@@ -171,12 +236,16 @@
                 >
               </td>
             </tr>
+            <!--
             <tr *ngIf="drug.rxnormIdentifier">
               <td class="w100">RxNorm</td>
               <td>{{ drug.rxnormIdentifier }}</td>
             </tr>
+            -->
             <tr>
-              <td class="w100">External Vocabulary</td>
+              <td class="w100" *ngIf="drug.exVoca !== null">
+                External Vocabulary
+              </td>
               <td>
                 <div *ngFor="let item of exVoca; index as i">{{ item }}</div>
               </td>

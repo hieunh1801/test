@@ -22,11 +22,10 @@ export class DrugService {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/${id}`;
 
     // Calling API for getting all guidelines
-    return this.httpClient
-      .get(url)
-      .pipe
+    return this.httpClient.get(url).pipe(
       //tap((data) => console.log(JSON.stringify(data)));
-      ();
+      tap((data) => console.log(JSON.stringify(data)))
+    );
   }
 
   /**
