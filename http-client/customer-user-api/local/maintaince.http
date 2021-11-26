@@ -1,8 +1,8 @@
 ### ping
 GET http://localhost:61128/customer-user/ping
 
-
-GET http://localhost:61128/customer-user/ping
+### encode
+GET http://localhost:61128/customer-user/encode/123456
 
 ### change password
 PUT http://localhost:61128/customer-user/v1.0/en/auth/change-password
