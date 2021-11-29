@@ -1,0 +1,5 @@
+### ping
+GET http://localhost:61127/portal/ping
+access-token: test-access=token
+Authorization: test-authorization
+

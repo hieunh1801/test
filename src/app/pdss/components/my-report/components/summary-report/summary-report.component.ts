@@ -16,7 +16,7 @@ import { PageLoadingService } from '@shared/services/page-loading.service';
   styleUrls: ['./summary-report.component.scss'],
 })
 export class SummaryReportComponent implements OnInit, OnDestroy {
-  reportList$ = new BehaviorSubject<Report[]>([]);
+  reportList$ = new BehaviorSubject<Report[]>(null);
   subscriptions$ = new Subscription();
 
   drugRecommendationList$ = new BehaviorSubject<DrugRecommendation[]>([]);
@@ -25,8 +25,17 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     private pdssReportService: PdssReportService,
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
-    private pageLoadingService: PageLoadingService
+    public pageLoadingService: PageLoadingService
   ) {}
+
+  ngOnInit(): void {
+    this.subscribeReportListChange();
+    this.loadReportList();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions$.unsubscribe();
+  }
 
   loadReportList(): void {
     this.pageLoadingService.startLoading();
@@ -39,7 +48,7 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (response) => {
-          if (response?.data?.items?.[0]) {
+          if (response?.status?.code === 'success') {
             this.reportList$.next(response?.data?.items || []);
           }
         },
@@ -57,6 +66,9 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
 
   subscribeReportListChange(): void {
     const sub = this.reportList$.subscribe((reportList) => {
+      if (!reportList) {
+        return;
+      }
       const drugRecommendations: DrugRecommendation[] = [];
       for (const report of reportList) {
         const productName = report.productName;
@@ -70,14 +82,5 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
       this.drugRecommendationList$.next(drugRecommendations);
     });
     this.subscriptions$.add(sub);
-  }
-
-  ngOnInit(): void {
-    this.subscribeReportListChange();
-    this.loadReportList();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
   }
 }

@@ -7,3 +7,26 @@
     min-width: 500px;
   }
 }
+
+.empty-page {
+  height: 50vh;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+
+  mat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+  }
+
+  .contact-button {
+    background-color: var(--primary--color);
+    color: white;
+  }
+}
