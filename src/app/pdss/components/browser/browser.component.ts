@@ -77,7 +77,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   isSearch = false;
   searchKeyword: string | null;
   finalResults: Array<SearchResponse> | null;
-  genericResults: Array<SearchResponse> | null;
+  totalResults: Array<SearchResponse> | null;
   result: SearchResponse | null;
   drugId: number;
   geneCount: number;
@@ -234,6 +234,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.finalResults = tempResults;
+    this.totalResults = tempResults;
     this.dataSource.data = tempResults;
   }
 
@@ -246,7 +247,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const isGene = formValue.isGene;
       const isBrand = formValue.isBrand;
 
-      for (let element of this.finalResults) {
+      for (let element of this.totalResults) {
         if (element.type == 'Brand') {
           if (isBrand == true) {
             tempResults.push(element);
@@ -263,7 +264,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
       this.dataSource.data = tempResults;
-      // console.log(this.finalResults);
     }
   }
 }
