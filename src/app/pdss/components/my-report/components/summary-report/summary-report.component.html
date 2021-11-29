@@ -1,15 +1,32 @@
 <!-- statistic -->
-<div class="summary-report" fxLayout="column" fxLayoutGap="40px">
-  <app-summary-package-table
-    [reportList$]="reportList$"
-  ></app-summary-package-table>
+<ng-template
+  [ngIf]="
+    reportList$?.value?.length > 0 && !pageLoadingService.isLoading$.value
+  "
+  [ngIfElse]="emptyPage"
+>
+  <div class="summary-report" fxLayout="column" fxLayoutGap="40px">
+    <app-summary-package-table
+      [reportList$]="reportList$"
+    ></app-summary-package-table>
 
-  <div>
-    <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
-    <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
+    <div>
+      <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
+      <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
+    </div>
+
+    <app-drug-recommendation-table
+      [drugRecommendationList$]="drugRecommendationList$"
+    ></app-drug-recommendation-table>
   </div>
+</ng-template>
 
-  <app-drug-recommendation-table
-    [drugRecommendationList$]="drugRecommendationList$"
-  ></app-drug-recommendation-table>
-</div>
+<ng-template #emptyPage>
+  <div class="empty-page">
+    <mat-icon>integration_instructions</mat-icon>
+    <p>You don't have any report. Contact us now</p>
+    <button class="contact-button" mat-button routerLink="/contact">
+      Contact
+    </button>
+  </div>
+</ng-template>
