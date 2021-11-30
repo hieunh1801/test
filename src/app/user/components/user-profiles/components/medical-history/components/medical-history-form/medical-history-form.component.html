@@ -25,7 +25,16 @@
               'USER__USER_PROFILES__MEDICAL_HISTORY_FORM__PLACEHOLDER__DRUG_NAME'
                 | translate
             "
+            [matAutocomplete]="drugSynonymAutocomplete"
           />
+          <mat-autocomplete #drugSynonymAutocomplete="matAutocomplete">
+            <mat-option
+              *ngFor="let option of drugSynonymOptions"
+              [value]="option.synonyms"
+            >
+              {{ option.synonyms }}
+            </mat-option>
+          </mat-autocomplete>
           <mat-error *ngIf="f?.drug?.dirty || f?.drug?.touched">
             <mat-icon>error</mat-icon>
             <span *ngIf="f?.drug?.errors?.required" translate>
