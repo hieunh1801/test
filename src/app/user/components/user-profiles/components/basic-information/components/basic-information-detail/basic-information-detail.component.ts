@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { BmiCalculatorService } from '@shared/services/bmi-calculator.service';
 import { WeightHeightHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
@@ -16,11 +17,11 @@ export class BasicInformationDetailComponent implements OnInit, OnDestroy {
   weight: number = null;
   height: number = null;
   date: string = null;
-  bmi: string = null;
+  bmi: number = null;
 
   subscription$ = new Subscription();
 
-  constructor() {}
+  constructor(private bmiCalculator: BmiCalculatorService) {}
 
   ngOnInit(): void {
     this.subscribeWeightHeightListChange();
@@ -41,9 +42,9 @@ export class BasicInformationDetailComponent implements OnInit, OnDestroy {
           return;
         }
 
-        const weightHeightHistorySortedList = weightHeightHistoryList.sort(
-          (a, b) => Date.parse(b.date) - Date.parse(a.date)
-        );
+        let weightHeightHistorySortedList = weightHeightHistoryList
+          .sort((a, b) => Date.parse(b.createdTime) - Date.parse(a.createdTime))
+          .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
         this.weightHeightHistoryList = weightHeightHistorySortedList;
 
@@ -54,10 +55,7 @@ export class BasicInformationDetailComponent implements OnInit, OnDestroy {
           this.height = height;
           this.date = date;
 
-          this.bmi =
-            weight && height && weight > 0 && height > 0
-              ? (weight / (height * height)).toFixed(2)
-              : null;
+          this.bmi = this.bmiCalculator.calculateBmi(weight, height);
         }
       }
     );

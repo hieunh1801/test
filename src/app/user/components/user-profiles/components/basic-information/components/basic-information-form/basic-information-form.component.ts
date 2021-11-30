@@ -25,7 +25,7 @@ export class BasicInformationFormComponent implements OnInit {
       ],
       height: [
         null,
-        [Validators.required, Validators.min(0), Validators.max(10)],
+        [Validators.required, Validators.min(0), Validators.max(1000)],
       ],
       date: [new Date(), [Validators.required]],
     });
