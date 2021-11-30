@@ -7,7 +7,7 @@
 
   <app-introduction-form
     *ngIf="mode$.value === 'EDIT'"
-    [userProfile$]="userProfile$"
+    [userProfile]="userProfile$?.value"
     (cancelEvent)="changeMode('VIEW')"
     (saveEvent)="updateData($event)"
   >

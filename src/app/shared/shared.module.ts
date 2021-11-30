@@ -23,6 +23,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { ToAgePipe } from './pipes/to-age.pipe';
 import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 import { GenderToStringPipe } from './pipes/gender-to-string.pipe';
+import { CountryAutocompleteComponent } from './components/country-autocomplete/country-autocomplete.component';
+import { RatingInputComponent } from './components/rating-input/rating-input.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -32,6 +34,8 @@ const COMPONENTS = [
   PageLoadingComponent,
   ImageOverlayFullscreenComponent,
   SnackbarComponent,
+  CountryAutocompleteComponent,
+  RatingInputComponent,
 ];
 
 const httpInterceptorProviders = [
@@ -54,6 +58,7 @@ const httpInterceptorProviders = [
     ToAgePipe,
     HighlightSearchPipe,
     GenderToStringPipe,
+    CountryAutocompleteComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -62,6 +67,7 @@ const httpInterceptorProviders = [
     FlexLayoutModule,
     MaterialModule,
     TranslateModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ...COMPONENTS,

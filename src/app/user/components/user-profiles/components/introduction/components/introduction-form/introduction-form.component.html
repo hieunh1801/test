@@ -1,4 +1,4 @@
-<ng-container *ngIf="userProfile$.value">
+<ng-container *ngIf="demographicForm">
   <div id="introduction-form">
     <form
       [formGroup]="demographicForm"
@@ -66,13 +66,37 @@
         <div class="form-field">
           <mat-label>Nationality</mat-label>
           <mat-form-field appearance="outline">
-            <input matInput formControlName="nationality" />
+            <input
+              matInput
+              formControlName="nationality"
+              [matAutocomplete]="nationalityAutocomplete"
+            />
+            <mat-autocomplete #nationalityAutocomplete="matAutocomplete">
+              <mat-option
+                *ngFor="let option of countryOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
         <div class="form-field">
           <mat-label>Country</mat-label>
           <mat-form-field appearance="outline">
-            <input matInput formControlName="country" />
+            <input
+              matInput
+              formControlName="country"
+              [matAutocomplete]="countryAutocomplete"
+            />
+            <mat-autocomplete #countryAutocomplete="matAutocomplete">
+              <mat-option
+                *ngFor="let option of countryOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
         <div class="form-field">
