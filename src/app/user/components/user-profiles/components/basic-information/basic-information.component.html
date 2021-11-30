@@ -42,6 +42,7 @@
     <!-- add mode -->
     <app-basic-information-form
       *ngIf="mode === 'ADD'"
+      [weightHeightHistoryList$]="weightHeightHistoryList$"
       (cancelEvent)="mode = 'VIEW'"
       (createEvent)="postData($event)"
     ></app-basic-information-form>
