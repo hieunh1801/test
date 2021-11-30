@@ -49,7 +49,15 @@ const routes: Routes = [
         component: DrugComponent,
       },
       {
+        path: 'drug/:name/detail',
+        component: DrugComponent,
+      },
+      {
         path: 'gene/:id/detail',
+        component: GeneComponent,
+      },
+      {
+        path: 'gene/:name/detail',
         component: GeneComponent,
       },
       {

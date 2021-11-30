@@ -8,10 +8,7 @@
             <p>Some results below may be the things you are looking for</p>
 
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label
-                >찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin /
-                Tyrenol)</mat-label
-              >
+              <mat-label translate>PDSS__BROWSER__SEARCH_COMMENT</mat-label>
               <input
                 type="text"
                 formControlName="keyword"
@@ -43,10 +40,10 @@
               <mat-selection-list #drugs [multiple]="false">
                 <mat-list-option
                   *ngFor="let drug of listOfDrugs"
-                  [value]="drug.name"
+                  [value]="drug"
                 >
                   <a [routerLink]="['/pdss/drug', drug.id, 'detail']">{{
-                    drug.name
+                    drug.name | titlecase
                   }}</a>
                 </mat-list-option>
               </mat-selection-list>
@@ -59,7 +56,7 @@
                   [value]="gene"
                 >
                   <a [routerLink]="['/pdss/gene', gene.id, 'detail']">{{
-                    gene.name
+                    gene.symbol
                   }}</a>
                 </mat-list-option>
               </mat-selection-list>
@@ -152,11 +149,6 @@
                     >
                       <span class="brand">drug</span>
                     </span>
-                    <!-- 
-              <span *ngIf="result.type == 'Generic_Name'">
-                <span class="drug">drug</span>              
-              </span>
-            -->
                     <span *ngIf="result.type == 'gene'">
                       <span class="gene">gene</span>
                     </span>

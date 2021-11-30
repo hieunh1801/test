@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { LanguageService } from '@shared/services/language.service';
@@ -28,4 +28,31 @@ export class GeneService {
       // tap((data) => console.log(JSON.stringify(data)));
       ();
   }
+  /**
+   * Get drug detaiils
+   */
+  searchByName(symbol: string): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/gene/search`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const payload: GeneSearchListRequest = new GeneSearchListRequest();
+    const genes: Array<GeneSearchRequest> = [];
+    const gene: GeneSearchRequest = new GeneSearchRequest();
+    gene.geneSymbol = symbol;
+    genes.push(gene);
+    payload.genes = genes;
+
+    // Calling API for getting all guidelines
+    return this.httpClient
+      .post(url, payload, { headers })
+      .pipe(tap((data) => console.log(JSON.stringify(data))));
+  }
+}
+
+export class GeneSearchListRequest {
+  genes: Array<GeneSearchRequest>;
+  hasGuideline: number;
+}
+
+export class GeneSearchRequest {
+  geneSymbol: string;
 }

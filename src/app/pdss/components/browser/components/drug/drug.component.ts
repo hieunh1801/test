@@ -36,9 +36,10 @@ export class DrugComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const sub = this.route.params.subscribe((params) => {
+    const drugId = this.route.params.subscribe((params) => {
       this.drugId = +params['id'];
     });
+
     this.loadDrugDetail();
     this.loadDrugSynonyms();
   }
@@ -49,6 +50,7 @@ export class DrugComponent implements OnInit, OnDestroy {
 
   loadDrugDetail(): void {
     this.pageLoadingService.startLoading();
+
     this.drugService
       .getById(this.drugId)
       .pipe(

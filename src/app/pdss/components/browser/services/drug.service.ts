@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { LanguageService } from '@shared/services/language.service';
@@ -22,7 +22,28 @@ export class DrugService {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/${id}`;
 
     // Calling API for getting all guidelines
-    return this.httpClient.get(url).pipe(
+    return this.httpClient
+      .get(url)
+      .pipe
+      //tap((data) => console.log(JSON.stringify(data)));
+      ();
+  }
+
+  /**
+   * Get drug detaiils
+   */
+  searchByName(name: string): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/search`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const payload: DrugSearchListRequest = new DrugSearchListRequest();
+    const drugs: Array<DrugSearchRequest> = [];
+    const drug: DrugSearchRequest = new DrugSearchRequest();
+    drug.name = name;
+    drugs.push(drug);
+    payload.drugs = drugs;
+
+    // Calling API for getting all guidelines
+    return this.httpClient.post(url, payload, { headers }).pipe(
       //tap((data) => console.log(JSON.stringify(data)));
       tap((data) => console.log(JSON.stringify(data)))
     );
@@ -41,4 +62,13 @@ export class DrugService {
       // tap((data) => console.log(JSON.stringify(data))));
       ();
   }
+}
+
+export class DrugSearchListRequest {
+  drugs: Array<DrugSearchRequest>;
+  hasGuideline: number;
+}
+
+export class DrugSearchRequest {
+  name: string;
 }

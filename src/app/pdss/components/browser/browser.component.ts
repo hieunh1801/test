@@ -15,6 +15,8 @@ import {
   BrowserService,
   SearchRequest,
   SearchResponse,
+  TopDrugsResponse,
+  TopGenesResponse,
 } from './services/browser.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -37,47 +39,14 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subscription$ = new Subscription();
   pageChangeSub$: Subscription;
-
-  listOfDrugs = [
-    { id: 14, name: 'Abacarvir' },
-    { id: 33, name: 'Allopurinol' },
-    { id: 270, name: 'Amikacin' },
-    { id: 27, name: 'Amitriptyline' },
-    { id: 100, name: 'Aripiprazole' },
-    { id: 65, name: 'Aspirin' },
-    { id: 17, name: 'Atomoxetine' },
-    { id: 73, name: 'Atorvastatin' },
-    { id: 11, name: 'Capecitabine' },
-    { id: 25, name: 'Carbamazepine' },
-    { id: 42, name: 'Citalopram' },
-    { id: 19, name: 'Clopidogrel' },
-    { id: 85, name: 'Irinotecan' },
-    { id: 38, name: 'Phenytoin' },
-    { id: 16, name: 'Tamoxifen' },
-    { id: 23, name: 'Warfarin' },
-  ];
-  listOfGenes = [
-    { id: 98, name: 'ABCB1' },
-    { id: 3, name: 'CYP2B6' },
-    { id: 1, name: 'CYP2C19' },
-    { id: 50, name: 'CYP2C9' },
-    { id: 21, name: 'CYP2D6' },
-    { id: 101, name: 'CYP3A4' },
-    { id: 60, name: 'CYP3A5' },
-    { id: 18, name: 'DPYD' },
-    { id: 49, name: 'G6PD' },
-    { id: 32, name: 'HLA-A' },
-    { id: 2, name: 'HLA-B' },
-    { id: 24, name: 'NUDT15' },
-    { id: 46, name: 'SLCO1B1' },
-    { id: 25, name: 'TPMT' },
-    { id: 61, name: 'UGT1A1' },
-    { id: 93, name: 'VKORC1' },
-  ];
+  listOfDrugs: Array<TopDrugsResponse> | null;
+  listOfGenes: Array<TopGenesResponse> | null;
   isSearch = false;
   searchKeyword: string | null;
   finalResults: Array<SearchResponse> | null;
   totalResults: Array<SearchResponse> | null;
+  topDrugs: Array<TopDrugsResponse> | null;
+  topGenes: Array<TopGenesResponse> | null;
   result: SearchResponse | null;
   drugId: number;
   geneCount: number;
@@ -110,7 +79,10 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.finalResults);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTopDrugs();
+    this.getTopGenes();
+  }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
@@ -236,6 +208,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.finalResults = tempResults;
     this.totalResults = tempResults;
     this.dataSource.data = tempResults;
+    this.searchTotal = this.finalCount + this.geneCount;
   }
 
   onChange($event: Event) {
@@ -265,5 +238,103 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       this.dataSource.data = tempResults;
     }
+  }
+
+  getTopDrugs() {
+    this.pageLoadingService.startLoading();
+
+    // get drugs data from api
+    this.browserService
+      .getTopDrugs()
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response: SpmedResponse<TopDrugsResponse>) => {
+          const topDrugsResponse: TopDrugsResponse = response?.data?.items[0];
+          if (topDrugsResponse == null) {
+            const message = this.translateService.instant(
+              'PDSS__BROWSER__RESULT__NOT__FOUND'
+            );
+            const action = this.translateService.instant(
+              'MAT_SNACKBAR__ACTION__BROWSER'
+            );
+            this.matSnackbarService.open(message, action);
+          } else {
+            // this.paginator.length = response.data?.items.length;
+            // this.searchTotal = response.data?.items.length;
+            this.onGetDrugs(response.data.items);
+          }
+        },
+        complete: () => {
+          console.log('this.browserService.getTopDrugs done!!!');
+        },
+        error: (error) => {
+          console.error(error.response);
+          const message2 = this.translateService.instant(
+            'PDSS__BROWSER__SERVER__NOT__RESPONSE'
+          );
+          const action2 = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__BROWSER'
+          );
+          this.matSnackbarService.open(message2, action2);
+        },
+      });
+  }
+
+  onGetDrugs(results: TopDrugsResponse[]): void {
+    // this.topDrugs = results;
+    this.listOfDrugs = results;
+  }
+
+  getTopGenes() {
+    this.pageLoadingService.startLoading();
+
+    // get drugs data from api
+    this.browserService
+      .getTopGenes()
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response: SpmedResponse<TopGenesResponse>) => {
+          const topGenesResponse: TopGenesResponse = response?.data?.items[0];
+          if (topGenesResponse == null) {
+            const message = this.translateService.instant(
+              'PDSS__BROWSER__RESULT__NOT__FOUND'
+            );
+            const action = this.translateService.instant(
+              'MAT_SNACKBAR__ACTION__BROWSER'
+            );
+            this.matSnackbarService.open(message, action);
+          } else {
+            // this.paginator.length = response.data?.items.length;
+            // this.searchTotal = response.data?.items.length;
+            this.onGetTopGenes(response.data.items);
+          }
+        },
+        complete: () => {
+          console.log('this.browserService.getTopGenes done!!!');
+        },
+        error: (error) => {
+          console.error(error.response);
+          const message2 = this.translateService.instant(
+            'PDSS__BROWSER__SERVER__NOT__RESPONSE'
+          );
+          const action2 = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__BROWSER'
+          );
+          this.matSnackbarService.open(message2, action2);
+        },
+      });
+  }
+
+  onGetTopGenes(results: TopGenesResponse[]): void {
+    // this.topGenes = results;
+    this.listOfGenes = results;
   }
 }

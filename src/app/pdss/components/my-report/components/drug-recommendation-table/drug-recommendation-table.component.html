@@ -25,7 +25,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header="drugName">
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__DRUG </span>
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.drugName }}</td>
+      <td mat-cell *matCellDef="let element">
+        <a
+          [routerLink]="['/pdss/drug', element.drugName, 'detail']"
+          target="_blank"
+          >{{ element.drugName }}</a
+        >
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="relatedGenes">
