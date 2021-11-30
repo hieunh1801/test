@@ -24,9 +24,12 @@
 <ng-template #emptyPage>
   <div class="empty-page">
     <mat-icon>integration_instructions</mat-icon>
-    <p>You don't have any report. Contact us now</p>
+    <p>
+      {{ "PDSS__MY_REPORT__EMPTY_PAGE__YOU_DONT_HAVE_ANY_REPORT" | translate }}
+    </p>
+
     <button class="contact-button" mat-button routerLink="/contact">
-      Contact
+      {{ "PDSS__MY_REPORT__EMPTY_PAGE__BUTTON_CONTACT" | translate }}
     </button>
   </div>
 </ng-template>

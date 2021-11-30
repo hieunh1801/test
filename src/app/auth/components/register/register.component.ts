@@ -254,10 +254,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
               // this.tokenStorageService.authorities =
               //   customerUserCreateResponse?.authorities || [];
 
-              const dialogInputData: RegisterSuccessDialogInput = {};
-              this.dialog.open(RegisterSuccessDialogComponent, {
-                data: dialogInputData,
-              });
+              // const dialogInputData: RegisterSuccessDialogInput = {};
+              // this.dialog.open(RegisterSuccessDialogComponent, {
+              //   data: dialogInputData,
+              // });
+
+              this.router.navigate(['auth', 'register-success']);
             }
           },
           complete: () => {
