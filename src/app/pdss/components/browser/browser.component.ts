@@ -40,26 +40,44 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
 
   listOfDrugs = [
     { id: 14, name: 'Abacarvir' },
-    { id: 163, name: 'Acenocoumarol' },
     { id: 33, name: 'Allopurinol' },
+    { id: 270, name: 'Amikacin' },
     { id: 27, name: 'Amitriptyline' },
     { id: 100, name: 'Aripiprazole' },
     { id: 65, name: 'Aspirin' },
-    { id: 46, name: 'atazanavir' },
+    { id: 17, name: 'Atomoxetine' },
+    { id: 73, name: 'Atorvastatin' },
+    { id: 11, name: 'Capecitabine' },
+    { id: 25, name: 'Carbamazepine' },
+    { id: 42, name: 'Citalopram' },
+    { id: 19, name: 'Clopidogrel' },
+    { id: 85, name: 'Irinotecan' },
+    { id: 38, name: 'Phenytoin' },
+    { id: 16, name: 'Tamoxifen' },
+    { id: 23, name: 'Warfarin' },
   ];
   listOfGenes = [
     { id: 98, name: 'ABCB1' },
-    { id: 4, name: 'CACNA1S' },
-    { id: 75, name: 'CFTR' },
     { id: 3, name: 'CYP2B6' },
     { id: 1, name: 'CYP2C19' },
     { id: 50, name: 'CYP2C9' },
     { id: 21, name: 'CYP2D6' },
+    { id: 101, name: 'CYP3A4' },
+    { id: 60, name: 'CYP3A5' },
+    { id: 18, name: 'DPYD' },
+    { id: 49, name: 'G6PD' },
+    { id: 32, name: 'HLA-A' },
+    { id: 2, name: 'HLA-B' },
+    { id: 24, name: 'NUDT15' },
+    { id: 46, name: 'SLCO1B1' },
+    { id: 25, name: 'TPMT' },
+    { id: 61, name: 'UGT1A1' },
+    { id: 93, name: 'VKORC1' },
   ];
   isSearch = false;
   searchKeyword: string | null;
   finalResults: Array<SearchResponse> | null;
-  genericResults: Array<SearchResponse> | null;
+  totalResults: Array<SearchResponse> | null;
   result: SearchResponse | null;
   drugId: number;
   geneCount: number;
@@ -216,6 +234,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.finalResults = tempResults;
+    this.totalResults = tempResults;
     this.dataSource.data = tempResults;
   }
 
@@ -228,7 +247,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const isGene = formValue.isGene;
       const isBrand = formValue.isBrand;
 
-      for (let element of this.finalResults) {
+      for (let element of this.totalResults) {
         if (element.type == 'Brand') {
           if (isBrand == true) {
             tempResults.push(element);
@@ -245,7 +264,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
       this.dataSource.data = tempResults;
-      // console.log(this.finalResults);
     }
   }
 }

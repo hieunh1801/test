@@ -1,118 +1,127 @@
-<div id="gene-page">
-  <div class="section">
-    <div id="gene-info">
-      <div
-        class="title"
-        fxLayout="column"
-        fxLayoutAlign="space-between left"
-        *ngIf="!!gene"
-      >
-        <h1 class="bold">{{ gene.symbol }}</h1>
-        <h3>{{ gene.scientificName }}</h3>
-        <div class="default-margin"></div>
-        <table style="width: 300px">
-          <ng-container matColumnDef="guideline">
-            <td>
-              <div *ngIf="gene.hasPharmgkbGuideline > 0; else noPgkbGuide">
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/guideline_yes.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
-                />
-              </div>
-              <ng-template #noPgkbGuide>
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/guideline_no.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
-                />
-              </ng-template>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="drugLabel">
-            <td>
-              <div *ngIf="gene.hasPharmgkbDruglabel > 0; else noPgkbLabel">
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/druglabel_yes.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
-                />
-              </div>
-              <ng-template #noPgkbLabel>
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/druglabel_no.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
-                />
-              </ng-template>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="ca">
-            <td>
-              <div *ngIf="gene.hasPharmgkbCa > 0; else noPgkbCa">
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/clinicalannotation_yes.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbCa }} PGKB Clinical Annotation"
-                />
-              </div>
-              <ng-template #noPgkbCa>
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/clinicalannotation_no.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbCa }} PGKB Clinical Annotation"
-                />
-              </ng-template>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="va">
-            <td>
-              <div *ngIf="gene.hasPharmgkbVa > 0; else noPgkbVa">
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/variantannotation_yes.jpg"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbVa }} PGKB Variant Annotation"
-                />
-              </div>
-              <ng-template #noPgkbVa>
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/variantannotation_no.jpg"
-                  width="60px"
-                  matTooltip="{{ gene.hasPharmgkbVa }} PGKB Variant Annotation"
-                />
-              </ng-template>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="spmed">
-            <td>
-              <div *ngIf="gene.hasSpmedGuideline > 0; else noSpmed">
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/spmed_yes.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
-                />
-              </div>
-              <ng-template #noSpmed>
-                <img
-                  mat-card-avatar
-                  src="../../../../../../assets/pgx/spmed_no.png"
-                  width="60px"
-                  matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
-                />
-              </ng-template>
-            </td>
-          </ng-container>
-        </table>
-        <!--
+<div id="page">
+  <div id="gene-page">
+    <div class="section">
+      <div id="gene-info">
+        <div
+          class="title"
+          fxLayout="column"
+          fxLayoutAlign="space-between left"
+          *ngIf="!!gene"
+        >
+          <h1 class="bold">{{ gene.symbol }}</h1>
+          <h3>{{ gene.scientificName }}</h3>
+          <div class="default-margin"></div>
+          <table style="width: 300px">
+            <ng-container matColumnDef="guideline">
+              <td>
+                <div *ngIf="gene.hasPharmgkbGuideline > 0; else noPgkbGuide">
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/guideline_yes.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
+                  />
+                </div>
+                <ng-template #noPgkbGuide>
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/guideline_no.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasPharmgkbGuideline }} PGKB Guideline"
+                  />
+                </ng-template>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="drugLabel">
+              <td>
+                <div *ngIf="gene.hasPharmgkbDruglabel > 0; else noPgkbLabel">
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/druglabel_yes.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
+                  />
+                </div>
+                <ng-template #noPgkbLabel>
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/druglabel_no.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasPharmgkbDruglabel }} PGKB Drug Label"
+                  />
+                </ng-template>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="ca">
+              <td>
+                <div *ngIf="gene.hasPharmgkbCa > 0; else noPgkbCa">
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/clinicalannotation_yes.png"
+                    width="60px"
+                    matTooltip="{{
+                      gene.hasPharmgkbCa
+                    }} PGKB Clinical Annotation"
+                  />
+                </div>
+                <ng-template #noPgkbCa>
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/clinicalannotation_no.png"
+                    width="60px"
+                    matTooltip="{{
+                      gene.hasPharmgkbCa
+                    }} PGKB Clinical Annotation"
+                  />
+                </ng-template>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="va">
+              <td>
+                <div *ngIf="gene.hasPharmgkbVa > 0; else noPgkbVa">
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/variantannotation_yes.jpg"
+                    width="60px"
+                    matTooltip="{{
+                      gene.hasPharmgkbVa
+                    }} PGKB Variant Annotation"
+                  />
+                </div>
+                <ng-template #noPgkbVa>
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/variantannotation_no.jpg"
+                    width="60px"
+                    matTooltip="{{
+                      gene.hasPharmgkbVa
+                    }} PGKB Variant Annotation"
+                  />
+                </ng-template>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="spmed">
+              <td>
+                <div *ngIf="gene.hasSpmedGuideline > 0; else noSpmed">
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/spmed_yes.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                  />
+                </div>
+                <ng-template #noSpmed>
+                  <img
+                    mat-card-avatar
+                    src="../../../../../../assets/pgx/spmed_no.png"
+                    width="60px"
+                    matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                  />
+                </ng-template>
+              </td>
+            </ng-container>
+          </table>
+          <!--
         <div class="default-margin">
           <img
             src="../../../../../../assets/pgx/drug_info_icon.png"
@@ -120,88 +129,89 @@
           />
         </div>
         -->
-        <div class="default-margin">
-          <h2>What is {{ gene.symbol }}</h2>
-          <div *ngIf="!!gene.summary">
-            <div
-              class="sub-content"
-              *ngIf="this.languageService.currentLanguage == 'en'"
-            >
-              {{ gene.summary }}
-            </div>
-            <div
-              class="sub-content"
-              *ngIf="this.languageService.currentLanguage == 'kr'"
-            >
-              {{ gene.kr.summary }}
-            </div>
-          </div>
-        </div>
-
-        <div class="default-margin">
-          <h2>Related drugs</h2>
-          <div
-            fxLayout="row wrap"
-            fxLayout.lt-sm="column"
-            fxLayoutAlign="start left"
-          >
-            <div class="drug" *ngFor="let drug of gene.drugs">
-              <a
-                class="white"
-                [routerLink]="['/pdss/drug', drug.id, 'detail']"
-                >{{ drug.name }}</a
+          <div class="default-margin">
+            <h2>What is {{ gene.symbol }}</h2>
+            <div *ngIf="!!gene.summary">
+              <div
+                class="sub-content"
+                *ngIf="this.languageService.currentLanguage == 'en'"
               >
+                {{ gene.summary }}
+              </div>
+              <div
+                class="sub-content"
+                *ngIf="this.languageService.currentLanguage == 'kr'"
+              >
+                {{ gene.kr.summary }}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="default-margin">
-          <h2>External Information</h2>
-          <table class="ex-link">
-            <tr *ngIf="gene.idPharmgkb">
-              <td class="w100" style="width: 100px">PharmGKB</td>
-              <td class="link">
+          <div class="default-margin">
+            <h2>Related drugs</h2>
+            <div
+              fxLayout="row wrap"
+              fxLayout.lt-sm="column"
+              fxLayoutAlign="start left"
+            >
+              <div class="drug" *ngFor="let drug of gene.drugs">
                 <a
-                  href="https://www.pharmgkb.org/gene/{{ gene.idPharmgkb }}"
-                  target="_blank"
+                  class="white"
+                  [routerLink]="['/pdss/drug', drug.id, 'detail']"
+                  >{{ drug.name }}</a
                 >
-                  {{ gene.idPharmgkb }}
-                </a>
-              </td>
-            </tr>
-            <tr *ngIf="gene.idNcbi">
-              <td class="w100">NCBI</td>
-              <td class="link">
-                <a
-                  href="https://www.ncbi.nlm.nih.gov/gene/{{ gene.idNcbi }}"
-                  target="_blank"
-                  >{{ gene.idNcbi }}</a
-                >
-              </td>
-            </tr>
-            <tr *ngIf="gene.idHgnc">
-              <td class="w100">HGNC</td>
-              <td class="link">
-                <a
-                  href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:{{
-                    gene.idHgnc
-                  }}"
-                  target="_blank"
-                  >{{ gene.idHgnc }}</a
-                >
-              </td>
-            </tr>
-            <tr *ngIf="gene.idEnsembl">
-              <td class="w100">Ensembl</td>
-              <td class="link">
-                <a
-                  href="https://www.ensembl.org/id/{{ gene.idEnsembl }}"
-                  target="_blank"
-                  >{{ gene.idEnsembl }}</a
-                >
-              </td>
-            </tr>
-          </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="default-margin">
+            <h2>External Information</h2>
+            <table class="ex-link">
+              <tr *ngIf="gene.idPharmgkb">
+                <td class="w100" style="width: 100px">PharmGKB</td>
+                <td class="link">
+                  <a
+                    href="https://www.pharmgkb.org/gene/{{ gene.idPharmgkb }}"
+                    target="_blank"
+                  >
+                    {{ gene.idPharmgkb }}
+                  </a>
+                </td>
+              </tr>
+              <tr *ngIf="gene.idNcbi">
+                <td class="w100">NCBI</td>
+                <td class="link">
+                  <a
+                    href="https://www.ncbi.nlm.nih.gov/gene/{{ gene.idNcbi }}"
+                    target="_blank"
+                    >{{ gene.idNcbi }}</a
+                  >
+                </td>
+              </tr>
+              <tr *ngIf="gene.idHgnc">
+                <td class="w100">HGNC</td>
+                <td class="link">
+                  <a
+                    href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:{{
+                      gene.idHgnc
+                    }}"
+                    target="_blank"
+                    >{{ gene.idHgnc }}</a
+                  >
+                </td>
+              </tr>
+              <tr *ngIf="gene.idEnsembl">
+                <td class="w100">Ensembl</td>
+                <td class="link">
+                  <a
+                    href="https://www.ensembl.org/id/{{ gene.idEnsembl }}"
+                    target="_blank"
+                    >{{ gene.idEnsembl }}</a
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
