@@ -218,13 +218,11 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const formValue = this.filterForm.value;
       const isDrug = formValue.isDrug;
       const isGene = formValue.isGene;
-      const isBrand = formValue.isBrand;
 
       for (let element of this.totalResults) {
         if (element.type == 'Brand') {
-          if (isBrand == true) {
+          if (isDrug == true) {
             tempResults.push(element);
-          } else {
           }
         } else if (element.type == 'Generic_Name') {
           if (isDrug == true) {
