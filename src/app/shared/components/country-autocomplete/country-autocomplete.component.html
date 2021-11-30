@@ -1,0 +1,5 @@
+<mat-autocomplete>
+  <mat-option *ngFor="let country of countryOptions" [value]="country?.name">
+    <span>{{ country.name }}</span>
+  </mat-option>
+</mat-autocomplete>

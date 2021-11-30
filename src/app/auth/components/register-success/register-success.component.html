@@ -1,0 +1,25 @@
+<div id="register-success-page">
+  <div class="wrapper" fxLayout="row" fxLayoutGap="10px">
+    <mat-icon>check_circle</mat-icon>
+
+    <div class="content">
+      <h1>
+        {{
+          "AUTH__REGISTER_SUCCESS__MESSAGES__THANK_YOU_FOR_YOUR_REGISTERING"
+            | translate
+        }}
+      </h1>
+      <p>
+        {{
+          "AUTH__REGISTER_SUCCESS__MESSAGES__YOUR_REGISTRATION_IS_SUCCESS"
+            | translate
+        }}
+      </p>
+      <div fxLayoutAlign="end">
+        <button mat-button class="login-button" routerLink="/auth/login">
+          {{ "AUTH__REGISTER_SUCCESS__BUTTONS__LOGIN" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

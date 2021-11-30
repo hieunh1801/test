@@ -9,6 +9,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { AuthComponent } from './auth.component';
 import { SharedModule } from '@shared/shared.module';
 import { RegisterSuccessDialogComponent } from './components/register/components/register-success-dialog/register-success-dialog.component';
+import { RegisterSuccessComponent } from './components/register-success/register-success.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RegisterSuccessDialogComponent } from './components/register/components
     ResetPasswordComponent,
     AuthComponent,
     RegisterSuccessDialogComponent,
+    RegisterSuccessComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
 })

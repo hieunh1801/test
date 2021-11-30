@@ -2,12 +2,12 @@
   <mat-divider></mat-divider>
   <div class="footer-box">
     <div
-      class="flex-container"
       fxLayout="row"
+      fxLayoutGap="25px"
       fxLayout.lt-md="column"
-      fxLayoutAlign="center center"
+      fxLayoutGap.lt-sm="10px"
     >
-      <div fxLayout="column">
+      <div fxFlex="25" fxLayout="column">
         <div class="logo"><img src="../../../../assets/common/logo.jpg" /></div>
         <div class="footer-txt" translate>LAYOUT__FOOTER__COPYRIGHT</div>
         <div class="sns" fxLayout="row">
@@ -23,59 +23,75 @@
           </div>
         </div>
       </div>
-      <div fxLayout="row" fxLayout.lt-lg="column" style="padding-left: 10px">
-        <div fxLayout="row" fxLayoutAlign="none" class="footer-contents">
-          <div fxFlex="50">
-            <div class="footer-title">Service</div>
-            <div class="address">
-              <a routerLink="/pdss">PDSS - My Prescription</a>
-            </div>
-            <div class="address"><a routerLink="/adme">ADME service</a></div>
-            <div class="address">Genotyping KIT</div>
-            <div class="address">Human Recombinant Enzymes</div>
+      <div
+        fxFlex
+        fxLayout="row"
+        fxLayoutAlign="space-between start"
+        fxLayoutGap="10px"
+        fxLayout.lt-sm="column"
+      >
+        <div fxFlex="25">
+          <div class="footer-title">
+            {{ "LAYOUT__FOOTER__SUB_TITLES__SERVICES" | translate }}
           </div>
-          <div fxFlex>
-            <div class="footer-title">Link</div>
-            <div class="address" translate>
-              LAYOUT__FOOTER__LINK__COMPANY_INTRODUCTION
-            </div>
-            <div class="address" translate>
-              LAYOUT__FOOTER__LINK__TERM_OF_POLICY
-            </div>
-            <div class="address" translate>
-              LAYOUT__FOOTER__LINK__PRIVACY_POLICY
-            </div>
+          <div class="address">
+            <a routerLink="/pdss">
+              {{
+                "LAYOUT__FOOTER__SUB_TITLES__PDSS_MY_PRESCRIPTION" | translate
+              }}
+            </a>
+          </div>
+          <div class="address">
+            <a routerLink="/adme">
+              {{ "LAYOUT__FOOTER__SUB_TITLES__ADME_SERVICE" | translate }}
+            </a>
+          </div>
+          <div class="address">
+            {{ "LAYOUT__FOOTER__SUB_TITLES__GENOTYPING_KIT" | translate }}
+          </div>
+          <div class="address">
+            {{
+              "LAYOUT__FOOTER__SUB_TITLES__HUMAN_RECOMBINANT_ENZYMES"
+                | translate
+            }}
           </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="none" class="footer-contents">
-          <div fxFlex>
-            <div class="footer-title">Contact Us</div>
-            <div class="address">Tel : +82-51-362-1101</div>
-            <div class="address">Email: help@spmed.kr</div>
-            <div class="address">Fax : +82-51-361-1102</div>
+        <div fxFlex="25">
+          <div class="footer-title">
+            {{ "LAYOUT__FOOTER__SUB_TITLES__LINK" | translate }}
           </div>
-          <div fxFlex>
-            <div class="footer-title">Address</div>
-            <div class="address-title" translate>
-              LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER
-            </div>
-            <div class="address" translate>
-              LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER_ADRESS
-            </div>
-            <span class="address-title" translate
-              >LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH</span
-            >
-            <div class="address" translate>
-              LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH_ADDRESS
-            </div>
+          <div class="address" translate>
+            LAYOUT__FOOTER__LINK__COMPANY_INTRODUCTION
+          </div>
+          <div class="address" translate>
+            LAYOUT__FOOTER__LINK__TERM_OF_POLICY
+          </div>
+          <div class="address" translate>
+            LAYOUT__FOOTER__LINK__PRIVACY_POLICY
+          </div>
+        </div>
+        <div fxFlex="25">
+          <div class="footer-title">Contact Us</div>
+          <div class="address">Tel : +82-51-362-1101</div>
+          <div class="address">Email: help@spmed.kr</div>
+          <div class="address">Fax : +82-51-361-1102</div>
+        </div>
+        <div fxFlex="25">
+          <div class="footer-title">Address</div>
+          <div class="address-title" translate>
+            LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER
+          </div>
+          <div class="address" translate>
+            LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER_ADDRESS
+          </div>
+          <div class="address-title" translate>
+            LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH
+          </div>
+          <div class="address" translate>
+            LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH_ADDRESS
           </div>
         </div>
       </div>
     </div>
-    <!--
-      <div class="flex-container" fxLayoutAlign="center center">
-        <div class="copyright" translate>LAYOUT__FOOTER__COPYRIGHT</div>
-      </div>
-    -->
   </div>
 </footer>

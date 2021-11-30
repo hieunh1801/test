@@ -1,21 +1,67 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WeightHeightHistoryPostRequest } from '@user/services/user-basic-information.service';
+import { WeightHeightHistory } from '@user/services/user-profile.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-basic-information-form',
   templateUrl: './basic-information-form.component.html',
   styleUrls: ['./basic-information-form.component.scss'],
 })
-export class BasicInformationFormComponent implements OnInit {
+export class BasicInformationFormComponent implements OnInit, OnDestroy {
+  @Input() weightHeightHistoryList$ = new BehaviorSubject<
+    WeightHeightHistory[]
+  >(null);
+
   @Output() createEvent = new EventEmitter();
   @Output() cancelEvent = new EventEmitter();
 
   basicInformationForm: FormGroup = null;
   maxDate = new Date();
   minDate = new Date('1900-01-01');
+  subscription$ = new Subscription();
 
   constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initForm();
+    this.subscribeWeightHeightHistoryListChange();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+
+  subscribeWeightHeightHistoryListChange(): void {
+    const sub = this.weightHeightHistoryList$
+      .pipe(distinctUntilChanged())
+      .subscribe((weightHeightHistoryList) => {
+        if (!!!weightHeightHistoryList) {
+          return;
+        }
+        const sortedList = weightHeightHistoryList
+          .sort((a, b) => Date.parse(b.createdTime) - Date.parse(a.createdTime))
+          .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
+        const lastHistory = sortedList?.[0] || null;
+        if (lastHistory) {
+          this.basicInformationForm.patchValue({
+            weight: lastHistory?.weight,
+            height: lastHistory?.height,
+          });
+        }
+      });
+    this.subscription$.add(sub);
+  }
 
   initForm(): void {
     this.basicInformationForm = this.formBuilder.group({
@@ -25,13 +71,10 @@ export class BasicInformationFormComponent implements OnInit {
       ],
       height: [
         null,
-        [Validators.required, Validators.min(0), Validators.max(10)],
+        [Validators.required, Validators.min(0), Validators.max(1000)],
       ],
       date: [new Date(), [Validators.required]],
     });
-  }
-  ngOnInit(): void {
-    this.initForm();
   }
 
   get f(): any {

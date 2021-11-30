@@ -27,7 +27,7 @@ npm run i18n
 
 ```ts
 import { TranslateService } from '@ngx-translate/core';
-
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 ...
 class Sample {
   constructor(
@@ -35,11 +35,15 @@ class Sample {
   ) {}
 
   test():void {
-    const helloWorld = this.translateService.instance("HELLO_WORLD");
+    const helloWorld = marker("ABC");
     console.log(helloWorld)
   }
 }
 
+```
+
+```html
+<div>{{helloWorld | translate}}</div>
 ```
 
 ## Chartjs

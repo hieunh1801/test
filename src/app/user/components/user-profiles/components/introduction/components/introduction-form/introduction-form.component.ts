@@ -7,10 +7,17 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CountryService } from '@shared/services/country.service';
 import { DateUtilService } from '@shared/services/date-util.service';
 import { DemographicPutRequest } from '@user/services/user-demographic.service';
 import { Demographic, UserProfile } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  startWith,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-introduction-form',
@@ -18,7 +25,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   styleUrls: ['./introduction-form.component.scss'],
 })
 export class IntroductionFormComponent implements OnInit, OnDestroy {
-  @Input() userProfile$ = new BehaviorSubject<UserProfile>(null);
+  @Input() userProfile: UserProfile = null;
 
   @Output() cancelEvent = new EventEmitter<boolean>();
   @Output() saveEvent = new EventEmitter<{
@@ -30,28 +37,63 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
 
   subscription$ = new Subscription();
 
+  countryOptions: string[] = null;
+
   constructor(
     private formBuilder: FormBuilder,
-    private dateUtilService: DateUtilService
+    private dateUtilService: DateUtilService,
+    private countryService: CountryService
   ) {}
 
   ngOnInit(): void {
-    this.subscribeUserProfileChange();
+    this.initForm();
+    this.subscribeCountryChange();
+    this.subscribeNationalityChange();
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
 
-  subscribeUserProfileChange(): void {
-    const sub = this.userProfile$.subscribe((userProfile: UserProfile) => {
-      const demographic = userProfile?.demographic;
-      this.initForm(demographic);
-    });
+  subscribeNationalityChange(): void {
+    const sub = this.demographicForm
+      .get('nationality')
+      .valueChanges.pipe(
+        distinctUntilChanged(),
+        startWith(''),
+        debounceTime(300)
+      )
+      .subscribe((nationality) => {
+        this.loadCountryOption(nationality);
+      });
+
     this.subscription$.add(sub);
   }
 
-  initForm(demographic: Demographic): void {
+  subscribeCountryChange(): void {
+    const sub = this.demographicForm
+      .get('country')
+      .valueChanges.pipe(
+        distinctUntilChanged(),
+        startWith(''),
+        debounceTime(300)
+      )
+      .subscribe((country) => {
+        this.loadCountryOption(country);
+      });
+
+    this.subscription$.add(sub);
+  }
+
+  loadCountryOption(name: string): void {
+    this.countryService.getAllCountry(name).subscribe((response) => {
+      this.countryOptions = response?.data?.items?.map((r) => r.name) || [];
+      console.log(this.countryOptions);
+    });
+  }
+
+  initForm(): void {
+    const demographic = this.userProfile?.demographic;
     if (demographic) {
       const {
         avatar,

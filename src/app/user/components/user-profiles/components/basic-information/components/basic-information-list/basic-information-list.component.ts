@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { DateUtilService } from '@shared/services/date-util.service';
 import { WeightHeightHistory } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -27,7 +28,7 @@ export class BasicInformationListComponent implements OnInit, OnDestroy {
 
   subscription$ = new Subscription();
 
-  constructor() {}
+  constructor(private dateUtilService: DateUtilService) {}
 
   subscribeWeightHeightHistoryListChange(): void {
     const sub = this.weightHeightHistoryList$
@@ -36,7 +37,9 @@ export class BasicInformationListComponent implements OnInit, OnDestroy {
         if (!!!weightHeightHistoryList) {
           return;
         }
-        this.weightHeightHistoryList = weightHeightHistoryList;
+        this.weightHeightHistoryList = weightHeightHistoryList?.sort(
+          (a, b) => Date.parse(b.createdTime) - Date.parse(a.createdTime)
+        );
       });
     this.subscription$.add(sub);
   }

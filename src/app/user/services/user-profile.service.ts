@@ -73,6 +73,8 @@ export interface WeightHeightHistory {
   height?: number;
   // heightUnit?: string;
   date?: string;
+  createdTime: string;
+  createdActor: string;
 }
 
 export interface Demographic {
