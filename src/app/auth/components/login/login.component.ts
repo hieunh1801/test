@@ -8,11 +8,9 @@ import {
 } from '@auth/services/auth.service';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
-import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { PageLoadingService } from '@shared/services/page-loading.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,11 +24,6 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
     rememberMe: [false, Validators.required],
   });
-
-  private subscription$ = new Subscription();
-
-  cusername = this.translateService.instant('LAYOUT__AUTH__REGISTER__ID');
-  cpassword = this.translateService.instant('LAYOUT__AUTH__REGISTER__PASSWORD');
 
   constructor(
     private formBuilder: FormBuilder,

@@ -6,12 +6,13 @@
       </mat-card-title>
 
       <mat-card-content>
-        <mat-label>{{ this.cusername }}</mat-label>
+        <mat-label>{{ "LAYOUT__AUTH__REGISTER__ID" | translate }}</mat-label>
         <mat-form-field class="login-full-width" appearance="outline">
           <input matInput formControlName="username" />
         </mat-form-field>
-
-        <mat-label>{{ this.cpassword }}</mat-label>
+        <mat-label>
+          {{ "LAYOUT__AUTH__REGISTER__PASSWORD" | translate }}
+        </mat-label>
         <mat-form-field class="login-full-width" appearance="outline">
           <input matInput formControlName="password" type="password" />
         </mat-form-field>
