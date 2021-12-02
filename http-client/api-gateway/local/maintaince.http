@@ -1,3 +1,12 @@
+###
 GET http://localhost:61100/api-gateway/v1.0/portal/v1.0/en/user/profile/life-style-history
 access-token: test-access=token
-Authorization: Bearer test-authorization
+Authorization1: Bearer test-authorization1
+Authorization: test-authorization
+
+### Check authorization
+GET http://localhost:61100/api-gateway/v1.0/portal/admin/v1.0/en/user/profile/life-style-history
+
+
+### GET DRUG SYNONYM
+GET http://localhost:61100/api-gateway/v1.0/portal/v1.0/kr/drug-synonyms/search?keyword=w
