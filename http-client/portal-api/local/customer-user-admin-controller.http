@@ -1,0 +1,6 @@
+
+### USER PROFILES
+GET http://localhost:61127/portal/v1.0/en/admin/customer-users
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2MzcwNDM3NDUsImV4cCI6MTcyMzQ0Mzc0NX0.Y7zjkvNf43-2fRISuHEy0di4vJBqcdfjEmaI-hhKorw
+# Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzODQwODQxMiwiZXhwIjoxNjM4NDk0ODEyfQ.BtkVmKNEqSbcwdhkZmOhZEt7K-lxU8WmG3H0ptSiyaoHhA7Ac1iGAunvtff3ctXJ5w_1tBIduQLoX8QxW3X_zw
