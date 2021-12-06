@@ -20,6 +20,7 @@ export class DrugComponent implements OnInit, OnDestroy {
   subscriptions$ = new Subscription();
   drug: Drug;
   drugId: number;
+  drugName: string;
   noOfGenes: number = 0;
   showGenes: boolean = true;
   exVoca: string[];
@@ -36,12 +37,16 @@ export class DrugComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const drugId = this.route.params.subscribe((params) => {
+    const sub = this.route.params.subscribe((params) => {
       this.drugId = +params['id'];
+      this.drugName = params['id'];
+      if (this.drugName.length < 4) {
+        this.loadDrugDetail();
+        this.loadDrugSynonyms();
+      } else {
+        this.loadDrugDetailFromName();
+      }
     });
-
-    this.loadDrugDetail();
-    this.loadDrugSynonyms();
   }
 
   ngOnDestroy(): void {
@@ -119,7 +124,6 @@ export class DrugComponent implements OnInit, OnDestroy {
   }
   onGetDrugSynonyms(drugSynonyms: Array<DrugSynonyms>): void {
     // this.drugSynonyms = drugSynonyms;
-
     const tempResults: DrugSynonyms[] = [];
 
     const brandCount = drugSynonyms.filter((el) => el.type === 'Brand').length;
@@ -139,5 +143,35 @@ export class DrugComponent implements OnInit, OnDestroy {
       }
     }
     this.drugSynonyms = tempResults;
+  }
+
+  loadDrugDetailFromName(): void {
+    this.pageLoadingService.startLoading();
+
+    this.drugService
+      .getByName(this.drugName)
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response?.data?.items?.[0]) {
+            this.onGetDrug(response.data.items[0]);
+          } else {
+            this.drug = null;
+          }
+        },
+        error: () => {
+          const message = this.translateService.instant(
+            'PDSS__BROWSER__LOAD_DRUG_FAILED'
+          );
+          const action = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__GET'
+          );
+          this.matSnackbarService.open(message, action);
+        },
+      });
   }
 }

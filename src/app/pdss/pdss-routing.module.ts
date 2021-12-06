@@ -49,7 +49,7 @@ const routes: Routes = [
         component: DrugComponent,
       },
       {
-        path: 'drug/:name/detail',
+        path: 'drug/:name/details',
         component: DrugComponent,
       },
       {

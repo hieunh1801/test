@@ -32,7 +32,7 @@ export class DrugService {
   /**
    * Get drug detaiils
    */
-  searchByName(name: string): Observable<any> {
+  getDrugIDByName(name: string): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/search`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const payload: DrugSearchListRequest = new DrugSearchListRequest();

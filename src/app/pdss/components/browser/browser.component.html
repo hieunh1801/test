@@ -95,14 +95,17 @@
                   (change)="onChange($event)"
                   >Drugs</mat-checkbox
                 >
-                ({{ finalCount }})<br />
+                <span *ngIf="finalCount > 0">({{ finalCount }})</span>
+                <span *ngIf="!finalCount">({{ 0 }})</span>
+
                 <mat-checkbox
                   formControlName="isGene"
                   name="isGene"
                   (change)="onChange($event)"
                   >Genes</mat-checkbox
                 >
-                ({{ geneCount }})<br />
+                <span *ngIf="geneCount > 0">({{ geneCount }})</span>
+                <span *ngIf="!geneCount">({{ 0 }})</span>
               </form>
             </div>
 
