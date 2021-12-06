@@ -4,12 +4,14 @@ import { Subscription } from 'rxjs';
 import { Drug } from './drug';
 import { DrugKr } from './drug-kr';
 import { DrugSynonyms } from './drug-synonyms';
-import { DrugService } from '../../services/drug.service';
+import { DrugService, SearchRequest } from '../../services/drug.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { finalize } from 'rxjs/operators';
 import { LanguageService } from '@shared/services/language.service';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { CloseAccountComponent } from '@user/components/user-settings/components/account-setting/components/close-account/close-account.component';
 
 @Component({
   selector: 'app-drug',
@@ -20,6 +22,7 @@ export class DrugComponent implements OnInit, OnDestroy {
   subscriptions$ = new Subscription();
   drug: Drug;
   drugId: number;
+  drugIdFromDB: number;
   drugName: string;
   noOfGenes: number = 0;
   showGenes: boolean = true;
@@ -42,9 +45,12 @@ export class DrugComponent implements OnInit, OnDestroy {
       this.drugName = params['id'];
       if (this.drugName.length < 4) {
         this.loadDrugDetail();
-        this.loadDrugSynonyms();
       } else {
-        this.loadDrugDetailFromName();
+        if (this.languageService.currentLanguage == 'en') {
+          this.loadDrugDetailFromName();
+        } else if (this.languageService.currentLanguage == 'kr') {
+          this.loadDrugDetailFromKrName();
+        }
       }
     });
   }
@@ -85,6 +91,7 @@ export class DrugComponent implements OnInit, OnDestroy {
 
   onGetDrug(drug: Drug): void {
     this.drug = drug;
+    this.drugIdFromDB = +drug.id;
     this.noOfGenes = !!this.drug.genes ? this.drug?.genes?.length : 0;
     this.showGenes = !!this.drug.genes;
     if (!!this.drug.externalVocabulary) {
@@ -92,12 +99,13 @@ export class DrugComponent implements OnInit, OnDestroy {
     } else {
       this.exVoca = null;
     }
+    this.loadDrugSynonyms(this.drugIdFromDB);
   }
 
-  loadDrugSynonyms(): void {
+  loadDrugSynonyms(drugId: number): void {
     this.pageLoadingService.startLoading();
     this.drugService
-      .getDrugSynonymsById(this.drugId)
+      .getDrugSynonymsById(drugId)
       .pipe(
         finalize(() => {
           this.pageLoadingService.stopLoading();
@@ -122,6 +130,7 @@ export class DrugComponent implements OnInit, OnDestroy {
         },
       });
   }
+
   onGetDrugSynonyms(drugSynonyms: Array<DrugSynonyms>): void {
     // this.drugSynonyms = drugSynonyms;
     const tempResults: DrugSynonyms[] = [];
@@ -149,7 +158,40 @@ export class DrugComponent implements OnInit, OnDestroy {
     this.pageLoadingService.startLoading();
 
     this.drugService
-      .getByName(this.drugName)
+      .getDrugByName(this.drugName)
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response?.data?.items?.[0]) {
+            this.onGetDrug(response.data.items[0]);
+          } else {
+            this.drug = null;
+          }
+        },
+        error: () => {
+          const message = this.translateService.instant(
+            'PDSS__BROWSER__LOAD_DRUG_FAILED'
+          );
+          const action = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__GET'
+          );
+          this.matSnackbarService.open(message, action);
+        },
+      });
+  }
+
+  loadDrugDetailFromKrName(): void {
+    const searchRequest: SearchRequest = {
+      keyword: this.drugName,
+    };
+    this.pageLoadingService.startLoading();
+
+    this.drugService
+      .getDrugByKrName(searchRequest)
       .pipe(
         finalize(() => {
           this.pageLoadingService.stopLoading();

@@ -11,7 +11,17 @@
           PDSS__MY_REPORT__DRUG_TABLE__ROW_EXPANDED__RELATED_GENES
         </div>
         <div class="cell-detail related-gene">
-          {{ drug.relatedGenes }}
+          <span *ngFor="let gene of drug.relatedGenes.split(','); let i = index"
+            ><a
+              [routerLink]="[
+                '/pdss/gene',
+                drug.relatedGenes.split(',')[i].trim(),
+                'detail'
+              ]"
+              target="_blank"
+              >{{ drug.relatedGenes.split(",")[i].trim() }}&nbsp;
+            </a></span
+          >
         </div>
       </div>
       <div class="cell">

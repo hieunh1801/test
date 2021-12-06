@@ -32,7 +32,7 @@ export class DrugService {
   /**
    * Get drug detaiils
    */
-  getDrugIDByName(name: string): Observable<any> {
+  getDrugByName(name: string): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/search`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const payload: DrugSearchListRequest = new DrugSearchListRequest();
@@ -43,10 +43,27 @@ export class DrugService {
     payload.drugs = drugs;
 
     // Calling API for getting all guidelines
-    return this.httpClient.post(url, payload, { headers }).pipe(
+    return this.httpClient
+      .post(url, payload, { headers })
+      .pipe
       //tap((data) => console.log(JSON.stringify(data)));
-      tap((data) => console.log(JSON.stringify(data)))
-    );
+      ();
+  }
+
+  /**
+   * Get drug detaiils
+   */
+  getDrugByKrName(searchRequest: SearchRequest): Observable<any> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/drug/search/kr/`;
+    const body = {
+      keyword: searchRequest.keyword,
+    };
+
+    return this.httpClient
+      .post<any>(url, body)
+      .pipe
+      //tap((data) => console.log(JSON.stringify(data))));
+      ();
   }
 
   /**
@@ -71,4 +88,8 @@ export class DrugSearchListRequest {
 
 export class DrugSearchRequest {
   name: string;
+}
+
+export interface SearchRequest {
+  keyword: string;
 }

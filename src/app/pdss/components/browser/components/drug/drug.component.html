@@ -138,9 +138,9 @@
           />
         </div>
         -->
-          <div class="default-margin" fxFlex="100">
+          <div class="default-margin" fxFlex="100" *ngIf="!!drug.summary">
             <h2>What is {{ drug.name | titlecase }}</h2>
-            <div *ngIf="!!drug.summary">
+            <div>
               <div
                 class="sub-content"
                 *ngIf="this.languageService.currentLanguage == 'en'"
@@ -154,7 +154,12 @@
                 {{ drug.kr.summary }}
               </div>
             </div>
-            <div *ngIf="!!drug.indicationSummarySpmed">
+            <div
+              *ngIf="
+                !!drug.indicationSummarySpmed ||
+                !!drug.kr.indicationSummarySpmed
+              "
+            >
               <h2 class="sub-title">Indication</h2>
               <div
                 class="sub-content"
@@ -216,7 +221,7 @@
             <div class="content">
               <ul>
                 <li *ngFor="let synonym of drugSynonyms">
-                  <span *ngIf="synonym.type !== 'Generic_Name'">{{
+                  <span *ngIf="synonym.type != 'Generic_Name'">{{
                     synonym.synonyms
                   }}</span>
                 </li>

@@ -31,7 +31,7 @@ export class GeneService {
   /**
    * Get drug detaiils
    */
-  searchByName(symbol: string): Observable<any> {
+  getGeneByName(symbol: string): Observable<any> {
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/browser/gene/search`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const payload: GeneSearchListRequest = new GeneSearchListRequest();
@@ -42,9 +42,7 @@ export class GeneService {
     payload.genes = genes;
 
     // Calling API for getting all guidelines
-    return this.httpClient
-      .post(url, payload, { headers })
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+    return this.httpClient.post(url, payload, { headers }).pipe(); //tap((data) => console.log(JSON.stringify(data))));
   }
 }
 
