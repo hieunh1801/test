@@ -19,6 +19,8 @@ export class GeneComponent implements OnInit, OnDestroy {
   subscriptions$ = new Subscription();
   gene: Gene;
   geneId: number;
+  geneName: string;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,9 +34,15 @@ export class GeneComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const sub = this.route.params.subscribe((params) => {
       this.geneId = +params['id'];
+      this.geneName = params['id'];
+      if (this.geneName.length < 4) {
+        this.loadGeneDetail();
+      } else {
+        this.loadGeneDetailFromName();
+      }
     });
-    this.loadGeneDetail();
   }
+
   ngOnDestroy(): void {
     this.subscriptions$.unsubscribe();
   }
@@ -43,6 +51,35 @@ export class GeneComponent implements OnInit, OnDestroy {
     this.pageLoadingService.startLoading();
     this.geneService
       .getById(this.geneId)
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response?.data?.items?.[0]) {
+            this.onGetGene(response.data.items[0]);
+          } else {
+            this.gene = null;
+          }
+        },
+        error: () => {
+          const message = this.translateService.instant(
+            'PDSS__BROWSER__LOAD_GENE_FAILED'
+          );
+          const action = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__GET'
+          );
+          this.matSnackbarService.open(message, action);
+        },
+      });
+  }
+
+  loadGeneDetailFromName(): void {
+    this.pageLoadingService.startLoading();
+    this.geneService
+      .getGeneByName(this.geneName)
       .pipe(
         finalize(() => {
           this.pageLoadingService.stopLoading();

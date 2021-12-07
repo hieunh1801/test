@@ -133,7 +133,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
               this.matSnackbarService.open(message, action);
             } else {
               // this.paginator.length = response.data?.items.length;
-              this.searchTotal = response.data?.items.length;
+              // this.searchTotal = response.data?.items.length;
               this.onGetResults(response.data.items);
             }
           },
@@ -169,6 +169,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.isDrug = false;
     }
+
     this.geneCount = results.filter((el) => el.type === 'gene').length;
     if (this.geneCount > 0) {
       this.isGene = true;

@@ -138,9 +138,9 @@
           />
         </div>
         -->
-            <div class="default-margin">
+            <div class="default-margin" *ngIf="!!gene.summary">
               <h2>What is {{ gene.symbol }}</h2>
-              <div *ngIf="!!gene.summary">
+              <div>
                 <div
                   class="sub-content"
                   *ngIf="this.languageService.currentLanguage == 'en'"

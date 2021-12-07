@@ -8,7 +8,9 @@
   <div class="list-wrapper">
     <div class="list-item-wrapper" *ngFor="let gene of genes">
       <div class="title">
-        {{ gene.symbol }}
+        <a [routerLink]="['/pdss/gene', gene.symbol, 'detail']" target="_blank"
+          >{{ gene.symbol }}
+        </a>
         <ng-container *ngIf="gene.rsid">
           &nbsp;&nbsp; {{ gene.rsid }}
         </ng-container>

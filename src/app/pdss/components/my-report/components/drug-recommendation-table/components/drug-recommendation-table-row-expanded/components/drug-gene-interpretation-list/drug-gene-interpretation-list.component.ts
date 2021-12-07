@@ -5,6 +5,7 @@ import {
   ReferenceListDialogComponent,
   ReferenceListDialogInputData,
 } from '../reference-list-dialog/reference-list-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-drug-gene-interpretation-list',
@@ -14,7 +15,7 @@ import {
 export class DrugGeneInterpretationListComponent implements OnInit {
   @Input() genes: DrugRecommendation[] = [];
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {}
 
