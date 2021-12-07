@@ -1,6 +1,11 @@
 ### ping
 GET http://localhost:61128/customer-user/ping
 
+### get user
+GET http://localhost:61128/customer-user/v1.0/en/users/page?keyword=강
+
+
+
 
 ### user profiles
 GET http://localhost:61128/customer-user/v1.0/en/users/1/profile
@@ -11,8 +16,44 @@ POST http://localhost:61128/customer-user/v1.0/en/users
 Content-Type: application/json
 
 {
-  "username": "tester2112021538",
+  "username": "tester2112021547",
   "password": "123456",
-  "email": "tester2112021538@gmail.com",
-  "createdActor": "tester2112021538"
+  "createdActor": "tester2112021538",
+  "demographic": {
+    "surname": "tester2112021538 - surname",
+    "givenName": "tester2112021538 - givent name",
+    "gender": 1,
+    "birthday": "2020-11-02",
+    "yearOfBirth": "2020",
+    "monthOfBirth": "11",
+    "dayOfBirth": "02",
+    "mobile": "0343218555",
+    "country": "Vietnam",
+    "createdActor": "tester2112021538"
+  },
+  "demographicDetails": [
+    {
+      "surname": "tester2112021538 - surname",
+      "givenName": "tester2112021538 - givent name",
+      "gender": 1,
+      "birthday": "2020-11-02",
+      "yearOfBirth": "2020",
+      "monthOfBirth": "11",
+      "dayOfBirth": "02",
+      "mobile": "0343218555",
+      "country": "Vietnam",
+      "createdActor": "tester2112021538"
+    },
+     {
+      "surname": "tester2112021538 - surname",
+      "givenName": "tester2112021538 - givent name",
+      "gender": 1,
+      "birthday": "2020-11-02",
+      "yearOfBirth": "2020",
+      "monthOfBirth": "11",
+      "dayOfBirth": "02",
+      "mobile": "0343218555",
+      "country": "Vietnam"
+    }
+  ]
 }
