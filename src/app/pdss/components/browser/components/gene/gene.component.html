@@ -139,7 +139,14 @@
         </div>
         -->
             <div class="default-margin" *ngIf="!!gene.summary">
-              <h2>What is {{ gene.symbol }}</h2>
+              <h2 *ngIf="this.languageService.currentLanguage == 'en'">
+                <span translate>PDSS__BROWSER__TITLE_NAME_EN</span>
+                {{ gene.symbol }}
+              </h2>
+              <h2 *ngIf="this.languageService.currentLanguage == 'kr'">
+                {{ gene.symbol }}
+                <span translate>PDSS__BROWSER__TITLE_NAME_KR</span>
+              </h2>
               <div>
                 <div
                   class="sub-content"
@@ -157,7 +164,7 @@
             </div>
 
             <div class="default-margin">
-              <h2>Related drugs</h2>
+              <h2 translate>PDSS__BROWSER__GENE__TITLE_RELATED_DRUG</h2>
               <div
                 fxLayout="row wrap"
                 fxLayout.lt-sm="column"
@@ -174,7 +181,7 @@
             </div>
 
             <div class="default-margin">
-              <h2>External Information</h2>
+              <h2 translate>PDSS__BROWSER__TITLE_EXTERNAL_INFORMATION</h2>
               <table class="ex-link">
                 <tr *ngIf="gene.idPharmgkb">
                   <td class="w100" style="width: 100px">PharmGKB</td>

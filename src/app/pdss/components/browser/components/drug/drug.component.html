@@ -10,7 +10,14 @@
         >
           <div class="default-margin"></div>
           <div fxFlex="100">
-            <h1 class="bold">{{ drug.name | titlecase }}</h1>
+            <h1 class="bold">
+              <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                drug.name | titlecase
+              }}</span>
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                drug.kr.name + "(" + drug.name + ")"
+              }}</span>
+            </h1>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
               <ng-container matColumnDef="guideline">
                 <td>
@@ -139,7 +146,14 @@
         </div>
         -->
           <div class="default-margin" fxFlex="100" *ngIf="!!drug.summary">
-            <h2>What is {{ drug.name | titlecase }}</h2>
+            <h2 *ngIf="this.languageService.currentLanguage == 'en'">
+              <span translate>PDSS__BROWSER__TITLE_NAME_EN</span>
+              {{ drug.name | titlecase }}
+            </h2>
+            <h2 *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ drug.kr.name }}
+              <span translate>PDSS__BROWSER__TITLE_NAME_KR</span>
+            </h2>
             <div>
               <div
                 class="sub-content"
@@ -160,7 +174,9 @@
                 !!drug.kr.indicationSummarySpmed
               "
             >
-              <h2 class="sub-title">Indication</h2>
+              <h2 class="sub-title">
+                <span translate>PDSS__BROWSER__DRUG__TITLE_INDICATION</span>
+              </h2>
               <div
                 class="sub-content"
                 *ngIf="this.languageService.currentLanguage == 'en'"
@@ -179,7 +195,9 @@
                 !!drug.toxicitySummarySpmed || !!drug.kr.toxicitySummarySpmed
               "
             >
-              <h2 class="sub-title">Toxicity</h2>
+              <h2 class="sub-title">
+                <span translate>PDSS__BROWSER__DRUG__TITLE_TOXICITY</span>
+              </h2>
               <div
                 class="sub-content"
                 *ngIf="this.languageService.currentLanguage == 'en'"
@@ -196,7 +214,10 @@
           </div>
 
           <div class="default-margin" fxFlex="100">
-            <h2>Related genes ({{ drug?.genes?.length }})</h2>
+            <h2>
+              <span translate>PDSS__BROWSER__DRUG__TITLE_RELATED_GENE</span>
+              ({{ drug?.genes?.length }})
+            </h2>
             <div
               fxLayout="row wrap"
               fxLayout.lt-sm="column"
@@ -217,7 +238,10 @@
             fxFlex="100"
             *ngIf="drugSynonyms?.length > 0"
           >
-            <h2>Synonyms Information ({{ drugSynonyms.length }})</h2>
+            <h2>
+              <span translate>PDSS__BROWSER__DRUG__TITLE_SYNONYMS</span>
+              ({{ drugSynonyms.length }})
+            </h2>
             <div class="content">
               <ul>
                 <li *ngFor="let synonym of drugSynonyms">
@@ -229,7 +253,7 @@
             </div>
           </div>
           <div class="default-margin" fxFlex="100">
-            <h2>External Information</h2>
+            <h2 translate>PDSS__BROWSER__TITLE_EXTERNAL_INFORMATION</h2>
             <table class="ex-link">
               <tr *ngIf="drug.idPharmgkb">
                 <td class="w100">PharmGKB</td>
@@ -276,7 +300,9 @@
             <table>
               <tr>
                 <td class="w100" *ngIf="drug.exVoca !== null">
-                  External Vocabulary
+                  <span translate
+                    >PDSS__BROWSER__DRUG__TITLE_EXTERNAL_VOCABULARY</span
+                  >
                 </td>
               </tr>
               <tr>
