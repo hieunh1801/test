@@ -62,7 +62,7 @@ ssh 10.81.103.125
 
 # step 3: rename folder to new version in server
 # 10.81.103.125
-mv /home/ec2-user/workspace_spmed/spmed-portal-desktop /home/ec2-user/workspace_spmed/spmed-portal-desktop-211201
+mv /home/ec2-user/workspace_spmed/spmed-portal-desktop /home/ec2-user/workspace_spmed/spmed-portal-desktop-211202
 
 # step 4: copy all file in folder /dist/spmed-portal-desktop to server
 # local
