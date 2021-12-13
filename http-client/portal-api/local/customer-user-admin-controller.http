@@ -5,5 +5,15 @@ Content-Type: application/json
 # access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQSDIxMDMyNUEiLCJpYXQiOjE2MzcwNDM3NDUsImV4cCI6MTcyMzQ0Mzc0NX0.Y7zjkvNf43-2fRISuHEy0di4vJBqcdfjEmaI-hhKorw
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzODUyMTM4OCwiZXhwIjoxNjM4NjA3Nzg4fQ.6LtUW61xd3_XstdhVV7lGPkpoGKUxr8OWGbQIKCgOZ_SgGPR49L9dcVtajPIB9-iApDdEGfN70sEL6GOt90PWg
 
-###
-GET http://localhost:61128/customer-user/v1.0/en/users/page?keyword=강
+
+### post user
+POST http://localhost:61127/portal/v1.0/en/admin/customer-users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzODkyNTQ2NywiZXhwIjoxNjM5MDExODY3fQ.jxH1e8P0bSTUQjxC_6eLLRRJJN9GVoHbK8mzqNIkMo1agilh_IKbDiR5N-MP2rbtNko-PR4-3_xNw7pdur8KDA
+
+{
+  "username": "tester2112080817",
+  "password": "123456",
+  "createdActor": "tester2112021538",
+  "activate": 1
+}

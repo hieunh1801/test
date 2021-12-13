@@ -16,9 +16,10 @@ POST http://localhost:61128/customer-user/v1.0/en/users
 Content-Type: application/json
 
 {
-  "username": "tester2112021547",
+  "username": "tester2112021548",
   "password": "123456",
   "createdActor": "tester2112021538",
+  "activate": 1,
   "demographic": {
     "surname": "tester2112021538 - surname",
     "givenName": "tester2112021538 - givent name",
@@ -53,7 +54,8 @@ Content-Type: application/json
       "monthOfBirth": "11",
       "dayOfBirth": "02",
       "mobile": "0343218555",
-      "country": "Vietnam"
+      "country": "Vietnam",
+      "createdActor": "tester2112021538"
     }
   ]
 }
