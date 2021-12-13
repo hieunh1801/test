@@ -5,7 +5,6 @@ import { PdssRoutingModule } from './pdss-routing.module';
 import { PdssComponent } from './pdss.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { BrowserComponent } from './components/browser/browser.component';
-import { UtilityComponent } from './components/utility/utility.component';
 import { ProductsComponent } from './components/products/products.component';
 import { PgxComponent } from './components/products/components/pgx/pgx.component';
 import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
@@ -33,7 +32,6 @@ import { DrugComponent } from './components/browser/components/drug/drug.compone
     PdssComponent,
     OverviewComponent,
     BrowserComponent,
-    UtilityComponent,
     ProductsComponent,
     PgxComponent,
     PgxPremiumComponent,
