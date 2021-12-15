@@ -1,5 +1,6 @@
 // import { DrugBizGroup } from '../drug-biz-group/drug-biz-group';
 import { Gene } from '../gene/gene';
+import { AtcCode } from './atc-code';
 import { DrugKr } from './drug-kr';
 
 export class Drug {
@@ -36,6 +37,7 @@ export class Drug {
 
   rxnormIdentifier: string;
   atcIdentifier: string;
+  atcCodes: AtcCode[];
   pubchemCompoundIdentifier: string;
   idPharmgkb: string;
   idDrugbank: string;
