@@ -1,31 +1,70 @@
 <div id="page">
   <div id="user-profiles-page">
-    <div class="section">
+    <div
+      class="section"
+      joyrideStep="step1"
+      stepPosition="bottom"
+      [stepContent]="step1content"
+    >
       <app-introduction [userProfile$]="userProfile$"></app-introduction>
     </div>
 
-    <div class="section">
+    <div
+      class="section"
+      joyrideStep="step2"
+      stepPosition="bottom"
+      [stepContent]="step2content"
+    >
       <app-basic-information
         [weightHeightHistoryList$]="weightHeightHistoryList$"
       ></app-basic-information>
     </div>
 
-    <div class="section">
+    <div
+      class="section"
+      joyrideStep="step3"
+      stepPosition="bottom"
+      [stepContent]="step3content"
+    >
       <app-medical-history
         [medicalHistoryList$]="medicalHistoryList$"
       ></app-medical-history>
     </div>
 
-    <div class="section">
+    <div
+      class="section"
+      joyrideStep="step4"
+      stepPosition="bottom"
+      [stepContent]="step4content"
+    >
       <app-disease-history
         [diseaseHistoryList$]="diseaseHistoryList$"
       ></app-disease-history>
     </div>
 
-    <div class="section">
+    <div
+      class="section"
+      joyrideStep="step5"
+      stepPosition="bottom"
+      [stepContent]="step5content"
+    >
       <app-life-style
         [lifeStyleHistoryList$]="lifeStyleHistoryList$"
       ></app-life-style>
     </div>
   </div>
+
+  <button mat-mini-fab (click)="showWebTour()" class="md-fab-bottom-right">
+    <mat-icon>help_outline</mat-icon>
+  </button>
 </div>
+
+<ng-template #step1content> Introduction </ng-template>
+
+<ng-template #step2content> Basic Information </ng-template>
+
+<ng-template #step3content> Medical History </ng-template>
+
+<ng-template #step4content> Disease History </ng-template>
+
+<ng-template #step5content> Life Style History </ng-template>

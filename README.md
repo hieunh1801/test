@@ -4,6 +4,8 @@
 
 - [x] fxLayout https://tburleson-layouts-demos.firebaseapp.com/#/docs
 
+- [x] web tutorial https://github.com/tnicola/ngx-joyride
+
 ## Multiple language
 
 ### Use in file .html
