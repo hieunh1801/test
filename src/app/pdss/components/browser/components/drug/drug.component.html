@@ -139,7 +139,10 @@
         </div>
         -->
           <div class="default-margin" fxFlex="100" *ngIf="!!drug.summary">
-            <h2>What is {{ drug.name | titlecase }}</h2>
+            <h2 id="whatIs">
+              {{ "PDSS__BROWSER__DRUG__TITLES__WHAT_IS" | translate }}
+              {{ drug.name | titlecase }}
+            </h2>
             <div>
               <div
                 class="sub-content"
@@ -160,7 +163,9 @@
                 !!drug.kr.indicationSummarySpmed
               "
             >
-              <h2 class="sub-title">Indication</h2>
+              <h2 class="sub-title">
+                {{ "PDSS__BROWSER__DRUG__TITLES__INDICATION" | translate }}
+              </h2>
               <div
                 class="sub-content"
                 *ngIf="this.languageService.currentLanguage == 'en'"
@@ -179,7 +184,9 @@
                 !!drug.toxicitySummarySpmed || !!drug.kr.toxicitySummarySpmed
               "
             >
-              <h2 class="sub-title">Toxicity</h2>
+              <h2 class="sub-title">
+                {{ "PDSS__BROWSER__DRUG__TITLES__TOXICITY" | translate }}
+              </h2>
               <div
                 class="sub-content"
                 *ngIf="this.languageService.currentLanguage == 'en'"
@@ -196,7 +203,11 @@
           </div>
 
           <div class="default-margin" fxFlex="100">
-            <h2>Related genes ({{ drug?.genes?.length }})</h2>
+            <h2>
+              {{ "PDSS__BROWSER__DRUG__TITLES__RELATED_GENES" | translate }}
+
+              ({{ drug?.genes?.length || 0 }})
+            </h2>
             <div
               fxLayout="row wrap"
               fxLayout.lt-sm="column"
@@ -217,22 +228,72 @@
             fxFlex="100"
             *ngIf="drugSynonyms?.length > 0"
           >
-            <h2>Synonyms Information ({{ drugSynonyms.length }})</h2>
+            <h2>
+              {{
+                "PDSS__BROWSER__DRUG__TITLES__SYNONYMS_INFORMATION" | translate
+              }}
+
+              ({{ drugSynonyms.length || 0 }})
+            </h2>
             <div class="content">
               <ul>
-                <li *ngFor="let synonym of drugSynonyms">
-                  <span *ngIf="synonym.type != 'Generic_Name'">{{
-                    synonym.synonyms
-                  }}</span>
-                </li>
+                <!-- show less -->
+                <ng-container
+                  *ngIf="!drugSynonymsShowMore && drugSynonyms.length > 0"
+                >
+                  <li *ngFor="let synonym of drugSynonyms | slice: 0:5">
+                    <span *ngIf="synonym.type != 'Generic_Name'">{{
+                      synonym.synonyms
+                    }}</span>
+                  </li>
+                </ng-container>
+
+                <!-- show more -->
+                <ng-container
+                  *ngIf="drugSynonymsShowMore && drugSynonyms.length > 0"
+                >
+                  <li *ngFor="let synonym of drugSynonyms">
+                    <span *ngIf="synonym.type != 'Generic_Name'">{{
+                      synonym.synonyms
+                    }}</span>
+                  </li>
+                </ng-container>
               </ul>
+
+              <div
+                class="action-show"
+                fxLayoutAlign="start start"
+                fxLayoutAlign.lt-sm="center center"
+              >
+                <span
+                  *ngIf="!drugSynonymsShowMore"
+                  (click)="drugSynonymsShowMore = true"
+                  class="show-button"
+                >
+                  {{ "PDSS__BROWSER__DRUG__BUTTONS__SHOW_MORE" | translate }}
+                  <mat-icon>expand_more</mat-icon>
+                </span>
+                <span
+                  *ngIf="drugSynonymsShowMore"
+                  (click)="drugSynonymsShowMore = false"
+                  class="show-button"
+                  >{{ "PDSS__BROWSER__DRUG__BUTTONS__SHOW_LESS" | translate }}
+                  <mat-icon>expand_less</mat-icon>
+                </span>
+              </div>
             </div>
           </div>
           <div class="default-margin" fxFlex="100">
-            <h2>External Information</h2>
+            <h2>
+              {{
+                "PDSS__BROWSER__DRUG__TITLES__EXTERNAL_INFORMATION" | translate
+              }}
+            </h2>
             <table class="ex-link">
               <tr *ngIf="drug.idPharmgkb">
-                <td class="w100">PharmGKB</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__PHARMGKB" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https://www.pharmgkb.org/chemical/{{
@@ -245,7 +306,9 @@
                 </td>
               </tr>
               <tr *ngIf="drug.idDrugbank">
-                <td class="w100">Drugbank</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__DRUGBANK" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https://go.drugbank.com/drugs/{{ drug.idDrugbank }}"
@@ -255,7 +318,9 @@
                 </td>
               </tr>
               <tr *ngIf="drug.pubchemCompoundIdentifier">
-                <td class="w100">PubChem</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__PUBCHEM" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https:  //pubchem.ncbi.nlm.nih.gov/compound/{{
@@ -276,7 +341,10 @@
             <table>
               <tr>
                 <td class="w100" *ngIf="drug.exVoca !== null">
-                  External Vocabulary
+                  {{
+                    "PDSS__BROWSER__DRUG__TITLES__EXTERNAL_VOCABULARY"
+                      | translate
+                  }}
                 </td>
               </tr>
               <tr>
@@ -286,35 +354,7 @@
               </tr>
             </table>
           </div>
-          <!--
-        <div class="default-margin">
-          <h3>Reference</h3>
-          <div class="contents">
-            <ol>
-              <li>
-                Kis B, Snipes JA, Busija DW: Acetaminophen and the
-                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
-                uncertainties. J Pharmacol Exp Ther.
-                <span class="bold">[Article]</span>
-              </li>
-              <li>
-                Kis B, Snipes JA,Busija DW: Acetaminophen and the
-                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
-                uncertainties. J Pharmacol Exp Ther. 2005 Oct;315(1):1-7. Epub
-                2005 May 6.
-                <span class="bold">[Article]</span>
-              </li>
-              <li>
-                Aronoff DM, Oates JA, Boutaud O: New insights into the mechanism
-                of action of acetaminophen: Its clinical pharmacologic
-                characteristics reflect its inhibition of the two prostaglandin
-                H2 synthases. Clin Pharmacol Ther. 2006 Jan;79(1):9-19.
-                <span class="bold">[Article]</span>
-              </li>
-            </ol>
-          </div>
         </div>
-        --></div>
       </div>
     </div>
   </div>

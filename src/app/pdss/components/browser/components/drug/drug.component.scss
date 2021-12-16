@@ -40,6 +40,14 @@
       text-align: justify;
       text-justify: inter-word;
     }
+
+    .show-button {
+      color: var(--primary--color);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   a,
