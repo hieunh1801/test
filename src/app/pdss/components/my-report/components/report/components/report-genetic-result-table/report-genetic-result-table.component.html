@@ -35,7 +35,7 @@
         >
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ renderRsid(element.variantRsid) }} {{ element.variantGenotype }}
+        {{ getGenotype(element) }}
       </td>
     </ng-container>
     <ng-container matColumnDef="variantPhenotype">
