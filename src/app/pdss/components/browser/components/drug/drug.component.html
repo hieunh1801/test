@@ -19,9 +19,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ drug.hasPharmgkbGuideline || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbGuide>
@@ -29,9 +30,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ drug.hasPharmgkbGuideline || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -43,9 +45,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ drug.hasPharmgkbDruglabel || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbLabel>
@@ -53,9 +56,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ drug.hasPharmgkbDruglabel || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -67,9 +71,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ drug.hasPharmgkbCa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbCa>
@@ -77,9 +82,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ drug.hasPharmgkbCa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -91,9 +97,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_yes.jpg"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ drug.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbVa>
@@ -101,9 +108,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_no.jpg"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ drug.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -115,7 +123,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_yes.png"
                       width="50px"
-                      matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ drug.hasSpmedGuideline || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noSpmed>
@@ -123,7 +134,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_no.png"
                       width="50px"
-                      matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ drug.hasSpmedGuideline || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>

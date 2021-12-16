@@ -28,6 +28,7 @@ export class DrugComponent implements OnInit, OnDestroy {
   showGenes: boolean = true;
   exVoca: string[];
   drugSynonyms: Array<DrugSynonyms> | null;
+  drugSynonymsShowMore = false;
 
   constructor(
     private route: ActivatedRoute,
