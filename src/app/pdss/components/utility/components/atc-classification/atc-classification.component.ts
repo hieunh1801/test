@@ -61,7 +61,46 @@ export class AtcClassificationComponent implements OnInit, OnDestroy {
             });
           }
         }
-        this.drugList$.next(flattedDrugList);
+
+        const sortFunction = (a: Drug, b: Drug) => {
+          const compareResult = 0;
+          // atc code level 1
+          const atcCodeA = a?.atcCodes?.[0];
+          const atcCodeB = b?.atcCodes?.[0];
+
+          const compareResultCodeLevel1 = atcCodeA?.codeLevel1?.localeCompare(
+            atcCodeB?.codeLevel1
+          );
+          if (compareResultCodeLevel1 !== 0) {
+            return compareResultCodeLevel1;
+          }
+
+          const compareResultCodeLevel2 = atcCodeA?.codeLevel2?.localeCompare(
+            atcCodeB?.codeLevel2
+          );
+          if (compareResultCodeLevel2 !== 0) {
+            return compareResultCodeLevel2;
+          }
+
+          const compareResultCodeLevel3 = atcCodeA?.codeLevel3?.localeCompare(
+            atcCodeB?.codeLevel3
+          );
+          if (compareResultCodeLevel3 !== 0) {
+            return compareResultCodeLevel3;
+          }
+
+          const compareResultCodeLevel4 = atcCodeA?.codeLevel4?.localeCompare(
+            atcCodeB?.codeLevel4
+          );
+          if (compareResultCodeLevel4 !== 0) {
+            return compareResultCodeLevel4;
+          }
+
+          const compareResultName = a.name.localeCompare(b.name);
+          return compareResultName;
+        };
+        const flattedSortedDrugList = flattedDrugList.sort(sortFunction);
+        this.drugList$.next(flattedSortedDrugList);
       });
   }
 }

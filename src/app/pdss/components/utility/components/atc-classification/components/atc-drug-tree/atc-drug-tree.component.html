@@ -40,7 +40,10 @@
 
     <div fxLayoutAlign="center center">
       <button mat-button class="search-button" (click)="handleOnClickSearch()">
-        Search
+        {{
+          "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__SEARCH"
+            | translate
+        }}
       </button>
     </div>
   </form>
@@ -56,35 +59,50 @@
       (click)="handleClickExpandLevel(0); expandedLevel = 0"
       [ngClass]="{ 'expanded-level': expandedLevel === 0 }"
     >
-      Expand Level 0
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_1"
+          | translate
+      }}
     </button>
     <button
       mat-stroked-button
       (click)="handleClickExpandLevel(1); expandedLevel = 1"
       [ngClass]="{ 'expanded-level': expandedLevel === 1 }"
     >
-      Expand Level 1
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_2"
+          | translate
+      }}
     </button>
     <button
       mat-stroked-button
       (click)="handleClickExpandLevel(2); expandedLevel = 2"
       [ngClass]="{ 'expanded-level': expandedLevel === 2 }"
     >
-      Expand Level 2
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_3"
+          | translate
+      }}
     </button>
     <button
       mat-stroked-button
       (click)="handleClickExpandLevel(3); expandedLevel = 3"
       [ngClass]="{ 'expanded-level': expandedLevel === 3 }"
     >
-      Expand Level 3
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_4"
+          | translate
+      }}
     </button>
     <button
       mat-stroked-button
       (click)="handleClickCollapseAll(); expandedLevel = -1"
       [ngClass]="{ 'expanded-level': expandedLevel === -1 }"
     >
-      Collapse All
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_COLLAPSE_ALL"
+          | translate
+      }}
     </button>
   </div>
 
