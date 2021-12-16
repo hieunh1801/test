@@ -130,13 +130,6 @@ export class ReportGeneticResultTableComponent implements OnInit, OnDestroy {
     this.tableSort$.next(sort);
   }
 
-  renderRsid(rsid?: string): string {
-    if (rsid && !rsid.startsWith('*')) {
-      return rsid;
-    }
-    return null;
-  }
-
   getGenotype(element: UserVariant): string {
     const { variantRsid, variantGenotypeCode } = element;
     if (!variantRsid) {
