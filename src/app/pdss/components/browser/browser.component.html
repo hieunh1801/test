@@ -4,11 +4,20 @@
       <div id="browser-info">
         <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
           <form class="search-form" [formGroup]="searchForm">
-            <h1 class="bold">Drug/Gene Browser</h1>
-            <p>Some results below may be the things you are looking for</p>
+            <h1 class="bold">
+              {{ "PDSS__BROWSER__TITLES__DRUG_GENE_BROWSER" | translate }}
+            </h1>
+            <p>
+              {{
+                "PDSS__BROWSER__STRINGS__SOME_RESULT_MAY_BE_THE_THINGS_YOU_ARE_LOOKING_FOR"
+                  | translate
+              }}
+            </p>
 
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label translate>PDSS__BROWSER__SEARCH_COMMENT</mat-label>
+              <mat-label>
+                {{ "PDSS__BROWSER__SEARCH_COMMENT" | translate }}
+              </mat-label>
               <input
                 type="text"
                 formControlName="keyword"
@@ -36,7 +45,9 @@
             [fxHide]="isSearch"
           >
             <div fxFlex="50">
-              <h3>Drugs</h3>
+              <h3>
+                {{ "PDSS__BROWSER__TITLES__DRUGS" | translate }}
+              </h3>
               <mat-selection-list #drugs [multiple]="false">
                 <mat-list-option
                   *ngFor="let drug of listOfDrugs"
@@ -49,7 +60,9 @@
               </mat-selection-list>
             </div>
             <div fxFlex="50">
-              <h3>Genes</h3>
+              <h3>
+                {{ "PDSS__BROWSER__TITLES__GENES" | translate }}
+              </h3>
               <mat-selection-list #genes [multiple]="false">
                 <mat-list-option
                   *ngFor="let gene of listOfGenes"
@@ -75,9 +88,9 @@
               fxShow.gt-sm
               style="border: 1px solid #ccc; padding: 10px; height: 200px"
             >
-              <h2>Filters</h2>
+              <h2>{{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}</h2>
               <h3 style="margin: 0; padding: 0; font-weight: 500">
-                Categories
+                {{ "PDSS__BROWSER__TITLES__CATEGORIES" | translate }}
               </h3>
               <form class="search-form" [formGroup]="filterForm">
                 <!--
@@ -93,8 +106,8 @@
                   formControlName="isDrug"
                   name="isDrug"
                   (change)="onChange($event)"
-                  >Drugs</mat-checkbox
-                >
+                  >{{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
+                </mat-checkbox>
                 <span *ngIf="finalCount > 0">({{ finalCount }})</span>
                 <span *ngIf="!finalCount">({{ 0 }})</span>
 
@@ -102,7 +115,9 @@
                   formControlName="isGene"
                   name="isGene"
                   (change)="onChange($event)"
-                  >Genes</mat-checkbox
+                  >{{
+                    "PDSS__BROWSER__CHECKBOX__GENES" | translate
+                  }}</mat-checkbox
                 >
                 <span *ngIf="geneCount > 0">({{ geneCount }})</span>
                 <span *ngIf="!geneCount">({{ 0 }})</span>
@@ -110,12 +125,19 @@
             </div>
 
             <div fxFlex="85">
-              <h2>Results ({{ searchTotal }})</h2>
+              <h2>
+                {{ "PDSS__BROWSER__TITLES__RESULTS" | translate }} ({{
+                  searchTotal || 0
+                }})
+              </h2>
               <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="name">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef
-                    >Name</mat-header-cell
-                  >
+                  <mat-header-cell mat-header-cell *matHeaderCellDef>
+                    {{
+                      "PDSS__BROWSER__RESULT_TABLE_HEADERS__NAME" | translate
+                    }}
+                  </mat-header-cell>
+
                   <mat-cell
                     *matCellDef="let result"
                     style="vertical-align: middle"
@@ -141,8 +163,10 @@
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="type">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef
-                    >Type</mat-header-cell
+                  <mat-header-cell mat-header-cell *matHeaderCellDef>
+                    {{
+                      "PDSS__BROWSER__RESULT_TABLE_HEADERS__TYPE" | translate
+                    }}</mat-header-cell
                   >
                   <mat-cell *matCellDef="let result">
                     <span
@@ -150,10 +174,18 @@
                         result.type == 'Brand' || result.type == 'Generic_Name'
                       "
                     >
-                      <span class="brand">drug</span>
+                      <span class="brand">
+                        {{
+                          "PDSS__BROWSER__RESULT_TABLE_TYPES__DRUG" | translate
+                        }}
+                      </span>
                     </span>
                     <span *ngIf="result.type == 'gene'">
-                      <span class="gene">gene</span>
+                      <span class="gene">
+                        {{
+                          "PDSS__BROWSER__RESULT_TABLE_TYPES__GENE" | translate
+                        }}
+                      </span>
                     </span>
                   </mat-cell>
                 </ng-container>
