@@ -26,9 +26,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ drug.hasPharmgkbGuideline || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbGuide>
@@ -36,9 +37,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ drug.hasPharmgkbGuideline || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -50,9 +52,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ drug.hasPharmgkbDruglabel || 0 }}  {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbLabel>
@@ -60,9 +63,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ drug.hasPharmgkbDruglabel || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -74,9 +78,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ drug.hasPharmgkbCa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbCa>
@@ -84,9 +89,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_no.png"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ drug.hasPharmgkbCa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -98,9 +104,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_yes.jpg"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ drug.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbVa>
@@ -108,9 +115,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_no.jpg"
                       width="50px"
-                      matTooltip="{{
-                        drug.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ drug.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -122,7 +130,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_yes.png"
                       width="50px"
-                      matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ drug.hasSpmedGuideline || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noSpmed>
@@ -130,7 +141,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_no.png"
                       width="50px"
-                      matTooltip="{{ drug.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ drug.hasSpmedGuideline || 0 }} {{
+                        'PDSS__BROWSER__DRUG__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -146,13 +160,9 @@
         </div>
         -->
           <div class="default-margin" fxFlex="100" *ngIf="!!drug.summary">
-            <h2 *ngIf="this.languageService.currentLanguage == 'en'">
-              <span translate>PDSS__BROWSER__TITLE_NAME_EN</span>
+            <h2 id="whatIs">
+              {{ "PDSS__BROWSER__DRUG__TITLES__WHAT_IS" | translate }}
               {{ drug.name | titlecase }}
-            </h2>
-            <h2 *ngIf="this.languageService.currentLanguage == 'kr'">
-              {{ drug.kr.name }}
-              <span translate>PDSS__BROWSER__TITLE_NAME_KR</span>
             </h2>
             <div>
               <div
@@ -175,7 +185,7 @@
               "
             >
               <h2 class="sub-title">
-                <span translate>PDSS__BROWSER__DRUG__TITLE_INDICATION</span>
+                {{ "PDSS__BROWSER__DRUG__TITLES__INDICATION" | translate }}
               </h2>
               <div
                 class="sub-content"
@@ -196,7 +206,7 @@
               "
             >
               <h2 class="sub-title">
-                <span translate>PDSS__BROWSER__DRUG__TITLE_TOXICITY</span>
+                {{ "PDSS__BROWSER__DRUG__TITLES__TOXICITY" | translate }}
               </h2>
               <div
                 class="sub-content"
@@ -215,8 +225,8 @@
 
           <div class="default-margin" fxFlex="100">
             <h2>
-              <span translate>PDSS__BROWSER__DRUG__TITLE_RELATED_GENE</span>
-              ({{ drug?.genes?.length }})
+              {{ "PDSS__BROWSER__DRUG__TITLES__RELATED_GENES" | translate }}
+              ({{ drug?.genes?.length || 0 }})
             </h2>
             <div
               fxLayout="row wrap"
@@ -239,24 +249,71 @@
             *ngIf="drugSynonyms?.length > 0"
           >
             <h2>
-              <span translate>PDSS__BROWSER__DRUG__TITLE_SYNONYMS</span>
-              ({{ drugSynonyms.length }})
+              {{
+                "PDSS__BROWSER__DRUG__TITLES__SYNONYMS_INFORMATION" | translate
+              }}
+
+              ({{ drugSynonyms.length || 0 }})
             </h2>
             <div class="content">
               <ul>
-                <li *ngFor="let synonym of drugSynonyms">
-                  <span *ngIf="synonym.type != 'Generic_Name'">{{
-                    synonym.synonyms
-                  }}</span>
-                </li>
+                <!-- show less -->
+                <ng-container
+                  *ngIf="!drugSynonymsShowMore && drugSynonyms.length > 0"
+                >
+                  <li *ngFor="let synonym of drugSynonyms | slice: 0:5">
+                    <span *ngIf="synonym.type != 'Generic_Name'">{{
+                      synonym.synonyms
+                    }}</span>
+                  </li>
+                </ng-container>
+
+                <!-- show more -->
+                <ng-container
+                  *ngIf="drugSynonymsShowMore && drugSynonyms.length > 0"
+                >
+                  <li *ngFor="let synonym of drugSynonyms">
+                    <span *ngIf="synonym.type != 'Generic_Name'">{{
+                      synonym.synonyms
+                    }}</span>
+                  </li>
+                </ng-container>
               </ul>
+
+              <div
+                class="action-show"
+                fxLayoutAlign="start start"
+                fxLayoutAlign.lt-sm="center center"
+              >
+                <span
+                  *ngIf="!drugSynonymsShowMore"
+                  (click)="drugSynonymsShowMore = true"
+                  class="show-button"
+                >
+                  {{ "PDSS__BROWSER__DRUG__BUTTONS__SHOW_MORE" | translate }}
+                  <mat-icon>expand_more</mat-icon>
+                </span>
+                <span
+                  *ngIf="drugSynonymsShowMore"
+                  (click)="drugSynonymsShowMore = false"
+                  class="show-button"
+                  >{{ "PDSS__BROWSER__DRUG__BUTTONS__SHOW_LESS" | translate }}
+                  <mat-icon>expand_less</mat-icon>
+                </span>
+              </div>
             </div>
           </div>
           <div class="default-margin" fxFlex="100">
-            <h2 translate>PDSS__BROWSER__TITLE_EXTERNAL_INFORMATION</h2>
+            <h2>
+              {{
+                "PDSS__BROWSER__DRUG__TITLES__EXTERNAL_INFORMATION" | translate
+              }}
+            </h2>
             <table class="ex-link">
               <tr *ngIf="drug.idPharmgkb">
-                <td class="w100">PharmGKB</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__PHARMGKB" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https://www.pharmgkb.org/chemical/{{
@@ -269,7 +326,9 @@
                 </td>
               </tr>
               <tr *ngIf="drug.idDrugbank">
-                <td class="w100">Drugbank</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__DRUGBANK" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https://go.drugbank.com/drugs/{{ drug.idDrugbank }}"
@@ -279,7 +338,9 @@
                 </td>
               </tr>
               <tr *ngIf="drug.pubchemCompoundIdentifier">
-                <td class="w100">PubChem</td>
+                <td class="w100">
+                  {{ "PDSS__BROWSER__DRUG__TITLES__PUBCHEM" | translate }}
+                </td>
                 <td class="link">
                   <a
                     href="https:  //pubchem.ncbi.nlm.nih.gov/compound/{{
@@ -300,9 +361,10 @@
             <table>
               <tr>
                 <td class="w100" *ngIf="drug.exVoca !== null">
-                  <span translate
-                    >PDSS__BROWSER__DRUG__TITLE_EXTERNAL_VOCABULARY</span
-                  >
+                  {{
+                    "PDSS__BROWSER__DRUG__TITLES__EXTERNAL_VOCABULARY"
+                      | translate
+                  }}
                 </td>
               </tr>
               <tr>
@@ -312,35 +374,7 @@
               </tr>
             </table>
           </div>
-          <!--
-        <div class="default-margin">
-          <h3>Reference</h3>
-          <div class="contents">
-            <ol>
-              <li>
-                Kis B, Snipes JA, Busija DW: Acetaminophen and the
-                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
-                uncertainties. J Pharmacol Exp Ther.
-                <span class="bold">[Article]</span>
-              </li>
-              <li>
-                Kis B, Snipes JA,Busija DW: Acetaminophen and the
-                cyclooxygenase-3 puzzle: sorting out facts, fictions, and
-                uncertainties. J Pharmacol Exp Ther. 2005 Oct;315(1):1-7. Epub
-                2005 May 6.
-                <span class="bold">[Article]</span>
-              </li>
-              <li>
-                Aronoff DM, Oates JA, Boutaud O: New insights into the mechanism
-                of action of acetaminophen: Its clinical pharmacologic
-                characteristics reflect its inhibition of the two prostaglandin
-                H2 synthases. Clin Pharmacol Ther. 2006 Jan;79(1):9-19.
-                <span class="bold">[Article]</span>
-              </li>
-            </ol>
-          </div>
         </div>
-        --></div>
       </div>
     </div>
   </div>

@@ -20,9 +20,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ gene.hasPharmgkbGuideline || 0 }}  {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbGuide>
@@ -30,9 +31,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/guideline_no.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbGuideline
-                      }} PGKB Guideline"
+                      matTooltip="{{ gene.hasPharmgkbGuideline || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_GUIDELINE'
+                          | translate
+                      }}  PGKB Guideline"
                     />
                   </ng-template>
                 </td>
@@ -44,9 +46,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ gene.hasPharmgkbDruglabel || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbLabel>
@@ -54,9 +57,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/druglabel_no.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbDruglabel
-                      }} PGKB Drug Label"
+                      matTooltip="{{ gene.hasPharmgkbDruglabel || 0 }}  {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_DRUG_LABEL'
+                          | translate
+                      }} "
                     />
                   </ng-template>
                 </td>
@@ -68,9 +72,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_yes.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ gene.hasPharmgkbCa || 0 }}  {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }} "
                     />
                   </div>
                   <ng-template #noPgkbCa>
@@ -78,9 +83,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/clinicalannotation_no.png"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbCa
-                      }} PGKB Clinical Annotation"
+                      matTooltip="{{ gene.hasPharmgkbCa || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_CLINICAL_ANNOTATION'
+                          | translate
+                      }}"
                     />
                   </ng-template>
                 </td>
@@ -92,9 +98,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_yes.jpg"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ gene.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }}"
                     />
                   </div>
                   <ng-template #noPgkbVa>
@@ -102,9 +109,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/variantannotation_no.jpg"
                       width="50px"
-                      matTooltip="{{
-                        gene.hasPharmgkbVa
-                      }} PGKB Variant Annotation"
+                      matTooltip="{{ gene.hasPharmgkbVa || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__PGKB_VARIANT_ANNOTATION'
+                          | translate
+                      }}"
                     />
                   </ng-template>
                 </td>
@@ -116,7 +124,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_yes.png"
                       width="50px"
-                      matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ gene.hasSpmedGuideline || 0 }} {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }}"
                     />
                   </div>
                   <ng-template #noSpmed>
@@ -124,7 +135,10 @@
                       mat-card-avatar
                       src="../../../../../../assets/pgx/spmed_no.png"
                       width="50px"
-                      matTooltip="{{ gene.hasSpmedGuideline }} Spmed Guideline"
+                      matTooltip="{{ gene.hasSpmedGuideline || 0 }}  {{
+                        'PDSS__BROWSER__GENE__TOOLTIP__SPMED_GUIDELINE'
+                          | translate
+                      }}"
                     />
                   </ng-template>
                 </td>
@@ -139,13 +153,9 @@
         </div>
         -->
             <div class="default-margin" *ngIf="!!gene.summary">
-              <h2 *ngIf="this.languageService.currentLanguage == 'en'">
-                <span translate>PDSS__BROWSER__TITLE_NAME_EN</span>
+              <h2>
+                {{ "PDSS__BROWSER__GENE__TITLES__WHAT_IS" | translate }}
                 {{ gene.symbol }}
-              </h2>
-              <h2 *ngIf="this.languageService.currentLanguage == 'kr'">
-                {{ gene.symbol }}
-                <span translate>PDSS__BROWSER__TITLE_NAME_KR</span>
               </h2>
               <div>
                 <div
@@ -164,7 +174,9 @@
             </div>
 
             <div class="default-margin">
-              <h2 translate>PDSS__BROWSER__GENE__TITLE_RELATED_DRUG</h2>
+              <h2>
+                {{ "PDSS__BROWSER__GENE__TITLES__RELATED_DRUGS" | translate }}
+              </h2>
               <div
                 fxLayout="row wrap"
                 fxLayout.lt-sm="column"
@@ -181,10 +193,17 @@
             </div>
 
             <div class="default-margin">
-              <h2 translate>PDSS__BROWSER__TITLE_EXTERNAL_INFORMATION</h2>
+              <h2>
+                {{
+                  "PDSS__BROWSER__GENE__TITLES__EXTERNAL_INFORMATION"
+                    | translate
+                }}
+              </h2>
               <table class="ex-link">
                 <tr *ngIf="gene.idPharmgkb">
-                  <td class="w100" style="width: 100px">PharmGKB</td>
+                  <td class="w100" style="width: 100px">
+                    {{ "PDSS__BROWSER__GENE__TITLES__PHARMGKB" | translate }}
+                  </td>
                   <td class="link">
                     <a
                       href="https://www.pharmgkb.org/gene/{{ gene.idPharmgkb }}"
@@ -195,7 +214,9 @@
                   </td>
                 </tr>
                 <tr *ngIf="gene.idNcbi">
-                  <td class="w100">NCBI</td>
+                  <td class="w100">
+                    {{ "PDSS__BROWSER__GENE__TITLES__NCBI" | translate }}
+                  </td>
                   <td class="link">
                     <a
                       href="https://www.ncbi.nlm.nih.gov/gene/{{ gene.idNcbi }}"
@@ -205,7 +226,9 @@
                   </td>
                 </tr>
                 <tr *ngIf="gene.idHgnc">
-                  <td class="w100">HGNC</td>
+                  <td class="w100">
+                    {{ "PDSS__BROWSER__GENE__TITLES__HGNC" | translate }}
+                  </td>
                   <td class="link">
                     <a
                       href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:{{
@@ -217,7 +240,9 @@
                   </td>
                 </tr>
                 <tr *ngIf="gene.idEnsembl">
-                  <td class="w100">Ensembl</td>
+                  <td class="w100">
+                    {{ "PDSS__BROWSER__GENE__TITLES__ENSEMBL" | translate }}
+                  </td>
                   <td class="link">
                     <a
                       href="https://www.ensembl.org/id/{{ gene.idEnsembl }}"

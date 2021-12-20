@@ -1,0 +1,21 @@
+POST http://localhost:61100/api-gateway/v1.0/portal/v1.0/kr/drugs/atc-search?pageIndex=0&pageSize=20
+Content-Type: application/json
+
+{
+  "level1": "",
+  "level2": "",
+  "level3": "",
+  "level4": ""
+}
+
+
+# get drug classification
+POST http://localhost:61100/api-gateway/v1.0/portal/v1.0/kr/drugs/classification
+Content-Type: application/json
+
+{
+  "level1": "",
+  "level2": "",
+  "level3": "",
+  "level4": ""
+}

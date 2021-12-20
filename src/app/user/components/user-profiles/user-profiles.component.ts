@@ -9,7 +9,7 @@ import {
   UserProfileService,
   WeightHeightHistory,
 } from '../../services/user-profile.service';
-
+import { JoyrideService } from 'ngx-joyride';
 @Component({
   selector: 'app-user-profiles',
   templateUrl: './user-profiles.component.html',
@@ -24,7 +24,10 @@ export class UserProfilesComponent implements OnInit {
   lifeStyleHistoryList$ = new BehaviorSubject<LifeStyleHistory[]>(null);
   subscription$ = new Subscription();
 
-  constructor(private userProfileService: UserProfileService) {}
+  constructor(
+    private userProfileService: UserProfileService,
+    private readonly joyrideService: JoyrideService
+  ) {}
 
   loadUserProfile(): void {
     this.userProfileService.getUserProfile().subscribe((data) => {
@@ -43,5 +46,11 @@ export class UserProfilesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadUserProfile();
+  }
+
+  showWebTour(): void {
+    this.joyrideService.startTour({
+      steps: ['step1', 'step2', 'step3', 'step4', 'step5'],
+    });
   }
 }

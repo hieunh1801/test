@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { MaterialModule } from '@material/material.module';
 import { SharedModule } from '@shared/shared.module';
+import { JoyrideModule } from 'ngx-joyride';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,6 +22,7 @@ import { SharedModule } from '@shared/shared.module';
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
+    JoyrideModule.forRoot(),
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({

@@ -1,0 +1,3 @@
+
+GET http://localhost:61100/api-gateway/v1.0/kb/v1.0/en/drugs?pageIndex=0&pageSize=5000
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzOTUyOTg0MiwiZXhwIjoxNjM5NjE2MjQyfQ.4l4zcmRXL2hB4G90eZXp2v722waD3UDRoTRbp50uVltal9l5hmMKbE2JyNPIkc6lpsJvt8nS5ZYvxlYeOCPvzw

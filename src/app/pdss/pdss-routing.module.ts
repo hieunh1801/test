@@ -54,7 +54,10 @@ const routes: Routes = [
       },
       {
         path: 'utility',
-        component: UtilityComponent,
+        loadChildren: () =>
+          import('./components/utility/utility.module').then(
+            (m) => m.UtilityModule
+          ),
       },
       {
         path: 'my-report',

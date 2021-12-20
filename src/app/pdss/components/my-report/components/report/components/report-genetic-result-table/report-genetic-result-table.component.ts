@@ -72,10 +72,8 @@ export class ReportGeneticResultTableComponent implements OnInit, OnDestroy {
           case 'relatedTestAlleles':
             return compare(a.relatedTestAlleles, b.relatedTestAlleles, isAsc);
           case 'variantGenotype':
-            const value1 =
-              this.renderRsid(a.variantRsid) + ' ' + a.variantGenotype;
-            const value2 =
-              this.renderRsid(b.variantRsid) + ' ' + b.variantGenotype;
+            const value1 = this.getGenotype(a);
+            const value2 = this.getGenotype(b);
             return compare(value1, value2, isAsc);
           case 'variantPhenotype':
             return compare(a.variantPhenotype, b.variantPhenotype, isAsc);
@@ -132,10 +130,15 @@ export class ReportGeneticResultTableComponent implements OnInit, OnDestroy {
     this.tableSort$.next(sort);
   }
 
-  renderRsid(rsid?: string): string {
-    if (rsid && !rsid.startsWith('*')) {
-      return rsid;
+  getGenotype(element: UserVariant): string {
+    const { variantRsid, variantGenotypeCode } = element;
+    if (!variantRsid) {
+      return variantGenotypeCode;
     }
-    return null;
+    if (variantRsid.startsWith('*')) {
+      return variantGenotypeCode;
+    }
+
+    return variantRsid + ' ' + variantGenotypeCode;
   }
 }
