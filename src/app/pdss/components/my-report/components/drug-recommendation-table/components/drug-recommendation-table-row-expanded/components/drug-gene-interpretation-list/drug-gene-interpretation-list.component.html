@@ -24,11 +24,7 @@
         </ng-container>
       </div>
       <div class="recommendation">{{ gene.recommendation }}</div>
-      <div
-        class="references"
-        [ngClass]="{ disable: !!!gene.referenceOfEvidence }"
-        (click)="showReferences(gene.referenceOfEvidence)"
-      >
+      <div class="references" (click)="showReferences(gene)">
         <span translate
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION__REFERENCES</span
         >

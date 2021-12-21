@@ -6,6 +6,7 @@ import {
   ReferenceListDialogInputData,
 } from '../reference-list-dialog/reference-list-dialog.component';
 import { Router } from '@angular/router';
+import { Gene } from '@pdss/components/browser/components/gene/gene';
 
 @Component({
   selector: 'app-drug-gene-interpretation-list',
@@ -13,15 +14,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./drug-gene-interpretation-list.component.scss'],
 })
 export class DrugGeneInterpretationListComponent implements OnInit {
-  @Input() genes: DrugRecommendation[] = [];
+  @Input() genes: Gene[] = [];
 
   constructor(private matDialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {}
 
-  showReferences(referenceOfEvidence?: string): void {
+  showReferences(drugRecommendation?: Gene): void {
     const dialogInputData: ReferenceListDialogInputData = {
-      referenceOfEvidence,
+      interpretationId: drugRecommendation?.id,
     };
 
     const dialogRef = this.matDialog.open(ReferenceListDialogComponent, {

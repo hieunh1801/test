@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DrugRecommendation } from '@pdss/components/my-report/services/pdss-report.service';
+import {
+  DrugRecommendation,
+  Gene,
+} from '@pdss/components/my-report/services/pdss-report.service';
 import {
   ReferenceListDialogComponent,
   ReferenceListDialogInputData,
@@ -12,7 +15,7 @@ import {
   styleUrls: ['./drug-gene-interpretation-table.component.scss'],
 })
 export class DrugGeneInterpretationTableComponent implements OnInit {
-  @Input() genes: DrugRecommendation[] = [];
+  @Input() genes: Gene[] = [];
   geneTableDisplayedColumns = [
     // 'id',
     'symbol',
@@ -26,9 +29,10 @@ export class DrugGeneInterpretationTableComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  showReferences(referenceOfEvidence?: string): void {
+  showReferences(drugRecommendation?: Gene): void {
+    console.log(drugRecommendation);
     const dialogInputData: ReferenceListDialogInputData = {
-      referenceOfEvidence,
+      interpretationId: drugRecommendation?.drugRecommendationId,
     };
 
     const dialogRef = this.matDialog.open(ReferenceListDialogComponent, {

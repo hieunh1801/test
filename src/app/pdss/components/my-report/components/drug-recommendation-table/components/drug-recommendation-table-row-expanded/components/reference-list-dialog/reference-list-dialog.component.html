@@ -1,15 +1,22 @@
 <div class="reference-list-dialog">
   <div class="header">
-    <span translate
-      >PDSS__MY_REPORT__DRUG_TABLE__REFERENCE_LIST_DIALOG__REFERENCE_OF_EVIDENCE</span
-    >
+    {{
+      "PDSS__MY_REPORT__DRUG_TABLE__REFERENCE_LIST_DIALOG__REFERENCE_OF_EVIDENCE"
+        | translate
+    }}
     <button mat-icon-button (click)="onClose()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <div class="content">
-    <pre>
-      {{ dialogInputData?.referenceOfEvidence | references }}
-    </pre>
+  <div class="content" *ngIf="roeList$ | async as roeList; else empty">
+    <pre *ngFor="let roe of roeList">
+        {{ roe?.title }}
+      </pre
+    >
   </div>
+  <ng-template #empty>
+    {{
+      "PDSS__MY_REPORT__DRUG_TABLE__REFERENCE_LIST_DIALOG__EMPTY" | translate
+    }}
+  </ng-template>
 </div>

@@ -15,5 +15,11 @@
   }
 
   .content {
+    counter-reset: preCounter;
+
+    pre::before {
+      counter-increment: preCounter;
+      content: counter(preCounter) ". ";
+    }
   }
 }
