@@ -8,9 +8,8 @@ describe('AtcDrugTreeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AtcDrugTreeComponent ]
-    })
-    .compileComponents();
+      declarations: [AtcDrugTreeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
