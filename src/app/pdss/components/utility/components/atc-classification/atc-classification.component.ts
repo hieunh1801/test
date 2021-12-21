@@ -44,7 +44,7 @@ export class AtcClassificationComponent implements OnInit, OnDestroy {
     };
     this.pageLoadingService.startLoading();
     this.pdssDrugService
-      .searchDrugsByAtcCode(pageIndex, pageSize, searchRequest)
+      .searchDrugsByAtcCode(pageIndex, pageSize, '', searchRequest)
       .pipe(
         finalize(() => {
           this.pageLoadingService.stopLoading();

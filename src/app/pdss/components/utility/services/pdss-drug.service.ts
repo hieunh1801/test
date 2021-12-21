@@ -19,9 +19,10 @@ export class PdssDrugService {
   searchDrugsByAtcCode(
     pageIndex: number,
     pageSize: number,
+    drugName: string,
     searchRequest: AtcDrugSearchRequest
   ): Observable<SpmedResponse<Drug>> {
-    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/drugs/atc-search?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/drugs/atc-search?pageIndex=${pageIndex}&pageSize=${pageSize}&drug.name=${drugName}`;
     return this.httpClient.post<SpmedResponse<any>>(url, searchRequest);
   }
 }

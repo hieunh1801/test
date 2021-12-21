@@ -1,0 +1,1 @@
+GET http://localhost:61115/kb/v1.0/en/drugs/view:short?pageIndex=0&pageSize=10000

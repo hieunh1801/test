@@ -278,6 +278,7 @@
                 class="action-show"
                 fxLayoutAlign="start start"
                 fxLayoutAlign.lt-sm="center center"
+                *ngIf="drugSynonyms.length > 5"
               >
                 <span
                   *ngIf="!drugSynonymsShowMore"

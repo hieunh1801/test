@@ -1,0 +1,238 @@
+<div id="atc-drug-tree">
+  <form
+    [formGroup]="searchForm"
+    class="search-form"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayout.lt-sm="column"
+    (keydown.enter)="$event.preventDefault()"
+  >
+    <mat-form-field
+      appearance="outline"
+      class="type-select"
+      [ngClass.lt-sm]="{ 'width-100': true }"
+    >
+      <mat-select formControlName="type">
+        <mat-option
+          *ngFor="let searchOption of searchTypeOptions"
+          [value]="searchOption.value"
+        >
+          {{ searchOption.name | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      class="keyword-input"
+      class.lt-sm="width-100"
+    >
+      <input matInput formControlName="keyword" />
+      <button
+        *ngIf="f?.keyword?.value"
+        mat-icon-button
+        matSuffix
+        (click)="handleOnResetSearchForm()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div fxLayoutAlign="center center">
+      <button mat-button class="search-button">
+        {{
+          "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__SEARCH"
+            | translate
+        }}
+      </button>
+    </div>
+  </form>
+
+  <div
+    class="view-container"
+    fxLayout="row"
+    fxLayoutAlign="flex-end flex-end"
+    fxHide.lt-sm
+  >
+    <button
+      mat-stroked-button
+      (click)="handleClickExpandLevel(0); expandedLevel = 0"
+      [ngClass]="{ 'expanded-level': expandedLevel === 0 }"
+    >
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_1"
+          | translate
+      }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="handleClickExpandLevel(1); expandedLevel = 1"
+      [ngClass]="{ 'expanded-level': expandedLevel === 1 }"
+    >
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_2"
+          | translate
+      }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="handleClickExpandLevel(2); expandedLevel = 2"
+      [ngClass]="{ 'expanded-level': expandedLevel === 2 }"
+    >
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_3"
+          | translate
+      }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="handleClickCollapseAll(); expandedLevel = -1"
+      [ngClass]="{ 'expanded-level': expandedLevel === -1 }"
+    >
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_COLLAPSE_ALL"
+          | translate
+      }}
+    </button>
+  </div>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- leaf nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="20"
+      class="level-{{ node?.level }} node-link"
+    >
+      <!-- drug -->
+      <div
+        class="node-content-container"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <!-- <button mat-icon-button>•</button> -->
+          <a
+            *ngIf="node?.data?.drugName"
+            [routerLink]="['/pdss', 'drug', node?.data?.drugName, 'detail']"
+            target="_blank"
+          >
+            {{ node?.name }}
+          </a>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxHide.lt-sm>
+          <!-- pgkb guideline -->
+          <img
+            *ngIf="node?.data?.drugHasPharmgkbGuideline"
+            src="/assets/pgx/guideline_yes.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbGuideline || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_GUIDELINE' | translate
+            }}"
+          />
+          <img
+            *ngIf="!node?.data?.drugHasPharmgkbGuideline"
+            src="/assets/pgx/guideline_no.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbGuideline || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_GUIDELINE' | translate
+            }}"
+          />
+
+          <!-- pgkb drug label -->
+          <img
+            *ngIf="node?.data?.drugHasPharmgkbDruglabel"
+            src="/assets/pgx/druglabel_yes.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbDruglabel || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_DRUG_LABEL' | translate
+            }}"
+          />
+          <img
+            *ngIf="!node?.data?.drugHasPharmgkbDruglabel"
+            src="/assets/pgx/druglabel_no.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbDruglabel || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_DRUG_LABEL' | translate
+            }}"
+          />
+
+          <!-- pgkb drug ca -->
+          <img
+            *ngIf="node?.data?.drugHasPharmgkbCa"
+            src="/assets/pgx/clinicalannotation_yes.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbCa || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_CLINICAL_ANNOTATION'
+                | translate
+            }}"
+          />
+          <img
+            *ngIf="!node?.data?.drugHasPharmgkbCa"
+            src="/assets/pgx/clinicalannotation_no.png"
+            matTooltip="{{ node?.data?.drugHasPharmgkbCa || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_CLINICAL_ANNOTATION'
+                | translate
+            }}"
+          />
+
+          <!-- pgkb drug va -->
+          <img
+            *ngIf="node?.data?.drugHasPharmgkbVa"
+            src="/assets/pgx/variantannotation_yes.jpg"
+            matTooltip="{{ node?.data?.drugHasPharmgkbVa || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_VARIANT_ANNOTATION'
+                | translate
+            }}"
+          />
+          <img
+            *ngIf="!node?.data?.drugHasPharmgkbVa"
+            src="/assets/pgx/variantannotation_no.jpg"
+            matTooltip="{{ node?.data?.drugHasPharmgkbVa || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__PGKB_VARIANT_ANNOTATION'
+                | translate
+            }}"
+          />
+
+          <!-- spmed guideline -->
+          <img
+            *ngIf="node?.data?.drugHasSpmedGuideline"
+            src="/assets/pgx/spmed_yes.png"
+            matTooltip="{{ node?.data?.drugHasSpmedGuideline || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__SPMED_GUIDELINE' | translate
+            }}"
+          />
+          <img
+            *ngIf="!node?.data?.drugHasSpmedGuideline"
+            src="/assets/pgx/spmed_no.png"
+            matTooltip="{{ node?.data?.drugHasSpmedGuideline || 0 }} {{
+              'PDSS__UTILITY__ATC_CLASSIFICATION__SPMED_GUIDELINE' | translate
+            }}"
+          />
+        </div>
+      </div>
+    </mat-tree-node>
+    <!-- atc nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: isAtcNode"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="20"
+      class="level-{{ node?.level }}"
+    >
+      <mat-progress-spinner
+        *ngIf="isLoadingNode(node)"
+        mode="indeterminate"
+        diameter="15"
+      >
+      </mat-progress-spinner>
+
+      <button
+        *ngIf="!isLoadingNode(node)"
+        mat-icon-button
+        matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + node.name"
+        (click)="expandDrugNode(node)"
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+        </mat-icon>
+      </button>
+      [{{ node?.data?.atcCode }}] {{ node?.name }}
+    </mat-tree-node>
+  </mat-tree>
+</div>

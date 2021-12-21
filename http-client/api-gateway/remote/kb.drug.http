@@ -1,0 +1,7 @@
+GET https://gwapi.spmed.kr/api-gateway/v1.0/kb/v1.0/en/drugs/view:short?pageSize=10&pageIndex=0&drug.name=war
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzOTk2MDQ1NywiZXhwIjoxNjQwMDQ2ODU3fQ.jA63eW-QD-3EAweHTu062FXoDmXe8cpBb7RczqzvdI-OAXzkTk49b_ziWJLBdgFRoeM_cl38MVDb5Y6pmk0AVg
+
+
+###
+GET https://gwapi.spmed.kr/api-gateway/v1.0/kb/v1.0/en/atc-codes
+authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWV1Lm5ndXllbiIsImlhdCI6MTYzOTk2MDQ1NywiZXhwIjoxNjQwMDQ2ODU3fQ.jA63eW-QD-3EAweHTu062FXoDmXe8cpBb7RczqzvdI-OAXzkTk49b_ziWJLBdgFRoeM_cl38MVDb5Y6pmk0AVg
