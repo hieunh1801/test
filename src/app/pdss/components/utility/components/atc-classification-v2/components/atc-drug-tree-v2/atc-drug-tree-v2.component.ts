@@ -1,6 +1,6 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
@@ -32,13 +32,13 @@ export class AtcDrugTreeV2Component implements OnInit, OnDestroy {
 
   expandedLevel = -2;
 
-  searchTypeOptions = [
-    {
-      value: 0, // for all
-      name: marker(
-        'PDSS__UTILITY__ATC_CLASSIFICATION__SEARCH_TYPE_OPTIONS__ALL'
-      ),
-    },
+  modeOptions = [
+    // {
+    //   value: 0, // for all
+    //   name: marker(
+    //     'PDSS__UTILITY__ATC_CLASSIFICATION__SEARCH_TYPE_OPTIONS__ALL'
+    //   ),
+    // },
     {
       value: 1, // for atc class
       name: marker(
@@ -54,8 +54,8 @@ export class AtcDrugTreeV2Component implements OnInit, OnDestroy {
   ];
 
   searchForm = this.formBuilder.group({
-    type: [0],
-    keyword: [''],
+    mode: [2],
+    keyword: ['', [Validators.minLength(3)]],
   });
 
   flatNodeMap = new Map<DrugFlatNode, DrugTreeNode>();
@@ -88,15 +88,27 @@ export class AtcDrugTreeV2Component implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeDataSourceChange();
+    // this.subscribeKeywordChange();
   }
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
+
+  // private subscribeKeywordChange(): void {
+  //   const sub = this.searchForm
+  //     .get('keyword')
+  //     .valueChanges.subscribe((value) => {
+  //       if (!value) {
+  //         this.atcDrugTreeDataSourceService.resetSearch();
+  //       }
+  //     });
+  //   this.subscription$.add(sub);
+  // }
+
   private subscribeDataSourceChange(): void {
     const sub = this.atcDrugTreeDataSourceService.dataChange.subscribe(
       (data) => {
         this.saveExpandedNode();
-        console.log('expanded node', this.expandedNodeSet);
         this.dataSource.data = data;
         this.restoreExpandedNode();
       }
@@ -201,5 +213,40 @@ export class AtcDrugTreeV2Component implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  handleOnClickSearch(): void {
+    this.searchForm.markAllAsTouched();
+    this.searchForm.markAsDirty();
+
+    console.log('search', this.searchForm.valid);
+
+    if (!this.searchForm.valid) {
+      return;
+    }
+    const formValue = this.searchForm.value;
+    const { keyword, mode } = formValue;
+    this.atcDrugTreeDataSourceService.searchByKeyword(keyword, mode, () => {
+      this.expandedLevel = -2;
+      this.expandLevel(0);
+      this.expandLevel(1);
+      this.expandLevel(2);
+      if (mode === 0 || mode === 2) {
+        this.expandLevel(3);
+      }
+    });
+  }
+
+  handleOnResetSearchForm(): void {
+    this.searchForm.patchValue({
+      keyword: null,
+    });
+    this.treeControl.collapseAll();
+    this.atcDrugTreeDataSourceService.resetSearch();
+  }
+
+  handleOnClickReload(): void {
+    this.treeControl.collapseAll();
+    this.atcDrugTreeDataSourceService.resetSearch();
   }
 }

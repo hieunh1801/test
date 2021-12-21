@@ -5,19 +5,16 @@
     fxLayout="row"
     fxLayoutAlign="center center"
     fxLayout.lt-sm="column"
-    (keydown.enter)="$event.preventDefault()"
+    (keydown.enter)="$event.preventDefault(); handleOnClickSearch()"
   >
     <mat-form-field
       appearance="outline"
       class="type-select"
       [ngClass.lt-sm]="{ 'width-100': true }"
     >
-      <mat-select formControlName="type">
-        <mat-option
-          *ngFor="let searchOption of searchTypeOptions"
-          [value]="searchOption.value"
-        >
-          {{ searchOption.name | translate }}
+      <mat-select formControlName="mode">
+        <mat-option *ngFor="let option of modeOptions" [value]="option.value">
+          {{ option.name | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -27,7 +24,14 @@
       class="keyword-input"
       class.lt-sm="width-100"
     >
-      <input matInput formControlName="keyword" />
+      <input
+        matInput
+        placeholder="{{
+          'PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__PLACEHOLDERS__REQUIRED_3_CHARACTERS'
+            | translate
+        }}"
+        formControlName="keyword"
+      />
       <button
         *ngIf="f?.keyword?.value"
         mat-icon-button
@@ -39,7 +43,7 @@
     </mat-form-field>
 
     <div fxLayoutAlign="center center">
-      <button mat-button class="search-button">
+      <button mat-button class="search-button" (click)="handleOnClickSearch()">
         {{
           "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__SEARCH"
             | translate
@@ -59,6 +63,7 @@
       (click)="handleClickExpandLevel(0); expandedLevel = 0"
       [ngClass]="{ 'expanded-level': expandedLevel === 0 }"
     >
+      <mat-icon style="transform: rotate(90deg)"> unfold_more </mat-icon>
       {{
         "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_1"
           | translate
@@ -69,6 +74,8 @@
       (click)="handleClickExpandLevel(1); expandedLevel = 1"
       [ngClass]="{ 'expanded-level': expandedLevel === 1 }"
     >
+      <mat-icon style="transform: rotate(90deg)"> unfold_more </mat-icon>
+
       {{
         "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_2"
           | translate
@@ -79,6 +86,8 @@
       (click)="handleClickExpandLevel(2); expandedLevel = 2"
       [ngClass]="{ 'expanded-level': expandedLevel === 2 }"
     >
+      <mat-icon style="transform: rotate(90deg)"> unfold_more </mat-icon>
+
       {{
         "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_3"
           | translate
@@ -89,8 +98,19 @@
       (click)="handleClickCollapseAll(); expandedLevel = -1"
       [ngClass]="{ 'expanded-level': expandedLevel === -1 }"
     >
+      <mat-icon style="transform: rotate(90deg)"> unfold_less </mat-icon>
       {{
         "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_COLLAPSE_ALL"
+          | translate
+      }}
+    </button>
+    <button
+      mat-stroked-button
+      (click)="handleOnClickReload(); expandedLevel = -2"
+    >
+      <mat-icon>refresh</mat-icon>
+      {{
+        "PDSS__UTILITY__ATC_CLASSIFICATION__ATC_DRUG_TREE__BUTTONS__EXPAND_LEVEL_RESET"
           | translate
       }}
     </button>
