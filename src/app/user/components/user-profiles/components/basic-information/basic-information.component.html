@@ -59,11 +59,9 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="mode = 'ADD'">
-    <span translate>USER__USER_PROFILES__BASIC_INFORMATION__BUTTONS__ADD</span>
+    {{ "USER__USER_PROFILES__BASIC_INFORMATION__BUTTONS__ADD" | translate }}
   </button>
   <button mat-menu-item (click)="mode = 'EDIT'">
-    <span translate
-      >USER__USER_PROFILES__BASIC_INFORMATION__BUTTONS__EDIT_HISTORY</span
-    >
+    {{ "USER__USER_PROFILES__BASIC_INFORMATION__BUTTONS__MANAGE" | translate }}
   </button>
 </mat-menu>

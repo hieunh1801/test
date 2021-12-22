@@ -53,9 +53,9 @@
 
 <mat-menu #menuEdit="matMenu">
   <button mat-menu-item (click)="changeMode('ADD')">
-    <span translate> USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__ADD </span>
+    {{ "USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__ADD" | translate }}
   </button>
   <button mat-menu-item (click)="changeMode('EDIT')">
-    <span translate> USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__EDIT </span>
+    {{ "USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__MANAGE" | translate }}
   </button>
 </mat-menu>
