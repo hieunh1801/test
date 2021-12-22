@@ -37,31 +37,70 @@
     margin-bottom: 16px;
   }
 
+  .box-list {
+    margin: 0 -1px;
+  }
+
   .box {
     padding: 8px;
     border-radius: 1px;
     width: 100px;
     font-weight: 500;
-    color: white;
+    // color: white;
     text-align: center;
+    margin: 1px;
   }
+
   .box-mobile {
     flex: 1;
   }
+
+  .box-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
   .danger {
-    background-color: var(--pdss--risk-level--danger--color);
+    border: solid 2px var(--pdss--risk-level--danger--color);
     // color: white;
   }
 
   .warning {
-    background-color: var(--pdss--risk-level--warning--color);
+    border: solid 2px var(--pdss--risk-level--warning--color);
   }
 
   .caution {
-    background-color: var(--pdss--risk-level--caution--color);
+    border: solid 2px var(--pdss--risk-level--caution--color);
   }
 
   .good {
-    background-color: var(--pdss--risk-level--good--color);
+    border: solid 2px var(--pdss--risk-level--good--color);
+  }
+
+  .risk-level {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .danger-level {
+    color: var(--pdss--risk-level--danger--color);
+  }
+  .warning-level {
+    color: var(--pdss--risk-level--warning--color);
+  }
+  .caution-level {
+    color: var(--pdss--risk-level--caution--color);
+  }
+  .good-level {
+    color: var(--pdss--risk-level--good--color);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .drug-table-statistic {
+    .box-content {
+      flex-direction: column;
+    }
   }
 }

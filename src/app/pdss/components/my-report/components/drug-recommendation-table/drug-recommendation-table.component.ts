@@ -127,7 +127,6 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
   }
 
   subscribeDrugRecommendationListChange(): void {
-    console.log('register subscribeDrugRecommendationListChange');
     const sub = this.drugRecommendationList$.subscribe(() => {
       this.reloadTable();
     });
