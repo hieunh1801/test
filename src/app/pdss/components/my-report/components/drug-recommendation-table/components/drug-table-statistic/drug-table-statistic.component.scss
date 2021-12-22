@@ -98,6 +98,43 @@
   }
 }
 
+.introduction-overlay {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background-color: white;
+  width: 50vw;
+  max-width: 300px;
+  border: solid 2px var(--primary--color);
+  border-radius: 2px;
+  padding: 10px;
+
+  p {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    .mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .risk-level {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .danger-level {
+    color: var(--pdss--risk-level--danger--color);
+  }
+  .warning-level {
+    color: var(--pdss--risk-level--warning--color);
+  }
+  .caution-level {
+    color: var(--pdss--risk-level--caution--color);
+  }
+  .good-level {
+    color: var(--pdss--risk-level--good--color);
+  }
+}
+
 @media screen and (max-width: 600px) {
   .drug-table-statistic {
     .box-content {

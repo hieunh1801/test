@@ -30,6 +30,8 @@ export class DrugTableStatisticComponent implements OnInit, OnChanges {
   totalCaution = 0;
   totalGood = 0;
 
+  isMenuOpen = false;
+
   constructor(private reportHelperService: ReportHelperService) {}
 
   ngOnInit(): void {}
