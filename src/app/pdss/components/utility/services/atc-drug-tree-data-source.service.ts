@@ -343,7 +343,6 @@ export class AtcDrugTreeDataSourceService {
             mode === 0
               ? this.buildTree(atcCodeListFiltered, drugNodeList)
               : this.buildTree([], drugNodeList);
-          console.log(mode, treeData);
           this.dataChange.next(treeData);
         });
     }

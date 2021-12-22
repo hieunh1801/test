@@ -57,7 +57,6 @@ export class ReportAdditionalInformationListComponent
             }
             this.additionalInformationListGroup =
               mAdditionalInformationListGroup;
-            console.log(this.additionalInformationListGroup);
           }
         } catch (error) {
           console.error(error);

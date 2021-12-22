@@ -27,11 +27,7 @@ export class AtcDrugTreeService {
     this._getAtcCode().subscribe((nodeList) => {
       const atcCodeList = nodeList;
       const treeData = this.buildTree(atcCodeList);
-
-      setInterval(() => {
-        console.log('reload tree data');
-        this.dataChange.next(treeData);
-      }, 5000);
+      this.dataChange.next(treeData);
     });
   }
 

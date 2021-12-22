@@ -30,7 +30,6 @@ export class DrugGeneInterpretationTableComponent implements OnInit {
   ngOnInit(): void {}
 
   showReferences(drugRecommendation?: Gene): void {
-    console.log(drugRecommendation);
     const dialogInputData: ReferenceListDialogInputData = {
       interpretationId: drugRecommendation?.drugRecommendationId,
     };

@@ -219,8 +219,6 @@ export class AtcDrugTreeComponent implements OnInit, OnDestroy {
     this.searchForm.markAllAsTouched();
     this.searchForm.markAsDirty();
 
-    console.log('search', this.searchForm.valid);
-
     if (!this.searchForm.valid) {
       return;
     }

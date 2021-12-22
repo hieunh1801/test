@@ -12,9 +12,7 @@ export class ConfirmDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogInput
   ) {}
 
-  ngOnInit(): void {
-    console.log('data=', this.data);
-  }
+  ngOnInit(): void {}
 
   onNoClick(): void {
     const output: ConfirmDialogOutput = {
