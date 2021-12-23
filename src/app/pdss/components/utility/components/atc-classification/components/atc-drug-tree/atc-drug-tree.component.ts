@@ -89,6 +89,7 @@ export class AtcDrugTreeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeDataSourceChange();
     // this.subscribeKeywordChange();
+    this.atcDrugTreeDataSourceService.initTree();
   }
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
