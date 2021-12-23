@@ -7,11 +7,15 @@
       <button
         mat-icon-button
         [matMenuTriggerFor]="menuEdit"
-        *ngIf="diseaseHistoryList && diseaseHistoryList.length > 0"
+        joyrideStep="USER_PROFILES__DISEASE_HISTORY__MANAGE__STEP"
+        stepPosition="bottom"
+        text="{{
+          'USER_PROFILES__DISEASE_HISTORY__MANAGE__STEP__CONTENT' | translate
+        }}"
       >
         <mat-icon>more_horiz</mat-icon>
       </button>
-
+      <!--
       <button
         mat-button
         class="add-button"
@@ -24,7 +28,7 @@
         <span translate>
           USER__USER_PROFILES__DISEASE_HISTORY__BUTTONS__ADD
         </span>
-      </button>
+      </button> -->
     </div>
   </div>
   <mat-divider></mat-divider>

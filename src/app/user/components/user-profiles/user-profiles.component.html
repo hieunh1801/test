@@ -2,18 +2,18 @@
   <div id="user-profiles-page">
     <div
       class="section"
-      joyrideStep="step1"
+      joyrideStep="USER_PROFILES__INTRODUCTION__STEP"
       stepPosition="bottom"
-      [stepContent]="step1content"
+      [stepContent]="USER_PROFILES__INTRODUCTION__STEP"
     >
       <app-introduction [userProfile$]="userProfile$"></app-introduction>
     </div>
 
     <div
       class="section"
-      joyrideStep="step2"
+      joyrideStep="USER_PROFILES__BASIC_INFORMATION__STEP"
       stepPosition="bottom"
-      [stepContent]="step2content"
+      [stepContent]="USER_PROFILES__BASIC_INFORMATION__STEP"
     >
       <app-basic-information
         [weightHeightHistoryList$]="weightHeightHistoryList$"
@@ -22,9 +22,9 @@
 
     <div
       class="section"
-      joyrideStep="step3"
+      joyrideStep="USER_PROFILES__MEDICAL_HISTORY__STEP"
       stepPosition="bottom"
-      [stepContent]="step3content"
+      [stepContent]="USER_PROFILES__MEDICAL_HISTORY__STEP"
     >
       <app-medical-history
         [medicalHistoryList$]="medicalHistoryList$"
@@ -33,9 +33,9 @@
 
     <div
       class="section"
-      joyrideStep="step4"
+      joyrideStep="USER_PROFILES__DISEASE_HISTORY__STEP"
       stepPosition="bottom"
-      [stepContent]="step4content"
+      [stepContent]="USER_PROFILES__DISEASE_HISTORY__STEP"
     >
       <app-disease-history
         [diseaseHistoryList$]="diseaseHistoryList$"
@@ -44,9 +44,9 @@
 
     <div
       class="section"
-      joyrideStep="step5"
+      joyrideStep="USER_PROFILES__LIFE_STYLE_HISTORY__STEP"
       stepPosition="bottom"
-      [stepContent]="step5content"
+      [stepContent]="USER_PROFILES__LIFE_STYLE_HISTORY__STEP"
     >
       <app-life-style
         [lifeStyleHistoryList$]="lifeStyleHistoryList$"
@@ -59,12 +59,22 @@
   </button>
 </div>
 
-<ng-template #step1content> Introduction </ng-template>
+<ng-template #USER_PROFILES__INTRODUCTION__STEP>
+  {{ "USER_PROFILES__INTRODUCTION__STEP__CONTENT" | translate }}
+</ng-template>
 
-<ng-template #step2content> Basic Information </ng-template>
+<ng-template #USER_PROFILES__BASIC_INFORMATION__STEP>
+  {{ "USER_PROFILES__BASIC_INFORMATION__STEP__CONTENT" | translate }}
+</ng-template>
 
-<ng-template #step3content> Medical History </ng-template>
+<ng-template #USER_PROFILES__MEDICAL_HISTORY__STEP>
+  {{ "USER_PROFILES__MEDICAL_HISTORY__STEP__CONTENT" | translate }}
+</ng-template>
 
-<ng-template #step4content> Disease History </ng-template>
+<ng-template #USER_PROFILES__DISEASE_HISTORY__STEP>
+  {{ "USER_PROFILES__DISEASE_HISTORY__STEP__CONTENT" | translate }}
+</ng-template>
 
-<ng-template #step5content> Life Style History </ng-template>
+<ng-template #USER_PROFILES__LIFE_STYLE_HISTORY__STEP>
+  {{ "USER_PROFILES__LIFE_STYLE_HISTORY__STEP__CONTENT" | translate }}
+</ng-template>

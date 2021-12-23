@@ -10,6 +10,7 @@ import {
   WeightHeightHistory,
 } from '../../services/user-profile.service';
 import { JoyrideService } from 'ngx-joyride';
+import { JoyrideOptions } from 'ngx-joyride/lib/models/joyride-options.class';
 @Component({
   selector: 'app-user-profiles',
   templateUrl: './user-profiles.component.html',
@@ -49,8 +50,27 @@ export class UserProfilesComponent implements OnInit {
   }
 
   showWebTour(): void {
-    this.joyrideService.startTour({
-      steps: ['step1', 'step2', 'step3', 'step4', 'step5'],
-    });
+    const option: JoyrideOptions = {
+      steps: [
+        // introduction
+        'USER_PROFILES__INTRODUCTION__STEP',
+        'USER_PROFILES__INTRODUCTION__EDIT__STEP',
+
+        // basic information
+        'USER_PROFILES__BASIC_INFORMATION__STEP',
+        'USER_PROFILES__BASIC_INTRODUCTION__MANAGE__STEP',
+
+        'USER_PROFILES__MEDICAL_HISTORY__STEP',
+        'USER_PROFILES__MEDICAL_HISTORY__MANAGE__STEP',
+
+        'USER_PROFILES__DISEASE_HISTORY__STEP',
+        'USER_PROFILES__DISEASE_HISTORY__MANAGE__STEP',
+
+        'USER_PROFILES__LIFE_STYLE_HISTORY__STEP',
+        'USER_PROFILES__LIFE_STYLE_HISTORY__MANAGE__STEP',
+      ],
+      // showCounter: false,
+    };
+    this.joyrideService.startTour(option);
   }
 }
