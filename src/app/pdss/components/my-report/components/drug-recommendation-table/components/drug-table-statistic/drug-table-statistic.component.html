@@ -1,44 +1,111 @@
 <div class="drug-table-statistic">
-  <div fxLayout="row" fxLayoutAlign="end">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end"
+    class="box-list"
+    fxLayoutAlign.lt-sm="center center"
+  >
     <div class="box danger" [ngClass.xs]="'box-mobile'">
       <div
         *ngIf="totalDanger != null && totalDanger !== undefined"
-        fxLayout="row"
-        fxLayout.lt-md="column"
+        class="box-content"
       >
-        <span translate>PDSS__RISK_LEVEL__DANGER</span>
+        <mat-icon class="risk-level danger-level">cancel</mat-icon>
         <span>&nbsp; {{ totalDanger }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box warning" [ngClass.xs]="'box-mobile'">
       <div
         *ngIf="totalWarning != null && totalWarning !== undefined"
-        fxLayout="row"
-        fxLayout.lt-md="column"
+        class="box-content"
       >
-        <span translate>PDSS__RISK_LEVEL__WARNING</span>
+        <mat-icon class="risk-level warning-level">error</mat-icon>
         <span>&nbsp; {{ totalWarning }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box caution" [ngClass.xs]="'box-mobile'">
       <div
         *ngIf="totalCaution != null && totalCaution !== undefined"
-        fxLayout="row"
-        fxLayout.lt-md="column"
+        class="box-content"
       >
-        <span translate>PDSS__RISK_LEVEL__CAUTION</span>
+        <mat-icon class="risk-level caution-level">remove_circle</mat-icon>
         <span>&nbsp; {{ totalCaution }}/{{ totalDrug }} </span>
       </div>
     </div>
     <div class="box good" [ngClass.xs]="'box-mobile'">
       <div
         *ngIf="totalGood != null && totalGood !== undefined"
-        fxLayout="row"
-        fxLayout.lt-md="column"
+        class="box-content"
       >
-        <span translate>PDSS__RISK_LEVEL__GOOD</span>
+        <mat-icon class="risk-level good-level">check_circle</mat-icon>
         <span>&nbsp; {{ totalGood }}/{{ totalDrug }} </span>
       </div>
     </div>
+
+    <button
+      mat-icon-button
+      (click)="isMenuOpen = !isMenuOpen"
+      type="button"
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+    >
+      <mat-icon> help_outline </mat-icon>
+    </button>
+
+    <ng-template
+      cdkConnectedOverlay
+      cdkConnectedOverlayHasBackdrop
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="isMenuOpen"
+      (backdropClick)="isMenuOpen = false"
+    >
+      <div class="introduction-overlay">
+        <p>
+          <mat-icon class="risk-level danger-level">cancel</mat-icon>
+          <b>{{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__DANGER"
+              | translate
+          }}</b>
+          {{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__DANGER_CONTENT"
+              | translate
+          }}
+        </p>
+        <p>
+          <mat-icon class="risk-level warning-level">error</mat-icon>
+          <b>{{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__WARNING"
+              | translate
+          }}</b>
+
+          {{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__WARNING_CONTENT"
+              | translate
+          }}
+        </p>
+        <p>
+          <mat-icon class="risk-level caution-level">remove_circle</mat-icon>
+          <b>{{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__CAUTION"
+              | translate
+          }}</b>
+          {{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__CAUTION_CONTENT"
+              | translate
+          }}
+        </p>
+        <p>
+          <mat-icon class="risk-level good-level">check_circle</mat-icon>
+          <b>{{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__GOOD"
+              | translate
+          }}</b>
+          {{
+            "PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_TABLE_STATISTIC__INTRODUCTIONS__GOOD_CONTENT"
+              | translate
+          }}
+        </p>
+      </div>
+    </ng-template>
   </div>
 </div>

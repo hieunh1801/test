@@ -14,6 +14,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { MaterialModule } from '@material/material.module';
 import { SharedModule } from '@shared/shared.module';
 import { JoyrideModule } from 'ngx-joyride';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -36,7 +37,7 @@ import { JoyrideModule } from 'ngx-joyride';
       echarts: () => import('echarts'),
     }),
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

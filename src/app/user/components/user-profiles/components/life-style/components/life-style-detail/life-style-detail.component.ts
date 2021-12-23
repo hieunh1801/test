@@ -40,7 +40,6 @@ export class LifeStyleDetailComponent implements OnInit, OnDestroy {
 
   subscribeLifeStyleHistoryListChange(): void {
     const sub = this.lifeStyleHistoryList$.subscribe((lifeStyleHistoryList) => {
-      console.log(lifeStyleHistoryList);
       if (!!!lifeStyleHistoryList) {
         this.lifeStyleHistoryList = null;
         this.alcohol = null;

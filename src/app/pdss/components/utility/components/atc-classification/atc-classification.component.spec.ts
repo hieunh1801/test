@@ -8,9 +8,8 @@ describe('AtcClassificationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AtcClassificationComponent ]
-    })
-    .compileComponents();
+      declarations: [AtcClassificationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

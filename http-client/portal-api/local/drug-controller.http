@@ -19,3 +19,9 @@ Content-Type: application/json
   "level3": "",
   "level4": ""
 }
+
+
+
+###
+GET http://localhost:61127/portal/v1.0/kr/drugs/view:short?pageIndex=0&pageSize=2&drugName=aspirin
+

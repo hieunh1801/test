@@ -30,7 +30,6 @@ export class CountryAutocompleteComponent implements OnInit, OnDestroy {
         debounceTime(300)
       )
       .subscribe((value: string) => {
-        console.log('value');
         this.loadCountry(value);
       });
 

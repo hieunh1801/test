@@ -1,4 +1,5 @@
 .drug-table-statistic {
+  margin: 1px;
   // for statistic
   .statistic {
     .card {
@@ -37,31 +38,114 @@
     margin-bottom: 16px;
   }
 
+  .box-list {
+    margin: 0 -1px;
+  }
+
   .box {
     padding: 8px;
     border-radius: 1px;
     width: 100px;
     font-weight: 500;
-    color: white;
+    // color: white;
     text-align: center;
+    margin: 1px;
   }
+
   .box-mobile {
     flex: 1;
   }
+
+  .box-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
   .danger {
-    background-color: var(--pdss--risk-level--danger--color);
+    border: solid 2px var(--pdss--risk-level--danger--color);
     // color: white;
   }
 
   .warning {
-    background-color: var(--pdss--risk-level--warning--color);
+    border: solid 2px var(--pdss--risk-level--warning--color);
   }
 
   .caution {
-    background-color: var(--pdss--risk-level--caution--color);
+    border: solid 2px var(--pdss--risk-level--caution--color);
   }
 
   .good {
-    background-color: var(--pdss--risk-level--good--color);
+    border: solid 2px var(--pdss--risk-level--good--color);
+  }
+
+  .risk-level {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .danger-level {
+    color: var(--pdss--risk-level--danger--color);
+  }
+  .warning-level {
+    color: var(--pdss--risk-level--warning--color);
+  }
+  .caution-level {
+    color: var(--pdss--risk-level--caution--color);
+  }
+  .good-level {
+    color: var(--pdss--risk-level--good--color);
+  }
+}
+
+.introduction-overlay {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background-color: white;
+  width: 50vw;
+  max-width: 400px;
+  border: solid 2px var(--primary--color);
+  border-radius: 2px;
+  padding: 10px;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  p {
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+    b {
+      margin: 0 4px 0 2px;
+    }
+    .mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .risk-level {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .danger-level {
+    color: var(--pdss--risk-level--danger--color);
+  }
+  .warning-level {
+    color: var(--pdss--risk-level--warning--color);
+  }
+  .caution-level {
+    color: var(--pdss--risk-level--caution--color);
+  }
+  .good-level {
+    color: var(--pdss--risk-level--good--color);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .drug-table-statistic {
+    .box-content {
+      flex-direction: column;
+    }
   }
 }

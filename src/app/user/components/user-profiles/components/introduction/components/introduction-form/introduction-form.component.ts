@@ -88,7 +88,6 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
   loadCountryOption(name: string): void {
     this.countryService.getAllCountry(name).subscribe((response) => {
       this.countryOptions = response?.data?.items?.map((r) => r.name) || [];
-      console.log(this.countryOptions);
     });
   }
 

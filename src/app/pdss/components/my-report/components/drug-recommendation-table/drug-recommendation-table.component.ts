@@ -79,7 +79,8 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let tableData = [];
+    // choose language
+    let tableData: DrugRecommendation[] = [];
     if (language === LanguagesProvidedType.korea) {
       tableData = drugRecommendationList.map((drugRecommendation) => ({
         ...drugRecommendation,
@@ -89,6 +90,19 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
       tableData = drugRecommendationList;
     }
 
+    // remove related gene duplicate
+    tableData = tableData.map((row) => {
+      const relatedGenes = row.relatedGenes || '';
+      const relatedGenesList = relatedGenes.split(',').map((r) => r.trim());
+      const relatedGenesListRemoveDuplicated = [...new Set(relatedGenesList)];
+      const mRelatedGenes = relatedGenesListRemoveDuplicated.join(', ');
+      return {
+        ...row,
+        relatedGenes: mRelatedGenes,
+      };
+    });
+
+    // sort data
     let mTableDataSorted = [];
     if (tableSort && tableSort.active && tableSort.direction !== '') {
       const RISK_LEVEL_WEIGHT = {
@@ -127,7 +141,6 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
   }
 
   subscribeDrugRecommendationListChange(): void {
-    console.log('register subscribeDrugRecommendationListChange');
     const sub = this.drugRecommendationList$.subscribe(() => {
       this.reloadTable();
     });

@@ -75,11 +75,7 @@
         >
       </th>
       <td mat-cell *matCellDef="let element">
-        <button
-          mat-icon-button
-          (click)="showReferences(element?.referenceOfEvidence)"
-          [disabled]="!!!element.referenceOfEvidence"
-        >
+        <button mat-icon-button (click)="showReferences(element)">
           <mat-icon>pageview</mat-icon>
         </button>
       </td>

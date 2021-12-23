@@ -49,6 +49,18 @@
   </div>
 
   <div class="actions" fxLayout="row" fxLayoutAlign="flex-end center">
-    <button mat-stroked-button (click)="editClick()">Edit</button>
+    <button
+      mat-stroked-button
+      joyrideStep="USER_PROFILES__INTRODUCTION__EDIT__STEP"
+      stepPosition="bottom"
+      [stepContent]="USER_PROFILES__INTRODUCTION__EDIT__STEP"
+      (click)="editClick()"
+    >
+      Edit
+    </button>
   </div>
 </div>
+
+<ng-template #USER_PROFILES__INTRODUCTION__EDIT__STEP>
+  {{ "USER_PROFILES__INTRODUCTION__EDIT__STEP__CONTENT" | translate }}
+</ng-template>

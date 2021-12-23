@@ -9,7 +9,12 @@ import { AtcClassificationComponent } from './components/atc-classification/atc-
 import { AtcDrugTreeComponent } from './components/atc-classification/components/atc-drug-tree/atc-drug-tree.component';
 
 @NgModule({
-  declarations: [UtilityComponent, UtilityNavMenuComponent, AtcClassificationComponent, AtcDrugTreeComponent],
+  declarations: [
+    UtilityComponent,
+    UtilityNavMenuComponent,
+    AtcClassificationComponent,
+    AtcDrugTreeComponent,
+  ],
   imports: [CommonModule, UtilityRoutingModule, SharedModule],
 })
 export class UtilityModule {}

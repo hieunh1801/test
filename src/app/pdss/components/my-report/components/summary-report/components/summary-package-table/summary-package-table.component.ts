@@ -64,8 +64,6 @@ export class SummaryPackageTableComponent implements OnInit, OnDestroy {
           ''
         );
         this.summaryData = mSummaryData;
-
-        console.log(this.summaryData);
       },
     });
 
