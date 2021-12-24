@@ -317,10 +317,18 @@ export class AtcDrugTreeDataSourceService {
       return;
     }
     const atcCodeListFiltered = this.atcCodeList.filter((row) => {
-      const result1 = row.codeLevel1.toLocaleLowerCase().includes(keyword);
-      const result2 = row.codeLevel2.toLocaleLowerCase().includes(keyword);
-      const result3 = row.codeLevel3.toLocaleLowerCase().includes(keyword);
-      const result4 = row.codeLevel4.toLocaleLowerCase().includes(keyword);
+      const result1 =
+        row.codeLevel1.toLocaleLowerCase().includes(keyword) ||
+        row.level1.toLocaleLowerCase().includes(keyword);
+      const result2 =
+        row.codeLevel2.toLocaleLowerCase().includes(keyword) ||
+        row.level2.toLocaleLowerCase().includes(keyword);
+      const result3 =
+        row.codeLevel3.toLocaleLowerCase().includes(keyword) ||
+        row.level3.toLocaleLowerCase().includes(keyword);
+      const result4 =
+        row.codeLevel4.toLocaleLowerCase().includes(keyword) ||
+        row.level4.toLocaleLowerCase().includes(keyword);
       return result1 || result2 || result3 || result4;
     });
 
