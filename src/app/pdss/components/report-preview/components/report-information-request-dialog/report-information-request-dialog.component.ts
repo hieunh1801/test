@@ -8,14 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./report-information-request-dialog.component.scss'],
 })
 export class ReportInformationRequestDialogComponent implements OnInit {
-  // searchForm = this.formBuilder.group({
-  //   surname: [''],
-  //   yearOfBirth: [''],
-  // });
-
   searchForm = this.formBuilder.group({
-    surname: ['최'],
-    yearOfBirth: ['1979'],
+    surname: [''],
+    yearOfBirth: [''],
   });
 
   constructor(
@@ -30,8 +25,7 @@ export class ReportInformationRequestDialogComponent implements OnInit {
   handleOnSubmit(): void {
     const formValue = this.searchForm.value;
     const output: ReportInformationRequestDialogOutput = {
-      // qrCode: this.dialogInput.qrCode,
-      qrCode: 'C1052095-JZAK',
+      qrCode: this.dialogInput.qrCode,
       surname: formValue.surname,
       yearOfBirth: formValue.yearOfBirth,
     };
