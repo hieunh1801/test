@@ -83,4 +83,6 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     });
     this.subscriptions$.add(sub);
   }
+
+  showSummaryMyReportGuide(): void {}
 }

@@ -25,6 +25,7 @@ import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 import { GenderToStringPipe } from './pipes/gender-to-string.pipe';
 import { CountryAutocompleteComponent } from './components/country-autocomplete/country-autocomplete.component';
 import { RatingInputComponent } from './components/rating-input/rating-input.component';
+import { JoyrideModule } from 'ngx-joyride';
 
 const COMPONENTS = [
   FooterComponent,
@@ -80,6 +81,7 @@ const httpInterceptorProviders = [
     ToAgePipe,
     HighlightSearchPipe,
     GenderToStringPipe,
+    JoyrideModule,
   ],
 })
 export class SharedModule {}

@@ -1,35 +1,50 @@
 <!-- statistic -->
 <ng-template
-  [ngIf]="
-    reportList$?.value?.length > 0 && !pageLoadingService.isLoading$.value
-  "
-  [ngIfElse]="emptyPage"
+  [ngIf]="pageLoadingService.isLoading$.value"
+  [ngIfElse]="dataTemplate"
 >
-  <div class="summary-report" fxLayout="column" fxLayoutGap="40px">
-    <app-summary-package-table
-      [reportList$]="reportList$"
-    ></app-summary-package-table>
-
-    <div>
-      <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
-      <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
-    </div>
-
-    <app-drug-recommendation-table
-      [drugRecommendationList$]="drugRecommendationList$"
-    ></app-drug-recommendation-table>
-  </div>
+  <!--loading page  -->
 </ng-template>
 
-<ng-template #emptyPage>
-  <div class="empty-page">
-    <mat-icon>integration_instructions</mat-icon>
-    <p>
-      {{ "PDSS__MY_REPORT__EMPTY_PAGE__YOU_DONT_HAVE_ANY_REPORT" | translate }}
-    </p>
+<ng-template #dataTemplate>
+  <!-- data page -->
+  <ng-template [ngIf]="reportList$?.value?.length > 0" [ngIfElse]="emptyPage">
+    <div class="summary-report" fxLayout="column" fxLayoutGap="40px">
+      <app-summary-package-table
+        [reportList$]="reportList$"
+      ></app-summary-package-table>
 
-    <button class="contact-button" mat-button routerLink="/contact">
-      {{ "PDSS__MY_REPORT__EMPTY_PAGE__BUTTON_CONTACT" | translate }}
-    </button>
-  </div>
+      <div>
+        <h2 translate>PDSS__MY_REPORT__SUMMARY_REPORTS</h2>
+        <p translate>PDSS__MY_REPORT__VIEW_YOUR_ALL_TEST_RESULT</p>
+      </div>
+
+      <app-drug-recommendation-table
+        [drugRecommendationList$]="drugRecommendationList$"
+      ></app-drug-recommendation-table>
+    </div>
+  </ng-template>
+
+  <!-- empty page (if no data) -->
+  <ng-template #emptyPage>
+    <div class="empty-page">
+      <mat-icon>integration_instructions</mat-icon>
+      <p>
+        {{
+          "PDSS__MY_REPORT__EMPTY_PAGE__YOU_DONT_HAVE_ANY_REPORT" | translate
+        }}
+      </p>
+
+      <button class="contact-button" mat-button routerLink="/contact">
+        {{ "PDSS__MY_REPORT__EMPTY_PAGE__BUTTON_CONTACT" | translate }}
+      </button>
+    </div>
+  </ng-template>
+  <button
+    mat-mini-fab
+    (click)="showSummaryMyReportGuide()"
+    class="spmed-md-fab-bottom-right"
+  >
+    <mat-icon>help_outline</mat-icon>
+  </button>
 </ng-template>
