@@ -1,0 +1,8 @@
+POST http://localhost:61127/portal/v1.0/en/pdss/reports/search/by/qr-code
+Content-Type: application/json
+
+{
+  "qrCode": "C1052095-JZAK",
+  "surname": "최",
+  "yearOfBirth": "1979"
+}

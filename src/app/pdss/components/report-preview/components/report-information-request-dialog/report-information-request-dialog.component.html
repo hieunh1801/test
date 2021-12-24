@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>
+  Enter information to access report <b>{{ dialogInput.qrCode }}</b>
+</h1>
+<div mat-dialog-content>
+  <form
+    [formGroup]="searchForm"
+    class="spmed-form"
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayout.lt-sm="column"
+    fxLayoutGap.lt-sm="0"
+  >
+    <div class="spmed-form-field">
+      <mat-label>Surname</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="surname" />
+      </mat-form-field>
+    </div>
+    <div class="spmed-form-field">
+      <mat-label>Year of birth</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="yearOfBirth" />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button class="spmed-button" (click)="handleOnCancel()">
+    Cancel
+  </button>
+  <button
+    mat-stroked-button
+    class="spmed-primary-button"
+    (click)="handleOnSubmit()"
+  >
+    Submit
+  </button>
+</div>

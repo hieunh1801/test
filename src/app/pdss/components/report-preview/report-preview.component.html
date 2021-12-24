@@ -1,0 +1,156 @@
+<div id="report-preview">
+  <ng-template [ngIf]="mode === 'ENTER_PASSWORD'" [ngIfElse]="previewMode">
+    <div class="enter-password-mode">
+      <h1>{{ qrCode$ | async }}</h1>
+      <button
+        mat-stroked-button
+        class="spmed-primary-button"
+        (click)="handleOnRequestReport()"
+      >
+        {{ "PDSS__REPORT_PREVIEW__BUTTONS__REQUEST_REPORT" | translate }}
+      </button>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #previewMode>
+  <div>
+    <div class="report-detail" *ngIf="reportPage$ | async">
+      <h2 translate>PDSS__MY_REPORT__REPORT__REPORT_DETAIL</h2>
+      <div
+        class="report-information"
+        fxLayout="row"
+        fxLayoutAlign="space-between"
+        fxLayoutGap="16px"
+        fxLayout.lt-sm="column"
+        fxLayoutGap.lt-sm="8px"
+      >
+        <div>
+          <div class="label">
+            <span translate>PDSS__MY_REPORT__REPORT__QR_CODE</span>
+          </div>
+          <div class="detail">
+            {{ report$.value.qrCode }}
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <span translate>PDSS__MY_REPORT__REPORT__PACKAGE</span>
+          </div>
+          <div class="detail">
+            {{ report$.value.productName }} ({{ report$.value.productCode }})
+          </div>
+        </div>
+
+        <div>
+          <div class="label">
+            <span translate>PDSS__MY_REPORT__REPORT__TEST_METHOD</span>
+          </div>
+          <div class="detail">
+            {{ report$.value.productTestMethod }}
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <span translate>PDSS__MY_REPORT__REPORT__REFERENCES</span>
+          </div>
+          <div class="detail">
+            <pre>
+              {{ report$.value.referenceOfEvidence }}
+            </pre>
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <span translate>PDSS__MY_REPORT__REPORT__FILE</span>
+          </div>
+          <div class="detail">
+            <a
+              mat-icon-button
+              *ngIf="report$.value.resultReportFileName"
+              [href]="report$.value.resultReportFileName"
+              target="_blank"
+              download
+            >
+              <mat-icon>download</mat-icon>
+            </a>
+
+            <button
+              *ngIf="!report$.value.resultReportFileName"
+              mat-icon-button
+              disabled
+            >
+              <mat-icon>download</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- for web -->
+      <div fxHide.lt-sm>
+        <mat-tab-group>
+          <!-- drug gene interpretation -->
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <h3 translate>
+                PDSS__MY_REPORT__REPORT__DRUG_GENE_INTERPRETATION
+              </h3>
+            </ng-template>
+            <app-drug-recommendation-table
+              [drugRecommendationList$]="drugRecommendationList$"
+            ></app-drug-recommendation-table>
+          </mat-tab>
+          <!-- drug gene interpretation end -->
+
+          <!-- genetic test result -->
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <h3 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h3>
+            </ng-template>
+            <app-report-genetic-result-table
+              [userVariantList$]="userVariantList$"
+            ></app-report-genetic-result-table>
+          </mat-tab>
+          <!-- genetic test result end -->
+
+          <!-- additional information -->
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <h3 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h3>
+            </ng-template>
+
+            <app-report-additional-information-list
+              [additionalInformationList$]="additionalInformationList$"
+            ></app-report-additional-information-list>
+          </mat-tab>
+          <!-- additional information end -->
+        </mat-tab-group>
+      </div>
+
+      <!-- for mobile -->
+      <div fxHide fxShow.lt-sm>
+        <!-- drug gene interpretation -->
+        <h2 translate>PDSS__MY_REPORT__REPORT__DRUG_GENE_INTERPRETATION</h2>
+
+        <app-drug-recommendation-table
+          [drugRecommendationList$]="drugRecommendationList$"
+        ></app-drug-recommendation-table>
+        <!-- drug gene interpretation end -->
+
+        <!-- genetic test result -->
+        <h2 translate>PDSS__MY_REPORT__REPORT__GENETIC_TEST_RESULT</h2>
+        <app-report-genetic-result-table
+          [userVariantList$]="userVariantList$"
+        ></app-report-genetic-result-table>
+        <!-- genetic test result end -->
+
+        <!-- additional information -->
+        <h2 translate>PDSS__MY_REPORT__REPORT__ADDITIONAL_INFORMATION</h2>
+        <app-report-additional-information-list
+          [additionalInformationList$]="additionalInformationList$"
+        ></app-report-additional-information-list>
+        <!-- additional information end -->
+      </div>
+    </div>
+  </div>
+</ng-template>

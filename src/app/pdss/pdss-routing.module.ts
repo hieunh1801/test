@@ -14,6 +14,7 @@ import { UtilityComponent } from '@pdss/components/utility/utility.component';
 import { PdssComponent } from '@pdss/pdss.component';
 import { DrugComponent } from '@pdss/components/browser/components/drug/drug.component';
 import { GeneComponent } from '@pdss/components/browser/components/gene/gene.component';
+import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
             pathMatch: 'full',
           },
         ],
+      },
+      {
+        path: 'report-preview/:qrCode',
+        component: ReportPreviewComponent,
       },
     ],
   },

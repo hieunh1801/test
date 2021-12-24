@@ -20,11 +20,29 @@ export class PdssReportService {
     return this.httpClient.get(url);
   }
 
+  /**
+   * for login
+   * @param qrCode
+   * @returns
+   */
   getReportByQrCode(qrCode: string): Observable<SpmedResponse<ReportPage>> {
     // const url = `https://gwapi.spmed.kr/api-gateway/v1.0/pcdss/v1.0/en/users/3/reports`;
     const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/reports/${qrCode}`;
     return this.httpClient.get(url);
   }
+
+  searchReportByQrCode(
+    body: QrCodeSearchRequest
+  ): Observable<SpmedResponse<ReportPage>> {
+    const url = `${this.baseUrl}/v${environment.version}/${this.languageService.currentLanguage}/pdss/reports/search/by/qr-code`;
+    return this.httpClient.post(url, body);
+  }
+}
+
+export interface QrCodeSearchRequest {
+  qrCode: string;
+  surname: string;
+  yearOfBirth: string;
 }
 
 export interface ReportKr {

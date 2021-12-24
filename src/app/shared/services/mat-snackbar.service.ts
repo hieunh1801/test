@@ -93,10 +93,10 @@ export class MatSnackbarService {
     this.open(message, action);
   }
 
-  openLoadFailed(): void {
-    const message = this.translateService.instant(
-      'MAT_SNACKBAR__MESSAGES__FAILED'
-    );
+  openLoadFailed(message?: string): void {
+    message =
+      message ||
+      this.translateService.instant('MAT_SNACKBAR__MESSAGES__FAILED');
     const action = this.translateService.instant('MAT_SNACKBAR__ACTION__LOAD');
     this.open(message, action);
   }
