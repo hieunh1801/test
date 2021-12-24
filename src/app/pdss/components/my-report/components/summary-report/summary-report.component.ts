@@ -9,6 +9,7 @@ import {
   Report,
 } from '@pdss/components/my-report/services/pdss-report.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
+import { WebGuideService } from '@shared/services/web-guide.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -25,7 +26,8 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     private pdssReportService: PdssReportService,
     private matSnackbarService: MatSnackbarService,
     private translateService: TranslateService,
-    public pageLoadingService: PageLoadingService
+    public pageLoadingService: PageLoadingService,
+    private webGuideService: WebGuideService
   ) {}
 
   ngOnInit(): void {
@@ -84,5 +86,12 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
     this.subscriptions$.add(sub);
   }
 
-  showSummaryMyReportGuide(): void {}
+  showSummaryMyReportGuide(): void {
+    const steps = [
+      'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__STEP',
+      'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DOWNLOAD__STEP',
+      'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DETAIL__STEP',
+    ];
+    this.webGuideService.startTour(steps);
+  }
 }

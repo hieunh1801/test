@@ -3,6 +3,8 @@
   max-width: var(--primary--screen);
   margin: auto;
   padding: 16px;
+  overflow: auto;
+
   .chart-container {
     min-width: 500px;
   }

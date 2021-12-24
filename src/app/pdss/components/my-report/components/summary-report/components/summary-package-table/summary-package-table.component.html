@@ -1,4 +1,11 @@
-<div class="summary-package-table">
+<div
+  class="summary-package-table"
+  joyrideStep="PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__STEP"
+  text="{{
+    'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__STEP'
+      | translate
+  }}"
+>
   <h2 translate>
     PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST
   </h2>
@@ -57,20 +64,33 @@
           >PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__HEADERS__FILE</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">
-        <a
-          mat-icon-button
-          *ngIf="element.resultReportFileName"
-          [href]="element.resultReportFileName"
-          target="_blank"
-          download
+      <td mat-cell *matCellDef="let element; let i = dataIndex">
+        <app-joyride-wrapper
+          webGuideStep="PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DOWNLOAD__STEP"
+          webGuideContent="{{
+            'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DOWNLOAD__STEP'
+              | translate
+          }}"
+          [rowIndex]="i"
         >
-          <mat-icon>download</mat-icon>
-        </a>
+          <a
+            mat-icon-button
+            *ngIf="element.resultReportFileName"
+            [href]="element.resultReportFileName"
+            target="_blank"
+            download
+          >
+            <mat-icon>download</mat-icon>
+          </a>
 
-        <button *ngIf="!element.resultReportFileName" mat-icon-button disabled>
-          <mat-icon>download</mat-icon>
-        </button>
+          <button
+            *ngIf="!element.resultReportFileName"
+            mat-icon-button
+            disabled
+          >
+            <mat-icon>download</mat-icon>
+          </button>
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 
@@ -80,10 +100,19 @@
           >PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__HEADERS__DETAIL</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button [routerLink]="['../reports', element.qrCode]">
-          <mat-icon>content_paste</mat-icon>
-        </button>
+      <td mat-cell *matCellDef="let element; let rowIndex = dataIndex">
+        <app-joyride-wrapper
+          webGuideStep="PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DETAIL__STEP"
+          webGuideContent="{{
+            'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DETAIL__STEP'
+              | translate
+          }}"
+          [rowIndex]="rowIndex"
+        >
+          <button mat-icon-button [routerLink]="['../reports', element.qrCode]">
+            <mat-icon>content_paste</mat-icon>
+          </button>
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 

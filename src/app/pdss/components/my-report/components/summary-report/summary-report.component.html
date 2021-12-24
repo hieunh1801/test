@@ -23,28 +23,27 @@
         [drugRecommendationList$]="drugRecommendationList$"
       ></app-drug-recommendation-table>
     </div>
-  </ng-template>
 
-  <!-- empty page (if no data) -->
-  <ng-template #emptyPage>
-    <div class="empty-page">
-      <mat-icon>integration_instructions</mat-icon>
-      <p>
-        {{
-          "PDSS__MY_REPORT__EMPTY_PAGE__YOU_DONT_HAVE_ANY_REPORT" | translate
-        }}
-      </p>
-
-      <button class="contact-button" mat-button routerLink="/contact">
-        {{ "PDSS__MY_REPORT__EMPTY_PAGE__BUTTON_CONTACT" | translate }}
-      </button>
-    </div>
+    <button
+      mat-mini-fab
+      (click)="showSummaryMyReportGuide()"
+      class="spmed-md-fab-bottom-right"
+    >
+      <mat-icon>help_outline</mat-icon>
+    </button>
   </ng-template>
-  <button
-    mat-mini-fab
-    (click)="showSummaryMyReportGuide()"
-    class="spmed-md-fab-bottom-right"
-  >
-    <mat-icon>help_outline</mat-icon>
-  </button>
+</ng-template>
+
+<!-- empty page (if no data) -->
+<ng-template #emptyPage>
+  <div class="empty-page">
+    <mat-icon>integration_instructions</mat-icon>
+    <p>
+      {{ "PDSS__MY_REPORT__EMPTY_PAGE__YOU_DONT_HAVE_ANY_REPORT" | translate }}
+    </p>
+
+    <button class="contact-button" mat-button routerLink="/contact">
+      {{ "PDSS__MY_REPORT__EMPTY_PAGE__BUTTON_CONTACT" | translate }}
+    </button>
+  </div>
 </ng-template>

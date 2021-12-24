@@ -47,10 +47,10 @@ export class WebGuideService {
       })
       .subscribe(
         (step) => {
-          const currentStepIndex = step.number;
-          const currentStep = document.querySelector(
-            `[joyridestep='${step.name}']`
-          );
+          // skip current step
+          const currentStep =
+            document.querySelector(`[joyridestep='${step.name}']`) ||
+            document.querySelector(`[webguidestep='${step.name}']`);
 
           if (!currentStep) {
             this.joyrideStepService.next();
