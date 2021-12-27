@@ -1,0 +1,27 @@
+<ng-template
+  [ngIf]="rowIndex === 0 || rowIndex === undefined"
+  [ngIfElse]="emptyTemplate"
+>
+  <div
+    [style.display]="inlineBlock ? 'inline-block' : 'block'"
+    joyrideStep="{{ webGuideStep }}"
+    [stepContent]="joyrideContentTemplate"
+  >
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #emptyTemplate>
+  <div>
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #joyrideContentTemplate>
+  {{ webGuideContent }}
+  <ng-container *ngTemplateOutlet="webGuideContentTemplate"></ng-container>
+</ng-template>

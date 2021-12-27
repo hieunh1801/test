@@ -1,0 +1,40 @@
+#report-preview {
+  min-height: 50vh;
+  padding: 16px;
+  max-width: var(--primary--screen);
+  margin: auto;
+
+  h2 {
+    margin-top: 16px;
+    color: var(--primary--color);
+  }
+
+  h2::before {
+    // content: "# ";
+  }
+
+  ::ng-deep {
+    .mat-ink-bar {
+      background-color: var(--primary--color);
+    }
+  }
+
+  .report-information {
+    .label {
+      color: var(--primary--color);
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .detail {
+    }
+  }
+}
+.enter-password-mode {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

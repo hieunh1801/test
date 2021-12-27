@@ -142,10 +142,13 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .drug-table-statistic {
     .box-content {
       flex-direction: column;
+    }
+    .box {
+      padding: 4px;
     }
   }
 }

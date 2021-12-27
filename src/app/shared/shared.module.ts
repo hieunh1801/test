@@ -25,6 +25,8 @@ import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 import { GenderToStringPipe } from './pipes/gender-to-string.pipe';
 import { CountryAutocompleteComponent } from './components/country-autocomplete/country-autocomplete.component';
 import { RatingInputComponent } from './components/rating-input/rating-input.component';
+import { JoyrideModule } from 'ngx-joyride';
+import { JoyrideWrapperComponent } from './components/joyride-wrapper/joyride-wrapper.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -36,6 +38,8 @@ const COMPONENTS = [
   SnackbarComponent,
   CountryAutocompleteComponent,
   RatingInputComponent,
+  JoyrideWrapperComponent,
+  ConfirmDialogComponent,
 ];
 
 const httpInterceptorProviders = [
@@ -54,11 +58,9 @@ const httpInterceptorProviders = [
     ...COMPONENTS,
     TrimPipe,
     ReferencesPipe,
-    ConfirmDialogComponent,
     ToAgePipe,
     HighlightSearchPipe,
     GenderToStringPipe,
-    CountryAutocompleteComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -68,6 +70,7 @@ const httpInterceptorProviders = [
     MaterialModule,
     TranslateModule,
     ReactiveFormsModule,
+    JoyrideModule,
   ],
   exports: [
     ...COMPONENTS,
@@ -80,6 +83,7 @@ const httpInterceptorProviders = [
     ToAgePipe,
     HighlightSearchPipe,
     GenderToStringPipe,
+    JoyrideModule,
   ],
 })
 export class SharedModule {}

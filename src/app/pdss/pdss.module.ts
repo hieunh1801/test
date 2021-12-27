@@ -26,6 +26,8 @@ import { ReferenceListDialogComponent } from './components/my-report/components/
 import { DrugTableStatisticComponent } from './components/my-report/components/drug-recommendation-table/components/drug-table-statistic/drug-table-statistic.component';
 import { GeneComponent } from './components/browser/components/gene/gene.component';
 import { DrugComponent } from './components/browser/components/drug/drug.component';
+import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
+import { ReportInformationRequestDialogComponent } from './components/report-preview/components/report-information-request-dialog/report-information-request-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { DrugComponent } from './components/browser/components/drug/drug.compone
     DrugRecommendationTableComponent,
     GeneComponent,
     DrugComponent,
+    ReportPreviewComponent,
+    ReportInformationRequestDialogComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

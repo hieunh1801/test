@@ -14,6 +14,7 @@ import {
 } from '@shared/services/language.service';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TableHelperService } from '@shared/services/table-helper.service';
+import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DrugRecommendation } from '../../services/pdss-report.service';
 
@@ -67,8 +68,20 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private languageService: LanguageService,
     private matSnackbarService: MatSnackbarService,
-    private tableHelperService: TableHelperService
+    private tableHelperService: TableHelperService,
+    private webGuideService: WebGuideService
   ) {}
+
+  ngOnInit(): void {
+    this.subscribeDrugRecommendationListChange();
+    this.subscribeTableSortChange();
+    this.subscribeLanguageChange();
+    this.subscribeWebGuideRunning();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
 
   reloadTable(): void {
     const language = this.languageService.currentLanguage;
@@ -140,6 +153,26 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     this.tableDataSorted = [...mTableDataSorted];
   }
 
+  subscribeWebGuideRunning(): void {
+    this.webGuideService.running$.subscribe((running) => {
+      if (
+        running &&
+        this.webGuideService.guideName === WebGuides.SUMMARY_REPORT_GUIDE
+      ) {
+        // this.tableExpandedElementIdList = [
+        //   this.drugRecommendationList$.value?.[0]?.id,
+        //   ...this.tableExpandedElementIdList,
+        // ];
+        if (this.tableExpandedElementIdList?.length > 0) {
+          // do nothing
+        } else {
+          this.tableExpandedElementIdList = [
+            this.drugRecommendationList$.value?.[0]?.id,
+          ];
+        }
+      }
+    });
+  }
   subscribeDrugRecommendationListChange(): void {
     const sub = this.drugRecommendationList$.subscribe(() => {
       this.reloadTable();
@@ -160,14 +193,6 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     });
     this.subscription$.add(sub);
   }
-
-  ngOnInit(): void {
-    this.subscribeDrugRecommendationListChange();
-    this.subscribeTableSortChange();
-    this.subscribeLanguageChange();
-  }
-
-  ngOnDestroy(): void {}
 
   isDanger(riskLevel: string): boolean {
     const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');

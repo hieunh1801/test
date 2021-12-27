@@ -29,7 +29,6 @@ import { LifeStyleComponent } from './components/user-profiles/components/life-s
 import { LifeStyleDetailComponent } from './components/user-profiles/components/life-style/components/life-style-detail/life-style-detail.component';
 import { LifeStyleListComponent } from './components/user-profiles/components/life-style/components/life-style-list/life-style-list.component';
 import { LifeStyleFormComponent } from './components/user-profiles/components/life-style/components/life-style-form/life-style-form.component';
-import { JoyrideModule } from 'ngx-joyride';
 @NgModule({
   declarations: [
     UserSettingComponent,
@@ -59,6 +58,6 @@ import { JoyrideModule } from 'ngx-joyride';
     LifeStyleListComponent,
     LifeStyleFormComponent,
   ],
-  imports: [CommonModule, UserRoutingModule, SharedModule, JoyrideModule],
+  imports: [CommonModule, UserRoutingModule, SharedModule],
 })
 export class UserModule {}
