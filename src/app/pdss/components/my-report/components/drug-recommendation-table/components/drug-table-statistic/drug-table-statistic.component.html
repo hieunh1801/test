@@ -41,16 +41,20 @@
         <span>&nbsp; {{ totalGood }}/{{ totalDrug }} </span>
       </div>
     </div>
-
-    <button
-      mat-icon-button
-      (click)="isMenuOpen = !isMenuOpen"
-      type="button"
-      cdkOverlayOrigin
-      #trigger="cdkOverlayOrigin"
+    <app-joyride-wrapper
+      webGuideStep="PDSS__MY_REPORT__STATISTIC__HELP__STEP"
+      [webGuideContent]="'PDSS__MY_REPORT__STATISTIC__HELP__STEP' | translate"
     >
-      <mat-icon> help_outline </mat-icon>
-    </button>
+      <button
+        mat-icon-button
+        (click)="isMenuOpen = !isMenuOpen"
+        type="button"
+        cdkOverlayOrigin
+        #trigger="cdkOverlayOrigin"
+      >
+        <mat-icon> help_outline </mat-icon>
+      </button>
+    </app-joyride-wrapper>
 
     <ng-template
       cdkConnectedOverlay

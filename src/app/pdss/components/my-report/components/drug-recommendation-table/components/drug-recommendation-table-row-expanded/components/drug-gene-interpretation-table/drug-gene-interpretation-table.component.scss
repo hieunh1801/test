@@ -1,5 +1,7 @@
 // for gene table
 .gene-table-wrapper {
+  overflow: auto;
+
   margin-top: 14px;
   table {
     width: 100%;

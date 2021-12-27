@@ -8,9 +8,26 @@
   <div class="list-wrapper">
     <div class="list-item-wrapper" *ngFor="let gene of genes">
       <div class="title">
+        <app-joyride-wrapper
+          fxHide.gt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENE__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENE__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          <a
+            [routerLink]="['/pdss/gene', gene.symbol, 'detail']"
+            target="_blank"
+            >{{ gene.symbol }}
+          </a>
+        </app-joyride-wrapper>
+
         <a [routerLink]="['/pdss/gene', gene.symbol, 'detail']" target="_blank"
           >{{ gene.symbol }}
         </a>
+
         <ng-container *ngIf="gene.rsid">
           &nbsp;&nbsp; {{ gene.rsid }}
         </ng-container>

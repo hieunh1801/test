@@ -3,7 +3,7 @@
   [ngIfElse]="emptyTemplate"
 >
   <div
-    style="display: inline-block"
+    [style.display]="inlineBlock ? 'inline-block' : 'block'"
     joyrideStep="{{ webGuideStep }}"
     [stepContent]="joyrideContentTemplate"
   >
@@ -12,7 +12,7 @@
 </ng-template>
 
 <ng-template #emptyTemplate>
-  <div style="display: inline-block">
+  <div>
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </div>
 </ng-template>
@@ -23,4 +23,5 @@
 
 <ng-template #joyrideContentTemplate>
   {{ webGuideContent }}
+  <ng-container *ngTemplateOutlet="webGuideContentTemplate"></ng-container>
 </ng-template>

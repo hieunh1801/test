@@ -9,7 +9,7 @@ import {
   Report,
 } from '@pdss/components/my-report/services/pdss-report.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
-import { WebGuideService } from '@shared/services/web-guide.service';
+import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -88,10 +88,24 @@ export class SummaryReportComponent implements OnInit, OnDestroy {
 
   showSummaryMyReportGuide(): void {
     const steps = [
+      // package list
       'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__STEP',
       'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DOWNLOAD__STEP',
       'PDSS__MY_REPORT__SUMMARY_REPORT__SUMMARY_PACKAGE_TABLE__PACKAGE_LIST__DETAIL__STEP',
+
+      // report statistic
+      'PDSS__MY_REPORT__STATISTIC__HELP__STEP',
+
+      // drug recommendation table
+      'PDSS__MY_REPORT__DRUG_TABLE__DRUG__STEP',
+      'PDSS__MY_REPORT__DRUG_TABLE__RELATED_GENES__STEP',
+      'PDSS__MY_REPORT__DRUG_TABLE__RISK__STEP',
+      'PDSS__MY_REPORT__DRUG_TABLE__PACKAGE_LIST__STEP',
+      'PDSS__MY_REPORT__DRUG_TABLE__ACTIONS__STEP',
     ];
-    this.webGuideService.startTour(steps);
+    this.webGuideService.startTour({
+      guideName: WebGuides.SUMMARY_REPORT_GUIDE,
+      steps: steps,
+    });
   }
 }

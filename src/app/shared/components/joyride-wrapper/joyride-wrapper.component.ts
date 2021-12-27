@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-joyride-wrapper',
@@ -8,7 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class JoyrideWrapperComponent implements OnInit {
   @Input() webGuideStep: string;
   @Input() webGuideContent: string;
+  @Input() webGuideContentTemplate: TemplateRef<any>;
   @Input() rowIndex: number;
+  @Input() inlineBlock: boolean = true;
 
   constructor() {}
 

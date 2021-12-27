@@ -9,7 +9,7 @@ import {
   UserProfileService,
   WeightHeightHistory,
 } from '../../services/user-profile.service';
-import { WebGuideService } from '@shared/services/web-guide.service';
+import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 @Component({
   selector: 'app-user-profiles',
   templateUrl: './user-profiles.component.html',
@@ -67,6 +67,9 @@ export class UserProfilesComponent implements OnInit {
       'USER_PROFILES__LIFE_STYLE_HISTORY__STEP',
       'USER_PROFILES__LIFE_STYLE_HISTORY__MANAGE__STEP',
     ];
-    this.webGuideService.startTour(steps);
+    this.webGuideService.startTour({
+      guideName: WebGuides.USER_PROFILE_GUIDE,
+      steps: steps,
+    });
   }
 }
