@@ -9,10 +9,7 @@ import {
   UserProfileService,
   WeightHeightHistory,
 } from '../../services/user-profile.service';
-import { JoyrideService } from 'ngx-joyride';
-import { JoyrideOptions } from 'ngx-joyride/lib/models/joyride-options.class';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { TranslateService } from '@ngx-translate/core';
+import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 @Component({
   selector: 'app-user-profiles',
   templateUrl: './user-profiles.component.html',
@@ -28,9 +25,8 @@ export class UserProfilesComponent implements OnInit {
   subscription$ = new Subscription();
 
   constructor(
-    private readonly userProfileService: UserProfileService,
-    private readonly joyrideService: JoyrideService,
-    private readonly translateService: TranslateService
+    private userProfileService: UserProfileService,
+    private webGuideService: WebGuideService
   ) {}
 
   loadUserProfile(): void {
@@ -53,33 +49,27 @@ export class UserProfilesComponent implements OnInit {
   }
 
   showWebTour(): void {
-    const option: JoyrideOptions = {
-      steps: [
-        // introduction
-        'USER_PROFILES__INTRODUCTION__STEP',
-        'USER_PROFILES__INTRODUCTION__EDIT__STEP',
+    const steps = [
+      // introduction
+      'USER_PROFILES__INTRODUCTION__STEP',
+      'USER_PROFILES__INTRODUCTION__EDIT__STEP',
 
-        // basic information
-        'USER_PROFILES__BASIC_INFORMATION__STEP',
-        'USER_PROFILES__BASIC_INTRODUCTION__MANAGE__STEP',
+      // basic information
+      'USER_PROFILES__BASIC_INFORMATION__STEP',
+      'USER_PROFILES__BASIC_INTRODUCTION__MANAGE__STEP',
 
-        'USER_PROFILES__MEDICAL_HISTORY__STEP',
-        'USER_PROFILES__MEDICAL_HISTORY__MANAGE__STEP',
+      'USER_PROFILES__MEDICAL_HISTORY__STEP',
+      'USER_PROFILES__MEDICAL_HISTORY__MANAGE__STEP',
 
-        'USER_PROFILES__DISEASE_HISTORY__STEP',
-        'USER_PROFILES__DISEASE_HISTORY__MANAGE__STEP',
+      'USER_PROFILES__DISEASE_HISTORY__STEP',
+      'USER_PROFILES__DISEASE_HISTORY__MANAGE__STEP',
 
-        'USER_PROFILES__LIFE_STYLE_HISTORY__STEP',
-        'USER_PROFILES__LIFE_STYLE_HISTORY__MANAGE__STEP',
-      ],
-      // showCounter: false,
-      customTexts: {
-        close: this.translateService.instant('JOYRIDE__BUTTONS__CLOSE'),
-        done: this.translateService.instant('JOYRIDE__BUTTONS__DONE'),
-        next: this.translateService.instant('JOYRIDE__BUTTONS__NEXT'),
-        prev: this.translateService.instant('JOYRIDE__BUTTONS__PREV'),
-      },
-    };
-    this.joyrideService.startTour(option);
+      'USER_PROFILES__LIFE_STYLE_HISTORY__STEP',
+      'USER_PROFILES__LIFE_STYLE_HISTORY__MANAGE__STEP',
+    ];
+    this.webGuideService.startTour({
+      guideName: WebGuides.USER_PROFILE_GUIDE,
+      steps: steps,
+    });
   }
 }

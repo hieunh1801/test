@@ -1,8 +1,14 @@
 <!-- drug table -->
 <div class="drug-table">
-  <app-drug-table-statistic
-    [drugList]="tableDataSorted"
-  ></app-drug-table-statistic>
+  <app-joyride-wrapper
+    webGuideStep="PDSS__MY_REPORT__STATISTIC__STEP"
+    [webGuideContent]="'PDSS__MY_REPORT__STATISTIC__STEP' | translate"
+    [inlineBlock]="false"
+  >
+    <app-drug-table-statistic
+      [drugList]="tableDataSorted"
+    ></app-drug-table-statistic>
+  </app-joyride-wrapper>
 
   <table
     mat-table
@@ -25,12 +31,20 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header="drugName">
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__DRUG </span>
       </th>
-      <td mat-cell *matCellDef="let element">
-        <a
-          [routerLink]="['/pdss/drug', element.drugName, 'detail']"
-          target="_blank"
-          >{{ element.drugName }}</a
+      <td mat-cell *matCellDef="let element; let rowIndex = dataIndex">
+        <app-joyride-wrapper
+          webGuideStep="PDSS__MY_REPORT__DRUG_TABLE__DRUG__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_TABLE__DRUG__STEP' | translate
+          "
+          [rowIndex]="rowIndex"
         >
+          <a
+            [routerLink]="['/pdss/drug', element.drugName, 'detail']"
+            target="_blank"
+            >{{ element.drugName }}</a
+          >
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 
@@ -45,19 +59,32 @@
           PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RELATED_GENE
         </span>
       </th>
-      <td fxHide.lt-sm mat-cell *matCellDef="let element">
-        <span
-          *ngFor="let gene of element.relatedGenes.split(','); let i = index"
-          ><a
-            [routerLink]="[
-              '/pdss/gene',
-              element.relatedGenes.split(',')[i].trim(),
-              'detail'
-            ]"
-            target="_blank"
-            >{{ element.relatedGenes.split(",")[i].trim() }}&nbsp;
-          </a></span
+      <td
+        fxHide.lt-sm
+        mat-cell
+        *matCellDef="let element; let rowIndex = dataIndex"
+      >
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_TABLE__RELATED_GENES__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_TABLE__RELATED_GENES__STEP' | translate
+          "
+          [rowIndex]="rowIndex"
         >
+          <span
+            *ngFor="let gene of element.relatedGenes.split(','); let i = index"
+            ><a
+              [routerLink]="[
+                '/pdss/gene',
+                element.relatedGenes.split(',')[i].trim(),
+                'detail'
+              ]"
+              target="_blank"
+              >{{ element.relatedGenes.split(",")[i].trim() }}&nbsp;
+            </a></span
+          >
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 
@@ -65,25 +92,33 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header="riskLevel">
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__RISK </span>
       </th>
-      <td mat-cell *matCellDef="let element">
-        <mat-icon
-          class="risk-level danger-level"
-          *ngIf="isDanger(element?.risk)"
-          >cancel</mat-icon
+      <td mat-cell *matCellDef="let element; let rowIndex = dataIndex">
+        <app-joyride-wrapper
+          webGuideStep="PDSS__MY_REPORT__DRUG_TABLE__RISK__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_TABLE__RISK__STEP' | translate
+          "
+          [rowIndex]="rowIndex"
         >
-        <mat-icon
-          class="risk-level caution-level"
-          *ngIf="isCaution(element?.risk)"
-          >remove_circle</mat-icon
-        >
-        <mat-icon
-          class="risk-level warning-level"
-          *ngIf="isWarning(element?.risk)"
-          >error</mat-icon
-        >
-        <mat-icon class="risk-level good-level" *ngIf="isGood(element?.risk)"
-          >check_circle</mat-icon
-        >
+          <mat-icon
+            class="risk-level danger-level"
+            *ngIf="isDanger(element?.risk)"
+            >cancel</mat-icon
+          >
+          <mat-icon
+            class="risk-level caution-level"
+            *ngIf="isCaution(element?.risk)"
+            >remove_circle</mat-icon
+          >
+          <mat-icon
+            class="risk-level warning-level"
+            *ngIf="isWarning(element?.risk)"
+            >error</mat-icon
+          >
+          <mat-icon class="risk-level good-level" *ngIf="isGood(element?.risk)"
+            >check_circle</mat-icon
+          >
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 
@@ -96,10 +131,23 @@
       >
         <span translate> PDSS__MY_REPORT__DRUG_TABLE__HEADERS__PACKAGES </span>
       </th>
-      <td mat-cell *matCellDef="let element" fxHide.lt-sm>
-        <div class="package-list" fxLayout="row" fxLayoutGap="10px">
-          <div class="package-list-item">{{ element.product }}</div>
-        </div>
+      <td
+        mat-cell
+        *matCellDef="let element; let rowIndex = dataIndex"
+        fxHide.lt-sm
+      >
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_TABLE__PACKAGE_LIST__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_TABLE__PACKAGE_LIST__STEP' | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          <div class="package-list" fxLayout="row" fxLayoutGap="10px">
+            <div class="package-list-item">{{ element.product }}</div>
+          </div>
+        </app-joyride-wrapper>
       </td>
     </ng-container>
 
@@ -107,9 +155,17 @@
       <th mat-header-cell *matHeaderCellDef>
         <span translate> </span>
       </th>
-      <td mat-cell *matCellDef="let element">
-        <mat-icon *ngIf="isExpandedElement(element)">remove</mat-icon>
-        <mat-icon *ngIf="!isExpandedElement(element)">add</mat-icon>
+      <td mat-cell *matCellDef="let element; let rowIndex = dataIndex">
+        <app-joyride-wrapper
+          webGuideStep="PDSS__MY_REPORT__DRUG_TABLE__ACTIONS__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_TABLE__ACTIONS__STEP' | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          <mat-icon *ngIf="isExpandedElement(element)">remove</mat-icon>
+          <mat-icon *ngIf="!isExpandedElement(element)">add</mat-icon>
+        </app-joyride-wrapper>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="tableColumnList"></tr>
@@ -124,25 +180,7 @@
     <!-- TABLE ROW EXPANDED -->
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" colspan="999">
-        <div
-          fxHide.lt-sm
-          class="element-detail-wrapper"
-          [@detailExpand]="
-            isExpandedElement(element) ? 'expanded' : 'collapsed'
-          "
-          *ngIf="isExpandedElement(element)"
-        >
-          <div class="element-detail">
-            <app-drug-recommendation-table-row-expanded
-              [drug]="element"
-            ></app-drug-recommendation-table-row-expanded>
-          </div>
-        </div>
-        <div
-          fxHide.gt-sm
-          class="element-detail-wrapper"
-          *ngIf="isExpandedElement(element)"
-        >
+        <div class="element-detail-wrapper" *ngIf="isExpandedElement(element)">
           <div class="element-detail">
             <app-drug-recommendation-table-row-expanded
               [drug]="element"

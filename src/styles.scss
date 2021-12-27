@@ -45,7 +45,7 @@ pre {
   color: var(--primary--color);
 }
 
-.infinity-rotate {
+.spmed-infinity-rotate {
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
@@ -85,6 +85,12 @@ pre {
   .spmed-form-field {
     width: 100%;
   }
+}
+.spmed-md-fab-bottom-right {
+  position: fixed !important;
+  right: 24px;
+  bottom: 24px;
+  background-color: var(--primary--color) !important;
 }
 
 /* Safari */

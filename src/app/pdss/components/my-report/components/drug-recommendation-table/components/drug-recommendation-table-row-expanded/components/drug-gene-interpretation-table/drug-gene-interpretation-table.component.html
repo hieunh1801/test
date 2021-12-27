@@ -15,37 +15,69 @@
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </div>
 
-    <div matColumnDef="rsid">
-      <th mat-header-cell *matHeaderCellDef>
-        <span translate
-          >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__RSID</span
-        >
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.rsid }}</td>
-    </div>
-
     <div matColumnDef="symbol">
       <th mat-header-cell *matHeaderCellDef>
         <span translate
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__GENE</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">
-        <a
-          [routerLink]="['/pdss/gene', element.symbol, 'detail']"
-          target="_blank"
-          >{{ element.symbol }}
-        </a>
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENE__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENE__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          <a
+            [routerLink]="['/pdss/gene', element.symbol, 'detail']"
+            target="_blank"
+            >{{ element.symbol }}
+          </a>
+        </app-joyride-wrapper>
       </td>
     </div>
-
+    <div matColumnDef="rsid">
+      <th mat-header-cell *matHeaderCellDef>
+        <span translate
+          >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__RSID</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__RSID__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__RSID__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          {{ element.rsid }}
+        </app-joyride-wrapper>
+      </td>
+    </div>
     <div matColumnDef="genotype">
       <th mat-header-cell *matHeaderCellDef>
         <span translate
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__GENOTYPE</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.genotype }}</td>
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENOTYPE__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__GENOTYPE__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          {{ element.genotype }}
+        </app-joyride-wrapper>
+      </td>
     </div>
 
     <div matColumnDef="phenotype">
@@ -54,7 +86,19 @@
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__PHENOTYPE</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.phenotype }}</td>
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__PHENOTYPE__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__PHENOTYPE__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          {{ element.phenotype }}
+        </app-joyride-wrapper>
+      </td>
     </div>
 
     <div matColumnDef="interpretation">
@@ -64,7 +108,17 @@
         >
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ element.recommendation }}
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__RECOMMENDATION__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__RECOMMENDATION__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          {{ element.recommendation }}
+        </app-joyride-wrapper>
       </td>
     </div>
 
@@ -75,9 +129,19 @@
         >
       </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button (click)="showReferences(element)">
-          <mat-icon>pageview</mat-icon>
-        </button>
+        <app-joyride-wrapper
+          fxHide.lt-sm
+          webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__REFERENCES__STEP"
+          [webGuideContent]="
+            'PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__REFERENCES__STEP'
+              | translate
+          "
+          [rowIndex]="rowIndex"
+        >
+          <button mat-icon-button (click)="showReferences(element)">
+            <mat-icon>pageview</mat-icon>
+          </button>
+        </app-joyride-wrapper>
       </td>
     </div>
 
