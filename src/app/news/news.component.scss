@@ -1,11 +1,82 @@
-mat-card {
-    margin-bottom: 10px;
+#page {
+  min-height: 80vh;
+  background-color: #f2f2f2;
+
+  #news-page {
+    max-width: calc(var(--primary--screen) - 20px);
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    margin-top: 10px;
+  }
+  .section {
+    background-color: white;
+    border-radius: 3px;
+  }
+  .section:not(:first-child) {
+    margin-top: 16px;
+  }
+  #news-info {
+    .title {
+      padding: 16px 16px 0 16px;
+    }
+    .content {
+      padding: 0px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 70% !important;
+    width: 70% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .image {
+  }
+
+  .bold {
+    font-weight: 500;
+  }
+  .contents {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
-  
+
+:host ::ng-deep .highlight {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
 .mr-10 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .ml-10 {
-    margin-left: 10px;
-}   
+  margin-left: 10px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}

@@ -1,44 +1,169 @@
-<div
-  fxLayout.xs="column"
-  fxLayout="row wrap"
-  fxLayoutGap="10px"
-  ngClass.gt-xs="ml-10"
->
-  <mat-card
-    fxFlex.sm="0 1 calc(50%-10px)"
-    fxFlex.md="0 1 calc(33%-10px)"
-    fxFlex.gt-md="0 1 calc(25%-10px)"
-  >
-    <mat-card-title>Card 1</mat-card-title>
-    <img
-      mat-card-image
-      src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-      class="image"
-    />
-    <mat-card-content
-      >Primary card content. Intended for blocks of text</mat-card-content
-    >
-    <mat-card-actions
-      >Container for buttons at the bottom of the card</mat-card-actions
-    >
-  </mat-card>
+<div id="page">
+  <div id="news-page">
+    <div class="section">
+      <div id="news-info">
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <form class="search-form" [formGroup]="searchForm">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label> Input title and Contents Keyword </mat-label>
+              <input
+                type="text"
+                formControlName="keyword"
+                name="keyword"
+                matInput
+                (keydown.enter)="loadCustomerBoardList()"
+              />
+              <button
+                type="button"
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Autofill"
+                (click)="loadCustomerBoardList()"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <h2>News Recent</h2>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="25px">
+          <!-- 
+          fxLayoutAlign="space-around stretch"
+            fxFlex.sm="0 1 calc(50%-10px)"
+            fxFlex.md="0 1 calc(33%-10px)"
+            fxFlex.gt-md="0 1 calc(25%-10px)"
 
-  <mat-card
-    fxFlex.sm="0 1 calc(50%-10px)"
-    fxFlex.md="0 1 calc(33%-10px)"
-    fxFlex.gt-md="0 1 calc(25%-10px)"
-  >
-    <mat-card-title>Card 2</mat-card-title>
-    <img
-      mat-card-image
-      src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-      class="image"
-    />
-    <mat-card-content
-      >Primary card content. Intended for blocks of text</mat-card-content
-    >
-    <mat-card-actions
-      >Container for buttons at the bottom of the card</mat-card-actions
-    >
-  </mat-card>
+            fxFlex.lg="0 1 calc(33%-10px)"
+            fxFlex.lt-lg="0 1 calc(50% - 10px)"
+            fxFlex.xs="0 1 calc(100% - 10px)"
+
+            fxFlex="calc(33%-25px)"
+            fxFlex.sm="calc(50%-25px)"
+          -->
+          <mat-card
+            *ngFor="let board of customerBoardDataSource"
+            fxFlex="calc(33%-25px)"
+            fxFlex.sm="calc(50%-25px)"
+          >
+            <img
+              mat-card-image
+              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
+              class="image"
+            />
+            <mat-card-title
+              style="line-height: 1em; margin-bottom: 20px"
+              class="mb-10 text-xxl"
+            >
+              <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                board.title
+              }}</span>
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                board.kr?.title
+              }}</span>
+            </mat-card-title>
+
+            <mat-card-content>
+              <div
+                class="mb-10"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+              >
+                <div>{{ board.publishTime }}</div>
+                <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                    board.author
+                  }}</span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                    board.kr.author
+                  }}</span>
+                </div>
+              </div>
+              <div class="mb-10">
+                <div
+                  *ngIf="this.languageService.currentLanguage == 'en'"
+                  [innerHTML]="board.content"
+                ></div>
+                <div
+                  *ngIf="this.languageService.currentLanguage == 'kr'"
+                  [innerHTML]="board.kr.content"
+                ></div>
+              </div>
+              <div>
+                <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                  board.boardTag
+                }}</span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                  board.kr.boardTag
+                }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <!--
+          <mat-card
+            fxFlex.sm="0 1 calc(50%-10px)"
+            fxFlex.md="0 1 calc(33%-10px)"
+            fxFlex.gt-md="0 1 calc(25%-10px)"
+          >
+            <img
+              mat-card-image
+              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
+              class="image"
+            />
+            <mat-card-title>Card 1</mat-card-title>
+            <mat-card-content
+              >Primary card content. Intended for blocks of
+              text</mat-card-content
+            >
+            <mat-card-actions
+              >Container for buttons at the bottom of the card</mat-card-actions
+            >
+          </mat-card>
+
+          <mat-card
+            fxFlex.sm="0 1 calc(50%-10px)"
+            fxFlex.md="0 1 calc(33%-10px)"
+            fxFlex.gt-md="0 1 calc(25%-10px)"
+          >
+            <img
+              mat-card-image
+              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
+              class="image"
+            />
+            <mat-card-title>Card 2</mat-card-title>
+            <mat-card-content
+              >Primary card content. Intended for blocks of
+              text</mat-card-content
+            >
+            <mat-card-actions
+              >Container for buttons at the bottom of the card</mat-card-actions
+            >
+          </mat-card>
+
+          <mat-card
+            fxFlex.sm="0 1 calc(50%-10px)"
+            fxFlex.md="0 1 calc(33%-10px)"
+            fxFlex.gt-md="0 1 calc(25%-10px)"
+          >
+            <img
+              mat-card-image
+              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
+              class="image"
+            />
+            <mat-card-title>Card 3</mat-card-title>
+            <mat-card-content
+              >Primary card content. Intended for blocks of
+              text</mat-card-content
+            >
+            <mat-card-actions
+              >Container for buttons at the bottom of the card</mat-card-actions
+            >
+          </mat-card>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
