@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { map, finalize, filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
@@ -10,6 +10,8 @@ import {
   NewsService,
   CustomerBoardSearchRequest,
   CustomerBoard,
+  CustomerBoardKr,
+  CustomerBoardView,
 } from './services/news.service';
 @Component({
   selector: 'app-news',
@@ -23,6 +25,9 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   totalCustomerBoard = 0;
   customerBoardDataSource: CustomerBoard[] = null;
+  customerBoardKrData: CustomerBoardView[] = null;
+  customerBoardEnData: CustomerBoardView[] = null;
+  customerBoardData: CustomerBoardView[] = null;
 
   subscription$ = new Subscription();
   searchKeyword: string | null;
@@ -73,6 +78,7 @@ export class NewsComponent implements OnInit, OnDestroy {
           } else {
             // this.onGetResults(response.data.items);
             this.customerBoardDataSource = response?.data?.items || [];
+            // this.filteringList(this.customerBoardDataSource);
           }
         },
         complete: () => {

@@ -29,40 +29,32 @@
         <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
           <h2>News Recent</h2>
         </div>
-        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="25px">
-          <!-- 
-          fxLayoutAlign="space-around stretch"
-            fxFlex.sm="0 1 calc(50%-10px)"
-            fxFlex.md="0 1 calc(33%-10px)"
-            fxFlex.gt-md="0 1 calc(25%-10px)"
-
-            fxFlex.lg="0 1 calc(33%-10px)"
-            fxFlex.lt-lg="0 1 calc(50% - 10px)"
-            fxFlex.xs="0 1 calc(100% - 10px)"
-
-            fxFlex="calc(33%-25px)"
-            fxFlex.sm="calc(50%-25px)"
-          -->
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutGap="25px"
+          fxLayoutAlign="start stretch"
+        >
           <mat-card
-            *ngFor="let board of customerBoardDataSource"
-            fxFlex="calc(33%-25px)"
-            fxFlex.sm="calc(50%-25px)"
+            *ngFor="let board of customerBoardDataSource | filter: 'spmed'"
+            fxFlex="0 0 calc(33%-25px)"
+            fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <img
-              mat-card-image
-              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-              class="image"
-            />
+            <div class="images"></div>
             <mat-card-title
               style="line-height: 1em; margin-bottom: 20px"
               class="mb-10 text-xxl"
             >
-              <span *ngIf="this.languageService.currentLanguage == 'en'">{{
-                board.title
-              }}</span>
-              <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
-                board.kr?.title
-              }}</span>
+              <span *ngIf="this.languageService.currentLanguage == 'en'">
+                <a [routerLink]="['/news', board.id, 'detail']">{{
+                  board.title
+                }}</a></span
+              >
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                <a [routerLink]="['/news', board.id, 'detail']">
+                  {{ board.kr?.title }}
+                </a>
+              </span>
             </mat-card-title>
 
             <mat-card-content>
@@ -71,7 +63,14 @@
                 fxLayout="row"
                 fxLayoutAlign="space-between center"
               >
-                <div>{{ board.publishTime }}</div>
+                <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">
+                    {{ board.publishTime | date }}
+                  </span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                    {{ board.publishTime | date: "yyyy-MM-dd" }}
+                  </span>
+                </div>
                 <div>
                   <span *ngIf="this.languageService.currentLanguage == 'en'">{{
                     board.author
@@ -84,14 +83,15 @@
               <div class="mb-10">
                 <div
                   *ngIf="this.languageService.currentLanguage == 'en'"
-                  [innerHTML]="board.content"
+                  [innerHTML]="board.content | truncateText: 180"
                 ></div>
                 <div
                   *ngIf="this.languageService.currentLanguage == 'kr'"
-                  [innerHTML]="board.kr.content"
+                  [innerHTML]="board.kr.content | truncateText: 180"
                 ></div>
               </div>
               <div>
+                #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">{{
                   board.boardTag
                 }}</span>
@@ -101,67 +101,6 @@
               </div>
             </mat-card-content>
           </mat-card>
-          <!--
-          <mat-card
-            fxFlex.sm="0 1 calc(50%-10px)"
-            fxFlex.md="0 1 calc(33%-10px)"
-            fxFlex.gt-md="0 1 calc(25%-10px)"
-          >
-            <img
-              mat-card-image
-              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-              class="image"
-            />
-            <mat-card-title>Card 1</mat-card-title>
-            <mat-card-content
-              >Primary card content. Intended for blocks of
-              text</mat-card-content
-            >
-            <mat-card-actions
-              >Container for buttons at the bottom of the card</mat-card-actions
-            >
-          </mat-card>
-
-          <mat-card
-            fxFlex.sm="0 1 calc(50%-10px)"
-            fxFlex.md="0 1 calc(33%-10px)"
-            fxFlex.gt-md="0 1 calc(25%-10px)"
-          >
-            <img
-              mat-card-image
-              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-              class="image"
-            />
-            <mat-card-title>Card 2</mat-card-title>
-            <mat-card-content
-              >Primary card content. Intended for blocks of
-              text</mat-card-content
-            >
-            <mat-card-actions
-              >Container for buttons at the bottom of the card</mat-card-actions
-            >
-          </mat-card>
-
-          <mat-card
-            fxFlex.sm="0 1 calc(50%-10px)"
-            fxFlex.md="0 1 calc(33%-10px)"
-            fxFlex.gt-md="0 1 calc(25%-10px)"
-          >
-            <img
-              mat-card-image
-              src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-              class="image"
-            />
-            <mat-card-title>Card 3</mat-card-title>
-            <mat-card-content
-              >Primary card content. Intended for blocks of
-              text</mat-card-content
-            >
-            <mat-card-actions
-              >Container for buttons at the bottom of the card</mat-card-actions
-            >
-          </mat-card>
-          -->
         </div>
       </div>
     </div>

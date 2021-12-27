@@ -11,30 +11,42 @@ import { tap } from 'rxjs/operators';
 export class NewsService {
   // private baseUrl = `${environment.gateway}/portal`;
   private lang = 'en';
-  private baseUrl = `${environment.gateway}/portal/v${environment.version}/${this.lang}/admin/customer-boards`;
+  private baseUrl = `${environment.gateway}/portal/v${environment.version}/${this.lang}/customer-boards`;
 
   constructor(
     private languageService: LanguageService,
     private httpClient: HttpClient
   ) {}
 
+  getRecentListFromBoard(boardCategoryId: number): Observable<any> {
+    const url = `${this.baseUrl}/recent/${boardCategoryId}`;
+    return this.httpClient.get<any>(url);
+    //.pipe(tap((data) => console.log(JSON.stringify(data))));
+  }
+
   getCustomerBoard(searchRequest: CustomerBoardSearchRequest): Observable<any> {
     const url = `${this.baseUrl}/search?${new URLSearchParams(
       searchRequest as any
     ).toString()}`;
-    console.log(url);
+    // console.log(url);
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient
-      .get<any>(url, { headers })
-      .pipe(tap((data) => console.log(JSON.stringify(data))));
+    return this.httpClient.get<any>(url, { headers });
+    //.pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
   getCustomerBoardById(boardId: number): Observable<any> {
     const url = `${this.baseUrl}/${boardId}`;
     console.log(url);
-    return this.httpClient.get<any>(url).pipe();
-    //tap((data) => console.log(JSON.stringify(data))));
+    return this.httpClient.get<any>(url);
+    //.pipe(tap((data) => console.log(JSON.stringify(data))));
+  }
+
+  updateReadCount(boardId: number): Observable<any> {
+    const url = `${this.baseUrl}/count/${boardId}`;
+    console.log(url);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.put<any>(url, { headers });
   }
 }
 
@@ -85,4 +97,15 @@ export interface CustomerBoardKr {
   title?: string;
   content?: string;
   author?: string;
+}
+
+export interface CustomerBoardView {
+  id: number;
+  boardCategoryId: string;
+  boardTag?: string;
+  title?: string;
+  content?: string;
+  author?: string;
+  publishTime?: string;
+  pin?: number;
 }

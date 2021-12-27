@@ -1,0 +1,153 @@
+<div id="news-page">
+  <div id="news-detail-page">
+    <div class="section">
+      <div id="news-info">
+        <div class="images">
+          <!--
+          <img
+            src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
+            class="image"
+            -->
+        </div>
+        <div>
+          <div class="title">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              <h2>
+                {{ customerBoard?.kr?.title }}
+              </h2>
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              <h2>
+                {{ customerBoard?.title }}
+              </h2>
+            </span>
+          </div>
+        </div>
+        <div class="author" fxLayout="row">
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.publishTime | date: "yyyy-MM-dd" }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.publishTime | date }}
+            </span>
+          </div>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
+            </span>
+          </div>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.kr?.author }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="10"></div>
+        </div>
+        <div class="content">
+          <div
+            *ngIf="this.languageService.currentLanguage == 'kr'"
+            [innerHTML]="customerBoard?.kr?.content"
+          ></div>
+          <div
+            *ngIf="this.languageService.currentLanguage == 'en'"
+            [innerHTML]="customerBoard?.content"
+          ></div>
+        </div>
+        <div class="tag">
+          #
+          <span *ngIf="this.languageService.currentLanguage == 'kr'">
+            {{ customerBoard?.kr?.boardTag }}
+          </span>
+          <span *ngIf="this.languageService.currentLanguage == 'en'">
+            {{ customerBoard?.boardTag }}
+          </span>
+        </div>
+        <br />
+
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <h2>Related News</h2>
+        </div>
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutGap="25px"
+          fxLayoutAlign="start stretch"
+        >
+          <mat-card
+            *ngFor="let board of customerBoardDataSource | filter: ''"
+            fxFlex="0 0 calc(33%-25px)"
+            fxFlex.sm="0 0 calc(50%-25px)"
+          >
+            <!--*ngIf="
+                (!!board?.title &&
+                  this.languageService.currentLanguage == 'en') ||
+                (!!board?.kr?.title &&
+                  this.languageService.currentLanguage == 'kr')
+              "-->
+            <div class="images-list"></div>
+            <mat-card-title
+              style="line-height: 1em; margin-bottom: 20px"
+              class="mb-10 text-xxl"
+            >
+              <span *ngIf="this.languageService.currentLanguage == 'en'">
+                <a
+                  [routerLink]="['/news', board.id, 'detail']"
+                  target="_blank"
+                  >{{ board.title }}</a
+                ></span
+              >
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                <a [routerLink]="['/news', board.id, 'detail']" target="_blank">
+                  {{ board.kr?.title }}
+                </a>
+              </span>
+            </mat-card-title>
+
+            <mat-card-content>
+              <div
+                class="mb-10"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+              >
+                <div>{{ board.publishTime }}</div>
+                <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                    board.author
+                  }}</span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                    board.kr.author
+                  }}</span>
+                </div>
+              </div>
+              <div class="mb-10">
+                <div
+                  *ngIf="this.languageService.currentLanguage == 'en'"
+                  [innerHTML]="board.content | truncateText: 180"
+                ></div>
+                <div
+                  *ngIf="this.languageService.currentLanguage == 'kr'"
+                  [innerHTML]="board.kr.content | truncateText: 180"
+                ></div>
+              </div>
+              <div>
+                <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                  board.boardTag
+                }}</span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                  board.kr.boardTag
+                }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
