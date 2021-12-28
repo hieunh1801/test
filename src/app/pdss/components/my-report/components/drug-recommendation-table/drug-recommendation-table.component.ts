@@ -18,7 +18,10 @@ import { TableHelperService } from '@shared/services/table-helper.service';
 import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
-import { DrugRecommendation } from '../../services/pdss-report.service';
+import {
+  DrugRecommendation,
+  DrugRecommendationKr,
+} from '../../services/pdss-report.service';
 
 @Component({
   selector: 'app-drug-recommendation-table',
@@ -120,14 +123,16 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     // choose language
     let tableData: DrugRecommendation[] = [];
     if (language === LanguagesProvidedType.korea) {
-      tableData = drugRecommendationList.map((drugRecommendation) => ({
-        ...drugRecommendation,
-        ...drugRecommendation.kr,
-      }));
+      tableData = drugRecommendationList.map((drugRecommendation) => {
+        const { risk, ...drugKr } = drugRecommendation.kr;
+        return {
+          ...drugRecommendation,
+          ...drugKr,
+        };
+      });
     } else {
       tableData = drugRecommendationList;
     }
-
     // filter data
     const tableSearchFormData = this.tableSearchForm.value;
     const keyword = tableSearchFormData?.keyword?.toLocaleLowerCase();
@@ -137,7 +142,27 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
       });
     }
 
-    // remove related gene duplicate
+    // remove drug duplicated
+    const drugMap = new Map<string, DrugRecommendation>();
+    for (const drugRecommendation of tableData) {
+      const drugName = drugRecommendation.drugName;
+      if (drugMap.has(drugName)) {
+        // check
+        const existedDrugRecommendation = drugMap.get(drugName);
+        const isReplace =
+          Date.parse(drugRecommendation.createdTime) -
+            Date.parse(existedDrugRecommendation.createdTime) >
+          0;
+        if (isReplace) {
+          drugMap.set(drugName, drugRecommendation);
+        }
+      } else {
+        drugMap.set(drugName, drugRecommendation);
+      }
+    }
+    tableData = [...drugMap.values()];
+
+    // remove related gene duplicated
     tableData = tableData.map((row) => {
       const relatedGenes = row.relatedGenes || '';
       const relatedGenesList = relatedGenes.split(',').map((r) => r.trim());
@@ -252,28 +277,33 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
   }
 
   isDanger(riskLevel: string): boolean {
-    const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    // const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    const dangerTxt = 'Danger';
     return riskLevel === dangerTxt;
   }
 
   isWarning(riskLevel: string): boolean {
-    const warningTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__WARNING'
-    );
+    // const warningTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__WARNING'
+    // );
+    const warningTxt = 'Warning';
 
     return riskLevel === warningTxt;
   }
 
   isCaution(riskLevel: string): boolean {
-    const cautionTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__CAUTION'
-    );
+    // const cautionTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__CAUTION'
+    // );
+    const cautionTxt = 'Caution';
 
     return riskLevel === cautionTxt;
   }
 
   isGood(riskLevel: string): boolean {
-    const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    // const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+
+    const goodTxt = 'Good';
     return riskLevel === goodTxt;
   }
 
