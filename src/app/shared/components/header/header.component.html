@@ -126,7 +126,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
 
-      <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
+      <button mat-button [fxHide]="isLogin" (click)="handleOnLogin()">
         <span translate>LAYOUT__HEADER__LOGIN</span>
       </button>
 
@@ -284,8 +284,7 @@
     <button
       mat-menu-item
       [fxHide]="isLogin"
-      routerLink="/auth/login"
-      (click)="isOpenMenuMobile = false"
+      (click)="isOpenMenuMobile = false; handleOnLogin()"
     >
       <span translate>LAYOUT__HEADER__LOGIN</span>
     </button>
