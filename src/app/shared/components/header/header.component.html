@@ -169,6 +169,15 @@
       <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
     </div>
   </button>
+  <button mat-menu-item [routerLink]="['..', 'pdss', 'my-report']">
+    <div
+      style="width: 200px"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      {{ "LAYOUT__HEADER__MENU__MY_REPORT" | translate }}
+    </div>
+  </button>
   <button mat-menu-item [routerLink]="['..', 'user', 'settings']">
     <span translate>LAYOUT__HEADER__SETTINGS</span>
   </button>
@@ -247,10 +256,17 @@
     </button>
     <button
       mat-menu-item
+      [routerLink]="['..', 'pdss', 'my-report']"
+      (click)="isOpenMenuMobile = false"
+    >
+      {{ "LAYOUT__HEADER__MENU__MY_REPORT" | translate }}
+    </button>
+    <button
+      mat-menu-item
       [routerLink]="['..', 'user', 'settings']"
       (click)="isOpenMenuMobile = false"
     >
-      <span translate>LAYOUT__HEADER__SETTINGS</span>
+      {{ "LAYOUT__HEADER__SETTINGS" | translate }}
     </button>
     <button mat-menu-item>
       <div

@@ -87,6 +87,7 @@
   "LAYOUT__HEADER__LOGIN": "Login",
   "LAYOUT__HEADER__LOGOUT": "Logout",
   "LAYOUT__HEADER__MEMBERSHIP": "Membership",
+  "LAYOUT__HEADER__MENU__MY_REPORT": "My Report",
   "LAYOUT__HEADER__NEWS": "News",
   "LAYOUT__HEADER__PROFILES": "Profiles",
   "LAYOUT__HEADER__REGISTER": "Register",
