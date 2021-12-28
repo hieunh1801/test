@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Sort } from '@angular/material/sort';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -16,6 +17,7 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TableHelperService } from '@shared/services/table-helper.service';
 import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DrugRecommendation } from '../../services/pdss-report.service';
 
 @Component({
@@ -49,9 +51,11 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     []
   );
 
+  tableSearchForm = this.formBuilder.group({
+    keyword: [''],
+  });
   tableSort$ = new BehaviorSubject<Sort>(null);
-
-  tableDataSorted: DrugRecommendation[] = [];
+  dataSource: DrugRecommendation[] = [];
   tableExpandedElementIdList: number[] = [];
   tableColumnList: string[] = [
     'index',
@@ -69,7 +73,8 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     private languageService: LanguageService,
     private matSnackbarService: MatSnackbarService,
     private tableHelperService: TableHelperService,
-    private webGuideService: WebGuideService
+    private webGuideService: WebGuideService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -77,10 +82,15 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     this.subscribeTableSortChange();
     this.subscribeLanguageChange();
     this.subscribeWebGuideRunning();
+    this.subscribeTableSearchFormChange();
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
+  }
+
+  get sf(): any {
+    return this.tableSearchForm.controls;
   }
 
   reloadTable(): void {
@@ -103,6 +113,15 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
       tableData = drugRecommendationList;
     }
 
+    // filter data
+    const tableSearchFormData = this.tableSearchForm.value;
+    const keyword = tableSearchFormData?.keyword?.toLocaleLowerCase();
+    if (!!keyword) {
+      tableData = tableData.filter((drug) => {
+        return drug.drugName?.toLocaleLowerCase().includes(keyword);
+      });
+    }
+
     // remove related gene duplicate
     tableData = tableData.map((row) => {
       const relatedGenes = row.relatedGenes || '';
@@ -116,7 +135,6 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     });
 
     // sort data
-    let mTableDataSorted = [];
     if (tableSort && tableSort.active && tableSort.direction !== '') {
       const RISK_LEVEL_WEIGHT = {
         [this.translateService.instant('PDSS__RISK_LEVEL__DANGER')]: 4,
@@ -127,7 +145,7 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
 
       const compare = this.tableHelperService.compare;
 
-      mTableDataSorted = tableData.sort((a, b) => {
+      tableData = tableData.sort((a, b) => {
         const isAsc = tableSort.direction === 'asc';
         switch (tableSort.active) {
           case 'drugName':
@@ -146,15 +164,23 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
             return 0;
         }
       });
-    } else {
-      mTableDataSorted = tableData;
     }
 
-    this.tableDataSorted = [...mTableDataSorted];
+    this.dataSource = [...tableData];
+  }
+
+  subscribeTableSearchFormChange(): void {
+    const sub = this.tableSearchForm
+      .get('keyword')
+      .valueChanges.pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(() => {
+        this.reloadTable();
+      });
+    this.subscription$.add(sub);
   }
 
   subscribeWebGuideRunning(): void {
-    this.webGuideService.running$.subscribe((running) => {
+    const sub = this.webGuideService.running$.subscribe((running) => {
       if (
         running &&
         this.webGuideService.guideName === WebGuides.SUMMARY_REPORT_GUIDE
@@ -172,6 +198,8 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.subscription$.add(sub);
   }
   subscribeDrugRecommendationListChange(): void {
     const sub = this.drugRecommendationList$.subscribe(() => {
@@ -192,6 +220,12 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
       this.reloadTable();
     });
     this.subscription$.add(sub);
+  }
+
+  clearTableSearchForm(): void {
+    this.tableSearchForm.patchValue({
+      keyword: '',
+    });
   }
 
   isDanger(riskLevel: string): boolean {

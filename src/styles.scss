@@ -63,13 +63,27 @@ pre {
   border-radius: 2px;
 }
 
+.spmed-search-form-field {
+  .mat-form-field-wrapper {
+    padding-bottom: 0em;
+    width: 100%;
+  }
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0px !important;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 8px 0 16px 0;
+  }
+}
+
 .spmed-form {
-  ::ng-deep .mat-form-field-outline-start {
+  .mat-form-field-outline-start {
     border-radius: 1px 0 0 1px !important;
     min-width: 1px !important;
   }
 
-  ::ng-deep .mat-form-field-outline-end {
+  .mat-form-field-outline-end {
     border-radius: 0 1px 1px 0 !important;
   }
 

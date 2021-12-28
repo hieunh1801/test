@@ -100,3 +100,10 @@
 a {
   text-decoration: none;
 }
+
+:host ::ng-deep .highlight {
+  font-weight: bold;
+  color: #3f51b5;
+  background-color: #fbec74;
+  padding: 2px 0;
+}
