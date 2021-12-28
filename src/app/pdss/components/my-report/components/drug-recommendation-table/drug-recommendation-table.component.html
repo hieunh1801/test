@@ -12,7 +12,18 @@
               'PDSS__MY_REPORT__DRUG_TABLE__PLACEHOLDER__ENTER_DRUG_NAME'
                 | translate
             }}"
+            [matAutocomplete]="drugAutoComplete"
           />
+          <mat-autocomplete #drugAutoComplete="matAutocomplete">
+            <mat-option
+              *ngFor="let option of drugAutoCompleteOptions"
+              [value]="option"
+            >
+              <span
+                [innerHTML]="option | highlightSearch: sf?.keyword?.value"
+              ></span>
+            </mat-option>
+          </mat-autocomplete>
           <button
             mat-icon-button
             matSuffix

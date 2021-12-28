@@ -17,7 +17,7 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TableHelperService } from '@shared/services/table-helper.service';
 import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { DrugRecommendation } from '../../services/pdss-report.service';
 
 @Component({
@@ -65,6 +65,7 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     'product',
     'actions',
   ];
+  drugAutoCompleteOptions: string[] = [];
 
   subscription$ = new Subscription();
 
@@ -91,6 +92,20 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
 
   get sf(): any {
     return this.tableSearchForm.controls;
+  }
+
+  reloadDrugAutoCompleteOptions(): void {
+    const drugRecommendationList = this.drugRecommendationList$.value || [];
+    const keyword =
+      this.tableSearchForm.value?.keyword?.toLocaleLowerCase() || '';
+    const options = !!keyword
+      ? drugRecommendationList
+          ?.map((drug) => drug.drugName)
+          .filter((drugName) => {
+            return drugName.toLowerCase().includes(keyword);
+          })
+      : [];
+    this.drugAutoCompleteOptions = [...new Set(options)];
   }
 
   reloadTable(): void {
@@ -170,13 +185,21 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
   }
 
   subscribeTableSearchFormChange(): void {
-    const sub = this.tableSearchForm
+    const sub1 = this.tableSearchForm
       .get('keyword')
       .valueChanges.pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(() => {
         this.reloadTable();
       });
-    this.subscription$.add(sub);
+
+    const sub2 = this.tableSearchForm
+      .get('keyword')
+      .valueChanges.pipe(startWith(''))
+      .subscribe(() => {
+        this.reloadDrugAutoCompleteOptions();
+      });
+    this.subscription$.add(sub1);
+    this.subscription$.add(sub2);
   }
 
   subscribeWebGuideRunning(): void {
