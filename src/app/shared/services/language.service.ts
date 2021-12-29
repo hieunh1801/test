@@ -61,7 +61,6 @@ export class LanguageService {
     this.translateService.setTranslation(mSelectedLanguage, translateFile);
     this.translateService.setDefaultLang(mSelectedLanguage);
     this.dateAdapter.setLocale(mSelectedLanguage);
-    // console.log('localStorage -', mSelectedLanguage);
   }
 
   get currentLanguage(): string {

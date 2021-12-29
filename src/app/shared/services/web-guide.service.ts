@@ -91,7 +91,6 @@ export class WebGuideService {
           }
         },
         (error) => {
-          console.log(error);
           if (callbackOnError) {
             callbackOnError();
           }

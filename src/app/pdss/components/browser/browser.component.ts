@@ -138,7 +138,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
             }
           },
           complete: () => {
-            console.log('this.browserService.search done!!!');
             this.isSearch = true;
           },
           error: (error) => {
@@ -267,9 +266,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
             this.onGetDrugs(response.data.items);
           }
         },
-        complete: () => {
-          console.log('this.browserService.getTopDrugs done!!!');
-        },
+        complete: () => {},
         error: (error) => {
           console.error(error.response);
           const message2 = this.translateService.instant(
@@ -316,9 +313,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
             this.onGetTopGenes(response.data.items);
           }
         },
-        complete: () => {
-          console.log('this.browserService.getTopGenes done!!!');
-        },
+        complete: () => {},
         error: (error) => {
           console.error(error.response);
           const message2 = this.translateService.instant(

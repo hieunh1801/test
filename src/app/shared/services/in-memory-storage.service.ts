@@ -15,7 +15,6 @@ export class InMemoryStorageService implements IStorage, OnDestroy {
 
   constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', ($event: StorageEvent) => {
-      console.log('storage change', $event);
       const key = $event.key;
       const value = JSON.parse($event.newValue);
       if (key === RestoreMemoryKey.RESTORE_SESSION_STORAGE) {
@@ -52,7 +51,6 @@ export class InMemoryStorageService implements IStorage, OnDestroy {
   private emitEventRestoreSessionStorage(): void {
     // restoreSessionStorage#step1: check memory storage is empty
     if (this.isStorageEmpty()) {
-      console.log('request memory storage');
       this.localStorageService.set(
         RestoreMemoryKey.RESTORE_SESSION_STORAGE,
         Date.now()
@@ -87,7 +85,6 @@ export class InMemoryStorageService implements IStorage, OnDestroy {
   }
 
   remove(key: string): void {
-    console.log('remove key', key);
     if (this.subjects?.has(key)) {
       this.subjects?.get(key).complete();
       this.subjects?.delete(key);
