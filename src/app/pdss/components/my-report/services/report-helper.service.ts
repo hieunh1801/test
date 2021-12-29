@@ -43,7 +43,8 @@ export class ReportHelperService {
       }, 0);
 
     //  STATISTIC -> total good
-    const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    // const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    const goodTxt = 'Good';
     const totalGood = drugRecommendations.reduce(
       (count, drugRecommendation) => {
         if (drugRecommendation.risk === goodTxt) {
@@ -55,9 +56,10 @@ export class ReportHelperService {
     );
 
     // STATISTIC -> total caution
-    const cautionTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__CAUTION'
-    );
+    // const cautionTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__CAUTION'
+    // );
+    const cautionTxt = 'Caution';
     const totalCaution = drugRecommendations.reduce(
       (count, drugRecommendation) => {
         if (drugRecommendation.risk === cautionTxt) {
@@ -69,9 +71,10 @@ export class ReportHelperService {
     );
 
     // STATISTIC -> total warning
-    const warningTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__WARNING'
-    );
+    // const warningTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__WARNING'
+    // );
+    const warningTxt = 'Warning';
     const totalWarning = drugRecommendations.reduce(
       (count, drugRecommendation) => {
         if (drugRecommendation.risk === warningTxt) {
@@ -83,7 +86,8 @@ export class ReportHelperService {
     );
 
     // total danger
-    const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    // const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    const dangerTxt = 'Danger';
     const totalDanger = drugRecommendations.reduce(
       (count, drugRecommendation) => {
         if (drugRecommendation.risk === dangerTxt) {

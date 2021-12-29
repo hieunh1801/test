@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Sort } from '@angular/material/sort';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -16,7 +17,11 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { TableHelperService } from '@shared/services/table-helper.service';
 import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { DrugRecommendation } from '../../services/pdss-report.service';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import {
+  DrugRecommendation,
+  DrugRecommendationKr,
+} from '../../services/pdss-report.service';
 
 @Component({
   selector: 'app-drug-recommendation-table',
@@ -49,9 +54,11 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     []
   );
 
+  tableSearchForm = this.formBuilder.group({
+    keyword: [''],
+  });
   tableSort$ = new BehaviorSubject<Sort>(null);
-
-  tableDataSorted: DrugRecommendation[] = [];
+  dataSource: DrugRecommendation[] = [];
   tableExpandedElementIdList: number[] = [];
   tableColumnList: string[] = [
     'index',
@@ -61,6 +68,7 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     'product',
     'actions',
   ];
+  drugAutoCompleteOptions: string[] = [];
 
   subscription$ = new Subscription();
 
@@ -69,7 +77,8 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     private languageService: LanguageService,
     private matSnackbarService: MatSnackbarService,
     private tableHelperService: TableHelperService,
-    private webGuideService: WebGuideService
+    private webGuideService: WebGuideService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -77,10 +86,29 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     this.subscribeTableSortChange();
     this.subscribeLanguageChange();
     this.subscribeWebGuideRunning();
+    this.subscribeTableSearchFormChange();
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
+  }
+
+  get sf(): any {
+    return this.tableSearchForm.controls;
+  }
+
+  reloadDrugAutoCompleteOptions(): void {
+    const drugRecommendationList = this.drugRecommendationList$.value || [];
+    const keyword =
+      this.tableSearchForm.value?.keyword?.toLocaleLowerCase() || '';
+    const options = !!keyword
+      ? drugRecommendationList
+          ?.map((drug) => drug.drugName)
+          .filter((drugName) => {
+            return drugName.toLowerCase().includes(keyword);
+          })
+      : [];
+    this.drugAutoCompleteOptions = [...new Set(options)];
   }
 
   reloadTable(): void {
@@ -95,15 +123,46 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     // choose language
     let tableData: DrugRecommendation[] = [];
     if (language === LanguagesProvidedType.korea) {
-      tableData = drugRecommendationList.map((drugRecommendation) => ({
-        ...drugRecommendation,
-        ...drugRecommendation.kr,
-      }));
+      tableData = drugRecommendationList.map((drugRecommendation) => {
+        const { risk, ...drugKr } = drugRecommendation.kr;
+        return {
+          ...drugRecommendation,
+          ...drugKr,
+        };
+      });
     } else {
       tableData = drugRecommendationList;
     }
+    // filter data
+    const tableSearchFormData = this.tableSearchForm.value;
+    const keyword = tableSearchFormData?.keyword?.toLocaleLowerCase();
+    if (!!keyword) {
+      tableData = tableData.filter((drug) => {
+        return drug.drugName?.toLocaleLowerCase().includes(keyword);
+      });
+    }
 
-    // remove related gene duplicate
+    // remove drug duplicated
+    const drugMap = new Map<string, DrugRecommendation>();
+    for (const drugRecommendation of tableData) {
+      const drugName = drugRecommendation.drugName;
+      if (drugMap.has(drugName)) {
+        // check
+        const existedDrugRecommendation = drugMap.get(drugName);
+        const isReplace =
+          Date.parse(drugRecommendation.createdTime) -
+            Date.parse(existedDrugRecommendation.createdTime) >
+          0;
+        if (isReplace) {
+          drugMap.set(drugName, drugRecommendation);
+        }
+      } else {
+        drugMap.set(drugName, drugRecommendation);
+      }
+    }
+    tableData = [...drugMap.values()];
+
+    // remove related gene duplicated
     tableData = tableData.map((row) => {
       const relatedGenes = row.relatedGenes || '';
       const relatedGenesList = relatedGenes.split(',').map((r) => r.trim());
@@ -116,7 +175,6 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     });
 
     // sort data
-    let mTableDataSorted = [];
     if (tableSort && tableSort.active && tableSort.direction !== '') {
       const RISK_LEVEL_WEIGHT = {
         [this.translateService.instant('PDSS__RISK_LEVEL__DANGER')]: 4,
@@ -127,7 +185,7 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
 
       const compare = this.tableHelperService.compare;
 
-      mTableDataSorted = tableData.sort((a, b) => {
+      tableData = tableData.sort((a, b) => {
         const isAsc = tableSort.direction === 'asc';
         switch (tableSort.active) {
           case 'drugName':
@@ -146,15 +204,31 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
             return 0;
         }
       });
-    } else {
-      mTableDataSorted = tableData;
     }
 
-    this.tableDataSorted = [...mTableDataSorted];
+    this.dataSource = [...tableData];
+  }
+
+  subscribeTableSearchFormChange(): void {
+    const sub1 = this.tableSearchForm
+      .get('keyword')
+      .valueChanges.pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(() => {
+        this.reloadTable();
+      });
+
+    const sub2 = this.tableSearchForm
+      .get('keyword')
+      .valueChanges.pipe(startWith(''))
+      .subscribe(() => {
+        this.reloadDrugAutoCompleteOptions();
+      });
+    this.subscription$.add(sub1);
+    this.subscription$.add(sub2);
   }
 
   subscribeWebGuideRunning(): void {
-    this.webGuideService.running$.subscribe((running) => {
+    const sub = this.webGuideService.running$.subscribe((running) => {
       if (
         running &&
         this.webGuideService.guideName === WebGuides.SUMMARY_REPORT_GUIDE
@@ -172,6 +246,8 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.subscription$.add(sub);
   }
   subscribeDrugRecommendationListChange(): void {
     const sub = this.drugRecommendationList$.subscribe(() => {
@@ -194,29 +270,40 @@ export class DrugRecommendationTableComponent implements OnInit, OnDestroy {
     this.subscription$.add(sub);
   }
 
+  clearTableSearchForm(): void {
+    this.tableSearchForm.patchValue({
+      keyword: '',
+    });
+  }
+
   isDanger(riskLevel: string): boolean {
-    const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    // const dangerTxt = this.translateService.instant('PDSS__RISK_LEVEL__DANGER');
+    const dangerTxt = 'Danger';
     return riskLevel === dangerTxt;
   }
 
   isWarning(riskLevel: string): boolean {
-    const warningTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__WARNING'
-    );
+    // const warningTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__WARNING'
+    // );
+    const warningTxt = 'Warning';
 
     return riskLevel === warningTxt;
   }
 
   isCaution(riskLevel: string): boolean {
-    const cautionTxt = this.translateService.instant(
-      'PDSS__RISK_LEVEL__CAUTION'
-    );
+    // const cautionTxt = this.translateService.instant(
+    //   'PDSS__RISK_LEVEL__CAUTION'
+    // );
+    const cautionTxt = 'Caution';
 
     return riskLevel === cautionTxt;
   }
 
   isGood(riskLevel: string): boolean {
-    const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+    // const goodTxt = this.translateService.instant('PDSS__RISK_LEVEL__GOOD');
+
+    const goodTxt = 'Good';
     return riskLevel === goodTxt;
   }
 

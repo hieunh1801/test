@@ -13,7 +13,6 @@ export class ContactComponent implements OnInit {
   }
 
   startTour() {
-    console.log(this.joyrideService);
     this.joyrideService.startTour(
       { steps: ['firstStep', 'secondStep'] } // Your steps order
     );

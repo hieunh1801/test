@@ -66,7 +66,7 @@ export interface DrugRecommendationKr {
   id: number;
   drugName: string;
   recommendation?: any;
-  risk?: any;
+  risk?: string;
   diseaseClass: string;
   kpicClass: string;
   kfdaClass: string;
@@ -94,7 +94,7 @@ export interface DrugRecommendation {
   genes: Gene[];
   kr: DrugRecommendationKr;
 
-  product: string; // additional information
+  product: string; // package
 }
 
 export interface Report {

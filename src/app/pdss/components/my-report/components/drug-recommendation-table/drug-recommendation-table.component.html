@@ -1,20 +1,56 @@
 <!-- drug table -->
 <div class="drug-table">
-  <app-joyride-wrapper
-    webGuideStep="PDSS__MY_REPORT__STATISTIC__STEP"
-    [webGuideContent]="'PDSS__MY_REPORT__STATISTIC__STEP' | translate"
-    [inlineBlock]="false"
-  >
-    <app-drug-table-statistic
-      [drugList]="tableDataSorted"
-    ></app-drug-table-statistic>
-  </app-joyride-wrapper>
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between">
+    <form id="searchForm" [formGroup]="tableSearchForm" class="spmed-form">
+      <div class="spmed-search-form-field">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            formControlName="keyword"
+            placeholder="{{
+              'PDSS__MY_REPORT__DRUG_TABLE__PLACEHOLDER__ENTER_DRUG_NAME'
+                | translate
+            }}"
+            [matAutocomplete]="drugAutoComplete"
+          />
+          <mat-autocomplete #drugAutoComplete="matAutocomplete">
+            <mat-option
+              *ngFor="let option of drugAutoCompleteOptions"
+              [value]="option"
+            >
+              <span
+                [innerHTML]="option | highlightSearch: sf?.keyword?.value"
+              ></span>
+            </mat-option>
+          </mat-autocomplete>
+          <button
+            mat-icon-button
+            matSuffix
+            *ngIf="sf?.keyword?.value"
+            (click)="clearTableSearchForm()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </form>
+    <app-joyride-wrapper
+      webGuideStep="PDSS__MY_REPORT__STATISTIC__STEP"
+      [webGuideContent]="'PDSS__MY_REPORT__STATISTIC__STEP' | translate"
+      [inlineBlock]="false"
+    >
+      <app-drug-table-statistic
+        [drugList]="dataSource"
+      ></app-drug-table-statistic>
+    </app-joyride-wrapper>
+  </div>
 
   <table
     mat-table
     matSort
     multiTemplateDataRows
-    [dataSource]="tableDataSorted"
+    [dataSource]="dataSource"
     (matSortChange)="sortData($event)"
   >
     <!-- TABLE -->
@@ -42,8 +78,13 @@
           <a
             [routerLink]="['/pdss/drug', element.drugName, 'detail']"
             target="_blank"
-            >{{ element.drugName }}</a
           >
+            <span
+              [innerHTML]="
+                element.drugName | highlightSearch: sf?.keyword?.value
+              "
+            ></span>
+          </a>
         </app-joyride-wrapper>
       </td>
     </ng-container>

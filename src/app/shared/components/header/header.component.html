@@ -126,7 +126,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
 
-      <button mat-button routerLink="/auth/login" [fxHide]="isLogin">
+      <button mat-button [fxHide]="isLogin" (click)="handleOnLogin()">
         <span translate>LAYOUT__HEADER__LOGIN</span>
       </button>
 
@@ -166,7 +166,18 @@
       fxLayoutAlign="space-between center"
     >
       <span translate>LAYOUT__HEADER__PROFILES</span>
-      <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
+      <span style="font-style: oblique; opacity: 0.9"
+        >@{{ username | async }}</span
+      >
+    </div>
+  </button>
+  <button mat-menu-item [routerLink]="['..', 'pdss', 'my-report']">
+    <div
+      style="width: 200px"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      {{ "LAYOUT__HEADER__MENU__MY_REPORT" | translate }}
     </div>
   </button>
   <button mat-menu-item [routerLink]="['..', 'user', 'settings']">
@@ -240,17 +251,26 @@
     >
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <span translate>LAYOUT__HEADER__PROFILES</span>
-        <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
-          >@{{ username }}</span
+        <span
+          style="font-style: oblique; opacity: 0.9"
+          [fxHide]="!(username | async)"
+          >@{{ username | async }}</span
         >
       </div>
+    </button>
+    <button
+      mat-menu-item
+      [routerLink]="['..', 'pdss', 'my-report']"
+      (click)="isOpenMenuMobile = false"
+    >
+      {{ "LAYOUT__HEADER__MENU__MY_REPORT" | translate }}
     </button>
     <button
       mat-menu-item
       [routerLink]="['..', 'user', 'settings']"
       (click)="isOpenMenuMobile = false"
     >
-      <span translate>LAYOUT__HEADER__SETTINGS</span>
+      {{ "LAYOUT__HEADER__SETTINGS" | translate }}
     </button>
     <button mat-menu-item>
       <div
@@ -268,8 +288,7 @@
     <button
       mat-menu-item
       [fxHide]="isLogin"
-      routerLink="/auth/login"
-      (click)="isOpenMenuMobile = false"
+      (click)="isOpenMenuMobile = false; handleOnLogin()"
     >
       <span translate>LAYOUT__HEADER__LOGIN</span>
     </button>
