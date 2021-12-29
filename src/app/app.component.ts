@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { EventManager } from '@angular/platform-browser';
+import { InMemoryStorageService } from '@shared/services/in-memory-storage.service';
 import { LanguageService } from './shared/services/language.service';
 import { MaintainService } from './shared/services/maintain.service';
 
@@ -12,7 +14,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private languageService: LanguageService,
-    private maintainService: MaintainService
+    private maintainService: MaintainService,
+    private inMemoryStorageService: InMemoryStorageService
   ) {
     this.languageService.init();
     this.maintainService.ping();

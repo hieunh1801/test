@@ -166,7 +166,9 @@
       fxLayoutAlign="space-between center"
     >
       <span translate>LAYOUT__HEADER__PROFILES</span>
-      <span style="font-style: oblique; opacity: 0.9">@{{ username }}</span>
+      <span style="font-style: oblique; opacity: 0.9"
+        >@{{ username | async }}</span
+      >
     </div>
   </button>
   <button mat-menu-item [routerLink]="['..', 'pdss', 'my-report']">
@@ -249,8 +251,10 @@
     >
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <span translate>LAYOUT__HEADER__PROFILES</span>
-        <span style="font-style: oblique; opacity: 0.9" [fxHide]="!username"
-          >@{{ username }}</span
+        <span
+          style="font-style: oblique; opacity: 0.9"
+          [fxHide]="!(username | async)"
+          >@{{ username | async }}</span
         >
       </div>
     </button>

@@ -1,24 +1,32 @@
 import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { InMemoryStorageService } from './in-memory-storage.service';
+import { IStorage } from './IStorage';
 import { LocalStorageService } from './local-storage.service';
-import { SessionStorageService } from './session-storage.service';
-import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
-  private storageService: StorageService = null;
+  private storageService: IStorage = null;
 
   constructor(
-    @Inject(LocalStorageService) private localStorageService,
-    @Inject(SessionStorageService) private sessionStorageService
+    private inMemoryStorage: InMemoryStorageService,
+    @Inject(LocalStorageService) private localStorageService
   ) {
     const rememberMe = this.localStorageService.get(TokenKey.REMEMBER_ME);
     if (rememberMe) {
       this.storageService = this.localStorageService;
     } else {
-      this.storageService = this.sessionStorageService;
+      this.storageService = this.inMemoryStorage;
     }
+
+    window.addEventListener('storage', ($event: StorageEvent) => {
+      const key = $event.key;
+      if (key === TokenKey.FORCE_RELOAD) {
+        window.location.reload();
+      }
+    });
   }
 
   public set rememberMe(rememberMe: boolean) {
@@ -31,7 +39,7 @@ export class TokenStorageService {
         TokenKey.REFRESH_TOKEN,
         TokenKey.REMEMBER_ME,
       ]);
-      this.storageService = this.sessionStorageService;
+      this.storageService = this.inMemoryStorage;
     }
     this.storageService.set(TokenKey.REMEMBER_ME, rememberMe);
   }
@@ -64,6 +72,10 @@ export class TokenStorageService {
     return this.storageService.get<string>(TokenKey.USERNAME);
   }
 
+  public get usernameBehaviorSubject(): BehaviorSubject<string> {
+    return this.storageService.watch<string>(TokenKey.USERNAME);
+  }
+
   public set authorities(authorities: string[]) {
     this.storageService.set(TokenKey.AUTHORITIES, authorities);
   }
@@ -84,6 +96,16 @@ export class TokenStorageService {
       TokenKey.REMEMBER_ME,
     ]);
   }
+
+  private forceReload(): void {
+    localStorage.setItem(TokenKey.FORCE_RELOAD, Date.now().toString());
+  }
+
+  logout(): void {
+    this.clearTokenStorage();
+    this.forceReload();
+    window.location.reload();
+  }
 }
 
 enum TokenKey {
@@ -92,4 +114,5 @@ enum TokenKey {
   USERNAME = 'username',
   AUTHORITIES = 'authorities',
   REMEMBER_ME = 'rememberMe',
+  FORCE_RELOAD = 'forceReload',
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageService } from '@shared/services/language.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { TokenStorageService } from '@shared/services/token-storage.service';
 })
 export class HeaderComponent implements OnInit {
   isLogin = false;
-  username = '';
+  username = new BehaviorSubject<string>(null);
   isOpenMenuMobile = false;
 
   constructor(
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
     const username = this.tokenStorageService.username;
     if (username) {
       this.isLogin = true;
-      this.username = username;
+      this.username = this.tokenStorageService.usernameBehaviorSubject;
     }
   }
 
@@ -34,8 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.tokenStorageService.clearTokenStorage();
-    window.location.reload();
+    this.tokenStorageService.logout();
   }
 
   handleOnLogin(): void {

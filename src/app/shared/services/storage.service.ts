@@ -1,10 +1,11 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { IStorage } from './IStorage';
 
 /**
  * Storage service
  * used for persist application data in observable key value pair
  */
-export class StorageService {
+export class StorageService implements IStorage {
   private storage: Storage;
   private subjects: Map<string, BehaviorSubject<any>>;
 
@@ -21,7 +22,7 @@ export class StorageService {
    * watch data of given key
    * @param key: key
    */
-  watch<T>(key: string): Observable<T> {
+  watch<T>(key: string): BehaviorSubject<T> {
     if (!this.subjects.has(key)) {
       this.subjects.set(key, new BehaviorSubject<T>(null));
     }
@@ -36,7 +37,7 @@ export class StorageService {
         : (JSON.parse(itemStr) as T);
 
     this.subjects.get(key).next(item);
-    return this.subjects.get(key).asObservable();
+    return this.subjects.get(key);
   }
 
   /**
