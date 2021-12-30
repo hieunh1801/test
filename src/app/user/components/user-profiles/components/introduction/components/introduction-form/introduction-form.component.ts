@@ -9,6 +9,7 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CountryService } from '@shared/services/country.service';
 import { DateUtilService } from '@shared/services/date-util.service';
+import { FileUploadService } from '@shared/services/file-upload.service';
 import { DemographicPutRequest } from '@user/services/user-demographic.service';
 import { Demographic, UserProfile } from '@user/services/user-profile.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -42,7 +43,8 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private dateUtilService: DateUtilService,
-    private countryService: CountryService
+    private countryService: CountryService,
+    private fileUploadService: FileUploadService
   ) {}
 
   ngOnInit(): void {
@@ -148,15 +150,27 @@ export class IntroductionFormComponent implements OnInit, OnDestroy {
     this.cancelEvent.emit();
   }
 
+  // uploadAvatar(event: any): void {
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     this.demographicForm.patchValue({
+  //       avatar: reader.result,
+  //     });
+  //   };
+  // }
+
   uploadAvatar(event: any): void {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.demographicForm.patchValue({
-        avatar: reader.result,
-      });
-    };
+    this.fileUploadService.uploadImage(file).subscribe((response) => {
+      const url = response?.data?.items?.[0]?.url;
+      if (url) {
+        this.demographicForm.patchValue({
+          avatar: url,
+        });
+      }
+    });
   }
 
   saveClick(): void {
