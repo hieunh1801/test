@@ -27,7 +27,7 @@ import { CountryAutocompleteComponent } from './components/country-autocomplete/
 import { RatingInputComponent } from './components/rating-input/rating-input.component';
 import { JoyrideModule } from 'ngx-joyride';
 import { JoyrideWrapperComponent } from './components/joyride-wrapper/joyride-wrapper.component';
-
+import { PlatformModule } from '@angular/cdk/platform';
 const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
@@ -71,6 +71,7 @@ const httpInterceptorProviders = [
     TranslateModule,
     ReactiveFormsModule,
     JoyrideModule,
+    PlatformModule,
   ],
   exports: [
     ...COMPONENTS,

@@ -17,6 +17,8 @@ import { JoyrideModule } from 'ngx-joyride';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PlatformModule } from '@angular/cdk/platform';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +30,7 @@ import { environment } from '../environments/environment';
     JoyrideModule.forRoot(),
     // ngx-translate and the loader module
     HttpClientModule,
+    PlatformModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -38,7 +41,9 @@ import { environment } from '../environments/environment';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

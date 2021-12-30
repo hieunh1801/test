@@ -309,15 +309,24 @@
       <span translate>LAYOUT__HEADER__LOGOUT</span>
     </button>
     <mat-divider></mat-divider>
-    <button
-      mat-menu-item
+    <div
       class="install-on-mobile-button"
-      *ngIf="pwaService.readyInstall$ | async"
-      (click)="pwaService.install()"
+      *ngIf="pwaService.readyInstall$.value && !pwaService.installed$.value"
     >
-      <b> Install on mobile </b>
-      <mat-icon matSuffix>install_mobile</mat-icon>
-    </button>
+      <b>
+        {{
+          "LAYOUT__HEADER__STRINGS__ADD_SHORTCUT_TO_YOUR_HOME_SCREEN"
+            | translate
+        }}</b
+      >
+      <button
+        mat-icon-button
+        class="install-button"
+        (click)="pwaService.install()"
+      >
+        <mat-icon>install_mobile</mat-icon>
+      </button>
+    </div>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
   </mat-list>

@@ -94,11 +94,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
-
+  background-color: #08939e;
   color: white;
-
-  mat-icon {
-    color: white;
+  padding: 8px;
+  .install-button {
+    background-color: white;
+    color: #000000;
+    border-radius: 24px;
+    font-weight: 500;
+    mat-icon {
+      color: black;
+    }
   }
 }
