@@ -309,6 +309,16 @@
       <span translate>LAYOUT__HEADER__LOGOUT</span>
     </button>
     <mat-divider></mat-divider>
+    <button
+      mat-menu-item
+      class="install-on-mobile-button"
+      *ngIf="pwaService.readyInstall$ | async"
+      (click)="pwaService.install()"
+    >
+      <b> Install on mobile </b>
+      <mat-icon matSuffix>install_mobile</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
     <mat-divider></mat-divider>
   </mat-list>
 </ng-template>

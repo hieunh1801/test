@@ -15,8 +15,16 @@ export class InMemoryStorageService implements IStorage, OnDestroy {
 
   constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', ($event: StorageEvent) => {
+      // console.log('InMemoryStorageService', $event);
       const key = $event.key;
-      const value = JSON.parse($event.newValue);
+
+      let value = null;
+      try {
+        value = JSON.parse($event.newValue);
+      } catch (e) {
+        value = $event.newValue;
+      }
+
       if (key === RestoreMemoryKey.RESTORE_SESSION_STORAGE) {
         localStorage.setItem(
           RestoreMemoryKey.SESSION_STORAGE,

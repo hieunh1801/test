@@ -1,25 +1,28 @@
-import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageService } from '@shared/services/language.service';
+import { PwaService } from '@shared/services/pwa.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isLogin = false;
   username = new BehaviorSubject<string>(null);
   isOpenMenuMobile = false;
+
+  subscription$ = new Subscription();
 
   constructor(
     public languageService: LanguageService,
     private tokenStorageService: TokenStorageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public pwaService: PwaService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +31,19 @@ export class HeaderComponent implements OnInit {
       this.isLogin = true;
       this.username = this.tokenStorageService.usernameBehaviorSubject;
     }
+
+    // this.subscribePwaServiceReadyInstallChange();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+
+  subscribePwaServiceReadyInstallChange(): void {
+    const sub = this.pwaService.readyInstall$.subscribe((value) => {
+      console.log(value);
+    });
+    this.subscription$.add(sub);
   }
 
   changeLanguage(mLanguage: string): void {
