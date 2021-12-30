@@ -1,5 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Injectable } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,11 @@ export class PwaService {
   installed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   deferredPrompt: any = null;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private swUpdate: SwUpdate) {
+    this.swUpdate.available.subscribe((event) => {
+      window.location.reload();
+    });
+
     window.addEventListener(
       'beforeinstallprompt',
       this.onBeforeInstallPrompt.bind(this)
@@ -45,7 +50,6 @@ export class PwaService {
   }
 
   onAppInstalled(event: any): void {
-    console.log('onAppInstalled');
     this.deferredPrompt = null;
     this.installed$.next(true);
   }
