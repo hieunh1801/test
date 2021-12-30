@@ -1,13 +1,22 @@
+$bannerImage: url("/assets/images/banner.jpg");
+
 #mainContainer {
   background: #ffffff;
 
   .banner-wrapper {
     width: 100%;
     height: 500px;
-    background: #f2f2f2;
+    // background: #f2f2f2;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-image: $bannerImage;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
   }
 
   .banner {

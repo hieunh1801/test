@@ -15,6 +15,8 @@ import { MaterialModule } from '@material/material.module';
 import { SharedModule } from '@shared/shared.module';
 import { JoyrideModule } from 'ngx-joyride';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -36,6 +38,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
