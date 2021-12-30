@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
+import { UserVariant } from '@pdss/components/my-report/services/pdss-report.service';
 import { LanguageService } from '@shared/services/language.service';
 import { Observable } from 'rxjs';
 
@@ -36,6 +37,7 @@ export interface UserProfile {
   demographic?: Demographic;
   weightHeightHistories: WeightHeightHistory[];
   lifeStyleHistories: LifeStyleHistory[];
+  pcdssUserVariants: UserVariant[];
 }
 
 export interface MedicalHistory {

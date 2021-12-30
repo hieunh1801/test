@@ -47,6 +47,18 @@
         [lifeStyleHistoryList$]="lifeStyleHistoryList$"
       ></app-life-style>
     </div>
+    <div class="section">
+      <app-joyride-wrapper
+        webGuideStep="USER_PROFILES__GENETIC_PROFILE__STEP"
+        webGuideContent="{{
+          'USER_PROFILES__GENETIC_PROFILE__STEP' | translate
+        }}"
+      >
+        <app-genetic-profile
+          [userVariants$]="userVariants$"
+        ></app-genetic-profile>
+      </app-joyride-wrapper>
+    </div>
   </div>
 
   <button

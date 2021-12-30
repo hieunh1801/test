@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
-    rememberMe: [false, Validators.required],
+    rememberMe: [true, Validators.required],
   });
 
   constructor(

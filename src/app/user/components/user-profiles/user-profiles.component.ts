@@ -10,6 +10,7 @@ import {
   WeightHeightHistory,
 } from '../../services/user-profile.service';
 import { WebGuides, WebGuideService } from '@shared/services/web-guide.service';
+import { UserVariant } from '@pdss/components/my-report/services/pdss-report.service';
 @Component({
   selector: 'app-user-profiles',
   templateUrl: './user-profiles.component.html',
@@ -22,6 +23,7 @@ export class UserProfilesComponent implements OnInit {
   demographic$ = new BehaviorSubject<Demographic>(null);
   weightHeightHistoryList$ = new BehaviorSubject<WeightHeightHistory[]>([]);
   lifeStyleHistoryList$ = new BehaviorSubject<LifeStyleHistory[]>(null);
+  userVariants$ = new BehaviorSubject<UserVariant[]>(null);
   subscription$ = new Subscription();
 
   constructor(
@@ -41,6 +43,7 @@ export class UserProfilesComponent implements OnInit {
           userProfile?.weightHeightHistories || []
         );
         this.lifeStyleHistoryList$.next(userProfile?.lifeStyleHistories || []);
+        this.userVariants$.next(userProfile?.pcdssUserVariants || []);
       }
     });
   }
@@ -66,6 +69,8 @@ export class UserProfilesComponent implements OnInit {
 
       'USER_PROFILES__LIFE_STYLE_HISTORY__STEP',
       'USER_PROFILES__LIFE_STYLE_HISTORY__MANAGE__STEP',
+
+      'USER_PROFILES__GENETIC_PROFILE__STEP',
     ];
     this.webGuideService.startTour({
       guideName: WebGuides.USER_PROFILE_GUIDE,
