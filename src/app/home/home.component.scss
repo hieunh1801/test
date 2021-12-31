@@ -3,17 +3,28 @@
 
   .banner-wrapper {
     width: 100%;
-    height: 500px;
+    height: 600px;
     background: #f2f2f2;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("../../assets/common/main/main.jpg");
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+    background-size: cover;
   }
 
   .banner {
     padding: 0 20px;
     width: 100%;
     max-width: var(--primary--screen);
+  }
+  .banner-text {
+    color: #fff;
+    padding: 0px 30px;
+  }
+  .margin0 {
+    margin: 0px;
   }
 
   .our-service-button {
