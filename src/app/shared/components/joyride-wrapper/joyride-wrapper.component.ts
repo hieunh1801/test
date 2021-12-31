@@ -8,7 +8,6 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 export class JoyrideWrapperComponent implements OnInit {
   @Input() webGuideStep: string;
   @Input() webGuideContent: string;
-  @Input() webGuideContentTemplate: TemplateRef<any>;
   @Input() rowIndex: number;
   @Input() inlineBlock: boolean = true;
 

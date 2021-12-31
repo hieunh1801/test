@@ -29,6 +29,7 @@ import { JoyrideModule } from 'ngx-joyride';
 import { JoyrideWrapperComponent } from './components/joyride-wrapper/joyride-wrapper.component';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { PlatformModule } from '@angular/cdk/platform';
 
 const COMPONENTS = [
   FooterComponent,
@@ -75,6 +76,7 @@ const httpInterceptorProviders = [
     TranslateModule,
     ReactiveFormsModule,
     JoyrideModule,
+    PlatformModule,
   ],
   exports: [
     ...COMPONENTS,
