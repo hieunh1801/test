@@ -1,0 +1,13 @@
+@import "~@angular/material/theming";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap");
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family:
+    '"Noto Sans KR", "Andika", Roboto, RobotoDraft, Helvetica, Arial, sans-serif',
+  // $headline: mat-typography-level(32px, 48px, 700),
+  // $body-1: mat-typography-level(16px, 24px, 500),,,
+);
+
+@include angular-material-typography($custom-typography);
