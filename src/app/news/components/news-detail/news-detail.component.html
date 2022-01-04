@@ -50,22 +50,7 @@
           </div>
           <div fxFlex="10"></div>
         </div>
-        <div *ngIf="this.languageService.currentLanguage == 'kr'">
-          첨부파일
-          <mat-selection-list #attachmentKr [multiple]="false">
-            <mat-list-option
-              *ngFor="let attachKr of customerBoardAttachmentKr"
-              value="attachKr"
-              [ngClass]="{ hidden: attachKr.viewFileName === null }"
-              class="attachment"
-            >
-              <a [href]="attachKr.url" target="_blank">{{
-                attachKr.viewFileName
-              }}</a>
-            </mat-list-option>
-          </mat-selection-list>
-        </div>
-        <div *ngIf="this.languageService.currentLanguage == 'en'">
+        <div>
           Attached File
           <mat-selection-list #attachmentEn [multiple]="false">
             <mat-list-option

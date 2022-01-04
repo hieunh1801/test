@@ -52,11 +52,6 @@ export class NewsService {
     return this.httpClient.get<any>(url).pipe();
     //.pipe(tap((data) => console.log(JSON.stringify(data))));
   }
-
-  getCustomerBoardAttachmentKrById(boardId: number): Observable<any> {
-    const url = `${this.baseUrl}/attachment-kr/${boardId}`;
-    return this.httpClient.get<any>(url).pipe();
-  }
 }
 
 export interface CustomerBoardSearchRequest {

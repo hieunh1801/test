@@ -24,9 +24,7 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
   boardId: number = null;
 
   customerBoardAttachment: CustomerBoardAttachment[] = null;
-  customerBoardAttachmentKr: CustomerBoardAttachmentKr[] = null;
   isBoardAttachmentEn = false;
-  isBoardAttachmentKr = false;
 
   constructor(
     private translateService: TranslateService,
@@ -44,7 +42,6 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
     if (!!boardId) {
       this.loadNewsById(boardId);
       this.loadCustomerBoardAttachmentById(boardId);
-      this.loadCustomerBoardAttachmentKrById(boardId);
       this.updateReadCount();
     }
   }
@@ -151,26 +148,6 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
       error: (error) => {
         const message =
           error?.error?.status?.code || 'Get board attachment error';
-        this.matSnackbarService.open(message, 'Get');
-      },
-    });
-  }
-
-  loadCustomerBoardAttachmentKrById(boardId: number): void {
-    this.newsService.getCustomerBoardAttachmentKrById(boardId).subscribe({
-      next: (response) => {
-        const boardAttachment = response?.data?.items || null;
-        if (boardAttachment) {
-          this.customerBoardAttachmentKr = boardAttachment;
-          console.log(this.customerBoardAttachmentKr);
-          this.isBoardAttachmentKr = true;
-        } else {
-          throw new Error('Get board attachment kr by boardId failed');
-        }
-      },
-      error: (error) => {
-        const message =
-          error?.error?.status?.code || 'Get board attachment kr error';
         this.matSnackbarService.open(message, 'Get');
       },
     });
