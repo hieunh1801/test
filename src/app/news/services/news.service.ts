@@ -37,16 +37,25 @@ export class NewsService {
 
   getCustomerBoardById(boardId: number): Observable<any> {
     const url = `${this.baseUrl}/${boardId}`;
-    console.log(url);
     return this.httpClient.get<any>(url);
     //.pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
   updateReadCount(boardId: number): Observable<any> {
     const url = `${this.baseUrl}/count/${boardId}`;
-    console.log(url);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.put<any>(url, { headers });
+  }
+
+  getCustomerBoardAttachmentById(boardId: number): Observable<any> {
+    const url = `${this.baseUrl}/attachment/${boardId}`;
+    return this.httpClient.get<any>(url).pipe();
+    //.pipe(tap((data) => console.log(JSON.stringify(data))));
+  }
+
+  getCustomerBoardAttachmentKrById(boardId: number): Observable<any> {
+    const url = `${this.baseUrl}/attachment-kr/${boardId}`;
+    return this.httpClient.get<any>(url).pipe();
   }
 }
 
@@ -108,4 +117,29 @@ export interface CustomerBoardView {
   author?: string;
   publishTime?: string;
   pin?: number;
+}
+
+export interface CustomerBoardAttachment {
+  id: number;
+  boardId: number;
+  viewFileName: string;
+  url: string;
+  kr: CustomerBoardAttachmentKr;
+  deleted: number;
+}
+
+export interface CustomerBoardAttachmentEn {
+  id: number;
+  boardId: number;
+  viewFileName: string;
+  url: string;
+  deleted: number;
+}
+
+export interface CustomerBoardAttachmentKr {
+  id: number;
+  boardId: number;
+  viewFileName: string;
+  url: string;
+  deleted: number;
 }
