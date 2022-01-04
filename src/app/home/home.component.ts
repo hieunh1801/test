@@ -7,7 +7,11 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  contactForm = this.formBuilder.group({});
+  contactForm = this.formBuilder.group({
+    name: [''],
+    email: [''],
+    message: [''],
+  });
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}

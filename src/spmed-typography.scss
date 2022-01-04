@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: "Roboto, RobotoDraft, Helvetica, Arial, sans-serif",
+  $headline: mat-typography-level(32px, 48px, 700),
+  $title: mat-typography-level(24px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 24px, 500),
+);
+
+// more options in https://v10.material.angular.io/guide/typography
+// $font-family: '"Noto Sans KR", "Andika", Roboto, RobotoDraft, Helvetica, Arial, sans-serif',
+@include angular-material-typography($custom-typography);
