@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { HomeLayoutComponent } from './shared/layouts/home-layout/home-layout.component';
 import { PreloadAllModules } from '@angular/router';
+import { environment } from '@environment/environment';
 
 const routes: Routes = [
   {
@@ -64,6 +65,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
+      scrollPositionRestoration: environment.production
+        ? 'enabled'
+        : 'disabled',
       // config: preloading module
       // preloadingStrategy: PreloadAllModules,
     }),
