@@ -1,135 +1,254 @@
 <div id="mainContainer">
   <!-- hero banner -->
-  <section class="banner-wrapper">
+  <div class="banner-wrapper hidden">
     <div class="banner">
-      <div class="banner-text">
-        <h1 class="margin0">SPMED, The Frontier Leader</h1>
-        <h2>in personalized precision medicine</h2>
-        <div class="actions">
-          <button mat-button class="our-service-button">Our Service</button>
+      <h1 class="animate__animated animate__fadeInUp">
+        SPMED, The Frontier Leader
+      </h1>
+      <h2 class="animate__animated animate__fadeInUp">
+        in personalized precision medicine
+      </h2>
+      <div class="actions">
+        <button mat-button class="our-service-button spmed-button">
+          Our Service
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- about-us -->
+  <section id="about-us-wrapper" class="container hidden">
+    <div id="about-us">
+      <div>
+        <img
+          id="about-us-image"
+          src="https://image.freepik.com/free-vector/people-analyzing-growth-charts_23-2148866843.jpg"
+          alt="about-us-image"
+        />
+      </div>
+      <div id="about-us-content">
+        <h1>SPMED</h1>
+        <p>
+          ed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo.
+        </p>
+        <button mat-button class="spmed-primary-button" routerLink="/about-us">
+          More about us
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- why choose us -->
+  <section id="why-choose-us" class="hidden">
+    <div class="container">
+      <h2 align="center" style="margin-bottom: 40px">Why Choose Us</h2>
+      <div class="reason-list">
+        <div class="reason-item">
+          <img
+            src="https://image.flaticon.com/icons/png/512/993/993459.png"
+            class="reason-item-icon"
+          />
+          <p>accusantium doloremque laudantium</p>
+        </div>
+        <div class="reason-item">
+          <img
+            src="https://image.flaticon.com/icons/png/512/1245/1245362.png"
+            class="reason-item-icon"
+          />
+          <p>accusantium doloremque laudantium</p>
+        </div>
+        <div class="reason-item">
+          <img
+            src="https://image.flaticon.com/icons/png/512/1253/1253337.png"
+            class="reason-item-icon"
+          />
+          <p>accusantium doloremque laudantium</p>
+        </div>
+        <div class="reason-item">
+          <img
+            src="https://image.flaticon.com/icons/png/512/1253/1253680.png"
+            class="reason-item-icon"
+          />
+          <p>accusantium doloremque laudantium</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Vision -->
-  <section class="vision-wrapper">
-    <div class="vision">
-      <img src="'../../assets/common/main/vision_img_en.jpg" />
+  <!-- our services -->
+  <section id="our-services" class="hidden">
+    <h2 align="center" style="margin-bottom: 60px">Our Services</h2>
+    <div id="service-list" class="container">
+      <div class="service-item pdss">
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg"
+          alt="pdss"
+        />
+      </div>
+      <div class="service-item pdss">
+        <div class="service-item-content">
+          <h2>PDSS</h2>
+          <p>
+            ed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium
+          </p>
+          <p>
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.
+          </p>
+          <div class="detail-link" routerLink="/pdss">
+            <mat-icon>chevron_right</mat-icon>
+            Detail
+          </div>
+        </div>
+      </div>
+      <div class="service-item genotyping" fxHide.gt-xs>
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg"
+          alt="genotyping"
+        />
+      </div>
+      <div class="service-item genotyping">
+        <div class="service-item-content">
+          <h2>Genotyping KIT</h2>
+          <p>
+            ed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium
+          </p>
+          <p>
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.
+          </p>
+          <div class="detail-link">
+            <mat-icon>chevron_right</mat-icon>
+            Detail
+          </div>
+        </div>
+      </div>
+      <div class="service-item genotyping" fxHide.lt-sm>
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg"
+          alt="genotyping"
+        />
+      </div>
+      <div class="service-item adme">
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/two-business-partners-handshaking_74855-6685.jpg"
+          alt="adme"
+        />
+      </div>
+      <div class="service-item adme">
+        <div class="service-item-content">
+          <h2>ADME</h2>
+          <p>
+            ed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium
+          </p>
+          <p>
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.
+          </p>
+          <div class="detail-link">
+            <mat-icon>chevron_right</mat-icon>
+            Detail
+          </div>
+        </div>
+      </div>
+      <div class="service-item enzyme" fxHide.gt-xs>
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/illustration-healthy-lifestyle_53876-28533.jpg"
+          alt="enzyme"
+        />
+      </div>
+      <div class="service-item enzyme">
+        <div class="service-item-content">
+          <h2>Enzyme</h2>
+          <p>
+            ed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium
+          </p>
+          <p>
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.
+          </p>
+          <div class="detail-link">
+            <mat-icon>chevron_right</mat-icon>
+            Detail
+          </div>
+        </div>
+      </div>
+      <div class="service-item enzyme" fxHide.lt-sm>
+        <img
+          class="service-image"
+          src="https://image.freepik.com/free-vector/illustration-healthy-lifestyle_53876-28533.jpg"
+          alt="enzyme"
+        />
+      </div>
     </div>
   </section>
 
-  <div class="products-wrapper">
-    <div class="products">
-      <mat-toolbar>
-        <span class="product-title">ALL Product</span>
-      </mat-toolbar>
+  <!-- contact-us -->
+  <section id="contact-us-wrapper">
+    <div class="container" id="contact-us">
+      <div class="contact-info">
+        <div>
+          <h2>Contact us for free</h2>
+          Fill up the form and our Business Team will get back to you within 24
+          hours
+        </div>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <mat-icon>phone</mat-icon> +82) 51-362-1101
+          </div>
+          <div class="contact-info-item">
+            <mat-icon>mail_outline</mat-icon> help@spmed.kr
+          </div>
+          <div class="contact-info-item">
+            <mat-icon>place</mat-icon> 610, Ho, 111, Hyoyeol-ro, Buk-gu, Busan,
+            46508, Republic of Korea
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form [formGroup]="contactForm" class="spmed-form">
+          <div class="spmed-form-field">
+            <mat-label>Name</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div class="spmed-form-field">
+            <mat-label>Email</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div class="spmed-form-field">
+            <mat-label>Message</mat-label>
+            <mat-form-field appearance="outline">
+              <textarea matInput formControlName="name" rows="6"></textarea>
+            </mat-form-field>
+          </div>
 
-      <div
-        fxLayout.xs="column"
-        fxLayout="row wrap"
-        fxLayoutGap="15px"
-        ngClass.gt-xs="ml-10"
-        style="padding: 10px"
-      >
-        <mat-card
-          fxFlex.sm="0 1 calc(50%-15px)"
-          fxFlex.md="0 1 calc(33%-15px)"
-          fxFlex.gt-md="0 1 calc(25%-15px)"
-        >
-          <img
-            mat-card-image
-            src="../../assets/common/blank.png"
-            class="image"
-          />
-          <mat-card-title>My Prescription(PDSS)</mat-card-title>
-          <mat-card-content
-            >Primary card content. Intended for blocks of text</mat-card-content
-          >
-        </mat-card>
-
-        <mat-card
-          fxFlex.sm="0 1 calc(50%-15px)"
-          fxFlex.md="0 1 calc(33%-15px)"
-          fxFlex.gt-md="0 1 calc(25%-15px)"
-        >
-          <img
-            mat-card-image
-            src="../../assets/common/blank.png"
-            class="image"
-          />
-          <mat-card-title>ADME Service</mat-card-title>
-          <mat-card-content
-            >Primary card content. Intended for blocks of text</mat-card-content
-          >
-        </mat-card>
-
-        <mat-card
-          fxFlex.sm="0 1 calc(50%-15px)"
-          fxFlex.md="0 1 calc(33%-15px)"
-          fxFlex.gt-md="0 1 calc(25%-15px)"
-        >
-          <img
-            mat-card-image
-            src="../../assets/common/blank.png"
-            class="image"
-          />
-          <mat-card-title>Genotyping KIT</mat-card-title>
-          <mat-card-content
-            >Primary card content. Intended for blocks of text</mat-card-content
-          >
-        </mat-card>
-
-        <mat-card
-          fxFlex.sm="0 1 calc(50%-15px)"
-          fxFlex.md="0 1 calc(33%-15px)"
-          fxFlex.gt-md="0 1 calc(25%-15px)"
-        >
-          <img
-            mat-card-image
-            src="../../assets/common/blank.png"
-            class="image"
-          />
-          <mat-card-title>Recombinant Enzymes</mat-card-title>
-          <mat-card-content
-            >Primary card content. Intended for blocks of text</mat-card-content
-          >
-        </mat-card>
+          <div align="end">
+            <button mat-stroked-button class="spmed-primary-button">
+              Send Message
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
-
-  <div fxLayout="row" fxLayout.lt-md="column" style="padding: 10px">
-    <div fxFlex="60" fxHide.lt-md style="margin-left: 35px">
-      <img src="../../assets/common/blank.png" />
-    </div>
-    <div fxFlex="40" fxLayoutAlign="center center">
-      <form class="qna-form" [formGroup]="contactForm">
-        <mat-card id="card">
-          <mat-card-title> Contact Sale </mat-card-title>
-
-          <mat-card-content>
-            <mat-form-field class="qna-full-width" appearance="fill">
-              <input matInput placeholder="Your email" /> </mat-form-field
-            ><br />
-
-            <mat-form-field class="qna-full-width" appearance="fill">
-              <input
-                matInput
-                placeholder="Your telephone number"
-              /> </mat-form-field
-            ><br />
-            <button
-              mat-raised-button
-              color="primary"
-              class="qna-full-width"
-              style="margin-right: 5px"
-            >
-              Submit
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </form>
-    </div>
-  </div>
+  </section>
 </div>

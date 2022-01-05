@@ -105,7 +105,10 @@ pre {
   bottom: 24px;
   background-color: var(--primary--color) !important;
 }
-
+.spmed-container {
+  max-width: 960px;
+  margin: auto;
+}
 /* Safari */
 @-webkit-keyframes spin {
   0% {
