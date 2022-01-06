@@ -160,17 +160,17 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
             }
           }
         }
-        .item:hover {
-          background-color: var(--primary-a-800-color);
-          color: white !important;
-          font-weight: 500;
-          .actions {
-            div {
-              background-color: white;
-              color: black !important;
-            }
-          }
-        }
+        // .item:hover {
+        //   background-color: var(--primary-a-800-color);
+        //   color: white !important;
+        //   font-weight: 500;
+        //   .actions {
+        //     div {
+        //       background-color: white;
+        //       color: black !important;
+        //     }
+        //   }
+        // }
       }
     }
   }

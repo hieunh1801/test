@@ -28,6 +28,7 @@ import { GeneComponent } from './components/browser/components/gene/gene.compone
 import { DrugComponent } from './components/browser/components/drug/drug.component';
 import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
 import { ReportInformationRequestDialogComponent } from './components/report-preview/components/report-information-request-dialog/report-information-request-dialog.component';
+import { SectionPdssCommonProgressComponent } from './components/overview/components/section-pdss-common-progress/section-pdss-common-progress.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ReportInformationRequestDialogComponent } from './components/report-pre
     DrugComponent,
     ReportPreviewComponent,
     ReportInformationRequestDialogComponent,
+    SectionPdssCommonProgressComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

@@ -1,0 +1,44 @@
+<section id="pdss-common-progress-wrapper">
+  <div id="pdss-common-progress" class="container">
+    <h2>How it work?</h2>
+    <div class="progress-wrapper">
+      <div class="start-step-wrapper">
+        <div class="start-step">
+          <b>01</b>
+          <div class="start-step-grid-wrapper">
+            <div class="start-step-grid-item">
+              <mat-icon>apartment</mat-icon>
+              <span>
+                {{
+                  "PDSS__OVERVIEW__PROCESS_STEPS__STEP_01__AFFILIATED_HOSPITAL"
+                    | translate
+                }}
+              </span>
+            </div>
+            <div class="start-step-grid-item">
+              <mat-icon>airline_seat_recline_normal</mat-icon>
+              <span>
+                {{
+                  "PDSS__OVERVIEW__PROCESS_STEPS__STEP_01__TEST_SELECTION_AFTER_CONSULTATION"
+                    | translate
+                }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-list-wrapper">
+        <div class="step-list">
+          <div class="step-wrapper" *ngFor="let processStep of processSteps">
+            <div class="step">
+              <div class="step-index">{{ processStep.stepIndex }}</div>
+              <div class="step-content">
+                {{ processStep.stepContent | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
