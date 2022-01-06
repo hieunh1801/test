@@ -7,7 +7,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
   styleUrls: ['./section-pdss-common-progress.component.scss'],
 })
 export class SectionPdssCommonProgressComponent implements OnInit {
-  mode: 'patient' | 'professional' = 'professional';
+  mode: 'patient' | 'professional' = 'patient';
 
   constructor() {}
 

@@ -112,7 +112,9 @@
           *ngFor="let processStep of professionalProcessSteps"
         >
           <div class="step">
-            <div class="step-index">{{ processStep.stepIndex }}</div>
+            <div class="step-index">
+              {{ processStep.stepIndex }}
+            </div>
             <div class="step-content">
               {{ processStep.stepContent | translate }}
             </div>
