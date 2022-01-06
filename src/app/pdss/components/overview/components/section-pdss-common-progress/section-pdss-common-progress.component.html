@@ -1,44 +1,124 @@
 <section id="pdss-common-progress-wrapper">
   <div id="pdss-common-progress" class="container">
     <h2>How it work?</h2>
-    <div class="progress-wrapper">
-      <div class="start-step-wrapper">
-        <div class="start-step">
-          <b>01</b>
-          <div class="start-step-grid-wrapper">
-            <div class="start-step-grid-item">
-              <mat-icon>apartment</mat-icon>
-              <span>
-                {{
-                  "PDSS__OVERVIEW__PROCESS_STEPS__STEP_01__AFFILIATED_HOSPITAL"
-                    | translate
-                }}
-              </span>
+    <div class="switch-mode-wrapper">
+      <div class="actions">
+        <div
+          class="mode-button"
+          [ngClass]="{ 'mode-active': mode === 'patient' }"
+          (click)="changeMode('patient')"
+        >
+          Patient
+        </div>
+        <div
+          [ngClass]="{ 'mode-active': mode === 'professional' }"
+          class="mode-button"
+          (click)="changeMode('professional')"
+        >
+          Medical Professionals
+        </div>
+      </div>
+    </div>
+
+    <ng-template [ngIf]="mode === 'patient'" [ngIfElse]="professionalMode">
+      <div class="progress-wrapper">
+        <div class="start-step-wrapper">
+          <div class="start-step">
+            <b>01</b>
+            <div class="start-step-grid-wrapper">
+              <div class="start-step-grid-item">
+                <mat-icon>apartment</mat-icon>
+                <span>
+                  {{
+                    "PDSS__OVERVIEW__PATIENT_PROCESS_STEPS__STEP_01__AFFILIATED_HOSPITAL"
+                      | translate
+                  }}
+                </span>
+              </div>
+              <div class="start-step-grid-item">
+                <mat-icon>airline_seat_recline_normal</mat-icon>
+                <span>
+                  {{
+                    "PDSS__OVERVIEW__PATIENT_PROCESS_STEPS__STEP_01__TEST_SELECTION_AFTER_CONSULTATION"
+                      | translate
+                  }}
+                </span>
+              </div>
             </div>
-            <div class="start-step-grid-item">
-              <mat-icon>airline_seat_recline_normal</mat-icon>
-              <span>
-                {{
-                  "PDSS__OVERVIEW__PROCESS_STEPS__STEP_01__TEST_SELECTION_AFTER_CONSULTATION"
-                    | translate
-                }}
-              </span>
+          </div>
+        </div>
+        <div class="step-list-wrapper">
+          <div class="step-list">
+            <div
+              class="step-wrapper"
+              *ngFor="let processStep of patientProcessSteps"
+            >
+              <div class="step">
+                <div class="step-index">{{ processStep.stepIndex }}</div>
+                <div class="step-content">
+                  {{ processStep.stepContent | translate }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="step-list-wrapper">
-        <div class="step-list">
-          <div class="step-wrapper" *ngFor="let processStep of processSteps">
-            <div class="step">
-              <div class="step-index">{{ processStep.stepIndex }}</div>
-              <div class="step-content">
-                {{ processStep.stepContent | translate }}
-              </div>
+    </ng-template>
+  </div>
+</section>
+
+<ng-template #professionalMode>
+  <div class="progress-wrapper">
+    <div class="start-step-wrapper">
+      <div class="start-step">
+        <b>01</b>
+        <div class="start-step-grid-wrapper">
+          <div class="start-step-grid-item">
+            <mat-icon>airline_seat_recline_normal</mat-icon>
+            <span>
+              {{
+                "PDSS__OVERVIEW__PROFESSIONAL_PROCESS_STEPS__STEP_01__SAMPLING_AND_WRITE_CONSENT"
+                  | translate
+              }}
+            </span>
+          </div>
+          <div class="start-step-grid-item start-step-grid-item-professional">
+            <div>
+              <p>
+                {{
+                  "PDSS__OVERVIEW__PROFESSIONAL_PROCESS_STEPS__STEP_01__SAMPLE_PREPARATION"
+                    | translate
+                }}
+              </p>
+              <mat-icon>how_to_reg</mat-icon>
+            </div>
+            <div>
+              <p>
+                {{
+                  "PDSS__OVERVIEW__PROFESSIONAL_PROCESS_STEPS__STEP_01__SUBMISSION_OF_REQUIRED_DOCUMENTS"
+                    | translate
+                }}
+              </p>
+              <mat-icon>article</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-list-wrapper">
+      <div class="step-list step-list-professional">
+        <div
+          class="step-wrapper"
+          *ngFor="let processStep of professionalProcessSteps"
+        >
+          <div class="step">
+            <div class="step-index">{{ processStep.stepIndex }}</div>
+            <div class="step-content">
+              {{ processStep.stepContent | translate }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</ng-template>

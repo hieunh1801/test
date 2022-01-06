@@ -1,8 +1,42 @@
 $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
+$primaryAColor: var(--primary-a--color);
 
 #pdss-common-progress-wrapper {
   padding-top: 60px;
   padding-bottom: 60px;
+  .switch-mode-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding-top: 30px;
+    max-width: 100%;
+    .actions {
+      width: 50%;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2px;
+      .mode-button {
+        height: 48px;
+        border: solid 2px var(--primary-a--color);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .mode-active {
+        background-color: var(--primary-a--color);
+        color: white !important;
+      }
+    }
+  }
   h2:before {
     content: "";
     background: url($headingPrefixUrl); /* with class ModalCarrot ??*/
@@ -16,10 +50,12 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
     max-width: 1280px;
     margin: auto;
     padding: 32px;
-    background-color: #f2f2f2;
   }
   #pdss-common-progress {
     .progress-wrapper {
+      background-color: #f2f2f2;
+      padding-top: 60px;
+      padding-bottom: 60px;
       .start-step-wrapper {
         display: flex;
         justify-content: center;
@@ -71,6 +107,27 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
                 height: 60px;
               }
             }
+
+            .start-step-grid-item-professional {
+              position: relative;
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-row-gap: 10px;
+              max-width: 200px;
+              mat-icon {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+              }
+              div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                p {
+                  flex: 1;
+                }
+              }
+            }
           }
         }
       }
@@ -117,6 +174,10 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
             }
           }
         }
+
+        .step-list-professional {
+          grid-template-columns: repeat(5, 1fr);
+        }
       }
     }
   }
@@ -144,6 +205,11 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
 @media screen and (max-width: 900px) {
   #pdss-common-progress-wrapper {
     #pdss-common-progress {
+      .switch-mode-wrapper {
+        .actions {
+          width: 80%;
+        }
+      }
       .progress-wrapper {
         .step-list-wrapper {
           .step-list {
@@ -183,9 +249,6 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
                 flex-direction: column;
                 min-width: 110px;
                 mat-icon {
-                  width: 40px;
-                  height: 40px;
-                  font-size: 40px;
                   padding: 0px;
                 }
                 span {
