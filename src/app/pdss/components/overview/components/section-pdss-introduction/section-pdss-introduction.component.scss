@@ -1,0 +1,51 @@
+$headingPrefixUrl: "/assets/icons/heading-prefix.svg";
+
+#introduction-wrapper {
+  padding-bottom: 60px;
+  .container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 32px;
+  }
+  h2:before {
+    content: "";
+    background: url($headingPrefixUrl); /* with class ModalCarrot ??*/
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 10px;
+  }
+  #introduction {
+    .introduction-video {
+      width: 100%;
+      height: 600px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #introduction-wrapper {
+    .container {
+      padding: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #introduction-wrapper {
+    #introduction {
+      .introduction-video {
+        height: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #introduction-wrapper {
+    .container {
+      padding: 16px;
+    }
+  }
+}

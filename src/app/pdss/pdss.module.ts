@@ -29,6 +29,10 @@ import { DrugComponent } from './components/browser/components/drug/drug.compone
 import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
 import { ReportInformationRequestDialogComponent } from './components/report-preview/components/report-information-request-dialog/report-information-request-dialog.component';
 import { SectionPdssCommonProgressComponent } from './components/overview/components/section-pdss-common-progress/section-pdss-common-progress.component';
+import { SectionPdssProductsComponent } from './components/overview/components/section-pdss-products/section-pdss-products.component';
+import { SectionPdssWhoNeedComponent } from './components/overview/components/section-pdss-who-need/section-pdss-who-need.component';
+import { SectionPdssWhyNeedComponent } from './components/overview/components/section-pdss-why-need/section-pdss-why-need.component';
+import { SectionPdssIntroductionComponent } from './components/overview/components/section-pdss-introduction/section-pdss-introduction.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,10 @@ import { SectionPdssCommonProgressComponent } from './components/overview/compon
     ReportPreviewComponent,
     ReportInformationRequestDialogComponent,
     SectionPdssCommonProgressComponent,
+    SectionPdssProductsComponent,
+    SectionPdssWhoNeedComponent,
+    SectionPdssWhyNeedComponent,
+    SectionPdssIntroductionComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

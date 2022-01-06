@@ -1,6 +1,17 @@
+$headingPrefixUrl: "/assets/icons/heading-prefix.svg";
+
 #pdss-common-progress-wrapper {
   padding-top: 60px;
   padding-bottom: 60px;
+  h2:before {
+    content: "";
+    background: url($headingPrefixUrl); /* with class ModalCarrot ??*/
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 10px;
+  }
   .container {
     max-width: 1280px;
     margin: auto;
@@ -111,8 +122,13 @@
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1024px) {
   #pdss-common-progress-wrapper {
+    #introduction-wrapper {
+      .container {
+        padding: 24px;
+      }
+    }
     #pdss-common-progress {
       .progress-wrapper {
         .step-list-wrapper {
@@ -155,6 +171,9 @@
 
 @media screen and (max-width: 600px) {
   #pdss-common-progress-wrapper {
+    .container {
+      padding: 16px;
+    }
     #pdss-common-progress {
       .progress-wrapper {
         .start-step-wrapper {
