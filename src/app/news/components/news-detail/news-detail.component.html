@@ -2,13 +2,13 @@
   <div id="news-detail-page">
     <div class="section">
       <div id="news-info">
-        <div class="images">
-          <!--
+        <!--
+        <div class="images">          
           <img
             src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-            class="image"
-            -->
+            class="image"            
         </div>
+        -->
         <div>
           <div class="title">
             <span *ngIf="this.languageService.currentLanguage == 'kr'">
@@ -23,7 +23,34 @@
             </span>
           </div>
         </div>
-        <div class="author" fxLayout="row">
+        <div class="author" fxLayout="row" fxHide fxShow.gt-sm>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.publishTime | date: "yyyy-MM-dd" }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.publishTime | date }}
+            </span>
+          </div>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
+            </span>
+          </div>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.kr?.author }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="70"></div>
+        </div>
+        <div class="author" fxLayout="row" fxHide fxShow.lt-md>
           <div fxFlex="30">
             <span *ngIf="this.languageService.currentLanguage == 'kr'">
               {{ customerBoard?.publishTime | date: "yyyy-MM-dd" }}
@@ -50,21 +77,7 @@
           </div>
           <div fxFlex="10"></div>
         </div>
-        <div>
-          Attached File
-          <mat-selection-list #attachmentEn [multiple]="false">
-            <mat-list-option
-              *ngFor="let attachEn of customerBoardAttachment"
-              value="attachEn"
-              [ngClass]="{ hidden: attachEn.viewFileName === null }"
-              class="attachment"
-            >
-              <a [href]="attachEn.url" target="_blank">{{
-                attachEn.viewFileName
-              }}</a>
-            </mat-list-option>
-          </mat-selection-list>
-        </div>
+
         <br />
         <div class="content">
           <div
@@ -85,6 +98,21 @@
             {{ customerBoard?.boardTag }}
           </span>
         </div>
+        <div *ngIf="!!customerBoardAttachment">
+          <span translate>NEWS__DETAIL__ATTACHMENT__FILE</span>
+          <mat-selection-list #attachmentEn [multiple]="false">
+            <mat-list-option
+              *ngFor="let attachEn of customerBoardAttachment"
+              value="attachEn"
+              [ngClass]="{ hidden: attachEn.viewFileName === null }"
+              class="attachment"
+            >
+              <a [href]="attachEn.url" target="_blank">{{
+                attachEn.viewFileName
+              }}</a>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
         <br />
 
         <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
@@ -101,26 +129,18 @@
             fxFlex="0 0 calc(33%-25px)"
             fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <!--*ngIf="
-                (!!board?.title &&
-                  this.languageService.currentLanguage == 'en') ||
-                (!!board?.kr?.title &&
-                  this.languageService.currentLanguage == 'kr')
-              "-->
             <div class="images-list"></div>
             <mat-card-title
               style="line-height: 1em; margin-bottom: 20px"
               class="mb-10 text-xxl"
             >
               <span *ngIf="this.languageService.currentLanguage == 'en'">
-                <a
-                  [routerLink]="['/news', board.id, 'detail']"
-                  target="_blank"
-                  >{{ board.title }}</a
-                ></span
+                <a [routerLink]="['/news', board.id, 'detail']">{{
+                  board.title
+                }}</a></span
               >
               <span *ngIf="this.languageService.currentLanguage == 'kr'">
-                <a [routerLink]="['/news', board.id, 'detail']" target="_blank">
+                <a [routerLink]="['/news', board.id, 'detail']">
                   {{ board.kr?.title }}
                 </a>
               </span>
@@ -144,15 +164,18 @@
               </div>
               <div class="mb-10">
                 <div
+                  class="list-content"
                   *ngIf="this.languageService.currentLanguage == 'en'"
                   [innerHTML]="board.content | truncateText: 180"
                 ></div>
                 <div
+                  class="list-content"
                   *ngIf="this.languageService.currentLanguage == 'kr'"
                   [innerHTML]="board.kr.content | truncateText: 180"
                 ></div>
               </div>
-              <div>
+              <div class="tag">
+                #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">{{
                   board.boardTag
                 }}</span>

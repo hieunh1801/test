@@ -82,15 +82,17 @@
               </div>
               <div class="mb-10">
                 <div
+                  class="list-content"
                   *ngIf="this.languageService.currentLanguage == 'en'"
                   [innerHTML]="board.content | truncateText: 180"
                 ></div>
                 <div
+                  class="list-content"
                   *ngIf="this.languageService.currentLanguage == 'kr'"
                   [innerHTML]="board.kr.content | truncateText: 180"
                 ></div>
               </div>
-              <div>
+              <div class="tag">
                 #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">{{
                   board.boardTag

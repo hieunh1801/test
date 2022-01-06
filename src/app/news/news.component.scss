@@ -23,6 +23,11 @@
     .content {
       padding: 0px;
     }
+
+    .tag {
+      color: #003f9e;
+      margin: 15px 0px 20px 0px;
+    }
   }
 
   a {
@@ -83,4 +88,8 @@ mat-card {
 }
 .mb-10 {
   margin-bottom: 10px;
+}
+
+:host ::ng-deep .list-content img {
+  max-width: 280px;
 }
