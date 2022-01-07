@@ -1,0 +1,51 @@
+<section id="contact-us-wrapper">
+  <div class="container" id="contact-us">
+    <div class="contact-info">
+      <div>
+        <h2>Contact us for free</h2>
+        Fill up the form and our Business Team will get back to you within 24
+        hours
+      </div>
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <mat-icon>phone</mat-icon> +82) 51-362-1101
+        </div>
+        <div class="contact-info-item">
+          <mat-icon>mail_outline</mat-icon> help@spmed.kr
+        </div>
+        <div class="contact-info-item">
+          <mat-icon>place</mat-icon> 610, Ho, 111, Hyoyeol-ro, Buk-gu, Busan,
+          46508, Republic of Korea
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <form [formGroup]="contactForm" class="spmed-form">
+        <div class="spmed-form-field">
+          <mat-label>Name</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="spmed-form-field">
+          <mat-label>Email</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="spmed-form-field">
+          <mat-label>Message</mat-label>
+          <mat-form-field appearance="outline">
+            <textarea matInput formControlName="name" rows="6"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div align="end">
+          <button mat-stroked-button class="spmed-primary-button">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
