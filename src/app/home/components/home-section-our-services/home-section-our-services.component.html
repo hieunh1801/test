@@ -31,6 +31,17 @@
               {{ content | translate }}
             </div>
           </div>
+          <div class="actions-list">
+            <div *ngFor="let action of service.routeActions">
+              <div
+                *ngIf="action.routerLink && action.title | translate"
+                [routerLink]="action.routerLink"
+                class="route-button"
+              >
+                {{ action.title | translate }}
+              </div>
+            </div>
+          </div>
         </div>
         <div class="service-image" *ngIf="odd" fxHide.lt-sm>
           <img [src]="service.imageUrl" [alt]="service.title + 'image'" />

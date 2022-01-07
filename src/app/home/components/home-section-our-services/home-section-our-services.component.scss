@@ -59,6 +59,28 @@
       }
     }
   }
+
+  .actions-list {
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .route-button {
+      display: inline-block;
+      color: var(--primary--color);
+      font-weight: 500;
+      font-size: 16px;
+      border-bottom: solid 3px white;
+      margin-right: 16px;
+    }
+    .route-button:hover {
+      color: var(--primary-a--color);
+      cursor: pointer;
+      border-bottom: solid 3px var(--primary--color);
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {

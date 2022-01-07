@@ -25,15 +25,13 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__1__ROUTE_ACTION__1'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: ['/pdss'],
         },
         {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__1__ROUTE_ACTION__2'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: ['/pdss', 'my-report'],
         },
       ],
     },
@@ -54,15 +52,13 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__2__ROUTE_ACTION__1'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
         {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__2__ROUTE_ACTION__2'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
       ],
     },
@@ -83,15 +79,13 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__3__ROUTE_ACTION__1'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
         {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__3__ROUTE_ACTION__2'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
       ],
     },
@@ -112,15 +106,13 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__4__ROUTE_ACTION__1'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
         {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__4__ROUTE_ACTION__2'
           ),
-          routeLink: '',
-          callback: () => {},
+          routerLink: '',
         },
       ],
     },
