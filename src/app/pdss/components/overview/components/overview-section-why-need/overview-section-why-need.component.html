@@ -1,41 +1,22 @@
 <section id="why-need-wrapper" class="hidden">
   <div id="why-need" class="container">
-    <h2>Why need?</h2>
+    <h2>
+      {{ "PDSS__OVERVIEW__WHY_NEED__TEXTS__WHY_NEED" | translate }}
+    </h2>
     <p>
-      Personalized service for checking the genes associated with the mechanism
-      of the action of the drug in question as a means to increase its
-      effectiveness and prevent potential side effects, thereby ensuring that
-      the prescription is suitable for the individual concerned.
+      {{
+        "PDSS__OVERVIEW__WHY_NEED__TEXTS__PERSONALIZED_SERVICE_FOR_CHECKING"
+          | translate
+      }}
     </p>
 
     <div class="reason-list">
-      <div class="reason-item">
-        <img
-          src="https://image.freepik.com/free-vector/drug-allergy-abstract-concept-vector-illustration-triggers-drug-allergies-risk-factors-medicine-side-effect-remedy-intolerance-test-allergic-disease-symptom-treatment-abstract-metaphor_335657-1556.jpg"
-          class="image"
-        />
+      <div class="reason-item" *ngFor="let reason of reasonList">
+        <img [src]="reason.imgUrl" class="image" />
         <div class="content">
-          <h3>Side Effect</h3>
+          <h3>{{ reason.title | translate }}</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            quisquam inventore reiciendis numquam a exercitationem aspernatur
-            nihil, possimus iusto odio facilis quasi consequuntur architecto
-            iure aperiam dolore, rem accusamus provident.
-          </p>
-        </div>
-      </div>
-      <div class="reason-item">
-        <img
-          src="https://image.freepik.com/free-vector/healthy-people-carrying-different-icons_53876-43069.jpg"
-          class="image"
-        />
-        <div class="content">
-          <h3>Side effect</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            quisquam inventore reiciendis numquam a exercitationem aspernatur
-            nihil, possimus iusto odio facilis quasi consequuntur architecto
-            iure aperiam dolore, rem accusamus provident.
+            {{ reason.content | translate }}
           </p>
         </div>
       </div>
