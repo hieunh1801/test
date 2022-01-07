@@ -1,122 +1,43 @@
-<section id="our-services" class="hidden">
-  <h2 class="title">Our Services</h2>
-  <div id="service-list" class="container">
-    <div class="service-item pdss">
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg"
-        alt="pdss"
-      />
-    </div>
-    <div class="service-item pdss">
-      <div class="service-item-content">
-        <h2>PDSS My Prescription</h2>
-        <p>
-          ed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium
-        </p>
-        <p>
-          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-          inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
-        </p>
-        <div class="detail-link" routerLink="/pdss">
-          <mat-icon>chevron_right</mat-icon>
-          Detail
+<section id="our-services-wrapper">
+  <div class="our-services container">
+    <h2 class="title">
+      {{ "HOME__SECTION_OUR_SERVICE__OUR_SERVICE" | translate }}
+    </h2>
+    <div class="service-list-wrapper">
+      <div
+        class="service-item"
+        *ngFor="
+          let service of servicesList;
+          let i = index;
+          let last = last;
+          let odd = odd;
+          let even = even
+        "
+      >
+        <div class="service-image" *ngIf="even">
+          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
         </div>
-      </div>
-      <mat-divider fxHide.gt-xs></mat-divider>
-    </div>
-    <div class="service-item genotyping" fxHide.gt-xs>
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg"
-        alt="genotyping"
-      />
-    </div>
-    <div class="service-item genotyping">
-      <div class="service-item-content">
-        <h2>Genotyping KIT</h2>
-        <p>
-          ed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium
-        </p>
-        <p>
-          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-          inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
-        </p>
-        <div class="detail-link">
-          <mat-icon>chevron_right</mat-icon>
-          Detail
+
+        <div class="service-image" *ngIf="odd" fxHide.gt-xs>
+          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
         </div>
-      </div>
-      <mat-divider fxHide.gt-xs></mat-divider>
-    </div>
-    <div class="service-item genotyping" fxHide.lt-sm>
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg"
-        alt="genotyping"
-      />
-    </div>
-    <div class="service-item adme">
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/two-business-partners-handshaking_74855-6685.jpg"
-        alt="adme"
-      />
-    </div>
-    <div class="service-item adme">
-      <div class="service-item-content">
-        <h2>ADME</h2>
-        <p>
-          ed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium
-        </p>
-        <p>
-          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-          inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
-        </p>
-        <div class="detail-link">
-          <mat-icon>chevron_right</mat-icon>
-          Detail
+        <div class="service-content">
+          <h3>
+            {{ service.title | translate }}
+          </h3>
+          <div class="content-list" *ngFor="let content of service.contents">
+            <div *ngIf="content | translate">
+              <mat-icon>done</mat-icon>
+              {{ content | translate }}
+            </div>
+          </div>
         </div>
-      </div>
-      <mat-divider fxHide.gt-xs></mat-divider>
-    </div>
-    <div class="service-item enzyme" fxHide.gt-xs>
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/illustration-healthy-lifestyle_53876-28533.jpg"
-        alt="enzyme"
-      />
-    </div>
-    <div class="service-item enzyme">
-      <div class="service-item-content">
-        <h2>Human Recombinant Enzymes</h2>
-        <p>
-          ed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium
-        </p>
-        <p>
-          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-          inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
-        </p>
-        <div class="detail-link">
-          <mat-icon>chevron_right</mat-icon>
-          Detail
+        <div class="service-image" *ngIf="odd" fxHide.lt-sm>
+          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
         </div>
+
+        <mat-divider *ngIf="!last" fxHide.gt-xs></mat-divider>
       </div>
-    </div>
-    <div class="service-item enzyme" fxHide.lt-sm>
-      <img
-        class="service-image"
-        src="https://image.freepik.com/free-vector/illustration-healthy-lifestyle_53876-28533.jpg"
-        alt="enzyme"
-      />
     </div>
   </div>
 </section>

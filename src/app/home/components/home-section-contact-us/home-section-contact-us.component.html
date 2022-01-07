@@ -2,39 +2,58 @@
   <div class="container" id="contact-us">
     <div class="contact-info">
       <div>
-        <h2>Contact us for free</h2>
-        Fill up the form and our Business Team will get back to you within 24
-        hours
+        <h2>
+          {{ "HOME__SECTION_CONTACT_US__CONTACT_US_FOR_FREE" | translate }}
+        </h2>
+        <p>
+          {{ "HOME__SECTION_CONTACT_US__FILL_UP_THE_FORM" | translate }}
+        </p>
       </div>
       <div class="contact-info-list">
         <div class="contact-info-item">
-          <mat-icon>phone</mat-icon> +82) 51-362-1101
+          <mat-icon>phone</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__PHONE_NUMBER" | translate }}
         </div>
         <div class="contact-info-item">
-          <mat-icon>mail_outline</mat-icon> help@spmed.kr
+          <mat-icon>mail_outline</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__HELP_EMAIL" | translate }}
         </div>
         <div class="contact-info-item">
-          <mat-icon>place</mat-icon> 610, Ho, 111, Hyoyeol-ro, Buk-gu, Busan,
-          46508, Republic of Korea
+          <mat-icon>place</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__ADDRESS" | translate }}
         </div>
       </div>
     </div>
     <div class="contact-form">
       <form [formGroup]="contactForm" class="spmed-form">
         <div class="spmed-form-field">
-          <mat-label>Name</mat-label>
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__NAME" | translate
+            }}
+          </mat-label>
           <mat-form-field appearance="outline">
             <input matInput formControlName="name" />
           </mat-form-field>
         </div>
         <div class="spmed-form-field">
-          <mat-label>Email</mat-label>
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__EMAIL"
+                | translate
+            }}
+          </mat-label>
           <mat-form-field appearance="outline">
             <input matInput formControlName="name" />
           </mat-form-field>
         </div>
         <div class="spmed-form-field">
-          <mat-label>Message</mat-label>
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__MESSAGE"
+                | translate
+            }}
+          </mat-label>
           <mat-form-field appearance="outline">
             <textarea matInput formControlName="name" rows="6"></textarea>
           </mat-form-field>
@@ -42,7 +61,10 @@
 
         <div align="end">
           <button mat-stroked-button class="spmed-primary-button">
-            Send Message
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__BUTTONS__SEND_MESSAGE"
+                | translate
+            }}
           </button>
         </div>
       </form>

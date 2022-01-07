@@ -7,12 +7,19 @@
     margin: auto;
   }
 
+  h2.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    color: var(--primary--color);
+  }
   .reason-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
     .reason-item {
-      align-self: center;
+      align-self: flex-start;
       justify-self: center;
 
       max-width: 200px;
@@ -21,9 +28,11 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
+
       .reason-item-icon {
         width: 100px;
         height: 100px;
+        margin-bottom: 10px;
       }
     }
   }
@@ -31,8 +40,10 @@
 
 @media screen and (max-width: 900px) {
   #why-choose-us {
-    padding-left: 0px;
-    padding-right: 0px;
+    h2.title {
+      margin-bottom: 30px;
+    }
+
     .reason-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

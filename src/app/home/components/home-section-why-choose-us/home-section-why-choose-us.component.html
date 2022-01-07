@@ -1,39 +1,14 @@
 <section id="why-choose-us" class="hidden">
   <div class="container">
-    <h2
-      align="center"
-      style="margin-bottom: 40px; color: var(--primary--color)"
-    >
-      Why Choose Us
+    <h2 class="title">
+      {{ "HOME__SECTION_WHY_CHOOSE_US__WHY_CHOOSE_US" | translate }}
     </h2>
     <div class="reason-list">
-      <div class="reason-item">
-        <img
-          src="https://image.flaticon.com/icons/png/512/993/993459.png"
-          class="reason-item-icon"
-        />
-        <p>accusantium doloremque laudantium</p>
-      </div>
-      <div class="reason-item">
-        <img
-          src="https://image.flaticon.com/icons/png/512/1245/1245362.png"
-          class="reason-item-icon"
-        />
-        <p>accusantium doloremque laudantium</p>
-      </div>
-      <div class="reason-item">
-        <img
-          src="https://image.flaticon.com/icons/png/512/1253/1253337.png"
-          class="reason-item-icon"
-        />
-        <p>accusantium doloremque laudantium</p>
-      </div>
-      <div class="reason-item">
-        <img
-          src="https://image.flaticon.com/icons/png/512/1253/1253680.png"
-          class="reason-item-icon"
-        />
-        <p>accusantium doloremque laudantium</p>
+      <div class="reason-item" *ngFor="let reason of reasonList">
+        <img [src]="reason.imgUrl" class="reason-item-icon" />
+        <p>
+          {{ reason.title | translate }}
+        </p>
       </div>
     </div>
   </div>
