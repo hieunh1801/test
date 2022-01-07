@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-section-pdss-common-progress',
-  templateUrl: './section-pdss-common-progress.component.html',
-  styleUrls: ['./section-pdss-common-progress.component.scss'],
+  selector: 'app-overview-section-progress',
+  templateUrl: './overview-section-progress.component.html',
+  styleUrls: ['./overview-section-progress.component.scss'],
 })
-export class SectionPdssCommonProgressComponent implements OnInit {
+export class OverviewSectionProgressComponent implements OnInit {
   mode: 'patient' | 'professional' = 'patient';
 
   constructor() {}

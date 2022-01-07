@@ -28,11 +28,11 @@ import { GeneComponent } from './components/browser/components/gene/gene.compone
 import { DrugComponent } from './components/browser/components/drug/drug.component';
 import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
 import { ReportInformationRequestDialogComponent } from './components/report-preview/components/report-information-request-dialog/report-information-request-dialog.component';
-import { SectionPdssCommonProgressComponent } from './components/overview/components/section-pdss-common-progress/section-pdss-common-progress.component';
-import { SectionPdssProductsComponent } from './components/overview/components/section-pdss-products/section-pdss-products.component';
-import { SectionPdssWhoNeedComponent } from './components/overview/components/section-pdss-who-need/section-pdss-who-need.component';
-import { SectionPdssWhyNeedComponent } from './components/overview/components/section-pdss-why-need/section-pdss-why-need.component';
-import { SectionPdssIntroductionComponent } from './components/overview/components/section-pdss-introduction/section-pdss-introduction.component';
+import { OverviewSectionProgressComponent } from './components/overview/components/overview-section-progress/overview-section-progress.component';
+import { OverviewSectionIntroductionComponent } from './components/overview/components/overview-section-introduction/overview-section-introduction.component';
+import { OverviewSectionProductsComponent } from './components/overview/components/overview-section-products/overview-section-products.component';
+import { OverviewSectionWhyNeedComponent } from './components/overview/components/overview-section-why-need/overview-section-why-need.component';
+import { OverviewSectionWhoNeedComponent } from './components/overview/components/overview-section-who-need/overview-section-who-need.component';
 
 @NgModule({
   declarations: [
@@ -61,11 +61,11 @@ import { SectionPdssIntroductionComponent } from './components/overview/componen
     DrugComponent,
     ReportPreviewComponent,
     ReportInformationRequestDialogComponent,
-    SectionPdssCommonProgressComponent,
-    SectionPdssProductsComponent,
-    SectionPdssWhoNeedComponent,
-    SectionPdssWhyNeedComponent,
-    SectionPdssIntroductionComponent,
+    OverviewSectionProgressComponent,
+    OverviewSectionIntroductionComponent,
+    OverviewSectionProductsComponent,
+    OverviewSectionWhyNeedComponent,
+    OverviewSectionWhoNeedComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
