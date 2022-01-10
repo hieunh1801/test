@@ -79,6 +79,10 @@ $screen: var(--secondary--screen);
       .services-grid {
         grid-template-columns: 1fr;
       }
+      .service:not(:last-child) {
+        border-bottom: dashed 1px;
+        padding-bottom: 4px;
+      }
     }
   }
 }
