@@ -1,0 +1,29 @@
+.procedure-wrapper {
+  padding-top: 60px;
+  // padding-bottom: 60px;
+
+  h2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--primary-a--color);
+  }
+  .procedure {
+    max-width: var(--secondary--screen);
+    margin: auto;
+    padding: 20px;
+  }
+
+  .procedure-item {
+    width: 100%;
+    img {
+      width: calc(100% - 60px);
+      height: auto;
+      padding: 30px;
+      border: solid 1px rgba($color: #000000, $alpha: 0.1);
+      margin-top: 10px;
+    }
+
+    margin-bottom: 30px;
+  }
+}
