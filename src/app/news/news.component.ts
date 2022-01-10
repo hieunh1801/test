@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { map, finalize, filter } from 'rxjs/operators';
@@ -24,6 +25,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   });
 
   totalCustomerBoard = 0;
+  boardTagId = 0;
   customerBoardDataSource: CustomerBoard[] = null;
 
   customerBoardKrData: CustomerBoardView[] = null;
@@ -37,13 +39,24 @@ export class NewsComponent implements OnInit, OnDestroy {
     private pageLoadingService: PageLoadingService,
     private formBuilder: FormBuilder,
     private newsService: NewsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private translateService: TranslateService,
     private matSnackbarService: MatSnackbarService,
     public languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
-    this.loadCustomerBoardList();
+    const boardTagId = this.activatedRoute.snapshot.params?.boardTagId || null;
+    this.boardTagId = boardTagId;
+    if (!!boardTagId) {
+      this.loadCustomerBoardListbyBoardTagId(boardTagId);
+    } else {
+      this.loadCustomerBoardList();
+    }
+
+    // reload
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnDestroy(): void {
@@ -60,6 +73,47 @@ export class NewsComponent implements OnInit, OnDestroy {
 
     this.newsService
       .getCustomerBoard(searchRequest)
+      .pipe(
+        finalize(() => {
+          this.pageLoadingService.stopLoading();
+        })
+      )
+      .subscribe({
+        next: (response: SpmedResponse<CustomerBoard>) => {
+          const customerBoard: CustomerBoard = response?.data?.items[0];
+          if (customerBoard == null) {
+            const message = this.translateService.instant(
+              'NEWS__LIST__RESULT__NOT__FOUND'
+            );
+            const action = this.translateService.instant(
+              'MAT_SNACKBAR__ACTION__NEWS'
+            );
+            this.matSnackbarService.open(message, action);
+          } else {
+            this.customerBoardDataSource = response?.data?.items || [];
+          }
+        },
+        complete: () => {
+          // console.log('this.newsService.search done!!!');
+        },
+        error: (error) => {
+          console.error(error.response);
+          const message2 = this.translateService.instant(
+            'PDSS__BROWSER__SERVER__NOT__RESPONSE'
+          );
+          const action2 = this.translateService.instant(
+            'MAT_SNACKBAR__ACTION__BROWSER'
+          );
+          this.matSnackbarService.open(message2, action2);
+        },
+      });
+  }
+
+  loadCustomerBoardListbyBoardTagId(boardTagId): void {
+    this.pageLoadingService.startLoading();
+
+    this.newsService
+      .getCustomerBoardByboardTagId(boardTagId)
       .pipe(
         finalize(() => {
           this.pageLoadingService.stopLoading();

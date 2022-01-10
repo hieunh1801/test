@@ -35,6 +35,11 @@ export class NewsService {
     //.pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 
+  getCustomerBoardByboardTagId(boardTagId: number): Observable<any> {
+    const url = `${this.baseUrl}/boardTagId/${boardTagId}`;
+    return this.httpClient.get<any>(url);
+  }
+
   getCustomerBoardById(boardId: number): Observable<any> {
     const url = `${this.baseUrl}/${boardId}`;
     return this.httpClient.get<any>(url);

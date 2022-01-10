@@ -9,6 +9,10 @@ const routes: Routes = [
     component: NewsComponent,
   },
   {
+    path: ':boardTagId',
+    component: NewsComponent,
+  },
+  {
     path: ':id/detail',
     component: NewsDetailComponent,
   },

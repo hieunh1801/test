@@ -117,12 +117,16 @@
               </div>
               <div class="tag">
                 #
-                <span *ngIf="this.languageService.currentLanguage == 'en'">{{
-                  board.boardTag
-                }}</span>
-                <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
-                  board.kr.boardTag
-                }}</span>
+                <span *ngIf="this.languageService.currentLanguage == 'en'">
+                  <a [routerLink]="['/news', board.boardTagId]" class="tag">
+                    {{ board.boardTag }}
+                  </a>
+                </span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                  <a [routerLink]="['/news', board.boardTagId]" class="tag">{{
+                    board.kr.boardTag
+                  }}</a></span
+                >
               </div>
             </mat-card-content>
           </mat-card>
