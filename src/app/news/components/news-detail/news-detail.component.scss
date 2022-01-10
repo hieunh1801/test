@@ -97,6 +97,10 @@ mat-card {
 .images-list {
   background-color: #ccc;
   width: auto;
-  height: 150px;
+  height: 180px;
   margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
 }

@@ -34,18 +34,18 @@
           </div>
           <div fxFlex="10">
             <span *ngIf="this.languageService.currentLanguage == 'kr'">
-              조회수 {{ customerBoard?.readCount }}
-            </span>
-            <span *ngIf="this.languageService.currentLanguage == 'en'">
-              {{ customerBoard?.readCount }} read
-            </span>
-          </div>
-          <div fxFlex="10">
-            <span *ngIf="this.languageService.currentLanguage == 'kr'">
               {{ customerBoard?.kr?.author }}
             </span>
             <span *ngIf="this.languageService.currentLanguage == 'en'">
               {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
             </span>
           </div>
           <div fxFlex="70"></div>
@@ -61,18 +61,18 @@
           </div>
           <div fxFlex="30">
             <span *ngIf="this.languageService.currentLanguage == 'kr'">
-              조회수 {{ customerBoard?.readCount }}
-            </span>
-            <span *ngIf="this.languageService.currentLanguage == 'en'">
-              {{ customerBoard?.readCount }} read
-            </span>
-          </div>
-          <div fxFlex="30">
-            <span *ngIf="this.languageService.currentLanguage == 'kr'">
               {{ customerBoard?.kr?.author }}
             </span>
             <span *ngIf="this.languageService.currentLanguage == 'en'">
               {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
             </span>
           </div>
           <div fxFlex="10"></div>
@@ -116,7 +116,7 @@
         <br />
 
         <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
-          <h2>Related News</h2>
+          <h2>Recent News</h2>
         </div>
         <div
           fxLayout="row wrap"
@@ -132,7 +132,7 @@
             <div class="images-list"></div>
             <mat-card-title
               style="line-height: 1em; margin-bottom: 20px"
-              class="mb-10 text-xxl"
+              class="mb-10"
             >
               <span *ngIf="this.languageService.currentLanguage == 'en'">
                 <a [routerLink]="['/news', board.id, 'detail']">{{
@@ -162,6 +162,7 @@
                   }}</span>
                 </div>
               </div>
+              <!--
               <div class="mb-10">
                 <div
                   class="list-content"
@@ -174,6 +175,7 @@
                   [innerHTML]="board.kr.content | truncateText: 180"
                 ></div>
               </div>
+              -->
               <div class="tag">
                 #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">{{

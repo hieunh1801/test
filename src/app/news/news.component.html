@@ -36,14 +36,32 @@
           fxLayoutAlign="start stretch"
         >
           <mat-card
-            *ngFor="let board of customerBoardDataSource | filter: 'spmed'"
+            *ngFor="let board of customerBoardDataSource | filter: 'aaa'"
             fxFlex="0 0 calc(33%-25px)"
             fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <div class="images"></div>
+            <div
+              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <a [routerLink]="['/news', board.id, 'detail']">
+                <span *ngIf="this.languageService.currentLanguage == 'en'"
+                  ><img [src]="board.thumbnailUrl" class="image-thumbnail"
+                /></span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'"
+                  ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
+                /></span>
+              </a>
+            </div>
+            <div
+              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <div class="images"></div>
+            </div>
             <mat-card-title
               style="line-height: 1em; margin-bottom: 20px"
-              class="mb-10 text-xxl"
+              class="mb-10"
             >
               <span *ngIf="this.languageService.currentLanguage == 'en'">
                 <a [routerLink]="['/news', board.id, 'detail']">{{

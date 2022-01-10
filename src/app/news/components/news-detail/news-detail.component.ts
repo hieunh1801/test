@@ -44,6 +44,8 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
       this.loadCustomerBoardAttachmentById(boardId);
       this.updateReadCount();
     }
+    // reload
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnDestroy(): void {}
@@ -60,15 +62,6 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
         }
       },
       error: (error) => {
-        /*
-          const message2 = this.translateService.instant(
-          'PDSS__BROWSER__SERVER__NOT__RESPONSE'
-        );
-        const action2 = this.translateService.instant(
-          'MAT_SNACKBAR__ACTION__BROWSER'
-        );
-        this.matSnackbarService.open(message2, action2);
-        */
         const message =
           error?.error?.status?.code || 'Get news article by id error';
         this.matSnackbarService.open(message, 'Get');
@@ -122,14 +115,14 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
       next: (response) => {
         console.log(response?.status?.code);
         if (response?.status?.code === 'success') {
-          this.matSnackbarService.open('Update read count success', 'Update');
+          // this.matSnackbarService.open('Update read count success', 'Update');
         } else {
-          this.matSnackbarService.open('Update read count fail', 'Update');
+          // this.matSnackbarService.open('Update read count fail', 'Update');
         }
       },
       error: (error) => {
-        const message = error?.error?.status?.code || 'Update read count error';
-        this.matSnackbarService.open(message, 'Update');
+        // const message = error?.error?.status?.code || 'Update read count error';
+        // this.matSnackbarService.open(message, 'Update');
       },
     });
   }

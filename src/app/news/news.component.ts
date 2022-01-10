@@ -25,6 +25,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   totalCustomerBoard = 0;
   customerBoardDataSource: CustomerBoard[] = null;
+
   customerBoardKrData: CustomerBoardView[] = null;
   customerBoardEnData: CustomerBoardView[] = null;
   customerBoardData: CustomerBoardView[] = null;
@@ -76,13 +77,11 @@ export class NewsComponent implements OnInit, OnDestroy {
             );
             this.matSnackbarService.open(message, action);
           } else {
-            // this.onGetResults(response.data.items);
             this.customerBoardDataSource = response?.data?.items || [];
-            // this.filteringList(this.customerBoardDataSource);
           }
         },
         complete: () => {
-          console.log('this.newsService.search done!!!');
+          // console.log('this.newsService.search done!!!');
         },
         error: (error) => {
           console.error(error.response);

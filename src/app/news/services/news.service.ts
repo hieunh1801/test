@@ -68,6 +68,7 @@ export interface SearchResponse {
   content?: string;
   author?: string;
   publishTime?: string;
+  thumbnailUrl?: string;
   draft?: number;
   pin?: number;
   deleted: number;
@@ -85,6 +86,7 @@ export interface CustomerBoard {
   password?: string;
   readCount?: number;
   publishTime?: string;
+  thumbnailUrl?: string;
   draft?: number;
   pin?: number;
   deleted: number;
@@ -101,6 +103,7 @@ export interface CustomerBoardKr {
   title?: string;
   content?: string;
   author?: string;
+  thumbnailUrl?: string;
 }
 
 export interface CustomerBoardView {
