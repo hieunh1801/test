@@ -1,1 +1,28 @@
-<p>overview-section-why works!</p>
+<section class="why-wrapper">
+  <div class="why container">
+    <h2>
+      <mat-icon>label_important</mat-icon>
+      {{ "ADME__OVERVIEW__SECTIONS__WHY__TITLE" | translate }}
+    </h2>
+    <div class="content">
+      <div class="reason-list">
+        <div class="reason" *ngFor="let reason of reasonList">
+          <mat-icon>download_done</mat-icon> {{ reason | translate }}
+        </div>
+      </div>
+
+      <div class="intro-images">
+        <div>
+          <img
+            src="/assets/images/adme-why.jpg"
+            alt="why use adme"
+            class="item1"
+          />
+        </div>
+        <div>
+          <img src="/assets/images/adme-why-2.jpg" alt="why use adme 2" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

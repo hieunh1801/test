@@ -1,6 +1,7 @@
+$screen: var(--secondary--screen);
 .what-is-wrapper {
   padding-top: 30px;
-  padding-bottom: 60px;
+  padding-bottom: 0px;
 
   h2 {
     display: flex;
@@ -10,7 +11,7 @@
   }
 
   .what-is {
-    max-width: var(--secondary--screen);
+    max-width: calc(#{$screen} + 40px);
     margin: auto;
   }
 
