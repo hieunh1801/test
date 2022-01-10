@@ -1,1 +1,17 @@
-<p>overview-section-where-to-use works!</p>
+<section class="where-to-use-wrapper">
+  <div class="where-to-use">
+    <h2>
+      <mat-icon>label_important</mat-icon>
+      {{
+        "GENOTYPING_KIT__OVERVIEW__SECTIONS__WHERE_TO_USE__TITLE" | translate
+      }}
+    </h2>
+    <div class="content-list">
+      <div class="content" *ngFor="let content of contentList">
+        <ng-container *ngIf="content | translate">
+          <mat-icon>download_done</mat-icon> {{ content | translate }}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

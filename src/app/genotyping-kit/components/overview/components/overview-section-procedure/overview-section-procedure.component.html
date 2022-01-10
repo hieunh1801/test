@@ -1,1 +1,16 @@
-<p>overview-section-procedure works!</p>
+<section class="procedure-wrapper">
+  <div class="procedure">
+    <h2>
+      <mat-icon>label_important</mat-icon>
+      {{ "GENOTYPING_KIT__OVERVIEW__SECTIONS__PROCEDURE__TITLE" | translate }}
+    </h2>
+    <div class="procedure-list">
+      <div class="procedure-item" *ngFor="let procedure of procedureList">
+        <div>{{ procedure.title | translate }}</div>
+        <div class="intro-image">
+          <img [src]="procedure.imgUrl" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
