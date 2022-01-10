@@ -191,6 +191,7 @@
   "MAT_SNACKBAR__MESSAGES__FAILED": "Failed",
   "MAT_SNACKBAR__MESSAGES__SUCCESS": "Success",
   "NEWS__DETAIL__ATTACHMENT__FILE": "Attached File",
+  "NEWS__LIST__RESULT__NOT__FOUND": "News article result not found",
   "PDSS__BROWSER__CHECKBOX__DRUGS": "Drugs",
   "PDSS__BROWSER__CHECKBOX__GENES": "Genes",
   "PDSS__BROWSER__DRUG__BUTTONS__SHOW_LESS": "Show Less",

@@ -86,7 +86,7 @@ export class NewsComponent implements OnInit, OnDestroy {
               'NEWS__LIST__RESULT__NOT__FOUND'
             );
             const action = this.translateService.instant(
-              'MAT_SNACKBAR__ACTION__NEWS'
+              'MAT_SNACKBAR__ACTION__BROWSER'
             );
             this.matSnackbarService.open(message, action);
           } else {
@@ -127,7 +127,7 @@ export class NewsComponent implements OnInit, OnDestroy {
               'NEWS__LIST__RESULT__NOT__FOUND'
             );
             const action = this.translateService.instant(
-              'MAT_SNACKBAR__ACTION__NEWS'
+              'MAT_SNACKBAR__ACTION__BROWSER'
             );
             this.matSnackbarService.open(message, action);
           } else {
