@@ -1,6 +1,6 @@
 #what-is-wrapper {
   // background-color: #f2f2f2;
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 60px;
 
   h2 {
@@ -13,7 +13,9 @@
     text-decoration: none;
   }
   .what-is {
-    max-width: var(--primary--screen);
+    max-width: var(--secondary--screen);
+    padding: 0 20px;
+
     margin: auto;
 
     display: grid;
@@ -24,7 +26,6 @@
   .content {
     align-self: flex-start;
     justify-self: flex-start;
-    padding: 20px;
   }
   .content > .action-list {
     display: flex;
@@ -74,7 +75,6 @@
     .content {
       align-self: flex-start;
       justify-self: flex-start;
-      padding: 10px;
     }
   }
 }
