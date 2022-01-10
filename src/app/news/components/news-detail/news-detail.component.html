@@ -85,10 +85,17 @@
         <div class="tag">
           #
           <span *ngIf="this.languageService.currentLanguage == 'kr'">
-            {{ customerBoard?.kr?.boardTag }}
+            <a
+              [routerLink]="['/news', customerBoard?.kr?.boardTagId]"
+              class="tag"
+            >
+              {{ customerBoard?.kr?.boardTag }}
+            </a>
           </span>
           <span *ngIf="this.languageService.currentLanguage == 'en'">
-            {{ customerBoard?.boardTag }}
+            <a [routerLink]="['/news', customerBoard?.boardTagId]" class="tag">
+              {{ customerBoard?.boardTag }}
+            </a>
           </span>
         </div>
         <div *ngIf="!!customerBoardAttachment">
@@ -178,12 +185,16 @@
               </div>
               <div class="tag">
                 #
-                <span *ngIf="this.languageService.currentLanguage == 'en'">{{
-                  board.boardTag
-                }}</span>
-                <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
-                  board.kr.boardTag
-                }}</span>
+                <span *ngIf="this.languageService.currentLanguage == 'en'">
+                  <a [routerLink]="['/news', board.boardTagId]" class="tag">
+                    {{ board.boardTag }}
+                  </a>
+                </span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                  <a [routerLink]="['/news', board.kr.boardTagId]" class="tag">
+                    {{ board.kr.boardTag }}
+                  </a>
+                </span>
               </div>
             </mat-card-content>
           </mat-card>
