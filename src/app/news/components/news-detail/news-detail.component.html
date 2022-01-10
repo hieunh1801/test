@@ -2,13 +2,6 @@
   <div id="news-detail-page">
     <div class="section">
       <div id="news-info">
-        <!--
-        <div class="images">          
-          <img
-            src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-            class="image"            
-        </div>
-        -->
         <div>
           <div class="title">
             <span *ngIf="this.languageService.currentLanguage == 'kr'">
@@ -129,11 +122,32 @@
             fxFlex="0 0 calc(33%-25px)"
             fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <div class="images-list"></div>
-            <mat-card-title
-              style="line-height: 1em; margin-bottom: 20px"
-              class="mb-10"
+            <div
+              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
+              class="image-box"
             >
+              <a [routerLink]="['/news', board.id, 'detail']">
+                <span *ngIf="this.languageService.currentLanguage == 'en'"
+                  ><img [src]="board.thumbnailUrl" class="image-thumbnail"
+                /></span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'"
+                  ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
+                /></span>
+              </a>
+            </div>
+            <div
+              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <div class="images">
+                <img
+                  src="../../assets/images/news.jpg"
+                  class="image-thumbnail"
+                />
+              </div>
+            </div>
+
+            <mat-card-title class="mb-10">
               <span *ngIf="this.languageService.currentLanguage == 'en'">
                 <a [routerLink]="['/news', board.id, 'detail']">{{
                   board.title
@@ -162,20 +176,6 @@
                   }}</span>
                 </div>
               </div>
-              <!--
-              <div class="mb-10">
-                <div
-                  class="list-content"
-                  *ngIf="this.languageService.currentLanguage == 'en'"
-                  [innerHTML]="board.content | truncateText: 180"
-                ></div>
-                <div
-                  class="list-content"
-                  *ngIf="this.languageService.currentLanguage == 'kr'"
-                  [innerHTML]="board.kr.content | truncateText: 180"
-                ></div>
-              </div>
-              -->
               <div class="tag">
                 #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">{{

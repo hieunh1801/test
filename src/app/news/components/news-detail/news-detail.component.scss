@@ -18,16 +18,15 @@
   }
   #news-info {
     padding: 16px;
-    .images {
-      background-color: #ccc;
-      width: auto;
-      height: 100px;
-    }
+
     .title {
       padding: 0px;
     }
     .author {
       margin-bottom: 10px;
+    }
+    .content {
+      word-wrap: break-word;
     }
     .tag {
       color: #003f9e;
@@ -36,12 +35,29 @@
     .attachment {
       font-size: 12px;
     }
+
+    .images {
+      background-color: #ccc;
+      width: auto;
+      height: 180px;
+      margin-bottom: 20px;
+    }
+    .image-box {
+      height: 180px;
+      overflow: hidden;
+      margin: 15px auto;
+    }
+    .image-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   a {
     text-decoration: none;
     color: #000;
   }
-
+  /*
   table {
     width: 100%;
   }
@@ -49,7 +65,7 @@
   .full-width {
     width: 100%;
   }
-
+  
   .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -59,15 +75,11 @@
     word-wrap: break-word;
     word-break: break-word;
   }
-
+  
   .bold {
     font-weight: 500;
   }
-  .contents {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  */
 }
 
 :host ::ng-deep .highlight {
@@ -94,13 +106,8 @@ mat-card {
   margin-bottom: 10px;
 }
 
-.images-list {
-  background-color: #ccc;
-  width: auto;
-  height: 180px;
-  margin-bottom: 20px;
-}
-
 mat-card-title {
   font-size: 24px;
+  line-height: 1em;
+  margin-bottom: 20px;
 }
