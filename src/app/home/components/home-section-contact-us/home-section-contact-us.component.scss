@@ -1,0 +1,46 @@
+#contact-us-wrapper {
+  background-color: var(--primary-a--color);
+  padding: 60px 0;
+
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  #contact-us {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px;
+    .contact-info {
+      color: white !important;
+      padding: 20px;
+      .contact-info-item {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: 400px;
+        mat-icon {
+          margin-right: 16px;
+        }
+      }
+    }
+    .contact-form {
+      padding: 20px;
+      background-color: white;
+      border-radius: 3px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #contact-us-wrapper {
+    #contact-us {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      .contact-info {
+        padding-top: 0px;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<section id="why-need-wrapper" class="hidden">
+  <div id="why-need" class="container">
+    <h2>
+      {{ "PDSS__OVERVIEW__WHY_NEED__TEXTS__WHY_NEED" | translate }}
+    </h2>
+    <p>
+      {{
+        "PDSS__OVERVIEW__WHY_NEED__TEXTS__PERSONALIZED_SERVICE_FOR_CHECKING"
+          | translate
+      }}
+    </p>
+
+    <div class="reason-list">
+      <div class="reason-item" *ngFor="let reason of reasonList">
+        <img [src]="reason.imgUrl" class="image" />
+        <div class="content">
+          <h3>{{ reason.title | translate }}</h3>
+          <p>
+            {{ reason.content | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

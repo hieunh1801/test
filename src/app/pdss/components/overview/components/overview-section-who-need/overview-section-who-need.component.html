@@ -1,0 +1,18 @@
+<section id="who-need-wrapper" class="hidden">
+  <div id="who-need" class="container">
+    <h2>
+      {{ "PDSS__OVERVIEW__WHO_NEED__TEXTS__WHO_NEED" | translate }}
+    </h2>
+    <div class="reason-list">
+      <div class="reason-item" *ngFor="let reason of reasonList">
+        <img [src]="reason.imgUrl" class="image" />
+        <div class="content">
+          <h3>{{ reason.title | translate }}</h3>
+          <p>
+            {{ reason.content | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section class="when-to-use-wrapper">
+  <div class="when-to-use">
+    <h2>
+      <mat-icon>label_important</mat-icon>
+      {{ "GENOTYPING_KIT__OVERVIEW__SECTIONS__WHEN_TO_USE__TITLE" | translate }}
+    </h2>
+    <div class="reason-list">
+      <div class="reason" *ngFor="let reason of reasonList">
+        <mat-icon>download_done</mat-icon> {{ reason | translate }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+.why-choose-wrapper {
+  background-color: #f2f2f2;
+  padding: 60px 0;
+
+  .why-choose {
+    padding: 0 20px;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--primary-a--color);
+  }
+  .why-choose {
+    max-width: var(--secondary--screen);
+    margin: auto;
+  }
+
+  img {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+  }
+
+  .intro-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px 40px 40px;
+    width: calc(100% - 80px);
+  }
+
+  .intro-2 {
+    display: flex;
+    padding: 10px 20px 20px 20px;
+    width: calc(100% - 40px);
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,67 @@
+$headingPrefixUrl: "/assets/icons/heading-prefix.svg";
+
+#who-need-wrapper {
+  .container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 32px;
+  }
+  padding-top: 60px;
+  padding-bottom: 60px;
+  h2:before {
+    content: "";
+    background: url($headingPrefixUrl); /* with class ModalCarrot ??*/
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 10px;
+  }
+  #who-need {
+    .reason-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      .reason-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .image {
+          height: 100px;
+          width: 100px;
+          border-radius: 100px;
+          object-fit: none;
+        }
+        .content {
+          text-align: center;
+          width: 100%;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #who-need-wrapper {
+    .container {
+      padding: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #who-need-wrapper {
+    .container {
+      padding: 16px;
+    }
+
+    #who-need {
+      .reason-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+      }
+    }
+  }
+}

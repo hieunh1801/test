@@ -1,0 +1,15 @@
+<section id="why-choose-us" class="hidden">
+  <div class="container">
+    <h2 class="title">
+      {{ "HOME__SECTION_WHY_CHOOSE_US__WHY_CHOOSE_US" | translate }}
+    </h2>
+    <div class="reason-list">
+      <div class="reason-item" *ngFor="let reason of reasonList">
+        <img [src]="reason.imgUrl" class="reason-item-icon" />
+        <p>
+          {{ reason.title | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
