@@ -1,0 +1,57 @@
+<section class="what-is-wrapper">
+  <div class="what-is">
+    <div class="non-clinical-adme-service section">
+      <div class="content">
+        <h2>
+          <mat-icon>label_important</mat-icon>
+          {{
+            "ADME__OVERVIEW__SECTIONS__WHAT_IS__NON_CLINICAL_ADME_SERVICE__TITLE"
+              | translate
+          }}
+        </h2>
+        <p>
+          {{
+            "ADME__OVERVIEW__SECTIONS__WHAT_IS__NON_CLINICAL_ADME_SERVICE__CONTENT"
+              | translate
+          }}
+        </p>
+      </div>
+      <div class="intro-image">
+        <img
+          src="/assets/images/adme-non-clinical-adme.jpg"
+          alt="non-clinical-adme-service"
+        />
+      </div>
+    </div>
+
+    <div class="non-clinical-adme-service-of-spmed section">
+      <h2>
+        <mat-icon>label_important</mat-icon>
+        {{
+          "ADME__OVERVIEW__SECTIONS__WHAT_IS__NON_CLINICAL_ADME_SERVICE_OF_SPMED__TITLE"
+            | translate
+        }}
+      </h2>
+      <div class="services-grid">
+        <div class="service" *ngFor="let service of serviceList">
+          <mat-icon>download_done</mat-icon> {{ service | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="in-vitro-adme section">
+      <h2>
+        <mat-icon>label_important</mat-icon>
+        {{
+          "ADME__OVERVIEW__SECTIONS__WHAT_IS__IN_VITRO_ADME__TITLE" | translate
+        }}
+      </h2>
+      <p>
+        {{
+          "ADME__OVERVIEW__SECTIONS__WHAT_IS__IN_VITRO_ADME__CONTENT"
+            | translate
+        }}
+      </p>
+    </div>
+  </div>
+</section>
