@@ -1,7 +1,8 @@
 #what-is-wrapper {
-  background-color: #f2f2f2;
+  // background-color: #f2f2f2;
   padding-top: 60px;
   padding-bottom: 60px;
+
   h2 {
     display: flex;
     justify-content: flex-start;
@@ -12,7 +13,7 @@
     text-decoration: none;
   }
   .what-is {
-    width: var(--primary--screen);
+    max-width: var(--primary--screen);
     margin: auto;
 
     display: grid;
@@ -23,6 +24,7 @@
   .content {
     align-self: flex-start;
     justify-self: flex-start;
+    padding: 20px;
   }
   .content > .action-list {
     display: flex;
@@ -53,5 +55,26 @@
   .intro-image {
     align-self: center;
     justify-self: center;
+
+    img {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
+
+@media screen and (max-width: 688px) {
+  #what-is-wrapper {
+    .what-is {
+      grid-template-columns: 1fr;
+      grid-row-gap: 20px;
+    }
+    .content {
+      align-self: flex-start;
+      justify-self: flex-start;
+      padding: 10px;
+    }
   }
 }
