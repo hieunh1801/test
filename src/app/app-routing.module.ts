@@ -49,7 +49,14 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
-
+  {
+    path: 'genotyping-kit',
+    component: HomeLayoutComponent,
+    loadChildren: () =>
+      import('./genotyping-kit/genotyping-kit.module').then(
+        (m) => m.GenotypingKitModule
+      ),
+  },
   {
     path: '',
     redirectTo: 'home',
