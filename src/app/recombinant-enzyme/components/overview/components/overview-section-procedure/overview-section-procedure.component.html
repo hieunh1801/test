@@ -1,1 +1,22 @@
-<p>overview-section-procedure works!</p>
+<section class="procedure-wrapper">
+  <div class="procedure">
+    <h2 class="spmed-h2-with-icon">
+      <mat-icon>label_important</mat-icon>
+      {{
+        "RECOMBINANT_ENZYME__OVERVIEW__SECTIONS__PROCEDURE__TITLE" | translate
+      }}
+    </h2>
+    <div class="content">
+      <div class="procedure-list">
+        <div
+          class="procedure-list-item"
+          *ngFor="let procedure of procedureList; let i = index"
+        >
+          <img [src]="procedure.imgUrl" [alt]="procedure.content | translate" />
+          <p>{{ procedure.content | translate }}</p>
+          <div class="procedure-index">{{ i + 1 }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
