@@ -59,6 +59,9 @@ pre {
   justify-content: flex-start;
   align-items: center;
   color: var(--primary-a--color);
+  mat-icon {
+    margin-right: 8px;
+  }
 }
 
 .spmed-secondary-button {

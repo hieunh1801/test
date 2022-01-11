@@ -23,7 +23,7 @@ $screen: var(--secondary--screen);
     padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 10px;
+    column-gap: 10px;
 
     .intro-image {
       align-self: center;
@@ -44,8 +44,8 @@ $screen: var(--secondary--screen);
     .services-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-row-gap: 10px;
-      grid-column-gap: 20px;
+      row-gap: 10px;
+      column-gap: 20px;
     }
 
     .service {

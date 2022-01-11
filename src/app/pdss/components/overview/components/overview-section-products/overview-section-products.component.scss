@@ -23,8 +23,8 @@ $headingPrefixUrl: "/assets/icons/heading-prefix.svg";
     .item-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-column-gap: 16px;
-      grid-row-gap: 24px;
+      column-gap: 16px;
+      row-gap: 24px;
 
       .item {
         display: flex;

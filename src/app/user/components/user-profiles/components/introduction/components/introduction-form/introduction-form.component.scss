@@ -64,7 +64,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px 0px;
-    grid-column-gap: 16px;
+    column-gap: 16px;
 
     ::ng-deep .mat-form-field-outline-start {
       border-radius: 3px 0 0 3px !important;
