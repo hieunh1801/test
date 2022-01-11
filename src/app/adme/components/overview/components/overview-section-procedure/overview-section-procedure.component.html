@@ -1,0 +1,34 @@
+<section class="procedure-wrapper">
+  <div class="procedure">
+    <h2 class="spmed-h2-with-icon">
+      <mat-icon>label_important</mat-icon>
+      {{ "ADME__OVERVIEW__SECTIONS_PROCEDURE__TITLE" | translate }}
+    </h2>
+
+    <div class="content">
+      <div class="procedure-list">
+        <div
+          class="procedure-list-item"
+          *ngFor="let procedure of procedureList; let i = index"
+        >
+          <div class="item-header">
+            <span class="index-label">{{ i + 1 }}</span>
+            <span>
+              {{ procedure.title | translate }}
+            </span>
+          </div>
+          <div class="item-content-list">
+            <p
+              class="content-list-item"
+              *ngFor="let content of procedure.contentList"
+            >
+              <ng-container *ngIf="content | translate">
+                • {{ content | translate }}
+              </ng-container>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

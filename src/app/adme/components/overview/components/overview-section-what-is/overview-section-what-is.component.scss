@@ -3,13 +3,6 @@ $screen: var(--secondary--screen);
   padding-top: 30px;
   padding-bottom: 0px;
 
-  h2 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: var(--primary-a--color);
-  }
-
   .what-is {
     max-width: calc(#{$screen} + 40px);
     margin: auto;

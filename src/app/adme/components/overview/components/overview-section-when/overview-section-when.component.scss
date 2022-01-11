@@ -1,11 +1,6 @@
 .when-wrapper {
   padding-bottom: 30px;
-  h2 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: var(--primary-a--color);
-  }
+
   .when {
     max-width: var(--secondary--screen);
     margin: auto;
