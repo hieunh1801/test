@@ -1,0 +1,22 @@
+<section class="feature-and-benefit-wrapper">
+  <div class="feature-and-benefit">
+    <h2 class="spmed-h2-with-icon">
+      <mat-icon>label_important</mat-icon>
+      {{
+        "RECOMBINANT_ENZYME__OVERVIEW__SECTIONS__FEATURE_AND_BENEFIT__TITLE"
+          | translate
+      }}
+    </h2>
+    <div class="content">
+      <div class="content-list">
+        <div class="content-list-item" *ngFor="let content of contentList">
+          <p>
+            <mat-icon>scatter_plot</mat-icon>
+            {{ content.content | translate }}
+          </p>
+          <img [src]="content.imgUrl" [alt]="content.content | translate" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

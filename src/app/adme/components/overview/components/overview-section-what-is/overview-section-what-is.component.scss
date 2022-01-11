@@ -1,0 +1,81 @@
+$screen: var(--secondary--screen);
+.what-is-wrapper {
+  padding-top: 30px;
+  padding-bottom: 0px;
+
+  .what-is {
+    max-width: calc(#{$screen} + 40px);
+    margin: auto;
+  }
+
+  .section:not(:first-child) {
+    margin-top: 60px;
+  }
+
+  .non-clinical-adme-service {
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    .intro-image {
+      align-self: center;
+      justify-self: center;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .non-clinical-adme-service-of-spmed {
+    background-color: #f2f2f2;
+    padding: 20px;
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 10px;
+      column-gap: 20px;
+    }
+
+    .service {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: flex-start;
+      justify-self: flex-start;
+
+      mat-icon {
+        margin-right: 8px;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .in-vitro-adme {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .what-is-wrapper {
+    .non-clinical-adme-service {
+      grid-template-columns: 1fr;
+    }
+
+    .non-clinical-adme-service-of-spmed {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .service:not(:last-child) {
+        border-bottom: dashed 1px;
+        padding-bottom: 4px;
+      }
+    }
+  }
+}

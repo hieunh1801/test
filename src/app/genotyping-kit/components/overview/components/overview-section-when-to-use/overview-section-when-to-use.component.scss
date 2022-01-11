@@ -1,11 +1,6 @@
 .when-to-use-wrapper {
   padding-top: 60px;
-  h2 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: var(--primary-a--color);
-  }
+
   .when-to-use {
     max-width: var(--secondary--screen);
     margin: auto;
@@ -16,9 +11,12 @@
   .reason {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     mat-icon {
       margin-right: 8px;
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
     }
     margin-bottom: 8px;
   }

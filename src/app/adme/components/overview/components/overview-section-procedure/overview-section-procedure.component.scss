@@ -1,0 +1,87 @@
+.procedure-wrapper {
+  padding: 60px 0;
+  background-color: #f2f2f2;
+
+  .procedure {
+    max-width: var(--secondary--screen);
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .procedure-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    row-gap: 20px;
+  }
+
+  .procedure-list-item {
+    padding: 10px;
+    width: 17%;
+    border: solid 2px var(--primary-a--color);
+    position: relative;
+    .item-header {
+      color: var(--primary-a--color);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-weight: 500;
+
+      .index-label {
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        color: white;
+        background-color: var(--primary-a--color);
+        margin-right: 8px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+      }
+    }
+
+    .item-content-list {
+      padding: 0 4px;
+      .content-list-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .procedure-wrapper {
+    .procedure-list-item {
+      width: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .procedure-wrapper {
+    .procedure-list-item {
+      width: 25%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .procedure-wrapper {
+    .procedure-list-item {
+      width: 42%;
+    }
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .procedure-wrapper {
+    .procedure-list-item {
+      width: 100%;
+    }
+  }
+}

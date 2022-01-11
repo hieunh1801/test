@@ -54,6 +54,16 @@ pre {
   border-radius: 2px;
 }
 
+.spmed-h2-with-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--primary-a--color);
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
 .spmed-secondary-button {
   display: inline-flex;
   justify-content: center;

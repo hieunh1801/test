@@ -47,8 +47,8 @@
     .reason-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-row-gap: 16px;
-      grid-column-gap: 8px;
+      row-gap: 16px;
+      column-gap: 8px;
       .reason-item {
         width: auto;
         .reason-item-icon {

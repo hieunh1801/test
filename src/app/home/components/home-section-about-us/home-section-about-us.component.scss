@@ -9,7 +9,7 @@
   #about-us {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 10px;
+    column-gap: 10px;
   }
 
   #about-us-image {

@@ -1,0 +1,19 @@
+<section class="service-wrapper">
+  <div class="service">
+    <h2 class="spmed-h2-with-icon">
+      <mat-icon>label_important</mat-icon>
+      {{ "ADME__OVERVIEW__SECTIONS_SERVICE__TITLE" | translate }}
+    </h2>
+    <div class="content">
+      <div class="service-list">
+        <div class="service-list-item" *ngFor="let service of serviceList">
+          <h3 class="title">
+            <mat-icon>gps_not_fixed</mat-icon>
+            {{ service.title | translate }}
+          </h3>
+          <div class="content">{{ service.content | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

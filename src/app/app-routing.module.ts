@@ -58,6 +58,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'human-recombinant-enzymes',
+    component: HomeLayoutComponent,
+    loadChildren: () =>
+      import('./recombinant-enzyme/recombinant-enzyme.module').then(
+        (m) => m.RecombinantEnzymeModule
+      ),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
