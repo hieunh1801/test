@@ -42,8 +42,8 @@
           </div>
         </div>
 
-         <!-- genotyping kit -->
-         <div class="menu-service-item">
+        <!-- genotyping kit -->
+        <div class="menu-service-item">
           <div
             matRipple
             fxLayout="row"
@@ -82,7 +82,25 @@
           </div>
         </div>
 
-       
+        <div class="menu-service-item">
+          <div
+            matRipple
+            fxLayout="row"
+            fxLayoutAlign="flex-start center"
+            fxLayoutGap="10px"
+            routerLink="/human-recombinant-enzymes"
+          >
+            <mat-icon>accessibility_new</mat-icon>
+            <div>
+              <b translate
+                >LAYOUT__HEADER__SERVICES__OPTION__HUMAN_RECOMBINANT_ENZYMES__TITLE</b
+              >
+              <div translate>
+                LAYOUT__HEADER__SERVICES__OPTION__HUMAN_RECOMBINANT_ENZYMES__SUB_TITLE
+              </div>
+            </div>
+          </div>
+        </div>
       </mat-menu>
       <button mat-button routerLink="/about-us">
         <span translate>LAYOUT__HEADER__ABOUT_US </span>
@@ -223,14 +241,16 @@
           <button mat-menu-item routerLink="/pdss">
             <span translate>LAYOUT__HEADER__SERVICE_PDSS</span>
           </button>
-          <button mat-menu-item routerLink="/adme">
-            <span translate>LAYOUT__HEADER__SERVICE_ADME</span>
-          </button>
           <button mat-menu-item routerLink="/genotyping-kit">
             <span translate>LAYOUT__HEADER__SERVICE_GENOTYPING_KIT</span>
           </button>
-          <button mat-menu-item>
-            <span translate>LAYOUT__HEADER__SERVICE_OTHERS</span>
+          <button mat-menu-item routerLink="/adme">
+            <span translate>LAYOUT__HEADER__SERVICE_ADME</span>
+          </button>
+          <button mat-menu-item routerLink="/human-recombinant-enzymes">
+            <span translate
+              >LAYOUT__HEADER__SERVICE_HUMAN_RECOMBINANT_ENZYMES</span
+            >
           </button>
         </mat-list>
       </mat-expansion-panel>
