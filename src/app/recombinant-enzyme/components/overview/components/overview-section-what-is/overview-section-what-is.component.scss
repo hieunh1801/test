@@ -16,13 +16,17 @@
   .content-list {
     background-color: #f2f2f2;
     padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .content-list-item {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-bottom: 16px;
 
     mat-icon {
       width: 20px;
@@ -32,6 +36,12 @@
     }
   }
 
+  .content-list-item:not(:last-child) {
+    margin-bottom: 16px;
+    padding-bottom: 4px;
+    border-bottom: dashed 1px;
+  }
+
   .img-intro-wrapper {
     align-self: center;
     justify-self: center;
@@ -39,6 +49,9 @@
     img {
       max-width: 100%;
       height: auto;
+      max-height: 200px;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
   }
 }
@@ -48,10 +61,6 @@
     .content {
       grid-template-columns: 1fr;
       row-gap: 20px;
-    }
-    .content-list-item:not(:last-child) {
-      padding-bottom: 4px;
-      border-bottom: dashed 1px;
     }
   }
 }

@@ -24,6 +24,12 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+    mat-icon {
+      width: 14px;
+      height: 12px;
+      font-size: 12px;
+      color: var(--primary-a--color);
+    }
 
     img {
       max-width: 100%;

@@ -10,7 +10,10 @@
     <div class="content">
       <div class="content-list">
         <div class="content-list-item" *ngFor="let content of contentList">
-          <p>{{ content.content | translate }}</p>
+          <p>
+            <mat-icon>scatter_plot</mat-icon>
+            {{ content.content | translate }}
+          </p>
           <img [src]="content.imgUrl" [alt]="content.content | translate" />
         </div>
       </div>
