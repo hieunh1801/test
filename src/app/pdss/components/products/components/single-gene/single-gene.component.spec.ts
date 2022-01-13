@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleGeneServiceComponent } from './single-gene-service.component';
+import { SingleGeneComponent } from './single-gene.component';
 
-describe('SingleGeneServiceComponent', () => {
-  let component: SingleGeneServiceComponent;
-  let fixture: ComponentFixture<SingleGeneServiceComponent>;
+describe('SingleGeneComponent', () => {
+  let component: SingleGeneComponent;
+  let fixture: ComponentFixture<SingleGeneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleGeneServiceComponent ]
+      declarations: [ SingleGeneComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingleGeneServiceComponent);
+    fixture = TestBed.createComponent(SingleGeneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

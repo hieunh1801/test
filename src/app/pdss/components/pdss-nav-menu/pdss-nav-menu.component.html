@@ -80,14 +80,8 @@
 
 <!-- website -> products menu -->
 <mat-menu #pdssProductsMenu="matMenu">
-  <button mat-menu-item [routerLink]="['products', 'pgx']">
-    <span translate>PDSS__NAV_MENU__PGX</span>
-  </button>
-  <button mat-menu-item [routerLink]="['products', 'pgx-premium']">
-    <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
-  </button>
-  <button mat-menu-item [routerLink]="['products', 'single-gene-service']">
-    <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
+  <button class="product-route-button" mat-menu-item *ngFor="let productRoute of productRouteList" [routerLink]="productRoute.routerLink">
+    <span>{{productRoute.title | translate}}</span>
   </button>
 </mat-menu>
 
@@ -124,25 +118,12 @@
       </mat-expansion-panel-header>
       <mat-list>
         <button
+          *ngFor="let productRoute of productRouteList"
           mat-menu-item
-          [routerLink]="['products', 'pgx']"
+          [routerLink]="productRoute.routerLink"
           (click)="isOpenMenuMobile = false"
         >
-          <span translate>PDSS__NAV_MENU__PGX</span>
-        </button>
-        <button
-          mat-menu-item
-          [routerLink]="['products', 'pgx-premium']"
-          (click)="isOpenMenuMobile = false"
-        >
-          <span translate>PDSS__NAV_MENU__PGX_PREMIUM</span>
-        </button>
-        <button
-          mat-menu-item
-          [routerLink]="['products', 'single-gene-service']"
-          (click)="isOpenMenuMobile = false"
-        >
-          <span translate>PDSS__NAV_MENU__SINGLE_GENE_SERVICE</span>
+          <span>{{ productRoute.title | translate }}</span>
         </button>
       </mat-list>
     </mat-expansion-panel>

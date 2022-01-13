@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PgxComponent } from './pgx.component';
+import { PgxNpComponent } from './pgx-np.component';
 
-describe('PgxComponent', () => {
-  let component: PgxComponent;
-  let fixture: ComponentFixture<PgxComponent>;
+describe('PgxNpComponent', () => {
+  let component: PgxNpComponent;
+  let fixture: ComponentFixture<PgxNpComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PgxComponent ]
+      declarations: [ PgxNpComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PgxComponent);
+    fixture = TestBed.createComponent(PgxNpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

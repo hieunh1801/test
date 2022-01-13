@@ -6,9 +6,7 @@ import { PdssComponent } from './pdss.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { BrowserComponent } from './components/browser/browser.component';
 import { ProductsComponent } from './components/products/products.component';
-import { PgxComponent } from './components/products/components/pgx/pgx.component';
 import { PgxPremiumComponent } from './components/products/components/pgx-premium/pgx-premium.component';
-import { SingleGeneServiceComponent } from './components/products/components/single-gene-service/single-gene-service.component';
 import { PdssNavMenuComponent } from './components/pdss-nav-menu/pdss-nav-menu.component';
 import { MyReportComponent } from './components/my-report/my-report.component';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -33,6 +31,8 @@ import { OverviewSectionIntroductionComponent } from './components/overview/comp
 import { OverviewSectionProductsComponent } from './components/overview/components/overview-section-products/overview-section-products.component';
 import { OverviewSectionWhyNeedComponent } from './components/overview/components/overview-section-why-need/overview-section-why-need.component';
 import { OverviewSectionWhoNeedComponent } from './components/overview/components/overview-section-who-need/overview-section-who-need.component';
+import { PgxNpComponent } from './components/products/components/pgx-np/pgx-np.component';
+import { SingleGeneComponent } from './components/products/components/single-gene/single-gene.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +40,7 @@ import { OverviewSectionWhoNeedComponent } from './components/overview/component
     OverviewComponent,
     BrowserComponent,
     ProductsComponent,
-    PgxComponent,
     PgxPremiumComponent,
-    SingleGeneServiceComponent,
     PdssNavMenuComponent,
     MyReportComponent,
     DrugRecommendationTableComponent,
@@ -66,6 +64,8 @@ import { OverviewSectionWhoNeedComponent } from './components/overview/component
     OverviewSectionProductsComponent,
     OverviewSectionWhyNeedComponent,
     OverviewSectionWhoNeedComponent,
+    PgxNpComponent,
+    SingleGeneComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
