@@ -116,17 +116,20 @@
                 ></div>
               </div>
               <div class="tag">
-                #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">
-                  <a [routerLink]="['/news', board.boardTagId]" class="tag">
-                    {{ board.boardTag }}
-                  </a>
+                  <span *ngFor="let tags of board?.tags">
+                    <a [routerLink]="['/news', tags.id]" class="tag">
+                      #{{ tags.name }} &nbsp;
+                    </a>
+                  </span>
                 </span>
                 <span *ngIf="this.languageService.currentLanguage == 'kr'">
-                  <a [routerLink]="['/news', board.boardTagId]" class="tag">{{
-                    board.kr.boardTag
-                  }}</a></span
-                >
+                  <span *ngFor="let tags of board?.tags">
+                    <a [routerLink]="['/news', tags.kr.id]" class="tag">
+                      #{{ tags.kr.name }} &nbsp;
+                    </a>
+                  </span>
+                </span>
               </div>
             </mat-card-content>
           </mat-card>

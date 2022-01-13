@@ -83,19 +83,19 @@
           ></div>
         </div>
         <div class="tag">
-          #
           <span *ngIf="this.languageService.currentLanguage == 'kr'">
-            <a
-              [routerLink]="['/news', customerBoard?.kr?.boardTagId]"
-              class="tag"
-            >
-              {{ customerBoard?.kr?.boardTag }}
-            </a>
+            <span *ngFor="let tag of customerBoard?.tags">
+              <a [routerLink]="['/news', tag.kr.id]" class="tag">
+                #{{ tag.kr.name }} &nbsp;
+              </a>
+            </span>
           </span>
           <span *ngIf="this.languageService.currentLanguage == 'en'">
-            <a [routerLink]="['/news', customerBoard?.boardTagId]" class="tag">
-              {{ customerBoard?.boardTag }}
-            </a>
+            <span *ngFor="let tag of customerBoard?.tags">
+              <a [routerLink]="['/news', tag.id]" class="tag">
+                #{{ tag.name }} &nbsp;
+              </a>
+            </span>
           </span>
         </div>
         <div *ngIf="!!customerBoardAttachment">
@@ -184,16 +184,19 @@
                 </div>
               </div>
               <div class="tag">
-                #
                 <span *ngIf="this.languageService.currentLanguage == 'en'">
-                  <a [routerLink]="['/news', board.boardTagId]" class="tag">
-                    {{ board.boardTag }}
-                  </a>
+                  <span *ngFor="let tag of board?.tags">
+                    <a [routerLink]="['/news', tag.id]" class="tag">
+                      #{{ tag.name }} &nbsp;
+                    </a>
+                  </span>
                 </span>
                 <span *ngIf="this.languageService.currentLanguage == 'kr'">
-                  <a [routerLink]="['/news', board.kr.boardTagId]" class="tag">
-                    {{ board.kr.boardTag }}
-                  </a>
+                  <span *ngFor="let tag of board?.tags">
+                    <a [routerLink]="['/news', tag.kr.id]" class="tag">
+                      #{{ tag.kr.name }} &nbsp;
+                    </a>
+                  </span>
                 </span>
               </div>
             </mat-card-content>

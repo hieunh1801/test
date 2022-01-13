@@ -96,6 +96,7 @@ export interface CustomerBoard {
   pin?: number;
   deleted: number;
   kr: CustomerBoardKr;
+  tags: Array<CustomerBoardTag>;
   createdTime: string;
   createdActor: string;
   updatedTime?: string;
@@ -109,6 +110,22 @@ export interface CustomerBoardKr {
   content?: string;
   author?: string;
   thumbnailUrl?: string;
+}
+
+export class CustomerBoardTag {
+  id: number;
+  boardCategoryId: string;
+  boardCategory: string;
+  name: string;
+  dataOrder: number;
+  deleted: number;
+  kr: CustomerBoardTagKr;
+}
+
+export class CustomerBoardTagKr {
+  id: number;
+  name: string;
+  order: number;
 }
 
 export interface CustomerBoardView {
