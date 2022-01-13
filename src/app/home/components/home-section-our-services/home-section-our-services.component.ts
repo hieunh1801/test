@@ -10,8 +10,9 @@ export class HomeSectionOurServicesComponent implements OnInit {
   servicesList = [
     {
       title: marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__TITLE'),
-      imageUrl:
-        'https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg',
+      // imageUrl:
+      //   'https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg',
+      imageUrl: '/assets/images/home-pdss-intro.jpg',
       contents: [
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__CONTENTS__1'),
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__CONTENTS__2'),
@@ -64,8 +65,9 @@ export class HomeSectionOurServicesComponent implements OnInit {
     },
     {
       title: marker('HOME__SECTION_OUR_SERVICE__SERVICES__3__TITLE'),
-      imageUrl:
-        'https://image.freepik.com/free-vector/two-business-partners-handshaking_74855-6685.jpg',
+      // imageUrl:
+      //   'https://image.freepik.com/free-vector/two-business-partners-handshaking_74855-6685.jpg',
+      imageUrl: '/assets/images/adme-intro.jpg',
       contents: [
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__3__CONTENTS__1'),
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__3__CONTENTS__2'),

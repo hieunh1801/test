@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TokenStorageService } from '@shared/services/token-storage.service';
 
 @Component({
@@ -21,6 +22,22 @@ import { TokenStorageService } from '@shared/services/token-storage.service';
 export class PdssNavMenuComponent implements OnInit {
   isLogin = false;
   isOpenMenuMobile = false;
+
+  productRouteList = [
+    {
+      title: marker("PDSS__NAV_MENU__PGX_NP"),
+      routerLink: ['products', 'pgx-np']
+    },
+    {
+      title: marker("PDSS__NAV_MENU__PGX_PREMIUM"),
+      routerLink: ['products', 'pgx-premium']
+    },
+    {
+      title: marker("PDSS__NAV_MENU__SINGLE_GENE"),
+      routerLink: ['products', 'single-gene']
+    }
+  ]
+
   constructor(private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {

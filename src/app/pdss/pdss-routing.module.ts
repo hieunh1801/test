@@ -7,14 +7,13 @@ import { SummaryReportComponent } from '@pdss/components/my-report/components/su
 import { MyReportComponent } from '@pdss/components/my-report/my-report.component';
 import { OverviewComponent } from '@pdss/components/overview/overview.component';
 import { PgxPremiumComponent } from '@pdss/components/products/components/pgx-premium/pgx-premium.component';
-import { PgxComponent } from '@pdss/components/products/components/pgx/pgx.component';
-import { SingleGeneServiceComponent } from '@pdss/components/products/components/single-gene-service/single-gene-service.component';
 import { ProductsComponent } from '@pdss/components/products/products.component';
-import { UtilityComponent } from '@pdss/components/utility/utility.component';
 import { PdssComponent } from '@pdss/pdss.component';
 import { DrugComponent } from '@pdss/components/browser/components/drug/drug.component';
 import { GeneComponent } from '@pdss/components/browser/components/gene/gene.component';
 import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
+import { PgxNpComponent } from './components/products/components/pgx-np/pgx-np.component';
+import { SingleGeneComponent } from './components/products/components/single-gene/single-gene.component';
 
 const routes: Routes = [
   {
@@ -33,11 +32,11 @@ const routes: Routes = [
         path: 'products',
         component: ProductsComponent,
         children: [
-          { path: 'pgx', component: PgxComponent },
+          { path: 'pgx-np', component: PgxNpComponent },
           { path: 'pgx-premium', component: PgxPremiumComponent },
           {
-            path: 'single-gene-service',
-            component: SingleGeneServiceComponent,
+            path: 'single-gene',
+            component: SingleGeneComponent,
           },
         ],
       },

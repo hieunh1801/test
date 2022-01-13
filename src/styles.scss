@@ -57,10 +57,16 @@ pre {
 .spmed-h2-with-icon {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   color: var(--primary-a--color);
   mat-icon {
-    margin-right: 8px;
+    margin-right: 2px;
+    width: 32px;
+    height: 32px;
+    /* background: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -83,7 +89,34 @@ pre {
   background-color: var(--primary--color);
   color: white;
   border: none;
-  border-radius: 2px;
+  border-radius: 2px !important;
+
+  a {
+    text-decoration: none;
+  }
+  a:link {
+    color: white;
+  }
+
+  /* visited link */
+  a:visited {
+    color: white;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: white;
+  }
+
+  /* selected link */
+  a:active {
+    color: white;
+  }
+}
+
+.spmed-shadow-lg {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .spmed-search-form-field {

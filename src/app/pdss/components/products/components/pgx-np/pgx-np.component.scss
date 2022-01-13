@@ -1,0 +1,37 @@
+.pgx-np {
+  .introduction-wrapper {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    // background-color: #f2f2f2;
+  }
+
+  .introduction {
+    max-width: var(--primary--screen);
+    margin: auto;
+    padding: 0 20px;
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+    }
+
+    .introduction-image {
+      align-self: center;
+      justify-self: center;
+      img {
+        max-width: 400px;
+        max-height: 200px;
+      }
+    }
+
+    .file-list {
+      margin-top: 16px;
+      display: flex;
+
+      button:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+}
