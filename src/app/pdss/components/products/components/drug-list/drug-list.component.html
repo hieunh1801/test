@@ -1,0 +1,12 @@
+<div class="drug-list remove-a-style">
+  <ng-container *ngIf="drugList && drugList?.length > 0">
+    <a
+      *ngFor="let drug of drugList"
+      class="drug-list-item"
+      [routerLink]="['/pdss', 'drug', drug.name, 'detail']"
+      target="_blank"
+    >
+      {{ drug.name }}
+    </a>
+  </ng-container>
+</div>

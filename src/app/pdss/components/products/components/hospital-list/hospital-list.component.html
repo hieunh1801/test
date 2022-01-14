@@ -1,0 +1,16 @@
+<div class="hospital-table-wrapper">
+  <table class="hospital-table" *ngIf="hospitalList && hospitalList.length > 0">
+    <tr>
+      <th *ngFor="let header of tableHeader">{{ header | translate }}</th>
+    </tr>
+    <tr *ngFor="let hospital of hospitalList">
+      <td>{{ hospital.name }}</td>
+      <td>
+        {{ hospital.telephone }}
+      </td>
+      <td>
+        {{ hospital.addressDetails }}
+      </td>
+    </tr>
+  </table>
+</div>

@@ -3,16 +3,16 @@
     <div class="introduction">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
-        {{ introduction.title | translate }}
+        {{ introductionSection.title | translate }}
       </h2>
 
       <div class="content">
         <div>
           <div>
-            {{ introduction.content | translate }}
+            {{ introductionSection.content | translate }}
           </div>
           <div class="file-list">
-            <ng-container *ngFor="let file of introduction.fileList">
+            <ng-container *ngFor="let file of introductionSection.fileList">
               <button mat-stroked-button class="spmed-primary-button">
                 <a [href]="file.url" target="_blank">
                   + {{ file.title | translate }}
@@ -24,11 +24,41 @@
         <div class="introduction-image">
           <img
             class="spmed-shadow-lg"
-            [src]="introduction.imageUrl"
-            [alt]="introduction.title"
+            [src]="introductionSection.imageUrl"
+            [alt]="introductionSection.title"
           />
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="drug-list-wrapper">
+    <div class="drug-list">
+      <h2 class="spmed-h2-with-icon">
+        <mat-icon>label_important</mat-icon>
+        {{ drugSection.title | translate }}
+      </h2>
+      <app-drug-list [drugList]="drugList"></app-drug-list>
+    </div>
+  </section>
+
+  <section class="gene-list-wrapper">
+    <div class="gene-list">
+      <h2 class="spmed-h2-with-icon">
+        <mat-icon>label_important</mat-icon>
+        {{ geneSection.title | translate }}
+      </h2>
+      <app-gene-list [geneList]="geneList"></app-gene-list>
+    </div>
+  </section>
+
+  <section class="hospital-wrapper">
+    <div class="hospital">
+      <h2 class="spmed-h2-with-icon">
+        <mat-icon>label_important</mat-icon>
+        {{ affiliatedHospitalSection.title | translate }}
+      </h2>
+      <app-hospital-list [hospitalList]="hospitalList"></app-hospital-list>
     </div>
   </section>
 </div>
