@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, first } from 'rxjs/operators';
 import {
   BrowserService,
   SearchRequest,
@@ -154,8 +154,39 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  onGetResults(results: SearchResponse[]): void {
+  /*
+  function removeDuplicates(array, prop){
+    var newArray = [];
+    var lookupObject = {};
+
+    for(var i in array) {
+      lookupObject[array[i][prop]] = array[i];
+    }
+
+    for (i in lookupObject){
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
+  }
+  */
+
+  onGetResults(processResults: SearchResponse[]): void {
     const tempResults: SearchResponse[] = [];
+    const results: SearchResponse[] = [];
+    var lookupObject = {};
+
+    // remove duplicate drug name
+    const removeDuplicates = (array, key) => {
+      return array.reduce((arr, item) => {
+        const removed = arr.filter((i) => i[key] !== item[key]);
+        return [...removed, item];
+      }, []);
+    };
+    lookupObject = removeDuplicates(processResults, 'name');
+    for (var i in lookupObject) {
+      results.push(lookupObject[i]);
+    }
+
     this.brandCount = results.filter((el) => el.type === 'Brand').length;
     if (this.brandCount > 0) {
       this.isBrand = true;
