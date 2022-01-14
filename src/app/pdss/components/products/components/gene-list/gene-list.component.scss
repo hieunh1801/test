@@ -10,7 +10,8 @@
   .gene-list-item {
     padding: 8px;
     color: var(--primary--color);
-    min-width: 150px;
+    width: 150px;
+    overflow-wrap: break-word;
   }
 
   .gene-list-item:hover {

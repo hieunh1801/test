@@ -1,0 +1,81 @@
+.pgx-premium {
+  .introduction-wrapper {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    // background-color: #f2f2f2;
+  }
+
+  .introduction {
+    max-width: var(--primary--screen);
+    margin: auto;
+    padding: 0 20px;
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .introduction-image {
+      align-self: center;
+      justify-self: center;
+      img {
+        max-width: 400px;
+        width: 100%;
+        max-height: 200px;
+        height: auto;
+      }
+    }
+
+    .file-list {
+      margin-top: 16px;
+      display: flex;
+
+      button:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .drug-list-wrapper {
+    padding-bottom: 40px;
+    .drug-list {
+      background-color: #f2f2f2;
+      padding: 20px;
+      max-width: var(--primary--screen);
+      margin: auto;
+    }
+  }
+
+  .gene-list-wrapper {
+    padding-bottom: 40px;
+    .gene-list {
+      background-color: #f2f2f2;
+      padding: 20px;
+      max-width: var(--primary--screen);
+      margin: auto;
+    }
+  }
+
+  .hospital-wrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #f2f2f2;
+
+    .hospital {
+      padding: 20px;
+      max-width: var(--primary--screen);
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .pgx-premium {
+    .introduction {
+      .content {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+}

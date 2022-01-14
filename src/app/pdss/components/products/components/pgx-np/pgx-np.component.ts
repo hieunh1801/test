@@ -16,45 +16,44 @@ import {
   styleUrls: ['./pgx-np.component.scss'],
 })
 export class PgxNpComponent implements OnInit {
-  introductionSection = {
-    title: marker('PDSS__PRODUCTS__PGX_NP__INTRODUCTION__TITLE'),
-    content: marker('PDSS__PRODUCTS__PGX_NP__INTRODUCTION__CONTENT'),
-    imageUrl: marker('/assets/images/pdss-digital-report.png'),
-    fileList: [
-      {
-        title: marker(
-          'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__1__TITLE'
-        ),
-        url: '#',
-      },
-      {
-        title: marker(
-          'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__2__TITLE'
-        ),
-        url: '#',
-      },
-      {
-        title: marker(
-          'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__3__TITLE'
-        ),
-        url: '#',
-      },
-    ],
+  pageInfo = {
+    introduction: {
+      title: marker('PDSS__PRODUCTS__PGX_NP__INTRODUCTION__TITLE'),
+      content: marker('PDSS__PRODUCTS__PGX_NP__INTRODUCTION__CONTENT'),
+      imageUrl: marker('/assets/images/pdss-digital-report.png'),
+      fileList: [
+        {
+          title: marker(
+            'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__1__TITLE'
+          ),
+          url: '#',
+        },
+        {
+          title: marker(
+            'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__2__TITLE'
+          ),
+          url: '#',
+        },
+        {
+          title: marker(
+            'PDSS__PRODUCTS__PGX_NP__INTRODUCTION__FILE_LIST__3__TITLE'
+          ),
+          url: '#',
+        },
+      ],
+    },
+    drug: {
+      title: marker('PDSS__PRODUCTS__PGX_NP__RELATED_DRUG_LIST__TITLE'),
+    },
+    gene: {
+      title: marker('PDSS__PRODUCTS__PGX_NP__RELATED_GENE_LIST__TITLE'),
+    },
+    affiliatedHospital: {
+      title: marker('PDSS__PRODUCTS__PGX_NP__AFFILIATED_HOSPITAL__TITLE'),
+    },
   };
 
   product: Product = null;
-
-  drugSection = {
-    title: marker('PDSS__PRODUCTS__PGX_NP__RELATED_DRUG_LIST__TITLE'),
-  };
-
-  geneSection = {
-    title: marker('PDSS__PRODUCTS__PGX_NP__RELATED_GENE_LIST__TITLE'),
-  };
-
-  affiliatedHospitalSection = {
-    title: marker('PDSS__PRODUCTS__PGX_NP__AFFILIATED_HOSPITAL__TITLE'),
-  };
 
   drugList: Drug[];
   geneList: Gene[];

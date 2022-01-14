@@ -1,1 +1,66 @@
-<p>pgx-premium works!</p>
+<div class="pgx-premium-wrapper">
+  <div class="pgx-premium">
+    <div class="introduction-wrapper">
+      <div class="introduction">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.introduction.title | translate }}
+        </h2>
+
+        <div class="content">
+          <div>
+            <div>
+              {{ pageInfo.introduction.content | translate }}
+            </div>
+            <div class="file-list">
+              <ng-container *ngFor="let file of pageInfo.introduction.fileList">
+                <button mat-stroked-button class="spmed-primary-button">
+                  <a [href]="file.url" target="_blank">
+                    + {{ file.title | translate }}
+                  </a>
+                </button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="introduction-image">
+            <img
+              class="spmed-shadow-lg"
+              [src]="pageInfo.introduction.imageUrl"
+              [alt]="pageInfo.introduction.title"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="drug-list-wrapper">
+      <div class="drug-list">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.drug.title | translate }}
+        </h2>
+        <app-drug-list [drugList]="drugList"></app-drug-list>
+      </div>
+    </section>
+
+    <section class="gene-list-wrapper">
+      <div class="gene-list">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.gene.title | translate }}
+        </h2>
+        <app-gene-list [geneList]="geneList"></app-gene-list>
+      </div>
+    </section>
+
+    <section class="hospital-wrapper">
+      <div class="hospital">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.affiliatedHospital.title | translate }}
+        </h2>
+        <app-hospital-list [hospitalList]="hospitalList"></app-hospital-list>
+      </div>
+    </section>
+  </div>
+</div>

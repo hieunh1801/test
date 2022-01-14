@@ -3,16 +3,16 @@
     <div class="introduction">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
-        {{ introductionSection.title | translate }}
+        {{ pageInfo.introduction.title | translate }}
       </h2>
 
       <div class="content">
         <div>
           <div>
-            {{ introductionSection.content | translate }}
+            {{ pageInfo.introduction.content | translate }}
           </div>
           <div class="file-list">
-            <ng-container *ngFor="let file of introductionSection.fileList">
+            <ng-container *ngFor="let file of pageInfo.introduction.fileList">
               <button mat-stroked-button class="spmed-primary-button">
                 <a [href]="file.url" target="_blank">
                   + {{ file.title | translate }}
@@ -24,8 +24,8 @@
         <div class="introduction-image">
           <img
             class="spmed-shadow-lg"
-            [src]="introductionSection.imageUrl"
-            [alt]="introductionSection.title"
+            [src]="pageInfo.introduction.imageUrl"
+            [alt]="pageInfo.introduction.title"
           />
         </div>
       </div>
@@ -36,7 +36,7 @@
     <div class="drug-list">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
-        {{ drugSection.title | translate }}
+        {{ pageInfo.drug.title | translate }}
       </h2>
       <app-drug-list [drugList]="drugList"></app-drug-list>
     </div>
@@ -46,7 +46,7 @@
     <div class="gene-list">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
-        {{ geneSection.title | translate }}
+        {{ pageInfo.gene.title | translate }}
       </h2>
       <app-gene-list [geneList]="geneList"></app-gene-list>
     </div>
@@ -56,7 +56,7 @@
     <div class="hospital">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
-        {{ affiliatedHospitalSection.title | translate }}
+        {{ pageInfo.affiliatedHospital.title | translate }}
       </h2>
       <app-hospital-list [hospitalList]="hospitalList"></app-hospital-list>
     </div>
