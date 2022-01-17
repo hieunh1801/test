@@ -10,7 +10,7 @@
         *ngFor="let product of productList"
         [ngClass]="product.choose ? 'choose' : ''"
       >
-        <h3>PGx-NP {{ product.title | translate }}</h3>
+        <h3>{{ product.title | translate }}</h3>
         <p>{{ product.purpose | translate }}</p>
         <mat-divider></mat-divider>
         <div class="product-feature-list">
@@ -29,6 +29,7 @@
           <div
             *ngFor="let route of product.routeList"
             [routerLink]="route.routerLink"
+            [queryParams]="route.queryParams"
           >
             {{ route.title | translate }}
           </div>

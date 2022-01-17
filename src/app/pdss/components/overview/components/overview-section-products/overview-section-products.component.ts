@@ -31,7 +31,8 @@ export class OverviewSectionProductsComponent implements OnInit {
           title: marker(
             'PDSS__OVERVIEW__PRODUCT_LIST__1__ROUTE_LIST__2__TITLE__HOSPITAL'
           ),
-          routerLink: '',
+          routerLink: ['/pdss', 'affiliated-hospital'],
+          queryParams: { product: 'pgx-np' },
         },
       ],
     },
@@ -58,7 +59,8 @@ export class OverviewSectionProductsComponent implements OnInit {
           title: marker(
             'PDSS__OVERVIEW__PRODUCT_LIST__2__ROUTE_LIST__2__TITLE__HOSPITAL'
           ),
-          routerLink: '',
+          routerLink: ['/pdss', 'affiliated-hospital'],
+          queryParams: { product: 'pgx-premium' },
         },
       ],
     },
@@ -85,7 +87,8 @@ export class OverviewSectionProductsComponent implements OnInit {
           title: marker(
             'PDSS__OVERVIEW__PRODUCT_LIST__3__ROUTE_LIST__2__TITLE__HOSPITAL'
           ),
-          routerLink: '',
+          routerLink: ['/pdss', 'affiliated-hospital'],
+          queryParams: { product: 'single-gene' },
         },
       ],
     },
