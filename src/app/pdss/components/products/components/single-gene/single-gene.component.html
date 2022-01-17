@@ -1,1 +1,57 @@
-<p>single-gene works!</p>
+<div class="single-gene-wrapper">
+  <div class="single-gene">
+    <div class="introduction-wrapper">
+      <div class="introduction">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.introduction.title | translate }}
+        </h2>
+
+        <div class="content">
+          <div>
+            <div>
+              {{ pageInfo.introduction.content | translate }}
+            </div>
+            <div class="file-list">
+              <ng-container *ngFor="let file of pageInfo.introduction.fileList">
+                <button mat-stroked-button class="spmed-primary-button">
+                  <a [href]="file.url" target="_blank">
+                    + {{ file.title | translate }}
+                  </a>
+                </button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="introduction-image">
+            <img
+              class="spmed-shadow-lg"
+              [src]="pageInfo.introduction.imageUrl"
+              [alt]="pageInfo.introduction.title"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="product-section-wrapper">
+      <div class="product-section">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.product.title | translate }}
+        </h2>
+        <div class="product-list-wrapper">
+          <app-product-table [productList]="productList"></app-product-table>
+        </div>
+      </div>
+    </section>
+
+    <section class="hospital-wrapper">
+      <div class="hospital">
+        <h2 class="spmed-h2-with-icon">
+          <mat-icon>label_important</mat-icon>
+          {{ pageInfo.affiliatedHospital.title | translate }}
+        </h2>
+        <app-hospital-list [hospitalList]="hospitalList"></app-hospital-list>
+      </div>
+    </section>
+  </div>
+</div>

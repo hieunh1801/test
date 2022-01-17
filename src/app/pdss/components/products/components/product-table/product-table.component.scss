@@ -1,0 +1,33 @@
+.product-table-wrapper {
+  .product-table {
+    width: 100%;
+
+    .mat-header-row {
+      background-color: var(--primary-a--color);
+    }
+    .mat-header-cell {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    th.mat-header-cell,
+    td.mat-cell,
+    td.mat-footer-cell {
+      padding: 8px;
+    }
+
+    th.mat-header-cell:first-of-type,
+    td.mat-cell:first-of-type,
+    td.mat-footer-cell:first-of-type {
+      padding-left: 24px !important;
+    }
+
+    td.mat-cell {
+      max-width: 200px;
+    }
+
+    .mat-row:hover {
+      background-color: #ddd;
+    }
+  }
+}
