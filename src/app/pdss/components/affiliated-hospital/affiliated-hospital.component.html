@@ -22,9 +22,20 @@
             <mat-form-field appearance="outline">
               <input
                 matInput
-                placeholder="Enter hospital name"
+                [placeholder]="
+                  'PDSS__AFFILIATED_HOSPITALL__SEARCH_FORM_PLACEHOLDER__ENTER_HOSPITAL_NAME'
+                    | translate
+                "
                 formControlName="keyword"
               />
+              <button
+                mat-icon-button
+                matSuffix
+                *ngIf="searchForm?.value?.keyword"
+                (click)="resetKeyword()"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
             </mat-form-field>
           </div>
         </form>

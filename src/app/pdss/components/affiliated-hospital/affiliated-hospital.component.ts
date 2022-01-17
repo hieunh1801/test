@@ -134,4 +134,10 @@ export class AffiliatedHospitalComponent implements OnInit, OnDestroy {
       queryParams: { ...queryParams },
     });
   }
+
+  resetKeyword(): void {
+    this.searchForm.patchValue({
+      keyword: '',
+    });
+  }
 }
