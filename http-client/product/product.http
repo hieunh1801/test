@@ -1,0 +1,11 @@
+
+GET http://localhost:61116/product/v1.0/en/products/26
+
+### product
+GET http://localhost:61116/product/v1.0/en/products/by/ids?ids=26,64,48
+
+### hospital by id
+GET http://localhost:61112/interpretation/v1.0/en/hospitals/by/ids?ids=1,2
+
+
+

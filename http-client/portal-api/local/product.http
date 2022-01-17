@@ -1,0 +1,2 @@
+### ping
+GET http://localhost:61127/portal/v1.0/en/products/by/name/pgx-np

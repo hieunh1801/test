@@ -1,0 +1,12 @@
+<div class="gene-list remove-a-style">
+  <ng-container *ngIf="geneList && geneList?.length > 0">
+    <a
+      *ngFor="let gene of geneList"
+      class="gene-list-item"
+      [routerLink]="['/pdss', 'gene', gene.symbol, 'detail']"
+      target="_blank"
+    >
+      {{ gene.symbol }}
+    </a>
+  </ng-container>
+</div>

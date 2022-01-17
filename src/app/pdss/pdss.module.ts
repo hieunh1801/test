@@ -33,6 +33,9 @@ import { OverviewSectionWhyNeedComponent } from './components/overview/component
 import { OverviewSectionWhoNeedComponent } from './components/overview/components/overview-section-who-need/overview-section-who-need.component';
 import { PgxNpComponent } from './components/products/components/pgx-np/pgx-np.component';
 import { SingleGeneComponent } from './components/products/components/single-gene/single-gene.component';
+import { DrugListComponent } from './components/products/components/drug-list/drug-list.component';
+import { GeneListComponent } from './components/products/components/gene-list/gene-list.component';
+import { HospitalListComponent } from './components/products/components/hospital-list/hospital-list.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { SingleGeneComponent } from './components/products/components/single-gen
     OverviewSectionWhoNeedComponent,
     PgxNpComponent,
     SingleGeneComponent,
+    DrugListComponent,
+    GeneListComponent,
+    HospitalListComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 61126 -o",
     "start:staging": "ng serve --host 0.0.0.0 --configuration staging --port 61126 -o",
-    "start:prod": "http-server -p 8080 -c-1 dist/spmed-portal-desktop -o",
+    "start:prod": "npx http-server -p 61126 -c-1 dist/spmed-portal-desktop -o",
     "start:pwa": "ng build --prod --aot --buildOptimizer && http-server -p 8080 -c-1 dist/spmed-portal-desktop -o",
     "i18n": "ngx-translate-extract --match TRANSLATE --input ./src --output ./src/assets/i18n/en.json --output ./src/assets/i18n/kr.json --clean --sort --marker marker",
     "build": "ng build --prod --aot --buildOptimizer",
