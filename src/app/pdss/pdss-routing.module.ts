@@ -14,6 +14,7 @@ import { GeneComponent } from '@pdss/components/browser/components/gene/gene.com
 import { ReportPreviewComponent } from './components/report-preview/report-preview.component';
 import { PgxNpComponent } from './components/products/components/pgx-np/pgx-np.component';
 import { SingleGeneComponent } from './components/products/components/single-gene/single-gene.component';
+import { AffiliatedHospitalComponent } from './components/affiliated-hospital/affiliated-hospital.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,10 @@ const routes: Routes = [
       {
         path: 'report-preview/:qrCode',
         component: ReportPreviewComponent,
+      },
+      {
+        path: 'affiliated-hospital',
+        component: AffiliatedHospitalComponent,
       },
     ],
   },

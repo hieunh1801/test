@@ -37,6 +37,7 @@ import { DrugListComponent } from './components/products/components/drug-list/dr
 import { GeneListComponent } from './components/products/components/gene-list/gene-list.component';
 import { HospitalListComponent } from './components/products/components/hospital-list/hospital-list.component';
 import { ProductTableComponent } from './components/products/components/product-table/product-table.component';
+import { AffiliatedHospitalComponent } from './components/affiliated-hospital/affiliated-hospital.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ProductTableComponent } from './components/products/components/product-
     GeneListComponent,
     HospitalListComponent,
     ProductTableComponent,
+    AffiliatedHospitalComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })
