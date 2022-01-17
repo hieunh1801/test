@@ -20,6 +20,7 @@ import {
 } from './services/browser.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-browser',
@@ -56,6 +57,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   isDrug: boolean;
   isGene: boolean;
   isBrand: boolean;
+  keyword: string;
 
   // paging variables
   searchCount: number = 0;
@@ -74,14 +76,25 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     private formBuilder: FormBuilder,
     private browserService: BrowserService,
     private translateService: TranslateService,
-    private matSnackbarService: MatSnackbarService
+    private matSnackbarService: MatSnackbarService,
+    private route: ActivatedRoute
   ) {
     this.dataSource = new MatTableDataSource(this.finalResults);
   }
 
   ngOnInit(): void {
-    this.getTopDrugs();
-    this.getTopGenes();
+    this.route.queryParams.subscribe((params) => {
+      this.keyword = params.keyword;
+    });
+    if (!!this.keyword) {
+      this.searchForm.patchValue({
+        keyword: this.keyword,
+      });
+      this.search();
+    } else {
+      this.getTopDrugs();
+      this.getTopGenes();
+    }
   }
 
   ngOnDestroy(): void {
@@ -153,22 +166,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
   }
-
-  /*
-  function removeDuplicates(array, prop){
-    var newArray = [];
-    var lookupObject = {};
-
-    for(var i in array) {
-      lookupObject[array[i][prop]] = array[i];
-    }
-
-    for (i in lookupObject){
-      newArray.push(lookupObject[i]);
-    }
-    return newArray;
-  }
-  */
 
   onGetResults(processResults: SearchResponse[]): void {
     const tempResults: SearchResponse[] = [];

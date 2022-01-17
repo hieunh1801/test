@@ -285,7 +285,7 @@
   "PDSS__BROWSER__RESULT_TABLE_TYPES__DRUG": "drug",
   "PDSS__BROWSER__RESULT_TABLE_TYPES__GENE": "gene",
   "PDSS__BROWSER__RESULT__NOT__FOUND": "Search result not found",
-  "PDSS__BROWSER__SEARCH_COMMENT": "Enter the Keyword you are looking for (Example: CYP2C9 / Warfarin / Tyrenol)",
+  "PDSS__BROWSER__SEARCH_COMMENT": "Enter the Keyword you are looking for (Example: CYP2C9 / Warfarin )",
   "PDSS__BROWSER__SERVER__NOT__RESPONSE": "Search failed. Server is not response",
   "PDSS__BROWSER__STRINGS__SOME_RESULT_MAY_BE_THE_THINGS_YOU_ARE_LOOKING_FOR": "Some result may be the things you are looking for",
   "PDSS__BROWSER__TITLES__CATEGORIES": "Categories",

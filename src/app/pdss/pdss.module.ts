@@ -36,6 +36,7 @@ import { SingleGeneComponent } from './components/products/components/single-gen
 import { DrugListComponent } from './components/products/components/drug-list/drug-list.component';
 import { GeneListComponent } from './components/products/components/gene-list/gene-list.component';
 import { HospitalListComponent } from './components/products/components/hospital-list/hospital-list.component';
+import { SearchComponent } from './components/browser/components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { HospitalListComponent } from './components/products/components/hospital
     DrugListComponent,
     GeneListComponent,
     HospitalListComponent,
+    SearchComponent,
   ],
   imports: [CommonModule, PdssRoutingModule, SharedModule, NgxEchartsModule],
 })

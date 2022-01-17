@@ -12,6 +12,7 @@ import { finalize } from 'rxjs/operators';
 import { LanguageService } from '@shared/services/language.service';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { CloseAccountComponent } from '@user/components/user-settings/components/account-setting/components/close-account/close-account.component';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-drug',

@@ -2,13 +2,14 @@
   <div id="drug-detail-page">
     <div class="section">
       <div id="drug-info">
+        <app-search></app-search>
         <div
           class="title"
           fxLayout="column"
           fxLayoutAlign="space-between left"
           *ngIf="!!drug"
         >
-          <div class="default-margin"></div>
+          <!--<div class="default-margin"></div>-->
           <div fxFlex="100">
             <h1 class="bold">
               <span *ngIf="this.languageService.currentLanguage == 'en'">{{

@@ -285,7 +285,7 @@
   "PDSS__BROWSER__RESULT_TABLE_TYPES__DRUG": "Drug",
   "PDSS__BROWSER__RESULT_TABLE_TYPES__GENE": "Gene",
   "PDSS__BROWSER__RESULT__NOT__FOUND": "검색결과가 없습니다.",
-  "PDSS__BROWSER__SEARCH_COMMENT": "찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin / Tyrenol)",
+  "PDSS__BROWSER__SEARCH_COMMENT": "찾으시려는 Keyword 입력하세요 (예: CYP2C9 / Warfarin / 타이레놀)",
   "PDSS__BROWSER__SERVER__NOT__RESPONSE": "검색결과 로딩에 실패, 서버가 응답하지 않습니다.",
   "PDSS__BROWSER__STRINGS__SOME_RESULT_MAY_BE_THE_THINGS_YOU_ARE_LOOKING_FOR": "Some result may be the things you are looking for",
   "PDSS__BROWSER__TITLES__CATEGORIES": "Categories",
