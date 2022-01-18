@@ -120,6 +120,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const formValue = this.searchForm.value;
       const keyword = formValue.keyword;
       this.searchKeyword = keyword;
+      this.searchKeyword = this.searchKeyword.trim();
 
       const searchRequest: SearchRequest = {
         keyword: formValue.keyword,
@@ -180,6 +181,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       }, []);
     };
     lookupObject = removeDuplicates(processResults, 'name');
+
     for (var i in lookupObject) {
       results.push(lookupObject[i]);
     }

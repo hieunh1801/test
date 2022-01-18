@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
       const formValue = this.searchForm.value;
       const keyword = formValue.keyword;
       this.searchKeyword = keyword;
+      this.searchKeyword = this.searchKeyword.trim();
     }
     this.router.navigate(['/pdss/browser'], {
       queryParams: { keyword: this.searchKeyword },

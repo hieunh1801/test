@@ -133,25 +133,33 @@ export class DrugComponent implements OnInit, OnDestroy {
       });
   }
 
-  onGetDrugSynonyms(drugSynonyms: Array<DrugSynonyms>): void {
-    // this.drugSynonyms = drugSynonyms;
+  onGetDrugSynonyms(drugSynonymsData: Array<DrugSynonyms>): void {
     const tempResults: DrugSynonyms[] = [];
+    // const drugSynonyms: DrugSynonyms[] = [];
+
+    const drugSynonyms = Array.from(
+      new Set(drugSynonymsData.map((a) => a.synonyms))
+    ).map((synonyms) => {
+      return drugSynonymsData.find((a) => a.synonyms === synonyms);
+    });
 
     const brandCount = drugSynonyms.filter((el) => el.type === 'Brand').length;
+    /*
     const drugCount = drugSynonyms.filter(
       (el) => el.type === 'Generic_Name'
     ).length;
+    */
 
     for (let element of drugSynonyms) {
       if (element.type == 'Brand') {
         tempResults.push(element);
-      } else if (element.type == 'Generic_Name') {
+      }
+      /* else if (element.type == 'Generic_Name') {
         if (brandCount == 0) {
           tempResults.push(element);
         }
-      } else if (element.type == 'gene') {
-        tempResults.push(element);
       }
+      */
     }
     this.drugSynonyms = tempResults;
   }
