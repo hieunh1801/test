@@ -8,7 +8,7 @@
       <div class="search-form spmed-form">
         <form [formGroup]="searchForm">
           <div fxLayout="row" fxLayoutGap="10px">
-            <mat-form-field appearance="outline" style="width: 200px">
+            <mat-form-field appearance="outline" style="max-width: 20%">
               <mat-select formControlName="product">
                 <mat-option
                   *ngFor="let product of productOptions"
@@ -78,13 +78,15 @@
             <td mat-cell *matCellDef="let element">{{ element.telephone }}</td>
           </ng-container>
           <ng-container matColumnDef="department">
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef fxHide.lt-md>
               {{
                 "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__DEPARTMENT"
                   | translate
               }}
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.department }}</td>
+            <td mat-cell *matCellDef="let element" fxHide.lt-md>
+              {{ element.department }}
+            </td>
           </ng-container>
           <ng-container matColumnDef="products">
             <th mat-header-cell *matHeaderCellDef>
