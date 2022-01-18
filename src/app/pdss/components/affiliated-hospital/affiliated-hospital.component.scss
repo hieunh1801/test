@@ -1,0 +1,59 @@
+.affiliated-hospital-wrapper {
+  padding: 30px 0 60px 0px;
+  .affiliated-hospital {
+    max-width: var(--primary--screen);
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .affiliated-hospital-table {
+    width: 100%;
+
+    .mat-header-row {
+      background-color: var(--primary-a--color);
+    }
+    .mat-header-cell {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    th.mat-header-cell,
+    td.mat-cell,
+    td.mat-footer-cell {
+      padding: 8px;
+    }
+
+    th.mat-header-cell:first-of-type,
+    td.mat-cell:first-of-type,
+    td.mat-footer-cell:first-of-type {
+      padding-left: 24px !important;
+    }
+
+    td.mat-cell {
+      max-width: 300px;
+    }
+
+    .mat-row:hover {
+      background-color: #ddd;
+    }
+
+    .product-list {
+      display: flex;
+      justify-content: flex-start;
+      align-self: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .product-list-item {
+        background-color: var(--primary-a--color);
+        color: white;
+        font-weight: 500;
+        padding: 4px 8px;
+        font-size: 12px;
+        border-radius: 999px;
+        word-wrap: break-word;
+        white-space: pre;
+      }
+    }
+  }
+}

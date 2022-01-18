@@ -37,6 +37,14 @@
       >
         <span translate>PDSS__NAV_MENU__UTILITY</span>
       </button>
+
+      <button
+        mat-button
+        routerLink="affiliated-hospital"
+        routerLinkActive="router-link-active"
+      >
+        <span translate>PDSS__NAV_MENU__AFFILIATED_HOSPITAL</span>
+      </button>
     </div>
     <div fxFlex="10" fxLayoutAlign="end" fxLayout>
       <button
@@ -80,8 +88,13 @@
 
 <!-- website -> products menu -->
 <mat-menu #pdssProductsMenu="matMenu">
-  <button class="product-route-button" mat-menu-item *ngFor="let productRoute of productRouteList" [routerLink]="productRoute.routerLink">
-    <span>{{productRoute.title | translate}}</span>
+  <button
+    class="product-route-button"
+    mat-menu-item
+    *ngFor="let productRoute of productRouteList"
+    [routerLink]="productRoute.routerLink"
+  >
+    <span>{{ productRoute.title | translate }}</span>
   </button>
 </mat-menu>
 
@@ -141,6 +154,13 @@
       (click)="isOpenMenuMobile = false"
     >
       <span translate>PDSS__NAV_MENU__UTILITY</span>
+    </button>
+    <button
+      mat-menu-item
+      routerLink="affiliated-hospital"
+      (click)="isOpenMenuMobile = false"
+    >
+      <span translate>PDSS__NAV_MENU__AFFILIATED_HOSPITAL</span>
     </button>
     <mat-divider></mat-divider>
     <button

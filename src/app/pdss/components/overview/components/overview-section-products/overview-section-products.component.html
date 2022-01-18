@@ -5,31 +5,38 @@
       What should you choose?
     </h2>
     <div class="item-list">
-      <div class="item choose">
-        <h3>PGx-NP</h3>
-        <p>This is purpose: orem ipsum dolor sit amet consectetur</p>
+      <div
+        class="item"
+        *ngFor="let product of productList"
+        [ngClass]="product.choose ? 'choose' : ''"
+      >
+        <h3>{{ product.title | translate }}</h3>
+        <p>{{ product.purpose | translate }}</p>
         <mat-divider></mat-divider>
         <div class="product-feature-list">
-          <div class="product-feature-item">
-            <mat-icon>done</mat-icon>121 drugs
-          </div>
-          <div class="product-feature-item">
-            <mat-icon>done</mat-icon>20 genes
-          </div>
-
-          <div class="product-feature-item">
-            <mat-icon>done</mat-icon>Digital Report
+          <div
+            class="product-feature-item"
+            *ngFor="let feature of product.featureList"
+          >
+            <ng-container *ngIf="feature | translate">
+              <mat-icon>done</mat-icon> {{ feature | translate }}
+            </ng-container>
           </div>
         </div>
         <div class="space"></div>
 
         <div class="actions">
-          <div>Detail</div>
-          <div>Find Hospital</div>
+          <div
+            *ngFor="let route of product.routeList"
+            [routerLink]="route.routerLink"
+            [queryParams]="route.queryParams"
+          >
+            {{ route.title | translate }}
+          </div>
         </div>
       </div>
 
-      <div class="item">
+      <!-- <div class="item">
         <h3>Premium</h3>
         <p>This is purpose: orem ipsum dolor sit amet consectetur</p>
         <mat-divider></mat-divider>
@@ -120,7 +127,7 @@
         <div class="actions">
           <div>Contact Us</div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

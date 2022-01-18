@@ -42,19 +42,60 @@ export class SingleGeneComponent implements OnInit {
       ],
     },
     product: {
-      title: marker('PDSS__PRODUCTS__PRODUCT__TITLE'),
+      title: marker('PDSS__PRODUCTS__SINGLE_GENE__PRODUCT__TITLE'),
+    },
+    affiliatedHospital: {
+      title: marker('PDSS__PRODUCTS__SINGLE_GENE__AFFILIATED_HOSPITAL__TITLE'),
     },
   };
 
   productList: Product[] = null;
+  hospitalList: Hospital[];
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService
       .getProductByName('single-gene')
       .subscribe((response) => {
-        this.productList = response?.data?.items || null;
-        console.log(this.productList);
+        const productList = response?.data?.items || null;
+        this.setProductList(productList);
+        this.setHospitalList(productList);
       });
+  }
+
+  private setProductList(productList: Product[]): void {
+    if (!productList) {
+      return;
+    }
+
+    productList = productList.sort((a: Product, b: Product) => {
+      const aShortName = a.shortName;
+      const bShortName = b.shortName;
+      return aShortName?.localeCompare(b.shortName);
+    });
+
+    this.productList = productList;
+  }
+
+  private setHospitalList(productList: Product[]): void {
+    if (!productList) {
+      return;
+    }
+
+    const addedHospitalId = new Set();
+    const hospitalList: Hospital[] = [];
+
+    for (const product of productList) {
+      const productHospitalList = product.hospitals || [];
+      for (const hospital of productHospitalList) {
+        const hospitalId = hospital.id;
+        if (!addedHospitalId.has(hospitalId)) {
+          hospitalList.push(hospital);
+          addedHospitalId.add(hospitalId);
+        }
+      }
+    }
+
+    this.hospitalList = hospitalList;
   }
 }
