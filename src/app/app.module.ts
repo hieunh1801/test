@@ -18,6 +18,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PlatformModule } from '@angular/cdk/platform';
+import { AnimationModule } from './@animation/animation.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +45,7 @@ import { PlatformModule } from '@angular/cdk/platform';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    AnimationModule,
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

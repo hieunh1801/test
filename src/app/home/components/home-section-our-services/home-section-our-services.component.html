@@ -4,8 +4,7 @@
       {{ "HOME__SECTION_OUR_SERVICE__OUR_SERVICE" | translate }}
     </h2>
     <div class="service-list-wrapper">
-      <div
-        class="service-item"
+      <ng-container
         *ngFor="
           let service of servicesList;
           let i = index;
@@ -14,41 +13,43 @@
           let even = even
         "
       >
-        <div class="service-image" *ngIf="even">
-          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
-        </div>
-
-        <div class="service-image" *ngIf="odd" fxHide.gt-xs>
-          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
-        </div>
-        <div class="service-content">
-          <h3>
-            {{ service.title | translate }}
-          </h3>
-          <div class="content-list" *ngFor="let content of service.contents">
-            <div *ngIf="content | translate">
-              <mat-icon>done</mat-icon>
-              {{ content | translate }}
-            </div>
+        <div class="service-item" [animateAfterAppear]="'fadeInLeft'">
+          <div class="service-image" *ngIf="even">
+            <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
           </div>
-          <div class="actions-list">
-            <div *ngFor="let action of service.routeActions">
-              <div
-                *ngIf="action.routerLink && action.title | translate"
-                [routerLink]="action.routerLink"
-                class="route-button"
-              >
-                {{ action.title | translate }}
+
+          <div class="service-image" *ngIf="odd" fxHide.gt-xs>
+            <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
+          </div>
+          <div class="service-content">
+            <h3>
+              {{ service.title | translate }}
+            </h3>
+            <div class="content-list" *ngFor="let content of service.contents">
+              <div *ngIf="content | translate">
+                <mat-icon>done</mat-icon>
+                {{ content | translate }}
+              </div>
+            </div>
+            <div class="actions-list">
+              <div *ngFor="let action of service.routeActions">
+                <div
+                  *ngIf="action.routerLink && action.title | translate"
+                  [routerLink]="action.routerLink"
+                  class="route-button"
+                >
+                  {{ action.title | translate }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="service-image" *ngIf="odd" fxHide.lt-sm>
-          <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
-        </div>
+          <div class="service-image" *ngIf="odd" fxHide.lt-sm>
+            <img [src]="service.imageUrl" [alt]="service.title + 'image'" />
+          </div>
 
-        <mat-divider *ngIf="!last" fxHide.gt-xs></mat-divider>
-      </div>
+          <mat-divider *ngIf="!last" fxHide.gt-xs></mat-divider>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>

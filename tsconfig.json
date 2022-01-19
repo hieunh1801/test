@@ -16,7 +16,8 @@
       "@not-found/*": ["./src/app/not-found/*"],
       "@pdss/*": ["./src/app/pdss/*"],
       "@user/*": ["./src/app/user/*"],
-      "@shared/*": ["./src/app/shared/*"]
+      "@shared/*": ["./src/app/shared/*"],
+      "@animation/*": ["./src/app/@animation/*"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

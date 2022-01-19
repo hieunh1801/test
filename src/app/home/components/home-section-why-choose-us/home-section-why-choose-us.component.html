@@ -3,7 +3,7 @@
     <h2 class="title">
       {{ "HOME__SECTION_WHY_CHOOSE_US__WHY_CHOOSE_US" | translate }}
     </h2>
-    <div class="reason-list">
+    <div class="reason-list" animateAfterAppear="fadeIn">
       <div class="reason-item" *ngFor="let reason of reasonList">
         <img [src]="reason.imgUrl" class="reason-item-icon" />
         <p>

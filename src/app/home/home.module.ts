@@ -11,6 +11,7 @@ import { HomeSectionHeroBannerComponent } from './components/home-section-hero-b
 import { HomeSectionWhyChooseUsComponent } from './components/home-section-why-choose-us/home-section-why-choose-us.component';
 import { HomeSectionOurServicesComponent } from './components/home-section-our-services/home-section-our-services.component';
 import { HomeSectionContactUsComponent } from './components/home-section-contact-us/home-section-contact-us.component';
+import { AnimationModule } from '@animation/animation.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HomeSectionContactUsComponent } from './components/home-section-contact
     MaterialModule,
     FlexLayoutModule,
     SharedModule,
+    AnimationModule,
   ],
 })
 export class HomeModule {}

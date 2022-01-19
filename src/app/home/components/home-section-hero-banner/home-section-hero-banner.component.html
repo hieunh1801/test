@@ -1,14 +1,18 @@
 <!-- hero banner -->
 <section id="banner-wrapper">
   <div class="banner">
-    <h1 class="animate__animated animate__fadeInUp">
+    <h1 animateAfterAppear="fadeInDown">
       {{ "HOME__SECTION_HERO_BANNER__HEADING" | translate }}
     </h1>
-    <h2 class="animate__animated animate__fadeInUp">
+    <h2 animateAfterAppear="fadeInDown">
       {{ "HOME__SECTION_HERO_BANNER__SUB_HEADING" | translate }}
     </h2>
     <div class="actions">
-      <button mat-button class="our-service-button spmed-button">
+      <button
+        mat-button
+        class="our-service-button spmed-button"
+        animateAfterAppear="fadeInRight"
+      >
         {{ "HOME__SECTION_HERO_BANNER__BUTTONS__OUR_SERVICES" | translate }}
       </button>
     </div>
