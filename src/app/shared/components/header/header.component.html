@@ -6,6 +6,13 @@
     #trigger="cdkOverlayOrigin"
   >
     <!-- brand -->
+    <button
+      mat-icon-button
+      (click)="isOpenMenuMobile = !isOpenMenuMobile"
+      fxHide.gt-sm
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
     <div fxFlex="10">
       <button mat-button routerLink="/" translate>
         <!--<p translate>layout.header.spmed-logo</p>-->
@@ -170,9 +177,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-icon-button (click)="isOpenMenuMobile = !isOpenMenuMobile">
-        <mat-icon>menu</mat-icon>
-      </button>
     </div>
   </mat-toolbar>
 </header>
