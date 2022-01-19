@@ -53,7 +53,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__2__ROUTE_ACTION__1'
           ),
-          routerLink: '',
+          routerLink: ['/genotyping-kit'],
         },
         {
           title: marker(
@@ -81,7 +81,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__3__ROUTE_ACTION__1'
           ),
-          routerLink: '',
+          routerLink: ['/adme'],
         },
         {
           title: marker(
@@ -108,7 +108,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__4__ROUTE_ACTION__1'
           ),
-          routerLink: '',
+          routerLink: ['human-recombinant-enzymes'],
         },
         {
           title: marker(
