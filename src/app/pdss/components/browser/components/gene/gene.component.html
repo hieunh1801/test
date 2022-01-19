@@ -2,13 +2,14 @@
   <div id="gene-page">
     <div class="section">
       <div id="gene-info">
+        <app-search></app-search>
         <div
           class="title"
           fxLayout="column"
           fxLayoutAlign="space-between left"
           *ngIf="!!gene"
         >
-          <div class="default-margin"></div>
+          <!--<div class="default-margin"></div>-->
           <div fxFlex="100">
             <h1 class="bold">{{ gene.symbol }}</h1>
             <h4>{{ gene.scientificName }}</h4>

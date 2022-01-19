@@ -1,44 +1,157 @@
-<div
-  fxLayout.xs="column"
-  fxLayout="row wrap"
-  fxLayoutGap="10px"
-  ngClass.gt-xs="ml-10"
->
-  <mat-card
-    fxFlex.sm="0 1 calc(50%-10px)"
-    fxFlex.md="0 1 calc(33%-10px)"
-    fxFlex.gt-md="0 1 calc(25%-10px)"
-  >
-    <mat-card-title>Card 1</mat-card-title>
-    <img
-      mat-card-image
-      src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-      class="image"
-    />
-    <mat-card-content
-      >Primary card content. Intended for blocks of text</mat-card-content
-    >
-    <mat-card-actions
-      >Container for buttons at the bottom of the card</mat-card-actions
-    >
-  </mat-card>
+<div id="page">
+  <div id="news-page">
+    <div class="section">
+      <div id="news-info">
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <form class="search-form" [formGroup]="searchForm">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label> Input title and Contents Keyword </mat-label>
+              <input
+                type="text"
+                formControlName="keyword"
+                name="keyword"
+                matInput
+                (keydown.enter)="loadCustomerBoardList()"
+              />
+              <button
+                type="button"
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Autofill"
+                (click)="loadCustomerBoardList()"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <h2>News Recent</h2>
+        </div>
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutGap="25px"
+          fxLayoutAlign="start stretch"
+        >
+          <mat-card
+            *ngFor="let board of customerBoardDataSource"
+            fxFlex="0 0 calc(33%-25px)"
+            fxFlex.sm="0 0 calc(50%-25px)"
+          >
+            <div
+              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <a [routerLink]="['/news', board.id, 'detail']">
+                <!--
+                <span *ngIf="this.languageService.currentLanguage == 'en'"
+                  ><img [src]="board.thumbnailUrl" class="image-thumbnail"
+                /></span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'"
+                  ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
+                /></span>
+                -->
+                <img [src]="board.thumbnailUrl" class="image-thumbnail" />
+              </a>
+            </div>
+            <div
+              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <div class="images">
+                <img
+                  src="../../assets/images/news.jpg"
+                  class="image-thumbnail"
+                />
+              </div>
+            </div>
+            <mat-card-title
+              style="line-height: 1em; margin-bottom: 20px"
+              class="mb-10"
+            >
+              <!--
+              <span *ngIf="this.languageService.currentLanguage == 'en'">
+                <a [routerLink]="['/news', board.id, 'detail']">{{
+                  board.title
+                }}</a></span
+              >
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                <a [routerLink]="['/news', board.id, 'detail']">
+                  {{ board.kr?.title }}
+                </a>
+              </span>
+            -->
+              <a [routerLink]="['/news', board.id, 'detail']">{{
+                board.title
+              }}</a>
+            </mat-card-title>
 
-  <mat-card
-    fxFlex.sm="0 1 calc(50%-10px)"
-    fxFlex.md="0 1 calc(33%-10px)"
-    fxFlex.gt-md="0 1 calc(25%-10px)"
-  >
-    <mat-card-title>Card 2</mat-card-title>
-    <img
-      mat-card-image
-      src="https://kakiseni.org/wp-content/uploads/2018/03/250X250.png"
-      class="image"
-    />
-    <mat-card-content
-      >Primary card content. Intended for blocks of text</mat-card-content
-    >
-    <mat-card-actions
-      >Container for buttons at the bottom of the card</mat-card-actions
-    >
-  </mat-card>
+            <mat-card-content>
+              <div
+                class="mb-10"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+              >
+                <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">
+                    {{ board.publishTime | date }}
+                  </span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                    {{ board.publishTime | date: "yyyy-MM-dd" }}
+                  </span>
+                </div>
+                <div>
+                  <!--
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                    board.author
+                  }}</span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                    board.kr.author
+                  }}</span>
+                  -->
+                  {{ board.author }}
+                </div>
+              </div>
+              <div class="mb-10">
+                <div
+                  class="list-content"
+                  [innerHTML]="board.content | truncateText: 180"
+                ></div>
+                <!--
+                <div
+                  class="list-content"
+                  *ngIf="this.languageService.currentLanguage == 'en'"
+                  [innerHTML]="board.content | truncateText: 180"
+                ></div>
+                <div
+                  class="list-content"
+                  *ngIf="this.languageService.currentLanguage == 'kr'"
+                  [innerHTML]="board.kr.content | truncateText: 180"
+                ></div>
+                -->
+              </div>
+              <div class="tag">
+                <span *ngIf="this.languageService.currentLanguage == 'en'">
+                  <span *ngFor="let tags of board?.tags">
+                    <a [routerLink]="['/news', tags.id]" class="tag">
+                      #{{ tags.name }} &nbsp;
+                    </a>
+                  </span>
+                </span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                  <span *ngFor="let tags of board?.tags">
+                    <a [routerLink]="['/news', tags.kr.id]" class="tag">
+                      #{{ tags.kr.name }} &nbsp;
+                    </a>
+                  </span>
+                </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

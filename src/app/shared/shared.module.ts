@@ -27,7 +27,10 @@ import { CountryAutocompleteComponent } from './components/country-autocomplete/
 import { RatingInputComponent } from './components/rating-input/rating-input.component';
 import { JoyrideModule } from 'ngx-joyride';
 import { JoyrideWrapperComponent } from './components/joyride-wrapper/joyride-wrapper.component';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import { PlatformModule } from '@angular/cdk/platform';
+
 const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
@@ -61,6 +64,8 @@ const httpInterceptorProviders = [
     ToAgePipe,
     HighlightSearchPipe,
     GenderToStringPipe,
+    TruncateTextPipe,
+    FilterPipe,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -85,6 +90,8 @@ const httpInterceptorProviders = [
     HighlightSearchPipe,
     GenderToStringPipe,
     JoyrideModule,
+    TruncateTextPipe,
+    FilterPipe,
   ],
 })
 export class SharedModule {}

@@ -13,7 +13,6 @@
                   | translate
               }}
             </p>
-
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>
                 {{ "PDSS__BROWSER__SEARCH_COMMENT" | translate }}
@@ -93,15 +92,6 @@
                 {{ "PDSS__BROWSER__TITLES__CATEGORIES" | translate }}
               </h3>
               <form class="search-form" [formGroup]="filterForm">
-                <!--
-        <mat-checkbox
-          formControlName="isBrand"
-          name="isBrand"
-          (change)="onChange($event)"
-          >Brands</mat-checkbox
-        >
-        ({{ brandCount }})<br />
-        -->
                 <mat-checkbox
                   formControlName="isDrug"
                   name="isDrug"

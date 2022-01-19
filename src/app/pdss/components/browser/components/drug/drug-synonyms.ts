@@ -1,5 +1,5 @@
 export class DrugSynonyms {
   id: number;
-  name: string;
+  synonyms: string;
   type: string;
 }

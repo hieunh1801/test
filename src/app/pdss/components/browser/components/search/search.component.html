@@ -1,0 +1,32 @@
+<div style="padding: 16px 16px 0px 16px">
+  <form class="search-form" [formGroup]="searchForm">
+    <p>
+      {{
+        "PDSS__BROWSER__STRINGS__SOME_RESULT_MAY_BE_THE_THINGS_YOU_ARE_LOOKING_FOR"
+          | translate
+      }}
+    </p>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>
+        {{ "PDSS__BROWSER__SEARCH_COMMENT" | translate }}
+      </mat-label>
+      <input
+        type="text"
+        formControlName="keyword"
+        name="keyword"
+        matInput
+        (keydown.enter)="search()"
+      />
+      <button
+        type="button"
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Autofill"
+        (click)="search()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>

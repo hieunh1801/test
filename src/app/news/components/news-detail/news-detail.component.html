@@ -1,0 +1,208 @@
+<div id="news-page">
+  <div id="news-detail-page">
+    <div class="section">
+      <div id="news-info">
+        <div>
+          <div class="title">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              <h2>
+                {{ customerBoard?.kr?.title }}
+              </h2>
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              <h2>
+                {{ customerBoard?.title }}
+              </h2>
+            </span>
+          </div>
+        </div>
+        <div class="author" fxLayout="row" fxHide fxShow.gt-sm>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.publishTime | date: "yyyy-MM-dd" }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.publishTime | date }}
+            </span>
+          </div>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.kr?.author }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="10">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
+            </span>
+          </div>
+          <div fxFlex="70"></div>
+        </div>
+        <div class="author" fxLayout="row" fxHide fxShow.lt-md>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.publishTime | date: "yyyy-MM-dd" }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.publishTime | date }}
+            </span>
+          </div>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              {{ customerBoard?.kr?.author }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.author }}
+            </span>
+          </div>
+          <div fxFlex="30">
+            <span *ngIf="this.languageService.currentLanguage == 'kr'">
+              조회수 {{ customerBoard?.readCount }}
+            </span>
+            <span *ngIf="this.languageService.currentLanguage == 'en'">
+              {{ customerBoard?.readCount }} read
+            </span>
+          </div>
+          <div fxFlex="10"></div>
+        </div>
+
+        <br />
+        <div class="content">
+          <div
+            *ngIf="this.languageService.currentLanguage == 'kr'"
+            [innerHTML]="customerBoard?.kr?.content"
+          ></div>
+          <div
+            *ngIf="this.languageService.currentLanguage == 'en'"
+            [innerHTML]="customerBoard?.content"
+          ></div>
+        </div>
+        <div class="tag">
+          <span *ngIf="this.languageService.currentLanguage == 'kr'">
+            <span *ngFor="let tag of customerBoard?.tags">
+              <a [routerLink]="['/news', tag.kr.id]" class="tag">
+                #{{ tag.kr.name }} &nbsp;
+              </a>
+            </span>
+          </span>
+          <span *ngIf="this.languageService.currentLanguage == 'en'">
+            <span *ngFor="let tag of customerBoard?.tags">
+              <a [routerLink]="['/news', tag.id]" class="tag">
+                #{{ tag.name }} &nbsp;
+              </a>
+            </span>
+          </span>
+        </div>
+        <div *ngIf="!!customerBoardAttachment">
+          <span translate>NEWS__DETAIL__ATTACHMENT__FILE</span>
+          <mat-selection-list #attachmentEn [multiple]="false">
+            <mat-list-option
+              *ngFor="let attachEn of customerBoardAttachment"
+              value="attachEn"
+              [ngClass]="{ hidden: attachEn.viewFileName === null }"
+              class="attachment"
+            >
+              <a [href]="attachEn.url" target="_blank">{{
+                attachEn.viewFileName
+              }}</a>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <br />
+
+        <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
+          <h2>Recent News</h2>
+        </div>
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutGap="25px"
+          fxLayoutAlign="start stretch"
+        >
+          <mat-card
+            *ngFor="let board of customerBoardDataSource | filter: ''"
+            fxFlex="0 0 calc(33%-25px)"
+            fxFlex.sm="0 0 calc(50%-25px)"
+          >
+            <div
+              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <a [routerLink]="['/news', board.id, 'detail']">
+                <span *ngIf="this.languageService.currentLanguage == 'en'"
+                  ><img [src]="board.thumbnailUrl" class="image-thumbnail"
+                /></span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'"
+                  ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
+                /></span>
+              </a>
+            </div>
+            <div
+              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
+              class="image-box"
+            >
+              <div class="images">
+                <img
+                  src="../../assets/images/news.jpg"
+                  class="image-thumbnail"
+                />
+              </div>
+            </div>
+
+            <mat-card-title class="mb-10">
+              <span *ngIf="this.languageService.currentLanguage == 'en'">
+                <a [routerLink]="['/news', board.id, 'detail']">{{
+                  board.title
+                }}</a></span
+              >
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                <a [routerLink]="['/news', board.id, 'detail']">
+                  {{ board.kr?.title }}
+                </a>
+              </span>
+            </mat-card-title>
+
+            <mat-card-content>
+              <div
+                class="mb-10"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+              >
+                <div>{{ board.publishTime }}</div>
+                <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                    board.author
+                  }}</span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                    board.kr.author
+                  }}</span>
+                </div>
+              </div>
+              <div class="tag">
+                <span *ngIf="this.languageService.currentLanguage == 'en'">
+                  <span *ngFor="let tag of board?.tags">
+                    <a [routerLink]="['/news', tag.id]" class="tag">
+                      #{{ tag.name }} &nbsp;
+                    </a>
+                  </span>
+                </span>
+                <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                  <span *ngFor="let tag of board?.tags">
+                    <a [routerLink]="['/news', tag.kr.id]" class="tag">
+                      #{{ tag.kr.name }} &nbsp;
+                    </a>
+                  </span>
+                </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

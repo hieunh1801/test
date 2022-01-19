@@ -2,15 +2,23 @@
   <div id="drug-detail-page">
     <div class="section">
       <div id="drug-info">
+        <app-search></app-search>
         <div
           class="title"
           fxLayout="column"
           fxLayoutAlign="space-between left"
           *ngIf="!!drug"
         >
-          <div class="default-margin"></div>
+          <!--<div class="default-margin"></div>-->
           <div fxFlex="100">
-            <h1 class="bold">{{ drug.name | titlecase }}</h1>
+            <h1 class="bold">
+              <span *ngIf="this.languageService.currentLanguage == 'en'">{{
+                drug.name | titlecase
+              }}</span>
+              <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
+                drug.kr.name + "(" + drug.name + ")"
+              }}</span>
+            </h1>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
               <ng-container matColumnDef="guideline">
                 <td>
@@ -219,7 +227,6 @@
           <div class="default-margin" fxFlex="100">
             <h2>
               {{ "PDSS__BROWSER__DRUG__TITLES__RELATED_GENES" | translate }}
-
               ({{ drug?.genes?.length || 0 }})
             </h2>
             <div
