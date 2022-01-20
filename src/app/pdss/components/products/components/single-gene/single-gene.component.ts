@@ -19,7 +19,7 @@ export class SingleGeneComponent implements OnInit {
     introduction: {
       title: marker('PDSS__PRODUCTS__SINGLE_GENE__INTRODUCTION__TITLE'),
       content: marker('PDSS__PRODUCTS__SINGLE_GENE__INTRODUCTION__CONTENT'),
-      imageUrl: marker('/assets/images/pdss-digital-report.png'),
+      imageUrl: '/assets/images/pdss-digital-report.png',
       fileList: [
         {
           title: marker(

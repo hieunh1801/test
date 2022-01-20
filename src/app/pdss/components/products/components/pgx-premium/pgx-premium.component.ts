@@ -19,7 +19,7 @@ export class PgxPremiumComponent implements OnInit {
     introduction: {
       title: marker('PDSS__PRODUCTS__PGX_PREMIUM__INTRODUCTION__TITLE'),
       content: marker('PDSS__PRODUCTS__PGX_PREMIUM__INTRODUCTION__CONTENT'),
-      imageUrl: marker('/assets/images/pdss-digital-report.png'),
+      imageUrl: '/assets/images/pdss-digital-report.png',
       fileList: [
         {
           title: marker(
