@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { LanguageService } from '@shared/services/language.service';
 import { PwaService } from '@shared/services/pwa.service';
 import { TokenStorageService } from '@shared/services/token-storage.service';
@@ -16,6 +17,37 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isOpenMenuMobile = false;
 
   subscription$ = new Subscription();
+
+  headerInfo = {
+    serviceList: [
+      {
+        title: marker('LAYOUT__HEADER__SERVICES__PDSS'),
+        subTitle: marker('LAYOUT__HEADER__SERVICES__PDSS__SUB_TITLE'),
+        routerLink: '/pdss',
+        icon: 'trip_origin',
+      },
+      {
+        title: marker('LAYOUT__HEADER__SERVICES__GENOTYPING_KIT'),
+        subTitle: marker('LAYOUT__HEADER__SERVICES__GENOTYPING_KIT__SUB_TITLE'),
+        routerLink: '/genotyping-kit',
+        icon: 'medical_services',
+      },
+      {
+        title: marker('LAYOUT__HEADER__SERVICES__ADME'),
+        subTitle: marker('LAYOUT__HEADER__SERVICES__ADME__SUB_TITLE'),
+        routerLink: '/adme',
+        icon: 'my_location',
+      },
+      {
+        title: marker('LAYOUT__HEADER__SERVICES__HUMAN_RECOMBINANT_ENZYMES'),
+        subTitle: marker(
+          'LAYOUT__HEADER__SERVICES__HUMAN_RECOMBINANT_ENZYMES__SUB_TITLE'
+        ),
+        routerLink: '/human-recombinant-enzymes',
+        icon: 'accessibility_new',
+      },
+    ],
+  };
 
   constructor(
     public languageService: LanguageService,
