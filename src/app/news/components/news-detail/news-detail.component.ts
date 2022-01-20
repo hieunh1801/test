@@ -56,7 +56,11 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
         const customerBoard: CustomerBoard = response?.data?.items?.[0] || null;
         if (customerBoard) {
           this.customerBoard = customerBoard;
-          this.loadCustomerBoardList();
+          if (customerBoard.deleted == 0 && customerBoard.draft == 0) {
+            this.loadCustomerBoardList();
+          } else {
+            this.router.navigate(['/news']);
+          }
         } else {
           throw new Error('Get news data by id failed');
         }
