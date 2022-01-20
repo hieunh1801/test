@@ -142,6 +142,11 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   change(event: PageEvent) {
     let startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     if (endIndex > this.length) {
       endIndex = this.length;
     }
@@ -401,7 +406,8 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
 
   syncQueryParams(): void {
     const searchFormValue = this.searchForm.value;
-    const filterFormValue = this.filterForm.value;
+    // const filterFormValue = this.filterForm.value;
+    const filterFormValue = null;
 
     this.router.navigate(['.'], {
       relativeTo: this.activatedRouter,
