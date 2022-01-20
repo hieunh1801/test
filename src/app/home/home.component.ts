@@ -15,4 +15,12 @@ export class HomeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  scrollToOurServices(): void {
+    console.log('scroll');
+    const ourServicesElement = document.querySelector('#our-services');
+    ourServicesElement?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
 }

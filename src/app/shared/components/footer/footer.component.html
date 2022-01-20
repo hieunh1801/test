@@ -9,7 +9,9 @@
     >
       <div fxFlex="25" fxLayout="column">
         <div class="logo"><img src="../../../../assets/common/logo.jpg" /></div>
-        <div class="footer-txt" translate>LAYOUT__FOOTER__COPYRIGHT</div>
+        <div class="footer-txt">
+          {{ footerInfo.titles.copyright | translate }}
+        </div>
         <div class="sns" fxLayout="row">
           <div *ngFor="let snsLink of snsLinkList">
             <a
@@ -30,35 +32,24 @@
         fxLayoutGap="10px"
         fxLayout.lt-sm="column"
       >
+        <!-- services start -->
         <div fxFlex="25">
           <div class="footer-title">
-            {{ "LAYOUT__FOOTER__SUB_TITLES__SERVICES" | translate }}
+            {{ footerInfo.titles.services | translate }}
           </div>
-          <div class="address">
-            <a routerLink="/pdss">
-              {{
-                "LAYOUT__FOOTER__SUB_TITLES__PDSS_MY_PRESCRIPTION" | translate
-              }}
+          <div class="address" *ngFor="let service of footerInfo.serviceList">
+            <a [routerLink]="service.routerLink">
+              {{ service.title | translate }}
             </a>
-          </div>
-          <div class="address">
-            <a routerLink="/adme">
-              {{ "LAYOUT__FOOTER__SUB_TITLES__ADME_SERVICE" | translate }}
-            </a>
-          </div>
-          <div class="address">
-            {{ "LAYOUT__FOOTER__SUB_TITLES__GENOTYPING_KIT" | translate }}
-          </div>
-          <div class="address">
-            {{
-              "LAYOUT__FOOTER__SUB_TITLES__HUMAN_RECOMBINANT_ENZYMES"
-                | translate
-            }}
           </div>
         </div>
+        <!-- services end -->
+
+        <!-- links start -->
+
         <div fxFlex="25">
           <div class="footer-title">
-            {{ "LAYOUT__FOOTER__SUB_TITLES__LINK" | translate }}
+            {{ footerInfo.titles.links | translate }}
           </div>
           <div class="address" translate>
             LAYOUT__FOOTER__LINK__COMPANY_INTRODUCTION
@@ -70,27 +61,36 @@
             LAYOUT__FOOTER__LINK__PRIVACY_POLICY
           </div>
         </div>
+
+        <!-- links end -->
+
+        <!-- contact us start -->
+
         <div fxFlex="25">
-          <div class="footer-title">Contact Us</div>
+          <div class="footer-title">
+            {{ footerInfo.titles.contactUs | translate }}
+          </div>
           <div class="address">Tel : +82-51-362-1101</div>
           <div class="address">Email: help@spmed.kr</div>
           <div class="address">Fax : +82-51-361-1102</div>
         </div>
+        <!-- contact us end -->
+
+        <!-- address start-->
         <div fxFlex="25">
-          <div class="footer-title">Address</div>
-          <div class="address-title" translate>
-            LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER
+          <div class="footer-title">
+            {{ footerInfo.titles.addresses | translate }}
           </div>
-          <div class="address" translate>
-            LAYOUT__FOOTER__ADDRESS__HEAD_QUARTER_ADDRESS
-          </div>
-          <div class="address-title" translate>
-            LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH
-          </div>
-          <div class="address" translate>
-            LAYOUT__FOOTER__ADDRESS__SEOUL_BRANCH_ADDRESS
-          </div>
+          <ng-container *ngFor="let address of footerInfo.addressList">
+            <div class="address-title">
+              {{ address.name | translate }}
+            </div>
+            <div class="address">
+              {{ address.address | translate }}
+            </div>
+          </ng-container>
         </div>
+        <!-- address end-->
       </div>
     </div>
   </div>

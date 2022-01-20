@@ -4,11 +4,13 @@
       {{ "HOME__SECTION_WHY_CHOOSE_US__WHY_CHOOSE_US" | translate }}
     </h2>
     <div class="reason-list" animateAfterAppear="fadeIn">
-      <div class="reason-item" *ngFor="let reason of reasonList">
-        <img [src]="reason.imgUrl" class="reason-item-icon" />
-        <p>
-          {{ reason.title | translate }}
-        </p>
+      <div class="reason-wrapper" *ngFor="let reason of reasonList">
+        <div class="reason-item">
+          <img [src]="reason.imgUrl" class="reason-item-icon" />
+          <p>
+            {{ reason.title | translate }}
+          </p>
+        </div>
       </div>
     </div>
   </div>

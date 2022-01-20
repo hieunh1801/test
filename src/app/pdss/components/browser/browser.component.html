@@ -21,14 +21,14 @@
                 name="keyword"
                 matInput
                 [placeholder]="'PDSS__BROWSER__SEARCH_COMMENT' | translate"
-                (keydown.enter)="search()"
+                (keydown.enter)="syncQueryParams()"
               />
               <div matSuffix fxLayout="row">
                 <button
                   type="button"
                   matSuffix
                   mat-icon-button
-                  (click)="search()"
+                  (click)="syncQueryParams()"
                 >
                   <mat-icon>search</mat-icon>
                 </button>

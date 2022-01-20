@@ -35,6 +35,27 @@
         margin-bottom: 10px;
       }
     }
+    .reason-wrapper {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .reason-wrapper:hover {
+      border-radius: 1%;
+      -webkit-animation: boxhover 500ms forwards;
+      -moz-animation: boxhover 500ms forwards;
+      -o-animation: boxhover 500ms forwards;
+      animation: boxhover 500ms forwards;
+      cursor: pointer;
+    }
+
+    @keyframes boxhover {
+      100% {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+          rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+      }
+    }
   }
 }
 

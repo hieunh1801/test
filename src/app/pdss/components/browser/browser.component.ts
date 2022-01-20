@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { finalize, first } from 'rxjs/operators';
+import { distinctUntilChanged, finalize, first } from 'rxjs/operators';
 import {
   BrowserService,
   SearchRequest,
@@ -37,22 +37,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     isDrug: [''],
     isGene: [''],
   });
-
-  sortForm = this.formBuilder.group({
-    sort: ['title'],
-    order: ['asc'],
-  });
-
-  sortOptions = [
-    {
-      name: 'Title A to Z',
-      value: JSON.stringify({ sort: 'name', order: 'asc' }),
-    },
-    {
-      name: 'Title Z to A',
-      value: JSON.stringify({ sort: 'name', order: 'desc' }),
-    },
-  ];
 
   subscription$ = new Subscription();
   pageChangeSub$: Subscription;
@@ -103,18 +87,18 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscribeFilterFormChange();
     this.subscribeSearchFormChange();
 
-    this.activatedRouter.queryParams.subscribe((params) => {
-      this.keyword = params.keyword;
-    });
-    if (!!this.keyword) {
-      this.searchForm.patchValue({
-        keyword: this.keyword,
+    this.activatedRouter.queryParams
+      .pipe(distinctUntilChanged())
+      .subscribe((params) => {
+        this.keyword = params.keyword;
+        this.searchForm.patchValue({
+          keyword: params?.keyword || '',
+        });
+        this.search();
       });
-      this.search();
-    } else {
-      this.getTopDrugs();
-      this.getTopGenes();
-    }
+
+    this.getTopDrugs();
+    this.getTopGenes();
   }
 
   ngOnDestroy(): void {
@@ -126,9 +110,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   subscribeSearchFormChange(): void {
-    const sub = this.searchForm.valueChanges.subscribe(() => {
-      this.syncQueryParams();
-    });
+    const sub = this.searchForm.valueChanges.subscribe(() => {});
     this.subscription$.add(sub);
   }
 
@@ -160,9 +142,10 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const keyword = formValue.keyword?.trim() || '';
       if (!keyword) {
         this.isSearch = false;
+        this.searchKeyword = '';
+        this.onGetResults([]);
         return;
       }
-
       const searchRequest: SearchRequest = {
         keyword: keyword,
       };
@@ -174,27 +157,12 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
           finalize(() => {
             this.searchKeyword = keyword.trim();
             this.pageLoadingService.stopLoading();
+            this.isSearch = true;
           })
         )
         .subscribe({
           next: (response: SpmedResponse<SearchResponse>) => {
-            const searchResponse: SearchResponse = response?.data?.items[0];
-            if (searchResponse == null) {
-              const message = this.translateService.instant(
-                'PDSS__BROWSER__RESULT__NOT__FOUND'
-              );
-              const action = this.translateService.instant(
-                'MAT_SNACKBAR__ACTION__BROWSER'
-              );
-              this.matSnackbarService.open(message, action);
-            } else {
-              // this.paginator.length = response.data?.items.length;
-              // this.searchTotal = response.data?.items.length;
-              this.onGetResults(response.data.items);
-            }
-          },
-          complete: () => {
-            this.isSearch = true;
+            this.onGetResults(response?.data?.items || []);
           },
           error: (error) => {
             console.error(error.response);
