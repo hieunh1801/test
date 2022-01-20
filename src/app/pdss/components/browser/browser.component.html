@@ -3,40 +3,41 @@
     <div class="section">
       <div id="browser-info">
         <div class="title" fxLayout="column" fxLayoutAlign="space-between left">
-          <form class="search-form" [formGroup]="searchForm">
-            <h1 class="bold">
+          <!-- SEARCH FORM START-->
+          <form class="spmed-form" [formGroup]="searchForm">
+            <!-- <h1 class="bold">
               {{ "PDSS__BROWSER__TITLES__DRUG_GENE_BROWSER" | translate }}
-            </h1>
-            <p>
+            </h1> -->
+            <!-- <p>
               {{
                 "PDSS__BROWSER__STRINGS__SOME_RESULT_MAY_BE_THE_THINGS_YOU_ARE_LOOKING_FOR"
                   | translate
               }}
-            </p>
+            </p> -->
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label>
-                {{ "PDSS__BROWSER__SEARCH_COMMENT" | translate }}
-              </mat-label>
               <input
                 type="text"
                 formControlName="keyword"
                 name="keyword"
                 matInput
+                [placeholder]="'PDSS__BROWSER__SEARCH_COMMENT' | translate"
                 (keydown.enter)="search()"
               />
-              <button
-                type="button"
-                mat-button
-                matSuffix
-                mat-icon-button
-                aria-label="Autofill"
-                (click)="search()"
-              >
-                <mat-icon>search</mat-icon>
-              </button>
+              <div matSuffix fxLayout="row">
+                <button
+                  type="button"
+                  matSuffix
+                  mat-icon-button
+                  (click)="search()"
+                >
+                  <mat-icon>search</mat-icon>
+                </button>
+              </div>
             </mat-form-field>
           </form>
+          <!-- SEARCH FORM END -->
 
+          <!-- INIT MODE START -->
           <div
             fxLayout="row"
             fxLayoutGap="20px"
@@ -74,52 +75,56 @@
               </mat-selection-list>
             </div>
           </div>
+          <!-- INIT MODE END -->
 
+          <!-- SEARCH RESULT START -->
           <div
             fxLayout="row"
             fxLayoutGap="20px"
             fxLayout.xs="column"
             [fxHide]="!isSearch"
           >
-            <div
-              fxFlex="15"
-              fxHide.lt-md
-              fxShow.gt-sm
-              style="border: 1px solid #ccc; padding: 10px; height: 200px"
-            >
-              <h2>{{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}</h2>
-              <h3 style="margin: 0; padding: 0; font-weight: 500">
-                {{ "PDSS__BROWSER__TITLES__CATEGORIES" | translate }}
+            <!-- FILTER START -->
+            <div class="filter-form-wrapper" fxHide.lt-md fxShow.gt-sm>
+              <!-- <h2>{{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}</h2> -->
+              <h3>
+                {{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}
               </h3>
-              <form class="search-form" [formGroup]="filterForm">
+              <form class="spmed-form filter-form" [formGroup]="filterForm">
                 <mat-checkbox
                   formControlName="isDrug"
                   name="isDrug"
                   (change)="onChange($event)"
-                  >{{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
+                >
+                  {{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
+                  ({{ finalCount || 0 }})
                 </mat-checkbox>
-                <span *ngIf="finalCount > 0">({{ finalCount }})</span>
-                <span *ngIf="!finalCount">({{ 0 }})</span>
 
                 <mat-checkbox
                   formControlName="isGene"
                   name="isGene"
                   (change)="onChange($event)"
-                  >{{
-                    "PDSS__BROWSER__CHECKBOX__GENES" | translate
-                  }}</mat-checkbox
                 >
-                <span *ngIf="geneCount > 0">({{ geneCount }})</span>
-                <span *ngIf="!geneCount">({{ 0 }})</span>
+                  {{ "PDSS__BROWSER__CHECKBOX__GENES" | translate }}
+                  ({{ geneCount || 0 }})
+                </mat-checkbox>
+                <span></span>
               </form>
             </div>
+            <!-- FILTER END -->
 
-            <div fxFlex="85">
-              <h2>
-                {{ "PDSS__BROWSER__TITLES__RESULTS" | translate }} ({{
-                  searchTotal || 0
-                }})
-              </h2>
+            <!-- RESULT START -->
+            <div class="result-list-container">
+              <div class="result-list-header">
+                <div class="search-result-title">
+                  {{ "PDSS__BROWSER__TITLES__RESULTS" | translate }}:
+                  <strong>
+                    {{ searchKeyword || "" }}
+                  </strong>
+                  ({{ searchTotal || 0 }})
+                </div>
+              </div>
+
               <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="name">
                   <mat-header-cell mat-header-cell *matHeaderCellDef>
@@ -194,7 +199,9 @@
                 (page)="change($event)"
               ></mat-paginator>
             </div>
+            <!-- RESULT END -->
           </div>
+          <!-- SEARCH RESULT END -->
         </div>
       </div>
     </div>

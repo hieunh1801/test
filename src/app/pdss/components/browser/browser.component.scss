@@ -7,9 +7,9 @@
     margin: auto;
     padding: 16px;
   }
+
   .section {
     background-color: white;
-    border-radius: 3px;
   }
   .section:not(:first-child) {
     margin-top: 16px;
@@ -96,6 +96,39 @@
 
   .bold {
     font-weight: 500;
+  }
+
+  .filter-form-wrapper {
+    padding: 0px 32px 0px 16px;
+    border-right: #f2f2f2 solid 1px;
+    margin-bottom: 20px;
+  }
+
+  .filter-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .result-list-container {
+    width: 100%;
+  }
+
+  .result-list-header {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .search-result-title {
+    font-weight: 400;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .sort-selection {
   }
 }
 
