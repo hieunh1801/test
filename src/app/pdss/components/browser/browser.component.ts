@@ -20,7 +20,7 @@ import {
 } from './services/browser.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-browser',
@@ -29,7 +29,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   searchForm = this.formBuilder.group({
-    keyword: ['', Validators.required],
+    keyword: [''],
   });
 
   filterForm = this.formBuilder.group({
@@ -37,6 +37,22 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     isDrug: [''],
     isGene: [''],
   });
+
+  sortForm = this.formBuilder.group({
+    sort: ['title'],
+    order: ['asc'],
+  });
+
+  sortOptions = [
+    {
+      name: 'Title A to Z',
+      value: JSON.stringify({ sort: 'name', order: 'asc' }),
+    },
+    {
+      name: 'Title Z to A',
+      value: JSON.stringify({ sort: 'name', order: 'desc' }),
+    },
+  ];
 
   subscription$ = new Subscription();
   pageChangeSub$: Subscription;
@@ -72,18 +88,22 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    private activatedRouter: ActivatedRoute,
+    private router: Router,
     private pageLoadingService: PageLoadingService,
     private formBuilder: FormBuilder,
     private browserService: BrowserService,
-    private translateService: TranslateService,
     private matSnackbarService: MatSnackbarService,
-    private route: ActivatedRoute
+    private translateService: TranslateService
   ) {
     this.dataSource = new MatTableDataSource(this.finalResults);
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
+    this.subscribeFilterFormChange();
+    this.subscribeSearchFormChange();
+
+    this.activatedRouter.queryParams.subscribe((params) => {
       this.keyword = params.keyword;
     });
     if (!!this.keyword) {
@@ -105,9 +125,28 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  subscribeSearchFormChange(): void {
+    const sub = this.searchForm.valueChanges.subscribe(() => {
+      this.syncQueryParams();
+    });
+    this.subscription$.add(sub);
+  }
+
+  subscribeFilterFormChange(): void {
+    const sub = this.filterForm.valueChanges.subscribe(() => {
+      this.syncQueryParams();
+    });
+    this.subscription$.add(sub);
+  }
+
   change(event: PageEvent) {
     let startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     if (endIndex > this.length) {
       endIndex = this.length;
     }
@@ -118,12 +157,14 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.searchForm.markAllAsTouched();
     if (this.searchForm.valid) {
       const formValue = this.searchForm.value;
-      const keyword = formValue.keyword;
-      this.searchKeyword = keyword;
-      this.searchKeyword = this.searchKeyword.trim();
+      const keyword = formValue.keyword?.trim() || '';
+      if (!keyword) {
+        this.isSearch = false;
+        return;
+      }
 
       const searchRequest: SearchRequest = {
-        keyword: formValue.keyword,
+        keyword: keyword,
       };
       this.pageLoadingService.startLoading();
 
@@ -131,6 +172,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         .search(searchRequest)
         .pipe(
           finalize(() => {
+            this.searchKeyword = keyword.trim();
             this.pageLoadingService.stopLoading();
           })
         )
@@ -360,5 +402,16 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   onGetTopGenes(results: TopGenesResponse[]): void {
     // this.topGenes = results;
     this.listOfGenes = results;
+  }
+
+  syncQueryParams(): void {
+    const searchFormValue = this.searchForm.value;
+    // const filterFormValue = this.filterForm.value;
+    const filterFormValue = null;
+
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRouter,
+      queryParams: { ...searchFormValue, ...filterFormValue },
+    });
   }
 }

@@ -107,7 +107,6 @@ export class AffiliatedHospitalComponent implements OnInit, OnDestroy {
 
   reloadDataSource(): void {
     const { product = 'all', keyword = '' } = this.searchForm.value;
-    console.log('search form change');
 
     // filter by product
     let mDataSource =
@@ -122,12 +121,10 @@ export class AffiliatedHospitalComponent implements OnInit, OnDestroy {
       hospital.name?.includes(keyword)
     );
 
-    console.log('reload data source');
     this.dataSource = mDataSource;
   }
 
   syncQueryParams(): void {
-    console.log('sync');
     const queryParams = this.searchForm.value;
     this.router.navigate(['.'], {
       relativeTo: this.activatedRouter,

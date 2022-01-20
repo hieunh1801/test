@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  SnackbarComponent,
+  SnackbarInput,
+} from '@shared/components/snackbar/snackbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +26,16 @@ export class MatSnackbarService {
   }
 
   open(message: string, action: string): void {
-    this.matSnackbar.open(message, action, this.config);
+    // this.matSnackbar.open(message, action, this.config);
+    const customSnackbarInput: SnackbarInput = {
+      action: action,
+      message: message,
+    };
+    this.matSnackbar.openFromComponent(SnackbarComponent, {
+      data: customSnackbarInput,
+      panelClass: ['spmed-snackbar'],
+      ...this.config,
+    });
   }
 
   openCreateSuccess(): void {

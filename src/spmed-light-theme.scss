@@ -1,0 +1,100 @@
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$spmed-primary-color: (
+  50: #003f9e,
+  100: #003f9e,
+  200: #003f9e,
+  300: #003f9e,
+  400: #003f9e,
+  500: #003f9e,
+  600: #003f9e,
+  700: #003f9e,
+  800: #003f9e,
+  900: #003f9e,
+  A100: #003f9e,
+  A200: #003f9e,
+  A400: #003f9e,
+  A700: #003f9e,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$spmed-secondary-color: (
+  50: rgb(8, 38, 82),
+  100: rgb(8, 38, 82),
+  200: rgb(8, 38, 82),
+  300: rgb(8, 38, 82),
+  400: rgb(8, 38, 82),
+  500: rgb(8, 38, 82),
+  600: rgb(8, 38, 82),
+  700: rgb(8, 38, 82),
+  800: rgb(8, 38, 82),
+  900: rgb(8, 38, 82),
+  A100: rgb(8, 38, 82),
+  A200: rgb(8, 38, 82),
+  A400: rgb(8, 38, 82),
+  A700: rgb(8, 38, 82),
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$spmed-app-primary: mat-palette($spmed-primary-color);
+$spmed-app-accent: mat-palette($spmed-secondary-color, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$spmed-app-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$spmed-app-theme: mat-light-theme(
+  (
+    color: (
+      primary: $spmed-app-primary,
+      accent: $spmed-app-accent,
+      warn: $spmed-app-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($spmed-app-theme);
