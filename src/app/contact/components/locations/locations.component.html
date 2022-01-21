@@ -1,0 +1,18 @@
+<section class="location-wrapper">
+  <div class="location">
+    <h2>Locations</h2>
+    <div class="location-list">
+      <div *ngFor="let location of locationList" class="location-list-item">
+        <iframe
+          [src]="location.iframeSrc | safeUrl"
+          style="border: 0; width: 100%; min-height: 250px"
+          loading="lazy"
+        ></iframe>
+        <div class="content">
+          <h3>{{ location.name | translate }}</h3>
+          <div>{{ location.address | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

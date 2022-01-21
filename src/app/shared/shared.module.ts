@@ -30,6 +30,7 @@ import { JoyrideWrapperComponent } from './components/joyride-wrapper/joyride-wr
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PlatformModule } from '@angular/cdk/platform';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 const COMPONENTS = [
   FooterComponent,
@@ -66,6 +67,7 @@ const httpInterceptorProviders = [
     GenderToStringPipe,
     TruncateTextPipe,
     FilterPipe,
+    SafeUrlPipe,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -92,6 +94,7 @@ const httpInterceptorProviders = [
     JoyrideModule,
     TruncateTextPipe,
     FilterPipe,
+    SafeUrlPipe,
   ],
 })
 export class SharedModule {}

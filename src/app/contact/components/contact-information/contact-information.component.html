@@ -1,0 +1,77 @@
+<section id="contact-us-wrapper">
+  <div class="container" id="contact-us">
+    <div class="contact-info" animateAfterAppear="fadeInUp">
+      <div>
+        <h2>
+          {{ "HOME__SECTION_CONTACT_US__CONTACT_US_FOR_FREE" | translate }}
+        </h2>
+        <p>
+          {{ "HOME__SECTION_CONTACT_US__FILL_UP_THE_FORM" | translate }}
+        </p>
+      </div>
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <mat-icon>phone</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__PHONE_NUMBER" | translate }}
+        </div>
+        <div class="contact-info-item">
+          <mat-icon>mail_outline</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__HELP_EMAIL" | translate }}
+        </div>
+        <div class="contact-info-item">
+          <mat-icon>place</mat-icon>
+          {{ "HOME__SECTION_CONTACT_US__ADDRESS" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <form [formGroup]="contactForm" class="spmed-form">
+        <div class="spmed-form-field">
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__NAME" | translate
+            }}
+          </mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="spmed-form-field">
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__EMAIL"
+                | translate
+            }}
+          </mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="spmed-form-field">
+          <mat-label>
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__LABELS__MESSAGE"
+                | translate
+            }}
+          </mat-label>
+          <mat-form-field appearance="outline">
+            <textarea matInput formControlName="name" rows="6"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div align="end">
+          <button
+            mat-stroked-button
+            class="spmed-primary-button"
+            (click)="onClickSendMessage()"
+          >
+            {{
+              "HOME__SECTION_CONTACT_US__CONTACT_FORM__BUTTONS__SEND_MESSAGE"
+                | translate
+            }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

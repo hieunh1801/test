@@ -8,13 +8,7 @@ import { JoyrideService } from 'ngx-joyride';
 })
 export class ContactComponent implements OnInit {
   constructor(private readonly joyrideService: JoyrideService) {}
-  ngOnInit(): void {
-    this.startTour();
-  }
+  ngOnInit(): void {}
 
-  startTour() {
-    this.joyrideService.startTour(
-      { steps: ['firstStep', 'secondStep'] } // Your steps order
-    );
-  }
+  startTour() {}
 }
