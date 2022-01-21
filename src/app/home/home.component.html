@@ -1,6 +1,8 @@
 <div id="home">
   <!-- hero-banner -->
-  <app-home-section-hero-banner></app-home-section-hero-banner>
+  <app-home-section-hero-banner
+    (onClickOurServices)="scrollToOurServices()"
+  ></app-home-section-hero-banner>
 
   <!-- about-us -->
   <app-home-section-about-us></app-home-section-about-us>
@@ -11,7 +13,9 @@
   </div>
 
   <!-- our services -->
-  <app-home-section-our-services></app-home-section-our-services>
+  <div id="our-services">
+    <app-home-section-our-services></app-home-section-our-services>
+  </div>
 
   <!-- contact-us -->
   <app-home-section-contact-us></app-home-section-contact-us>

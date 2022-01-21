@@ -31,83 +31,27 @@
       </button>
       <mat-menu #menuService="matMenu" class="menu-service-container">
         <!-- pdss -->
-        <div class="menu-service-item">
+        <ng-container *ngFor="let service of headerInfo.serviceList">
           <div
+            class="menu-service-item"
+            [routerLink]="service.routerLink"
             matRipple
-            fxLayout="row"
-            fxLayoutAlign="flex-start center"
-            fxLayoutGap="10px"
-            routerLink="/pdss"
           >
-            <mat-icon>trip_origin</mat-icon>
-            <div>
-              <b translate>LAYOUT__HEADER__SERVICES__OPTION__PDSS_TITLE</b>
-              <div translate>
-                LAYOUT__HEADER__SERVICES__OPTION__PDSS_SUB_TITLE
+            <div
+              fxLayout="row"
+              fxLayoutAlign="flex-start center"
+              fxLayoutGap="10px"
+            >
+              <mat-icon>{{ service.icon }}</mat-icon>
+              <div>
+                <b>{{ service.title | translate }}</b>
+                <div>
+                  {{ service.subTitle | translate }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- genotyping kit -->
-        <div class="menu-service-item">
-          <div
-            matRipple
-            fxLayout="row"
-            fxLayoutAlign="flex-start center"
-            fxLayoutGap="10px"
-            routerLink="/genotyping-kit"
-          >
-            <mat-icon>medical_services</mat-icon>
-            <div>
-              <b translate
-                >LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__TITLE</b
-              >
-              <div translate>
-                LAYOUT__HEADER__SERVICES__OPTION__GENOTYPING_KIT__SUB_TITLE
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- adme -->
-        <div class="menu-service-item">
-          <div
-            matRipple
-            fxLayout="row"
-            fxLayoutAlign="flex-start center"
-            fxLayoutGap="10px"
-            routerLink="/adme"
-          >
-            <mat-icon>my_location</mat-icon>
-            <div>
-              <b translate>LAYOUT__HEADER__SERVICES__OPTION__ADME__TITLE</b>
-              <div translate>
-                LAYOUT__HEADER__SERVICES__OPTION__ADME__SUB_TITLE
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="menu-service-item">
-          <div
-            matRipple
-            fxLayout="row"
-            fxLayoutAlign="flex-start center"
-            fxLayoutGap="10px"
-            routerLink="/human-recombinant-enzymes"
-          >
-            <mat-icon>accessibility_new</mat-icon>
-            <div>
-              <b translate
-                >LAYOUT__HEADER__SERVICES__OPTION__HUMAN_RECOMBINANT_ENZYMES__TITLE</b
-              >
-              <div translate>
-                LAYOUT__HEADER__SERVICES__OPTION__HUMAN_RECOMBINANT_ENZYMES__SUB_TITLE
-              </div>
-            </div>
-          </div>
-        </div>
+        </ng-container>
       </mat-menu>
       <button mat-button routerLink="/about-us">
         <span translate>LAYOUT__HEADER__ABOUT_US </span>
@@ -235,27 +179,18 @@
     <mat-divider></mat-divider>
 
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <span translate>LAYOUT__HEADER__SERVICE</span></mat-panel-title
           >
         </mat-expansion-panel-header>
         <mat-list>
-          <button mat-menu-item routerLink="/pdss">
-            <span translate>LAYOUT__HEADER__SERVICE_PDSS</span>
-          </button>
-          <button mat-menu-item routerLink="/genotyping-kit">
-            <span translate>LAYOUT__HEADER__SERVICE_GENOTYPING_KIT</span>
-          </button>
-          <button mat-menu-item routerLink="/adme">
-            <span translate>LAYOUT__HEADER__SERVICE_ADME</span>
-          </button>
-          <button mat-menu-item routerLink="/human-recombinant-enzymes">
-            <span translate
-              >LAYOUT__HEADER__SERVICE_HUMAN_RECOMBINANT_ENZYMES</span
-            >
-          </button>
+          <ng-container *ngFor="let service of headerInfo.serviceList">
+            <button mat-menu-item [routerLink]="service.routerLink">
+              <span>{{ service.title | translate }}</span>
+            </button>
+          </ng-container>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>

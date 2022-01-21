@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <h2>Certificates</h2>
   <div
     fxLayout="row wrap"
@@ -11,6 +11,20 @@
       fxFlex.lt-md="0 1 calc(25% - 40px)"
       fxFlex.lt-sm="0 1 calc(33.33% - 40px)"
       class="box"
+      *ngFor="let certificate of certificateList"
+      (click)="openOverlayImage(certificate)"
+    >
+      <img [src]="certificate.url" [alt]="certificate.title" />
+
+      <div class="title">{{ certificate.title }}</div>
+    </div>
+  </div>
+</div> -->
+<div class="certificate-container">
+  <h2>Certificates</h2>
+  <div class="certificate-list">
+    <div
+      class="certificate-list-item"
       *ngFor="let certificate of certificateList"
       (click)="openOverlayImage(certificate)"
     >

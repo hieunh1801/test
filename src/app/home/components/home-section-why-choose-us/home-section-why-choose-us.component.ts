@@ -10,19 +10,19 @@ export class HomeSectionWhyChooseUsComponent implements OnInit {
   reasonList = [
     {
       title: marker('HOME__SECTION_WHY_CHOOSE_US__SLOGANS__1'),
-      imgUrl: 'https://image.flaticon.com/icons/png/512/1253/1253680.png',
+      imgUrl: '/assets/images/choose-us-01.png',
     },
     {
       title: marker('HOME__SECTION_WHY_CHOOSE_US__SLOGANS__2'),
-      imgUrl: 'https://image.flaticon.com/icons/png/512/1245/1245362.png',
+      imgUrl: '/assets/images/choose-us-02.png',
     },
     {
       title: marker('HOME__SECTION_WHY_CHOOSE_US__SLOGANS__3'),
-      imgUrl: 'https://image.flaticon.com/icons/png/512/1253/1253337.png',
+      imgUrl: '/assets/images/choose-us-03.png',
     },
     {
       title: marker('HOME__SECTION_WHY_CHOOSE_US__SLOGANS__4'),
-      imgUrl: 'https://image.flaticon.com/icons/png/512/1256/1256486.png',
+      imgUrl: '/assets/images/choose-us-04.png',
     },
   ];
   constructor() {}

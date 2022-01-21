@@ -78,7 +78,13 @@
     .route-button:hover {
       color: var(--primary-a--color);
       cursor: pointer;
-      border-bottom: solid 3px var(--primary--color);
+      animation: hoverUnderline 500ms forwards;
+    }
+
+    @keyframes hoverUnderline {
+      100% {
+        border-bottom: solid 3px var(--primary--color);
+      }
     }
   }
 }
@@ -95,10 +101,6 @@
 
 @media screen and (max-width: 600px) {
   #our-services-wrapper {
-    h2.title {
-      margin-bottom: 0px;
-    }
-
     .service-item {
       grid-template-columns: repeat(1, 1fr);
     }
