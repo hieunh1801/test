@@ -145,6 +145,8 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         this.searchKeyword = '';
         this.onGetResults([]);
         return;
+      } else {
+        this.isSearch = true;
       }
       const searchRequest: SearchRequest = {
         keyword: keyword,
@@ -157,7 +159,6 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
           finalize(() => {
             this.searchKeyword = keyword.trim();
             this.pageLoadingService.stopLoading();
-            this.isSearch = true;
           })
         )
         .subscribe({

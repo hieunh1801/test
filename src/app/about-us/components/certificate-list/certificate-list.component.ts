@@ -15,7 +15,8 @@ export class CertificateListComponent implements OnInit {
     },
     {
       title: 'SPMED™ Genotyping Kit:CYP2D6 Kit CE-IVDD Certificate',
-      url: 'https://spmed.kr/data/bbsData/16230517819.jpg',
+      // url: 'https://spmed.kr/data/bbsData/16230517819.jpg',
+      url: '/assets/images/certificates/genotyping-kit.png',
     },
     {
       title: 'Busan Platinum Club Certificate',
@@ -48,6 +49,10 @@ export class CertificateListComponent implements OnInit {
     {
       title: 'Genetic Testing Agency Identification Card',
       url: 'https://spmed.kr/data/bbsData/15954039039.jpg',
+    },
+    {
+      title: 'Busan Leading Company',
+      url: '/assets/images/certificates/busan-leading-company.png',
     },
   ];
 

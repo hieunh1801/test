@@ -38,7 +38,7 @@
           <!-- SEARCH FORM END -->
 
           <!-- INIT MODE START -->
-          <div
+          <!-- <div
             fxLayout="row"
             fxLayoutGap="20px"
             fxLayout.xs="column"
@@ -74,7 +74,7 @@
                 </mat-list-option>
               </mat-selection-list>
             </div>
-          </div>
+          </div> -->
           <!-- INIT MODE END -->
 
           <!-- SEARCH RESULT START -->
@@ -82,7 +82,7 @@
             fxLayout="row"
             fxLayoutGap="20px"
             fxLayout.xs="column"
-            [fxHide]="!isSearch"
+            [fxHide]="!searchKeyword"
           >
             <!-- FILTER START -->
             <div class="filter-form-wrapper" fxHide.lt-md fxShow.gt-sm>

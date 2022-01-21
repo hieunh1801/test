@@ -10,8 +10,6 @@ export class HomeSectionOurServicesComponent implements OnInit {
   servicesList = [
     {
       title: marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__TITLE'),
-      // imageUrl:
-      //   'https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg',
       imageUrl: '/assets/images/home-pdss-intro.jpg',
       contents: [
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__CONTENTS__1'),
@@ -38,8 +36,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
     },
     {
       title: marker('HOME__SECTION_OUR_SERVICE__SERVICES__2__TITLE'),
-      imageUrl:
-        'https://image.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg',
+      imageUrl: '/assets/images/home-genotyping-kit-intro.png',
       contents: [
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__2__CONTENTS__1'),
         marker('HOME__SECTION_OUR_SERVICE__SERVICES__2__CONTENTS__2'),
