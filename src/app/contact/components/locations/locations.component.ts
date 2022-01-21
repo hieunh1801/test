@@ -23,7 +23,8 @@ export class LocationsComponent implements OnInit {
     {
       name: marker('CONTACT__LOCATIONS__SUWON'),
       address: marker('CONTACT__LOCATIONS__SUWON__ADDRESS'),
-      iframeSrc: '',
+      iframeSrc:
+        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1586.9718521814284!2d127.04000435824217!3d37.29646802868952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5b110e551351%3A0x3c55b4384e3d0b1e!2z6rSR6rWQ7JeQ7J207IqkM-ywqA!5e0!3m2!1sen!2skr!4v1642752753171!5m2!1sen!2skr',
     },
   ];
   constructor() {}

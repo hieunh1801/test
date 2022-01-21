@@ -5,7 +5,12 @@
       <div *ngFor="let location of locationList" class="location-list-item">
         <iframe
           [src]="location.iframeSrc | safeUrl"
-          style="border: 0; width: 100%; min-height: 250px"
+          style="
+            border: 0;
+            width: 100%;
+            min-height: 250px;
+            border-bottom: 1px solid #f2f2f2;
+          "
           loading="lazy"
         ></iframe>
         <div class="content">
