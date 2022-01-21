@@ -75,10 +75,12 @@
         <div class="content">
           <div
             *ngIf="this.languageService.currentLanguage == 'kr'"
+            class="content-detail"
             [innerHTML]="customerBoard?.kr?.content"
           ></div>
           <div
             *ngIf="this.languageService.currentLanguage == 'en'"
+            class="content-detail"
             [innerHTML]="customerBoard?.content"
           ></div>
         </div>
@@ -125,27 +127,24 @@
           fxLayoutAlign="start stretch"
         >
           <mat-card
-            *ngFor="let board of customerBoardDataSource | filter: ''"
+            *ngFor="let board of customerBoardDataSource"
             fxFlex="0 0 calc(33%-25px)"
             fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <div
-              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
-              class="image-box"
-            >
+            <div *ngIf="!!board.thumbnailUrl" class="image-box">
               <a [routerLink]="['/news', board.id, 'detail']">
+                <!--
                 <span *ngIf="this.languageService.currentLanguage == 'en'"
                   ><img [src]="board.thumbnailUrl" class="image-thumbnail"
                 /></span>
                 <span *ngIf="this.languageService.currentLanguage == 'kr'"
                   ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
                 /></span>
+                -->
+                <img [src]="board.thumbnailUrl" class="image-thumbnail" />
               </a>
             </div>
-            <div
-              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
-              class="image-box"
-            >
+            <div *ngIf="!board.thumbnailUrl" class="image-box">
               <div class="images">
                 <img
                   src="../../assets/images/news.jpg"
@@ -155,6 +154,7 @@
             </div>
 
             <mat-card-title class="mb-10">
+              <!--
               <span *ngIf="this.languageService.currentLanguage == 'en'">
                 <a [routerLink]="['/news', board.id, 'detail']">{{
                   board.title
@@ -165,6 +165,10 @@
                   {{ board.kr?.title }}
                 </a>
               </span>
+              -->
+              <a [routerLink]="['/news', board.id, 'detail']">{{
+                board.title
+              }}</a>
             </mat-card-title>
 
             <mat-card-content>
@@ -173,14 +177,24 @@
                 fxLayout="row"
                 fxLayoutAlign="space-between center"
               >
-                <div>{{ board.publishTime }}</div>
                 <div>
+                  <span *ngIf="this.languageService.currentLanguage == 'en'">
+                    {{ board.publishTime | date }}
+                  </span>
+                  <span *ngIf="this.languageService.currentLanguage == 'kr'">
+                    {{ board.publishTime | date: "yyyy-MM-dd" }}
+                  </span>
+                </div>
+                <div>
+                  <!--
                   <span *ngIf="this.languageService.currentLanguage == 'en'">{{
                     board.author
                   }}</span>
                   <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
                     board.kr.author
                   }}</span>
+                  -->
+                  {{ board.author }}
                 </div>
               </div>
               <div class="tag">

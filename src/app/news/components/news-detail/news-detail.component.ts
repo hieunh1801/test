@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '@shared/services/language.service';
+import {
+  LanguageService,
+  LanguagesProvidedType,
+} from '@shared/services/language.service';
 import { PageLoadingService } from '@shared/services/page-loading.service';
 import {
   NewsService,
@@ -19,12 +22,14 @@ import { MatSnackbarService } from '@shared/services/mat-snackbar.service';
   styleUrls: ['./news-detail.component.scss'],
 })
 export class NewsDetailComponent implements OnInit, OnDestroy {
+  customerBoardList$ = new BehaviorSubject<CustomerBoard[]>([]);
   customerBoardDataSource: CustomerBoard[] = null;
   customerBoard: CustomerBoard = null;
   boardId: number = null;
 
   customerBoardAttachment: CustomerBoardAttachment[] = null;
   isBoardAttachmentEn = false;
+  subscription$ = new Subscription();
 
   constructor(
     private translateService: TranslateService,
@@ -36,7 +41,42 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
     public languageService: LanguageService
   ) {}
 
+  subscribeCustomerBoardListChange(): void {
+    const sub = this.customerBoardList$.subscribe((board) => {
+      this.reloadTable();
+    });
+    this.subscription$.add(sub);
+  }
+
+  subscribeLanguageChange(): void {
+    const sub = this.translateService.onLangChange.subscribe(() => {
+      this.reloadTable();
+    });
+    this.subscription$.add(sub);
+  }
+
+  reloadTable(): void {
+    const language: string = this.languageService.currentLanguage;
+    let customerBoard: CustomerBoard[] = this.customerBoardList$.value || [];
+
+    // multiple language
+    if (language === LanguagesProvidedType.korea) {
+      customerBoard = customerBoard.map((board) => ({
+        ...board,
+        ...board?.kr,
+      }));
+    } else if (language === LanguagesProvidedType.english) {
+      customerBoard = customerBoard.map((board) => ({ ...board, ...board }));
+    }
+    customerBoard = customerBoard.filter((el) => el.title !== null);
+    this.customerBoardDataSource = customerBoard;
+    console.log(this.customerBoardDataSource);
+  }
+
   ngOnInit(): void {
+    this.subscribeCustomerBoardListChange();
+    this.subscribeLanguageChange();
+
     const boardId = this.activatedRoute.snapshot.params?.id || null;
     this.boardId = boardId;
     if (!!boardId) {
@@ -96,7 +136,9 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
             this.matSnackbarService.open(message, action);
           } else {
             // this.onGetResults(response.data.items);
-            this.customerBoardDataSource = response?.data?.items || [];
+            // this.customerBoardDataSource = response?.data?.items || [];
+            const customerBoardData = response?.data?.items || [];
+            this.customerBoardList$.next(customerBoardData);
           }
         },
         complete: () => {
@@ -138,8 +180,6 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
         if (boardAttachment) {
           this.customerBoardAttachment = boardAttachment;
           this.isBoardAttachmentEn = true;
-        } else {
-          throw new Error('Get board attachment by boardId failed');
         }
       },
       error: (error) => {

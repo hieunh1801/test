@@ -40,10 +40,7 @@
             fxFlex="0 0 calc(33%-25px)"
             fxFlex.sm="0 0 calc(50%-25px)"
           >
-            <div
-              *ngIf="!!board.thumbnailUrl || !!board.kr.thumbnailUrl"
-              class="image-box"
-            >
+            <div *ngIf="!!board.thumbnailUrl" class="image-box">
               <a [routerLink]="['/news', board.id, 'detail']">
                 <!--
                 <span *ngIf="this.languageService.currentLanguage == 'en'"
@@ -56,10 +53,7 @@
                 <img [src]="board.thumbnailUrl" class="image-thumbnail" />
               </a>
             </div>
-            <div
-              *ngIf="!board.thumbnailUrl && !board.kr.thumbnailUrl"
-              class="image-box"
-            >
+            <div *ngIf="!board.thumbnailUrl" class="image-box">
               <div class="images">
                 <img
                   src="../../assets/images/news.jpg"

@@ -14,8 +14,6 @@ import {
   NewsService,
   CustomerBoardSearchRequest,
   CustomerBoard,
-  CustomerBoardKr,
-  CustomerBoardView,
 } from './services/news.service';
 @Component({
   selector: 'app-news',

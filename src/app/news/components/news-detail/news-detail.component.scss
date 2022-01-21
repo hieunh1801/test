@@ -58,29 +58,6 @@
     text-decoration: none;
     color: #000;
   }
-  /*
-  table {
-    width: 100%;
-  }
-
-  .full-width {
-    width: 100%;
-  }
-  
-  .mat-column-name {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 70% !important;
-    width: 70% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-  }
-  
-  .bold {
-    font-weight: 500;
-  }
-  */
 }
 
 :host ::ng-deep .highlight {
@@ -90,6 +67,10 @@
 
 :host ::ng-deep .list-content img {
   max-width: 280px;
+}
+
+:host ::ng-deep .content-detail * {
+  max-width: calc(var(--primary--screen) - 40px);
 }
 
 mat-card {
