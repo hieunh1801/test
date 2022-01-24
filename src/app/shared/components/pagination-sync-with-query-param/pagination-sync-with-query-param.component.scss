@@ -1,0 +1,17 @@
+.pagination-wrapper {
+  .page-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-list-item {
+    margin: 0 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-a--color);
+    border-radius: 50%;
+  }
+}

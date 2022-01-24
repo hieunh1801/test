@@ -1,0 +1,88 @@
+<div class="news-wrapper">
+  <div class="news">
+    <ng-container
+      *ngIf="
+        newsListLoading;
+        then newsListLoadingTemplate;
+        else newsListTemplate
+      "
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #newsListTemplate>
+  <div class="news-list-container">
+    <div class="search-form">
+      <h2 class="spmed-h2-with-icon">
+        <mat-icon>campaign</mat-icon>
+        News
+      </h2>
+      <div class="search-form">
+        <div class="search">
+          <form [formGroup]="searchForm" class="spmed-form">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="keyword"
+                type="text"
+                name="search"
+                placeholder="Search"
+                (keydown.enter)="syncQueryParam()"
+              />
+              <button mat-icon-button matSuffix (click)="syncQueryParam()">
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div animateAfterAppear="fadeIn">
+      <ng-container *ngIf="newsList && newsList.length > 0">
+        <ng-container *ngFor="let news of newsList">
+          <div class="news-list-item" [routerLink]="[news.id]">
+            <div>
+              <img
+                [src]="news.thumbnailUrl || defaultNewsImage"
+                class="thumbnail-image"
+              />
+            </div>
+            <div class="content">
+              <h3 class="title">
+                {{ news.title }}
+              </h3>
+              <div class="statistic">
+                <div>
+                  <mat-icon>visibility</mat-icon>
+                  {{ news.readCount }}
+                </div>
+                <div>
+                  <mat-icon> person</mat-icon>
+                  {{ news.author }}
+                </div>
+              </div>
+              <div
+                class="description"
+                [innerHTML]="news.content | toText | truncateText: 300"
+              ></div>
+              <div class="tag-container">
+                <app-tag-list [tagList]="news.tags"></app-tag-list>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <app-news-search-and-recent></app-news-search-and-recent>
+  </div>
+</ng-template>
+
+<ng-template #newsListLoadingTemplate>
+  <div class="loading-container">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>

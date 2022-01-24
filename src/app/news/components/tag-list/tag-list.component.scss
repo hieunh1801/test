@@ -1,0 +1,23 @@
+.tag-list-container {
+  margin-top: 16px;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  li {
+    background-color: var(--primary-a-800-color);
+    border-radius: 100px;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 100%;
+    color: white;
+    font-weight: 500;
+  }
+}

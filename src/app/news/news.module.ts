@@ -7,15 +7,26 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@material/material.module';
 import { NewsDetailComponent } from './components/news-detail/news-detail.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsSearchAndRecentComponent } from './components/news-search-and-recent/news-search-and-recent.component';
+import { AnimationModule } from '@animation/animation.module';
+import { TagListComponent } from './components/tag-list/tag-list.component';
 
 @NgModule({
-  declarations: [NewsComponent, NewsDetailComponent],
+  declarations: [
+    NewsComponent,
+    NewsDetailComponent,
+    NewsListComponent,
+    NewsSearchAndRecentComponent,
+    TagListComponent,
+  ],
   imports: [
     CommonModule,
     NewsRoutingModule,
     SharedModule,
     MaterialModule,
     FlexLayoutModule,
+    AnimationModule,
   ],
 })
 export class NewsModule {}

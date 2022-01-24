@@ -31,6 +31,9 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PlatformModule } from '@angular/cdk/platform';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ToTextPipe } from './pipes/to-text.pipe';
+import { PaginationSyncWithQueryParamComponent } from './components/pagination-sync-with-query-param/pagination-sync-with-query-param.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -68,6 +71,9 @@ const httpInterceptorProviders = [
     TruncateTextPipe,
     FilterPipe,
     SafeUrlPipe,
+    SpinnerComponent,
+    ToTextPipe,
+    PaginationSyncWithQueryParamComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -95,6 +101,9 @@ const httpInterceptorProviders = [
     TruncateTextPipe,
     FilterPipe,
     SafeUrlPipe,
+    SpinnerComponent,
+    ToTextPipe,
+    PaginationSyncWithQueryParamComponent,
   ],
 })
 export class SharedModule {}

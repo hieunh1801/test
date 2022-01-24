@@ -13,10 +13,17 @@ export class NewsService {
   private lang = 'en';
   private baseUrl = `${environment.gateway}/portal/v${environment.version}/${this.lang}/customer-boards`;
 
+  private baseUrlV2 = `${environment.gateway}/portal`;
+
   constructor(
     private languageService: LanguageService,
     private httpClient: HttpClient
   ) {}
+
+  getAll(): Observable<SpmedResponse<CustomerBoard>> {
+    const url = `${this.baseUrlV2}/v${environment.version}/${this.languageService.currentLanguage}/customer-boards`;
+    return this.httpClient.get<SpmedResponse<CustomerBoard>>(url);
+  }
 
   getRecentListFromBoard(boardCategoryId: number): Observable<any> {
     const url = `${this.baseUrl}/recent/${boardCategoryId}`;

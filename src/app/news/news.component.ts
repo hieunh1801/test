@@ -78,19 +78,17 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscribeCustomerBoardListChange();
-    this.subscribeLanguageChange();
-
-    const boardTagId = this.activatedRoute.snapshot.params?.boardTagId || null;
-    this.boardTagId = boardTagId;
-    if (!!boardTagId) {
-      this.loadCustomerBoardListbyBoardTagId(boardTagId);
-    } else {
-      this.loadCustomerBoardList();
-    }
-
-    // reload
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    // this.subscribeCustomerBoardListChange();
+    // this.subscribeLanguageChange();
+    // const boardTagId = this.activatedRoute.snapshot.params?.boardTagId || null;
+    // this.boardTagId = boardTagId;
+    // if (!!boardTagId) {
+    //   this.loadCustomerBoardListbyBoardTagId(boardTagId);
+    // } else {
+    //   this.loadCustomerBoardList();
+    // }
+    // // reload
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnDestroy(): void {

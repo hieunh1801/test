@@ -1,4 +1,4 @@
-<div id="page">
+<!-- <div id="page">
   <div id="news-page">
     <div class="section">
       <div id="news-info">
@@ -42,14 +42,6 @@
           >
             <div *ngIf="!!board.thumbnailUrl" class="image-box">
               <a [routerLink]="['/news', board.id, 'detail']">
-                <!--
-                <span *ngIf="this.languageService.currentLanguage == 'en'"
-                  ><img [src]="board.thumbnailUrl" class="image-thumbnail"
-                /></span>
-                <span *ngIf="this.languageService.currentLanguage == 'kr'"
-                  ><img [src]="board.kr.thumbnailUrl" class="image-thumbnail"
-                /></span>
-                -->
                 <img [src]="board.thumbnailUrl" class="image-thumbnail" />
               </a>
             </div>
@@ -65,18 +57,6 @@
               style="line-height: 1em; margin-bottom: 20px"
               class="mb-10"
             >
-              <!--
-              <span *ngIf="this.languageService.currentLanguage == 'en'">
-                <a [routerLink]="['/news', board.id, 'detail']">{{
-                  board.title
-                }}</a></span
-              >
-              <span *ngIf="this.languageService.currentLanguage == 'kr'">
-                <a [routerLink]="['/news', board.id, 'detail']">
-                  {{ board.kr?.title }}
-                </a>
-              </span>
-            -->
               <a [routerLink]="['/news', board.id, 'detail']">{{
                 board.title
               }}</a>
@@ -97,14 +77,6 @@
                   </span>
                 </div>
                 <div>
-                  <!--
-                  <span *ngIf="this.languageService.currentLanguage == 'en'">{{
-                    board.author
-                  }}</span>
-                  <span *ngIf="this.languageService.currentLanguage == 'kr'">{{
-                    board.kr.author
-                  }}</span>
-                  -->
                   {{ board.author }}
                 </div>
               </div>
@@ -113,18 +85,6 @@
                   class="list-content"
                   [innerHTML]="board.content | truncateText: 180"
                 ></div>
-                <!--
-                <div
-                  class="list-content"
-                  *ngIf="this.languageService.currentLanguage == 'en'"
-                  [innerHTML]="board.content | truncateText: 180"
-                ></div>
-                <div
-                  class="list-content"
-                  *ngIf="this.languageService.currentLanguage == 'kr'"
-                  [innerHTML]="board.kr.content | truncateText: 180"
-                ></div>
-                -->
               </div>
               <div class="tag">
                 <span *ngIf="this.languageService.currentLanguage == 'en'">
@@ -148,4 +108,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<router-outlet></router-outlet>
