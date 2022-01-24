@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@shared/services/language.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, finalize } from 'rxjs/operators';
 import { CustomerBoard, NewsService } from '../../services/news.service';
 
 @Component({
@@ -98,11 +98,17 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
   loadNewsList$(): void {
     this.newsListLoading = true;
-    this.newsService.getAll().subscribe((response) => {
-      const newsList = response?.data?.items || null;
-      this.newsList$.next(newsList);
-      this.newsListLoading = false;
-    });
+    this.newsService
+      .getAll()
+      .pipe(
+        finalize(() => {
+          this.newsListLoading = false;
+        })
+      )
+      .subscribe((response) => {
+        const newsList = response?.data?.items || null;
+        this.newsList$.next(newsList);
+      });
   }
 
   reloadNewsList(): void {
@@ -116,6 +122,8 @@ export class NewsListComponent implements OnInit, OnDestroy {
     if (lang == 'kr') {
       newsList = newsList?.map((news) => ({ ...news, ...news?.kr }));
     }
+    // filter news not have title
+    newsList = newsList?.filter((news) => news?.title);
 
     // filter by keyword
     newsList = newsList.filter((news) => {

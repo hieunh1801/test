@@ -39,7 +39,9 @@
     </div>
 
     <div animateAfterAppear="fadeIn">
-      <ng-container *ngIf="newsList && newsList.length > 0">
+      <ng-container
+        *ngIf="newsList && newsList.length > 0; else newsListEmptyTemplate"
+      >
         <ng-container *ngFor="let news of newsList">
           <div class="news-list-item" [routerLink]="[news.id]">
             <div>
@@ -79,6 +81,10 @@
   <div class="search-container">
     <app-news-search-and-recent></app-news-search-and-recent>
   </div>
+</ng-template>
+
+<ng-template #newsListEmptyTemplate>
+  <div class="loading-container">Empty</div>
 </ng-template>
 
 <ng-template #newsListLoadingTemplate>
