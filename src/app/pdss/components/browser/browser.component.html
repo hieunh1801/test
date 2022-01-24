@@ -76,7 +76,11 @@
             </div>
           </div> -->
           <!-- INIT MODE END -->
-
+          <ng-container *ngIf="!searchKeyword">
+            <div class="search-introduction">
+              {{ "PDSS__BROWSER__SEARCH_INTRODUCTION" | translate }}
+            </div>
+          </ng-container>
           <!-- SEARCH RESULT START -->
           <div
             fxLayout="row"

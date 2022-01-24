@@ -74,7 +74,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    private pageLoadingService: PageLoadingService,
+    public pageLoadingService: PageLoadingService,
     private formBuilder: FormBuilder,
     private browserService: BrowserService,
     private matSnackbarService: MatSnackbarService,
