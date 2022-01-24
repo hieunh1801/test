@@ -6,7 +6,10 @@
   </div>
   <mat-divider></mat-divider>
   <div class="content">
-    <ng-template [ngIf]="userVariants" [ngIfElse]="emptyComponent">
+    <ng-template
+      [ngIf]="userVariants && userVariants.length > 0"
+      [ngIfElse]="emptyComponent"
+    >
       <div class="user-variant-list-item header">
         <div>
           {{

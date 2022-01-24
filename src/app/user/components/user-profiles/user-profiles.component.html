@@ -47,17 +47,15 @@
         [lifeStyleHistoryList$]="lifeStyleHistoryList$"
       ></app-life-style>
     </div>
-    <div class="section">
-      <app-joyride-wrapper
-        webGuideStep="USER_PROFILES__GENETIC_PROFILE__STEP"
-        webGuideContent="{{
-          'USER_PROFILES__GENETIC_PROFILE__STEP' | translate
-        }}"
-      >
-        <app-genetic-profile
-          [userVariants$]="userVariants$"
-        ></app-genetic-profile>
-      </app-joyride-wrapper>
+
+    <div
+      class="section"
+      joyrideStep="USER_PROFILES__GENETIC_PROFILE__STEP"
+      [stepContent]="USER_PROFILES__GENETIC_PROFILE__STEP"
+    >
+      <app-genetic-profile
+        [userVariants$]="userVariants$"
+      ></app-genetic-profile>
     </div>
   </div>
 
@@ -88,4 +86,8 @@
 
 <ng-template #USER_PROFILES__LIFE_STYLE_HISTORY__STEP>
   {{ "USER_PROFILES__LIFE_STYLE_HISTORY__STEP" | translate }}
+</ng-template>
+
+<ng-template #USER_PROFILES__GENETIC_PROFILE__STEP>
+  {{ "USER_PROFILES__GENETIC_PROFILE__STEP" | translate }}
 </ng-template>
