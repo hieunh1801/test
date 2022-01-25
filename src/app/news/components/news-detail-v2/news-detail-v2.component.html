@@ -27,6 +27,24 @@
     <div>
       <div>
         <h2>{{ newsDetail?.title }}</h2>
+        <div class="metadata">
+          <div>
+            <span>
+              {{ "NEWS__NEWS_DETAIL__STRINGS__PUBLISH_AT" | translate }}
+              {{ newsDetail.publishTime }}</span
+            >
+            <span>
+              {{ "NEWS__NEWS_DETAIL__STRINGS__BY" | translate }}
+              {{ newsDetail.author }}</span
+            >
+          </div>
+          <div>
+            <span>
+              {{ "NEWS__NEWS_DETAIL__STRINGS__TOTAL_READ" | translate }}
+              {{ newsDetail.readCount }}
+            </span>
+          </div>
+        </div>
       </div>
       <div
         [innerHtml]="newsDetail.content | safeHtml"
@@ -43,8 +61,7 @@
       alt="Not found"
     />
     <h4>
-      No content founded. This news is not existed or content for this language
-      is not provide. See another news or change other language.
+      {{ "NEWS__NEWS_DETAIL__STRINGS__NOT_FOUND_CONTENT" | translate }}
     </h4>
   </div>
 </ng-template>
@@ -54,3 +71,5 @@
     <app-spinner></app-spinner>
   </div>
 </ng-template>
+
+<app-scroll-up-button></app-scroll-up-button>

@@ -1,5 +1,7 @@
 <div class="top-reading-list">
-  <div class="title">Top news</div>
+  <div class="title">
+    {{ "NEWS__TOP_NEWS_LIST__TITLES__TOP_NEWS" | translate }}
+  </div>
   <div
     *ngIf="newsListLoading; then loadingTemplate; else newsListTemplate"
   ></div>
@@ -34,6 +36,8 @@
 
 <ng-template #emptyTemplate>
   <div class="not-found-container">
-    <h4>Empty</h4>
+    <h4>
+      {{ "NEWS__TOP_NEWS_LIST__STRINGS__EMPTY" | translate }}
+    </h4>
   </div>
 </ng-template>

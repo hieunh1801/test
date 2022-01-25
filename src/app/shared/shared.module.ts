@@ -36,7 +36,8 @@ import { ToTextPipe } from './pipes/to-text.pipe';
 import { PaginationSyncWithQueryParamComponent } from './components/pagination-sync-with-query-param/pagination-sync-with-query-param.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
-
+import { ScrollUpButtonComponent } from './components/scroll-up-button/scroll-up-button.component';
+import { AnimationModule } from '@animation/animation.module';
 const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
@@ -78,6 +79,7 @@ const httpInterceptorProviders = [
     PaginationSyncWithQueryParamComponent,
     SafeHtmlPipe,
     LoaderComponent,
+    ScrollUpButtonComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -89,6 +91,7 @@ const httpInterceptorProviders = [
     ReactiveFormsModule,
     JoyrideModule,
     PlatformModule,
+    AnimationModule,
   ],
   exports: [
     ...COMPONENTS,
@@ -110,6 +113,7 @@ const httpInterceptorProviders = [
     PaginationSyncWithQueryParamComponent,
     SafeHtmlPipe,
     LoaderComponent,
+    ScrollUpButtonComponent,
   ],
 })
 export class SharedModule {}

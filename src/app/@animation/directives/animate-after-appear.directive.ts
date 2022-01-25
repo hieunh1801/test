@@ -8,7 +8,7 @@ import {
   style,
 } from '@angular/animations';
 import { IntersectionObserverService } from '../services/intersection-observer.service';
-import * as buildInAnmiations from '../animations';
+import * as buildInAnimations from '../animations';
 
 @Directive({
   selector: '[animateAfterAppear]',
@@ -33,14 +33,13 @@ export class AnimateAfterAppearDirective implements OnInit {
       this.animationOptions !== undefined
     ) {
       animation = this.animationBuilder.build(this.animationOptions);
-    }
-    if (
+    } else if (
       !!this.animateAfterAppear &&
-      !!buildInAnmiations[this.animateAfterAppear]
+      !!buildInAnimations[this.animateAfterAppear]
     ) {
       console.log('build in', this.animateAfterAppear);
       animation = this.animationBuilder.build(
-        buildInAnmiations[this.animateAfterAppear]
+        buildInAnimations[this.animateAfterAppear]
       );
     } else {
       animation = this.animationBuilder.build([

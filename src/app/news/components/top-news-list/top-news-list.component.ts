@@ -50,6 +50,7 @@ export class TopNewsListComponent implements OnInit, OnDestroy, OnChanges {
       this.reloadNewsList();
     }
   }
+
   subscribeNewsList$() {
     const subscription = this.newsList$.subscribe(() => {
       this.reloadNewsList();

@@ -66,6 +66,9 @@ export class NewsDetailV2Component implements OnInit, OnDestroy {
       .pipe(
         finalize(() => {
           this.newsDetailLoading = false;
+          this.newsService.updateReadCount(id).subscribe(() => {
+            console.log('new read count updated');
+          });
         })
       )
       .subscribe((response) => {

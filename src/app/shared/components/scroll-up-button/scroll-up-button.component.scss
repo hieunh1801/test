@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  position: fixed; /* Fixed/sticky position */
+  bottom: 24px; /* Place the button at the bottom of the page */
+  right: 24px; /* Place the button 30px from the right */
+  padding: 8px;
+  z-index: 99; /* Make sure it does not overlap */
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+
+  background-color: var(--primary-a--color);
+  color: rgba($color: #ffffff, $alpha: 0.8);
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: var(--primary-a-800-color);
+}

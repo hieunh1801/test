@@ -15,7 +15,7 @@
     <div class="search-form-container">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>campaign</mat-icon>
-        News
+        {{ "NEWS__NEWS_LIST__TITLES__NEWS" | translate }}
       </h2>
       <div class="search-form">
         <div class="search">
@@ -26,7 +26,9 @@
                 formControlName="keyword"
                 type="text"
                 name="search"
-                placeholder="Search"
+                [placeholder]="
+                  'NEWS__NEWS_LIST__PLACEHOLDERS__SEARCH' | translate
+                "
                 (keydown.enter)="onClickSearch()"
               />
               <button mat-icon-button matSuffix (click)="onClickSearch()">
@@ -89,7 +91,7 @@
 <ng-template #newsListEmptyTemplate>
   <div class="not-found-container">
     <img src="/assets/images/empty.svg" alt="Not found data" />
-    <h3>Not found data</h3>
+    <h3>{{ "NEWS__NEWS_LIST__STRINGS__NOT_FOUND_DATA" | translate }}</h3>
   </div>
 </ng-template>
 
