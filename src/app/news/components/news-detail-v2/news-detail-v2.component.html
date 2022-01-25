@@ -50,6 +50,9 @@
         [innerHtml]="newsDetail.content | safeHtml"
         class="news-content"
       ></div>
+      <div class="tag-container">
+        <app-tag-list [tagList]="newsDetail.tags"></app-tag-list>
+      </div>
     </div>
   </ng-container>
 </ng-template>
