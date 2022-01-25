@@ -94,14 +94,15 @@
   }
 
   .loading-container {
-    padding: 60px;
+    height: 30vh;
+    margin-left: -60px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .not-found-container {
-    padding: 60px;
+    height: 30vh;
 
     display: flex;
     justify-content: center;
@@ -158,7 +159,9 @@
       flex-direction: column;
       row-gap: 8px;
       margin-bottom: 16px;
-      padding-bottom: 8px;
+      padding-bottom: 16px;
+    }
+    .news-list-item:not(:last-child) {
       border-bottom: solid 1px rgba($color: #000000, $alpha: 0.1);
       border-radius: none;
     }

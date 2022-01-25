@@ -47,9 +47,11 @@ export class NewsService {
     return this.httpClient.get<any>(url);
   }
 
-  getCustomerBoardById(boardId: number): Observable<any> {
+  getCustomerBoardById(
+    boardId: number
+  ): Observable<SpmedResponse<CustomerBoard>> {
     const url = `${this.baseUrl}/${boardId}`;
-    return this.httpClient.get<any>(url);
+    return this.httpClient.get<SpmedResponse<CustomerBoard>>(url);
     //.pipe(tap((data) => console.log(JSON.stringify(data))));
   }
 

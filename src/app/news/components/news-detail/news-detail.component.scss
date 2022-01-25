@@ -70,7 +70,7 @@
 }
 
 :host ::ng-deep .content-detail * {
-  max-width: calc(var(--primary--screen) - 40px);
+  max-width: calc(var(--secondary--screen) - 40px);
 }
 
 mat-card {

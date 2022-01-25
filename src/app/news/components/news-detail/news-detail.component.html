@@ -72,11 +72,12 @@
         </div>
 
         <br />
+
         <div class="content">
           <div
             *ngIf="this.languageService.currentLanguage == 'kr'"
             class="content-detail"
-            [innerHTML]="customerBoard?.kr?.content"
+            [innerHTML]="customerBoard?.kr?.content | safeHtml"
           ></div>
           <div
             *ngIf="this.languageService.currentLanguage == 'en'"

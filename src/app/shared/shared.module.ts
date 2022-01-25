@@ -34,6 +34,8 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ToTextPipe } from './pipes/to-text.pipe';
 import { PaginationSyncWithQueryParamComponent } from './components/pagination-sync-with-query-param/pagination-sync-with-query-param.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const COMPONENTS = [
   FooterComponent,
@@ -74,6 +76,8 @@ const httpInterceptorProviders = [
     SpinnerComponent,
     ToTextPipe,
     PaginationSyncWithQueryParamComponent,
+    SafeHtmlPipe,
+    LoaderComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -104,6 +108,8 @@ const httpInterceptorProviders = [
     SpinnerComponent,
     ToTextPipe,
     PaginationSyncWithQueryParamComponent,
+    SafeHtmlPipe,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

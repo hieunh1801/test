@@ -1,6 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@shared/services/language.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -30,8 +31,9 @@ export class NewsListComponent implements OnInit, OnDestroy {
     private languageService: LanguageService,
     private translateService: TranslateService,
     private formBuilder: FormBuilder,
-    private activatedRouter: ActivatedRoute,
-    private router: Router
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class NewsListComponent implements OnInit, OnDestroy {
   }
 
   subscribeActivatedRouterChange() {
-    const sub = this.activatedRouter.queryParams.subscribe((params) => {
+    const sub = this.activatedRoute.queryParams.subscribe((params) => {
       const keyword = params.keyword;
       if (keyword) {
         this.searchForm.patchValue({
@@ -89,12 +91,26 @@ export class NewsListComponent implements OnInit, OnDestroy {
   syncQueryParam(): void {
     const keyword = this.searchForm.value.keyword;
 
+    const queryParams: Params = {
+      keyword: keyword,
+    };
+
     this.router.navigate(['.'], {
-      relativeTo: this.activatedRouter,
-      queryParams: {
-        keyword: keyword,
-      },
+      relativeTo: this.activatedRoute,
+      queryParams: queryParams,
     });
+
+    // const url = this.router
+    //   .createUrlTree([], {
+    //     relativeTo: this.activatedRoute,
+    //     queryParams: queryParams,
+    //   })
+    //   .toString();
+    // this.location.replaceState(url);
+  }
+
+  onClickSearch(): void {
+    this.syncQueryParam();
   }
 
   loadNewsList$(): void {
@@ -114,7 +130,7 @@ export class NewsListComponent implements OnInit, OnDestroy {
 
   reloadNewsList(): void {
     const lang: string = this.languageService.currentLanguage;
-    const queryParams = this.activatedRouter.snapshot.queryParams;
+    const queryParams = this.activatedRoute.snapshot.queryParams;
     const keyword = queryParams?.keyword || '';
 
     let newsList: CustomerBoard[] = this.newsList$.value || [];

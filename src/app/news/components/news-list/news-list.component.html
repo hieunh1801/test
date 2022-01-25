@@ -27,9 +27,9 @@
                 type="text"
                 name="search"
                 placeholder="Search"
-                (keydown.enter)="syncQueryParam()"
+                (keydown.enter)="onClickSearch()"
               />
-              <button mat-icon-button matSuffix (click)="syncQueryParam()">
+              <button mat-icon-button matSuffix (click)="onClickSearch()">
                 <mat-icon>search</mat-icon>
               </button>
             </mat-form-field>
@@ -38,12 +38,16 @@
       </div>
     </div>
 
-    <div animateAfterAppear="fadeIn">
+    <div>
       <ng-container
         *ngIf="newsList && newsList.length > 0; else newsListEmptyTemplate"
       >
         <ng-container *ngFor="let news of newsList">
-          <div class="news-list-item" [routerLink]="[news.id]">
+          <div
+            class="news-list-item"
+            [routerLink]="[news.id]"
+            animateAfterAppear="fadeIn"
+          >
             <div class="thumbnail-image-wrapper">
               <img
                 loading="lazy"

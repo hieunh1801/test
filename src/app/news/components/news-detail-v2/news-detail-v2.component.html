@@ -1,0 +1,56 @@
+<div class="news-detail-container">
+  <div class="news-detail">
+    <div class="news-wrapper">
+      <ng-container
+        *ngIf="
+          newsDetailLoading;
+          then newsDetailLoadingTemplate;
+          else newsDetailTemplate
+        "
+      ></ng-container>
+    </div>
+    <div class="top-news-list-wrapper">
+      <app-top-news-list
+        [ignoreNewsIdList]="[newsDetail?.id]"
+      ></app-top-news-list>
+    </div>
+  </div>
+</div>
+
+<ng-template #newsDetailTemplate>
+  <ng-container
+    *ngIf="
+      newsDetail && newsDetail.title;
+      else newsDetailNotSupportLanguageTemplate
+    "
+  >
+    <div>
+      <div>
+        <h2>{{ newsDetail?.title }}</h2>
+      </div>
+      <div
+        [innerHtml]="newsDetail.content | safeHtml"
+        class="news-content"
+      ></div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #newsDetailNotSupportLanguageTemplate>
+  <div class="not-found-container">
+    <img
+      src="https://image.freepik.com/free-vector/empty-concept-illustration_114360-1253.jpg"
+      alt="Not found"
+    />
+    <h4>
+      No content founded. This news is not existed or content for this language
+      is not provide. See another news or change other language.
+    </h4>
+  </div>
+</ng-template>
+
+<ng-template #newsDetailLoadingTemplate>
+  <div class="loading-container">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>

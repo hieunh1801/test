@@ -1,6 +1,16 @@
 <div class="top-reading-list">
   <div class="title">Top news</div>
-  <ng-container *ngIf="newsList && newsList.length > 0">
+  <div
+    *ngIf="newsListLoading; then loadingTemplate; else newsListTemplate"
+  ></div>
+</div>
+
+<ng-template #loadingTemplate>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #newsListTemplate>
+  <div *ngIf="newsList && newsList.length > 0; else emptyTemplate">
     <div
       *ngFor="let news of newsList"
       class="news-list-item-container"
@@ -19,5 +29,11 @@
         </div>
       </div>
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-template>
+
+<ng-template #emptyTemplate>
+  <div class="not-found-container">
+    <h4>Empty</h4>
+  </div>
+</ng-template>
