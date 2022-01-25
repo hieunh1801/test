@@ -1,0 +1,23 @@
+<div class="top-reading-list">
+  <div class="title">Top news</div>
+  <ng-container *ngIf="newsList && newsList.length > 0">
+    <div
+      *ngFor="let news of newsList"
+      class="news-list-item-container"
+      [routerLink]="['/news', news.id]"
+    >
+      <div class="news-list-item">
+        <div class="image">
+          <img
+            class="thumbnail-image"
+            [src]="news.thumbnailUrl || defaultNewsImage"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <div class="news-title">{{ news.title }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

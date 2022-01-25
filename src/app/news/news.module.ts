@@ -11,6 +11,7 @@ import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsSearchAndRecentComponent } from './components/news-search-and-recent/news-search-and-recent.component';
 import { AnimationModule } from '@animation/animation.module';
 import { TagListComponent } from './components/tag-list/tag-list.component';
+import { TopNewsListComponent } from './components/top-news-list/top-news-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
     NewsListComponent,
     NewsSearchAndRecentComponent,
     TagListComponent,
+    TopNewsListComponent,
   ],
   imports: [
     CommonModule,

@@ -12,14 +12,14 @@
 
 <ng-template #newsListTemplate>
   <div class="news-list-container">
-    <div class="search-form">
+    <div class="search-form-container">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>campaign</mat-icon>
         News
       </h2>
       <div class="search-form">
         <div class="search">
-          <form [formGroup]="searchForm" class="spmed-form">
+          <form [formGroup]="searchForm" class="spmed-small-form">
             <mat-form-field appearance="outline">
               <input
                 matInput
@@ -44,16 +44,15 @@
       >
         <ng-container *ngFor="let news of newsList">
           <div class="news-list-item" [routerLink]="[news.id]">
-            <div>
+            <div class="thumbnail-image-wrapper">
               <img
+                loading="lazy"
                 [src]="news.thumbnailUrl || defaultNewsImage"
                 class="thumbnail-image"
               />
             </div>
             <div class="content">
-              <h3 class="title">
-                {{ news.title }}
-              </h3>
+              <h3 class="title">{{ news.title }}</h3>
               <div class="statistic">
                 <div>
                   <mat-icon>visibility</mat-icon>
@@ -79,12 +78,15 @@
   </div>
 
   <div class="search-container">
-    <app-news-search-and-recent></app-news-search-and-recent>
+    <app-top-news-list [newsList$]="newsList$"></app-top-news-list>
   </div>
 </ng-template>
 
 <ng-template #newsListEmptyTemplate>
-  <div class="loading-container">Empty</div>
+  <div class="not-found-container">
+    <img src="/assets/images/empty.svg" alt="Not found data" />
+    <h3>Not found data</h3>
+  </div>
 </ng-template>
 
 <ng-template #newsListLoadingTemplate>

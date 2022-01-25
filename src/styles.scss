@@ -184,6 +184,43 @@ pre {
     width: 100%;
   }
 }
+
+.spmed-small-form {
+  .mat-form-field-outline-start {
+    border-radius: 1px 0 0 1px !important;
+    min-width: 1px !important;
+  }
+
+  .mat-form-field-outline-end {
+    border-radius: 0 1px 1px 0 !important;
+  }
+
+  mat-label {
+    font-weight: 500 !important;
+    display: block;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-infix {
+      padding: 0px;
+      border: none;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .spmed-form-field {
+    width: 100%;
+  }
+
+  mat-icon {
+    font-size: 1.125em !important;
+    height: 1.125em !important;
+    line-height: 1.125em !important;
+  }
+}
+
 .spmed-md-fab-bottom-right {
   position: fixed !important;
   right: 24px;

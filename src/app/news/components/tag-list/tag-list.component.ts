@@ -50,8 +50,6 @@ export class TagListComponent implements OnInit, OnDestroy {
         }
       }) || [];
 
-    console.log('dataSourceChange', dataSource);
-
     this.dataSource = dataSource;
   }
 }

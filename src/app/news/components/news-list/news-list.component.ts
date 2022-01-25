@@ -21,8 +21,7 @@ export class NewsListComponent implements OnInit, OnDestroy {
     keyword: [''],
   });
 
-  defaultNewsImage =
-    'https://cdn.dribbble.com/users/2330950/screenshots/6303019/98_4x.jpg?compress=1&resize=400x300';
+  defaultNewsImage = '/assets/images/default-news-thumbnail.jpg';
 
   subscription$ = new Subscription();
 
@@ -42,6 +41,8 @@ export class NewsListComponent implements OnInit, OnDestroy {
     // this.subscribeSearchFormChange();
 
     this.loadNewsList$();
+
+    console.log('re-render component');
   }
 
   ngOnDestroy(): void {
@@ -88,7 +89,7 @@ export class NewsListComponent implements OnInit, OnDestroy {
   syncQueryParam(): void {
     const keyword = this.searchForm.value.keyword;
 
-    this.router.navigate([], {
+    this.router.navigate(['.'], {
       relativeTo: this.activatedRouter,
       queryParams: {
         keyword: keyword,
