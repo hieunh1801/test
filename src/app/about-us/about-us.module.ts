@@ -7,9 +7,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CertificateListComponent } from './components/certificate-list/certificate-list.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SharedModule } from '@shared/shared.module';
+import { AnimationModule } from '@animation/animation.module';
 
 @NgModule({
   declarations: [AboutUsComponent, CertificateListComponent, HistoryComponent],
-  imports: [CommonModule, AboutUsRoutingModule, FlexLayoutModule, SharedModule],
+  imports: [
+    CommonModule,
+    AboutUsRoutingModule,
+    FlexLayoutModule,
+    SharedModule,
+    AnimationModule,
+  ],
 })
 export class AboutUsModule {}

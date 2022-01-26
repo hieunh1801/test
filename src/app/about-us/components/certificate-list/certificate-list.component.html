@@ -7,9 +7,9 @@
         *ngFor="let certificate of certificateList"
         (click)="openOverlayImage(certificate)"
       >
-        <img [src]="certificate.url" [alt]="certificate.title" />
+        <img [src]="certificate.url" [alt]="certificate.title | translate" />
 
-        <div class="title">{{ certificate.title }}</div>
+        <div class="title">{{ certificate.title | translate }}</div>
       </div>
     </div>
   </div>
@@ -17,10 +17,14 @@
 
 <div
   class="overlay"
+  @overlayOpenClose
   [fxHide]="!isShowImageOverlay"
   (click)="closeOverlayImage()"
 >
   <div class="overlay-content">
-    <img [src]="selectedCertificate?.url" [alt]="selectedCertificate?.title" />
+    <img
+      [src]="selectedCertificate?.url"
+      [alt]="selectedCertificate?.title | translate"
+    />
   </div>
 </div>
