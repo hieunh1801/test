@@ -37,7 +37,7 @@ export class AnimateAfterAppearDirective implements OnInit {
       !!this.animateAfterAppear &&
       !!buildInAnimations[this.animateAfterAppear]
     ) {
-      console.log('build in', this.animateAfterAppear);
+      // console.log('build in', this.animateAfterAppear);
       animation = this.animationBuilder.build(
         buildInAnimations[this.animateAfterAppear]
       );
@@ -66,7 +66,7 @@ export class AnimateAfterAppearDirective implements OnInit {
    * @param {boolean} inViewport
    */
   startAnimating(inViewport?: boolean, element?: Element): void {
-    console.log('start animating');
+    // console.log('start animating');
     if (inViewport) {
       this.player?.play();
     }

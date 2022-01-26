@@ -1,14 +1,16 @@
 <div class="certificate-container">
-  <h2>Certificates</h2>
-  <div class="certificate-list">
-    <div
-      class="certificate-list-item"
-      *ngFor="let certificate of certificateList"
-      (click)="openOverlayImage(certificate)"
-    >
-      <img [src]="certificate.url" [alt]="certificate.title" />
+  <div class="certificate-wrapper">
+    <h2>Certificates</h2>
+    <div class="certificate-list">
+      <div
+        class="certificate-list-item"
+        *ngFor="let certificate of certificateList"
+        (click)="openOverlayImage(certificate)"
+      >
+        <img [src]="certificate.url" [alt]="certificate.title" />
 
-      <div class="title">{{ certificate.title }}</div>
+        <div class="title">{{ certificate.title }}</div>
+      </div>
     </div>
   </div>
 </div>

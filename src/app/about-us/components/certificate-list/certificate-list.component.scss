@@ -1,6 +1,10 @@
 .certificate-container {
   width: 100%;
-
+  .certificate-wrapper {
+    max-width: var(--secondary--screen);
+    padding: 20px 20px;
+    margin: auto;
+  }
   .certificate-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -46,6 +50,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transition: all 1s ease-in-out;
 
   &::before {
     content: "";

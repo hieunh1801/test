@@ -1,24 +1,21 @@
 <div class="history-container">
-  <h2>History</h2>
-  <div class="timeline-wrapper">
-    <ul class="StepProgress" [fxHide]="languageService.currentLanguage != 'en'">
-      <li class="StepProgress-item is-done" *ngFor="let achieve of historyEn">
-        <h3 class="bold time">{{ achieve.year }}</h3>
-        <div fxLayout="column" *ngFor="let monthAchieve of achieve?.monthList">
-          <p class="bold">{{ monthAchieve.month }}</p>
-          <p *ngFor="let row of monthAchieve?.achieveList">- {{ row }}</p>
-        </div>
-      </li>
-    </ul>
-
-    <ul class="StepProgress" [fxHide]="languageService.currentLanguage != 'kr'">
-      <li class="StepProgress-item is-done" *ngFor="let achieve of historyKr">
-        <h3 class="bold time">{{ achieve.year }}</h3>
-        <div fxLayout="column" *ngFor="let monthAchieve of achieve?.monthList">
-          <p class="bold">{{ monthAchieve.month }}</p>
-          <p *ngFor="let row of monthAchieve?.achieveList">- {{ row }}</p>
-        </div>
-      </li>
-    </ul>
+  <div class="history-wrapper">
+    <h2>History</h2>
+    <div class="timeline-container">
+      <div class="timeline-wrapper">
+        <ul class="event-list">
+          <li *ngFor="let event of timeline" class="event-list-item">
+            <div class="content">
+              <span class="time">
+                {{ event.year }} {{ event.month }} {{ event.day }}
+              </span>
+              <p class="achieve">
+                {{ event.achieve }}
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

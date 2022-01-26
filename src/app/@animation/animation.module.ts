@@ -19,7 +19,6 @@ import {
 })
 export class AnimationModule {
   constructor(@Optional() @SkipSelf() parentModule: AnimationModule) {
-    console.log('Animation Module');
     if (parentModule) {
       // throw new Error(
       //   'AnimationModule is already loaded. Import it in the AppModule only'

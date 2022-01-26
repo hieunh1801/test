@@ -1,7 +1,7 @@
 .about-us-container {
-  max-width: 960px;
-  padding: 0 16px 16px 16px;
-  margin: auto;
+  // max-width: 960px;
+  // padding: 0 16px 16px 16px;
+  // margin: auto;
 
   .intro-image {
     width: 100%;
@@ -10,12 +10,21 @@
   }
 
   .we-are-container {
+    padding-top: 60px;
+    padding-bottom: 60px;
     p {
       font-size: 14px;
       line-height: 1.5rem;
       column-count: 2;
       column-gap: 60px;
     }
+  }
+
+  .we-are-wrapper {
+    padding: 20px;
+    max-width: var(--secondary--screen);
+    margin: auto;
+    background-color: #f2f2f2;
   }
 }
 
