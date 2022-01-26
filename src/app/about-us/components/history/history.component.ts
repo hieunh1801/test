@@ -17,7 +17,7 @@ import { retry } from 'rxjs/operators';
 export class HistoryComponent implements OnInit, OnDestroy {
   companyHistoryList$ = new BehaviorSubject<CompanyHistory[]>(null);
 
-  timeline: CompanyHistory[] = null;
+  timeline: History[] = null;
 
   subscriptions$ = new Subscription();
   constructor(
@@ -79,16 +79,42 @@ export class HistoryComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.timeline = companyHistoryList;
+    const historyMap = new Map<string, History>();
+    const linkSymbol = '#';
+
+    for (const companyHistory of companyHistoryList) {
+      const normalizedYear = companyHistory.year.toString();
+      const normalizedMonth =
+        companyHistory.month?.length === 1
+          ? `0${companyHistory.month}`
+          : companyHistory.month;
+      const time = [normalizedYear, normalizedMonth].join(linkSymbol);
+
+      const history = historyMap.get(time);
+      if (history == null) {
+        historyMap.set(time, {
+          year: normalizedYear,
+          month: normalizedMonth,
+          events: [companyHistory.achieve],
+        });
+      } else {
+        history.events.push(companyHistory.achieve);
+      }
+    }
+
+    const historyMapSorted = new Map(
+      [...historyMap.entries()].sort().reverse()
+    );
+
+    // get timeline value
+    const timeline = Array.from(historyMapSorted.values());
+
+    this.timeline = timeline;
   }
 }
 
-interface YearHistory {
+interface History {
   year: string;
-  monthHistories: MonthHistory[];
-}
-
-interface MonthHistory {
   month: string;
-  achieves: string[];
+  events: string[];
 }

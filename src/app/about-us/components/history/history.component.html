@@ -3,14 +3,15 @@
     <h2>History</h2>
     <div class="timeline-container">
       <div class="timeline-wrapper">
-        <ul class="event-list">
-          <li *ngFor="let event of timeline" class="event-list-item">
+        <ul class="history-list">
+          <li *ngFor="let history of timeline" class="history-list-item">
             <div class="content">
               <span class="time">
-                {{ event.year }} {{ event.month }} {{ event.day }}
+                {{ history.year }} - {{ history.month }}
               </span>
-              <p class="achieve">
-                {{ event.achieve }}
+              <span class="time-underline"> </span>
+              <p class="event" *ngFor="let event of history.events">
+                {{ event }}
               </p>
             </div>
           </li>
