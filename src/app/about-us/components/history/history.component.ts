@@ -16,7 +16,6 @@ import { retry } from 'rxjs/operators';
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   companyHistoryList$ = new BehaviorSubject<CompanyHistory[]>(null);
-
   timeline: History[] = null;
 
   subscriptions$ = new Subscription();

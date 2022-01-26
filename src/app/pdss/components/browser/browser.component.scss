@@ -130,9 +130,19 @@
   .sort-selection {
   }
   .search-introduction {
-    padding: 60px 0;
+    padding-bottom: 60px;
+    line-height: 24px;
     margin: auto;
     font-weight: 500;
+  }
+
+  .loading-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -30px;
+    padding-bottom: 60px;
   }
 }
 

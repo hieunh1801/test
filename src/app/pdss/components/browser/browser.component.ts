@@ -38,6 +38,8 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     isGene: [''],
   });
 
+  loading: boolean = false;
+
   subscription$ = new Subscription();
   pageChangeSub$: Subscription;
   listOfDrugs: Array<TopDrugsResponse> | null;
@@ -97,8 +99,8 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
         this.search();
       });
 
-    this.getTopDrugs();
-    this.getTopGenes();
+    // this.getTopDrugs();
+    // this.getTopGenes();
   }
 
   ngOnDestroy(): void {
@@ -151,14 +153,15 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
       const searchRequest: SearchRequest = {
         keyword: keyword,
       };
-      this.pageLoadingService.startLoading();
+
+      this.loading = true;
 
       this.browserService
         .search(searchRequest)
         .pipe(
           finalize(() => {
             this.searchKeyword = keyword.trim();
-            this.pageLoadingService.stopLoading();
+            this.loading = false;
           })
         )
         .subscribe({

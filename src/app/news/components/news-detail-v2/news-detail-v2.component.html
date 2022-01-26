@@ -30,20 +30,19 @@
         <div class="metadata">
           <div>
             <span>
-              {{ "NEWS__NEWS_DETAIL__STRINGS__PUBLISH_AT" | translate }}
-              {{ newsDetail.publishTime }}</span
+              <mat-icon>event</mat-icon>
+              {{ newsDetail.publishTime | date: "yyyy-MM-dd" }}</span
             >
             <span>
-              {{ "NEWS__NEWS_DETAIL__STRINGS__BY" | translate }}
+              <mat-icon>person</mat-icon>
               {{ newsDetail.author }}</span
             >
-          </div>
-          <div>
             <span>
-              {{ "NEWS__NEWS_DETAIL__STRINGS__TOTAL_READ" | translate }}
+              <mat-icon>visibility</mat-icon>
               {{ newsDetail.readCount }}
             </span>
           </div>
+          <div></div>
         </div>
       </div>
       <div

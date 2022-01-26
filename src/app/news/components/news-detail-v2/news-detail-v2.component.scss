@@ -63,7 +63,7 @@
   }
 
   .metadata {
-    color: rgba(#000000, 0.8);
+    color: rgba(#000000, 0.6);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,6 +72,19 @@
       gap: 8px;
     }
     margin-bottom: 16px;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+    }
   }
 }
 
@@ -87,7 +100,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 250px) {
   .news-wrapper {
     .metadata {
       display: flex;

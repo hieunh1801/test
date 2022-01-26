@@ -76,138 +76,143 @@
             </div>
           </div> -->
           <!-- INIT MODE END -->
-          <ng-container *ngIf="!searchKeyword">
-            <div class="search-introduction">
-              {{ "PDSS__BROWSER__SEARCH_INTRODUCTION" | translate }}
-            </div>
-          </ng-container>
+          <ng-template
+            *ngIf="
+              loading;
+              then browserLoadingTemplate;
+              else browserResultTemplate
+            "
+          ></ng-template>
+
           <!-- SEARCH RESULT START -->
-          <div
-            fxLayout="row"
-            fxLayoutGap="20px"
-            fxLayout.xs="column"
-            [fxHide]="!searchKeyword"
-          >
-            <!-- FILTER START -->
-            <div class="filter-form-wrapper" fxHide.lt-md fxShow.gt-sm>
-              <!-- <h2>{{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}</h2> -->
-              <h3>
-                {{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}
-              </h3>
-              <form class="spmed-form filter-form" [formGroup]="filterForm">
-                <mat-checkbox
-                  formControlName="isDrug"
-                  name="isDrug"
-                  (change)="onChange($event)"
-                >
-                  {{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
-                  ({{ finalCount || 0 }})
-                </mat-checkbox>
 
-                <mat-checkbox
-                  formControlName="isGene"
-                  name="isGene"
-                  (change)="onChange($event)"
-                >
-                  {{ "PDSS__BROWSER__CHECKBOX__GENES" | translate }}
-                  ({{ geneCount || 0 }})
-                </mat-checkbox>
-                <span></span>
-              </form>
-            </div>
-            <!-- FILTER END -->
-
-            <!-- RESULT START -->
-            <div class="result-list-container">
-              <div class="result-list-header">
-                <div class="search-result-title">
-                  {{ "PDSS__BROWSER__TITLES__RESULTS" | translate }}:
-                  <strong>
-                    {{ searchKeyword || "" }}
-                  </strong>
-                  ({{ searchTotal || 0 }})
-                </div>
-              </div>
-
-              <table mat-table [dataSource]="dataSource">
-                <ng-container matColumnDef="name">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef>
-                    {{
-                      "PDSS__BROWSER__RESULT_TABLE_HEADERS__NAME" | translate
-                    }}
-                  </mat-header-cell>
-
-                  <mat-cell
-                    *matCellDef="let result"
-                    style="vertical-align: middle"
-                  >
-                    <a
-                      *ngIf="result.type != 'gene'"
-                      [routerLink]="['/pdss/drug', result.id, 'detail']"
-                      ><span
-                        [innerHTML]="
-                          result.name | highlightSearch: searchKeyword
-                        "
-                      ></span>
-                    </a>
-                    <a
-                      *ngIf="result.type === 'gene'"
-                      [routerLink]="['/pdss/gene', result.id, 'detail']"
-                      ><span
-                        [innerHTML]="
-                          result.name | highlightSearch: searchKeyword
-                        "
-                      ></span>
-                    </a>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="type">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef>
-                    {{
-                      "PDSS__BROWSER__RESULT_TABLE_HEADERS__TYPE" | translate
-                    }}</mat-header-cell
-                  >
-                  <mat-cell *matCellDef="let result">
-                    <span
-                      *ngIf="
-                        result.type == 'Brand' || result.type == 'Generic_Name'
-                      "
-                    >
-                      <span class="brand">
-                        {{
-                          "PDSS__BROWSER__RESULT_TABLE_TYPES__DRUG" | translate
-                        }}
-                      </span>
-                    </span>
-                    <span *ngIf="result.type == 'gene'">
-                      <span class="gene">
-                        {{
-                          "PDSS__BROWSER__RESULT_TABLE_TYPES__GENE" | translate
-                        }}
-                      </span>
-                    </span>
-                  </mat-cell>
-                </ng-container>
-                <mat-header-row
-                  *matHeaderRowDef="displayedColumns"
-                ></mat-header-row>
-                <mat-row
-                  matRipple
-                  *matRowDef="let row; columns: displayedColumns"
-                ></mat-row>
-              </table>
-              <mat-paginator
-                showFirstLastButtons="true"
-                [length]="searchTotal"
-                [pageSize]="pageSize"
-                (page)="change($event)"
-              ></mat-paginator>
-            </div>
-            <!-- RESULT END -->
-          </div>
           <!-- SEARCH RESULT END -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #browserResultTemplate>
+  <ng-container *ngIf="!searchKeyword">
+    <div
+      *ngIf="!loading; else browserLoadingTemplate"
+      class="search-introduction"
+    >
+      {{ "PDSS__BROWSER__SEARCH_INTRODUCTION" | translate }}
+    </div>
+  </ng-container>
+  <div
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayout.xs="column"
+    [fxHide]="!searchKeyword"
+  >
+    <!-- FILTER START -->
+    <div class="filter-form-wrapper" fxHide.lt-md fxShow.gt-sm>
+      <!-- <h2>{{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}</h2> -->
+      <h3>
+        {{ "PDSS__BROWSER__TITLES__FILTERS" | translate }}
+      </h3>
+      <form class="spmed-form filter-form" [formGroup]="filterForm">
+        <mat-checkbox
+          formControlName="isDrug"
+          name="isDrug"
+          (change)="onChange($event)"
+        >
+          {{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
+          ({{ finalCount || 0 }})
+        </mat-checkbox>
+
+        <mat-checkbox
+          formControlName="isGene"
+          name="isGene"
+          (change)="onChange($event)"
+        >
+          {{ "PDSS__BROWSER__CHECKBOX__GENES" | translate }}
+          ({{ geneCount || 0 }})
+        </mat-checkbox>
+        <span></span>
+      </form>
+    </div>
+    <!-- FILTER END -->
+
+    <!-- RESULT START -->
+
+    <div class="result-list-container">
+      <div class="result-list-header">
+        <div class="search-result-title">
+          {{ "PDSS__BROWSER__TITLES__RESULTS" | translate }}:
+          <strong>
+            {{ searchKeyword || "" }}
+          </strong>
+          ({{ searchTotal || 0 }})
+        </div>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+          <mat-header-cell mat-header-cell *matHeaderCellDef>
+            {{ "PDSS__BROWSER__RESULT_TABLE_HEADERS__NAME" | translate }}
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let result" style="vertical-align: middle">
+            <a
+              *ngIf="result.type != 'gene'"
+              [routerLink]="['/pdss/drug', result.id, 'detail']"
+              ><span
+                [innerHTML]="result.name | highlightSearch: searchKeyword"
+              ></span>
+            </a>
+            <a
+              *ngIf="result.type === 'gene'"
+              [routerLink]="['/pdss/gene', result.id, 'detail']"
+              ><span
+                [innerHTML]="result.name | highlightSearch: searchKeyword"
+              ></span>
+            </a>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <mat-header-cell mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__BROWSER__RESULT_TABLE_HEADERS__TYPE" | translate
+            }}</mat-header-cell
+          >
+          <mat-cell *matCellDef="let result">
+            <span
+              *ngIf="result.type == 'Brand' || result.type == 'Generic_Name'"
+            >
+              <span class="brand">
+                {{ "PDSS__BROWSER__RESULT_TABLE_TYPES__DRUG" | translate }}
+              </span>
+            </span>
+            <span *ngIf="result.type == 'gene'">
+              <span class="gene">
+                {{ "PDSS__BROWSER__RESULT_TABLE_TYPES__GENE" | translate }}
+              </span>
+            </span>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          matRipple
+          *matRowDef="let row; columns: displayedColumns"
+        ></mat-row>
+      </table>
+      <mat-paginator
+        showFirstLastButtons="true"
+        [length]="searchTotal"
+        [pageSize]="pageSize"
+        (page)="change($event)"
+      ></mat-paginator>
+    </div>
+    <!-- RESULT END -->
+  </div>
+</ng-template>
+
+<ng-template #browserLoadingTemplate>
+  <div class="loading-container">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
