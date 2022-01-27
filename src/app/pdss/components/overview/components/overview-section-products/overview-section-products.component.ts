@@ -7,7 +7,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
   styleUrls: ['./overview-section-products.component.scss'],
 })
 export class OverviewSectionProductsComponent implements OnInit {
-  productList = [
+  productList: Product[] = [
     {
       choose: true,
       title: marker('PDSS__OVERVIEW__PRODUCT_LIST__1__TITLE__PGX_NP'),
@@ -109,7 +109,7 @@ export class OverviewSectionProductsComponent implements OnInit {
           title: marker(
             'PDSS__OVERVIEW__PRODUCT_LIST__4__ROUTE_LIST__1__TITLE__CONTACT_US'
           ),
-          routerLink: '/contact',
+          routerLink: ['/contact'],
         },
       ],
     },
@@ -118,4 +118,18 @@ export class OverviewSectionProductsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+}
+
+interface Product {
+  choose: boolean;
+  title: string;
+  purpose: string;
+  featureList: string[];
+  routeList: Route[];
+}
+
+interface Route {
+  title?: string;
+  routerLink?: string[];
+  queryParams?: { [key: string]: string };
 }

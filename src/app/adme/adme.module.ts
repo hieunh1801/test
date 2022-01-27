@@ -10,6 +10,7 @@ import { OverviewSectionWhyComponent } from './components/overview/components/ov
 import { OverviewSectionWhenComponent } from './components/overview/components/overview-section-when/overview-section-when.component';
 import { OverviewSectionProcedureComponent } from './components/overview/components/overview-section-procedure/overview-section-procedure.component';
 import { OverviewSectionServicesComponent } from './components/overview/components/overview-section-services/overview-section-services.component';
+import { AdmeServicesTableComponent } from './components/adme-services-table/adme-services-table.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { OverviewSectionServicesComponent } from './components/overview/componen
     OverviewSectionWhenComponent,
     OverviewSectionProcedureComponent,
     OverviewSectionServicesComponent,
+    AdmeServicesTableComponent,
   ],
   imports: [CommonModule, AdmeRoutingModule, SharedModule],
 })

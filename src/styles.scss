@@ -257,3 +257,67 @@ pre {
     transform: rotate(360deg);
   }
 }
+
+.spmed-table {
+  width: 100%;
+  border-collapse: collapse;
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: white;
+  }
+  tr:hover {
+    background-color: #ddd;
+    .call-us {
+      visibility: initial;
+    }
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--primary--color);
+    color: white;
+  }
+
+  tr {
+    border: 1px solid #ddd;
+  }
+
+  .call-us {
+    visibility: hidden;
+  }
+}
+
+.spmed-merge-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--primary--color);
+    color: white;
+    font-weight: bold;
+  }
+
+  tr {
+    border: 1px solid #ddd;
+  }
+
+  .call-us {
+    visibility: hidden;
+  }
+}

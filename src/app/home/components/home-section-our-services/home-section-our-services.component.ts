@@ -7,7 +7,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
   styleUrls: ['./home-section-our-services.component.scss'],
 })
 export class HomeSectionOurServicesComponent implements OnInit {
-  servicesList = [
+  servicesList: Service[] = [
     {
       title: marker('HOME__SECTION_OUR_SERVICE__SERVICES__1__TITLE'),
       imageUrl: '/assets/images/home-pdss-intro.jpg',
@@ -56,7 +56,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__2__ROUTE_ACTION__2'
           ),
-          routerLink: '',
+          routerLink: [''],
         },
       ],
     },
@@ -84,7 +84,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__3__ROUTE_ACTION__2'
           ),
-          routerLink: '',
+          routerLink: [''],
         },
       ],
     },
@@ -111,7 +111,7 @@ export class HomeSectionOurServicesComponent implements OnInit {
           title: marker(
             'HOME__SECTION_OUR_SERVICE__SERVICES__4__ROUTE_ACTION__2'
           ),
-          routerLink: '',
+          routerLink: [''],
         },
       ],
     },
@@ -119,4 +119,14 @@ export class HomeSectionOurServicesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+}
+
+interface Service {
+  title: string;
+  imageUrl: string;
+  contents: string[];
+  routeActions: {
+    title: string;
+    routerLink: string[];
+  }[];
 }

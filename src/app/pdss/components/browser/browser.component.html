@@ -118,7 +118,7 @@
         <mat-checkbox
           formControlName="isDrug"
           name="isDrug"
-          (change)="onChange($event)"
+          (change)="onChange()"
         >
           {{ "PDSS__BROWSER__CHECKBOX__DRUGS" | translate }}
           ({{ finalCount || 0 }})
@@ -127,7 +127,7 @@
         <mat-checkbox
           formControlName="isGene"
           name="isGene"
-          (change)="onChange($event)"
+          (change)="onChange()"
         >
           {{ "PDSS__BROWSER__CHECKBOX__GENES" | translate }}
           ({{ geneCount || 0 }})

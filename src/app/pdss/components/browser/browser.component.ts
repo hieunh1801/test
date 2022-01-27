@@ -255,7 +255,7 @@ export class BrowserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.searchTotal = this.finalCount + this.geneCount;
   }
 
-  onChange($event: Event) {
+  onChange() {
     const tempResults: SearchResponse[] = [];
     this.filterForm.markAllAsTouched();
     if (this.filterForm.valid) {

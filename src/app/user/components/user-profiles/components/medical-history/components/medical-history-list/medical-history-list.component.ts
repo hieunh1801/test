@@ -17,7 +17,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 })
 export class MedicalHistoryListComponent implements OnInit, OnDestroy {
   @Input() medicalHistoryList$ = new BehaviorSubject<MedicalHistory[]>([]);
-  @Input() mode$ = new BehaviorSubject<'VIEW' | 'EDIT'>(null);
+  @Input() mode$ = new BehaviorSubject<'ADD' | 'VIEW' | 'EDIT'>(null);
   @Input() showLess$ = new BehaviorSubject<boolean>(null);
 
   @Output() showLessEvent = new EventEmitter<{ showLess: boolean }>();

@@ -35,6 +35,7 @@ export class Drug {
   labelHasDosingInfo: number;
   hasRxAnnotation: number;
 
+  exVoca?: string | string[];
   rxnormIdentifier: string;
   atcIdentifier: string;
   atcCodes: AtcCode[];

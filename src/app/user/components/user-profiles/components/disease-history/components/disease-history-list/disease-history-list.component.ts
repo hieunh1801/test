@@ -21,7 +21,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 })
 export class DiseaseHistoryListComponent implements OnInit, OnDestroy {
   @Input() diseaseHistoryList$ = new BehaviorSubject<DiseaseHistory[]>([]);
-  @Input() mode$ = new BehaviorSubject<'VIEW' | 'EDIT'>(null);
+  @Input() mode$ = new BehaviorSubject<'ADD' | 'VIEW' | 'EDIT'>(null);
   @Input() showLess$ = new BehaviorSubject<boolean>(null);
 
   @Output() showLessEvent = new EventEmitter<{ showLess: boolean }>();

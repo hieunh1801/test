@@ -6,7 +6,10 @@
   </div>
 
   <div class="list-wrapper">
-    <div class="list-item-wrapper" *ngFor="let gene of genes">
+    <div
+      class="list-item-wrapper"
+      *ngFor="let gene of genes; let rowIndex = index"
+    >
       <div class="title">
         <app-joyride-wrapper
           fxHide.gt-sm

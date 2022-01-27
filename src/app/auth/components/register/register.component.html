@@ -159,7 +159,6 @@
                     this.isValidID === true &&
                     signUpForm2.get('fusername').valid
                   "
-                  color="success"
                   >check_circle</mat-icon
                 >
                 <mat-icon
@@ -172,7 +171,6 @@
                       (signUpForm2.get('fusername').touched ||
                         signUpForm2.get('fusername').dirty))
                   "
-                  color="cancel"
                   >cancel</mat-icon
                 >
                 <mat-error *ngIf="this.signUpForm2.get('fusername').invalid">
@@ -211,10 +209,7 @@
                   type="password"
                   required
                 />
-                <mat-icon
-                  matSuffix
-                  *ngIf="signUpForm2.get('fpassword').valid"
-                  color="success"
+                <mat-icon matSuffix *ngIf="signUpForm2.get('fpassword').valid"
                   >check_circle</mat-icon
                 >
                 <mat-error *ngIf="signUpForm2.get('fpassword').invalid"
@@ -239,10 +234,7 @@
                   type="password"
                   required
                 />
-                <mat-icon
-                  matSuffix
-                  *ngIf="signUpForm2.get('repassword').valid"
-                  color="success"
+                <mat-icon matSuffix *ngIf="signUpForm2.get('repassword').valid"
                   >check_circle</mat-icon
                 >
                 <mat-error
@@ -296,7 +288,6 @@
                     <mat-icon
                       matSuffix
                       *ngIf="signUpForm3.get('fsurname').valid"
-                      color="success"
                       >check_circle</mat-icon
                     >
                     <mat-error
@@ -312,7 +303,6 @@
                     <mat-icon
                       matSuffix
                       *ngIf="signUpForm3.get('fgivenname').valid"
-                      color="success"
                       >check_circle</mat-icon
                     >
                     <mat-error
@@ -334,7 +324,6 @@
                 <mat-icon
                   matSuffix
                   *ngIf="signUpForm3.get('fdateofbirth').valid"
-                  color="success"
                   >check_circle</mat-icon
                 >
                 <mat-error
@@ -404,7 +393,6 @@
                     signUpForm3.get('femail').valid &&
                     this.isValidEmail === true
                   "
-                  color="success"
                   >check_circle</mat-icon
                 >
                 <mat-icon
@@ -415,7 +403,6 @@
                     (this.isValidEmail === false &&
                       signUpForm3.get('femail').touched)
                   "
-                  color="cancel"
                   >cancel</mat-icon
                 >
                 <mat-error *ngIf="signUpForm3.get('femail').invalid"
@@ -440,10 +427,7 @@
               </div>
               <mat-form-field hintLabel="" appearance="fill">
                 <input matInput type="text" formControlName="fphone" />
-                <mat-icon
-                  matSuffix
-                  *ngIf="signUpForm3.get('fphone').valid"
-                  color="success"
+                <mat-icon matSuffix *ngIf="signUpForm3.get('fphone').valid"
                   >check_circle</mat-icon
                 >
                 <mat-error *ngIf="signUpForm3.get('fphone').invalid"

@@ -1,0 +1,38 @@
+<div class="adme-service-table-wrapper">
+  <div class="adme-service-table">
+    <ng-template
+      *ngIf="
+        admeServiceListLoading;
+        then admeServiceLoadingTemplate;
+        else admeServiceTableTemplate
+      "
+    ></ng-template>
+
+    <table
+      *ngIf="admeServiceList && admeServiceList.length > 0"
+      class="spmed-merge-table"
+      #tableRef
+    >
+      <tr>
+        <th *ngFor="let header of tableHeaderList">{{ header }}</th>
+      </tr>
+      <tr *ngFor="let service of admeServiceList">
+        <td>{{ service.mainCategory }}</td>
+        <td>{{ service.subclass }}</td>
+        <td style="min-width: 50px; text-align: center">
+          <mat-checkbox></mat-checkbox>
+        </td>
+
+        <td>{{ service.technology }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #admeServiceTableTemplate> </ng-template>
+
+<ng-template #admeServiceLoadingTemplate>
+  <div class="loading-container">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>

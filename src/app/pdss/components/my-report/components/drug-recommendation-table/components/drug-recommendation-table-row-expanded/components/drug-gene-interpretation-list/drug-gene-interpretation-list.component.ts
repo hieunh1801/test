@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DrugRecommendation } from '@pdss/components/my-report/services/pdss-report.service';
+import {
+  DrugRecommendation,
+  Gene,
+} from '@pdss/components/my-report/services/pdss-report.service';
 import {
   ReferenceListDialogComponent,
   ReferenceListDialogInputData,
 } from '../reference-list-dialog/reference-list-dialog.component';
 import { Router } from '@angular/router';
-import { Gene } from '@pdss/components/browser/components/gene/gene';
 
 @Component({
   selector: 'app-drug-gene-interpretation-list',

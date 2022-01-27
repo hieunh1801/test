@@ -14,7 +14,12 @@ import * as buildInAnimations from '../animations';
   selector: '[animateAfterAppear]',
 })
 export class AnimateAfterAppearDirective implements OnInit {
-  @Input() animateAfterAppear: 'fadeIn' | 'fadeInDown';
+  @Input() animateAfterAppear:
+    | 'fadeIn'
+    | 'fadeInDown'
+    | 'fadeInUp'
+    | 'fadeInRight'
+    | 'fadeInLeft';
   @Input() animationOptions: any; // custom your own animations
 
   player?: AnimationPlayer;

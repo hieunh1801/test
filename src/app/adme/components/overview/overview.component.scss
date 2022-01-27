@@ -1,0 +1,13 @@
+.overview {
+  // background-color: antiquewhite;
+  .section-wrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .section {
+    max-width: var(--secondary--screen);
+    margin: auto;
+    // background-color: darkgoldenrod;
+    padding: 16px;
+  }
+}

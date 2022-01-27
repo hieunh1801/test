@@ -107,7 +107,7 @@
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__INTERPRETATION</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
         <app-joyride-wrapper
           fxHide.lt-sm
           webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__RECOMMENDATION__STEP"
@@ -128,7 +128,7 @@
           >PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__HEADERS__REFERENCES</span
         >
       </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element; let rowIndex = index">
         <app-joyride-wrapper
           fxHide.lt-sm
           webGuideStep="PDSS__MY_REPORT__DRUG_RECOMMENDATION_TABLE__DRUG_GENE_INTERPRETATION_TABLE__REFERENCES__STEP"
