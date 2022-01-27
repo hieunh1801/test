@@ -26,8 +26,8 @@ export class AdmeServiceDataService {
 export interface AdmeService {
   id: number;
   mainCategory: string;
-  subclass?: string;
-  technology?: string;
+  subclass: string;
+  technology: string;
   createdTime?: number;
   createdActor?: string;
   updatedTime?: string;

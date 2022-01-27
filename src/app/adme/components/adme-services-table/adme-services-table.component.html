@@ -9,21 +9,33 @@
     ></ng-template>
 
     <table
-      *ngIf="admeServiceList && admeServiceList.length > 0"
+      *ngIf="tableSource && tableSource.length > 0"
       class="spmed-merge-table"
       #tableRef
     >
       <tr>
         <th *ngFor="let header of tableHeaderList">{{ header }}</th>
       </tr>
-      <tr *ngFor="let service of admeServiceList">
-        <td>{{ service.mainCategory }}</td>
-        <td>{{ service.subclass }}</td>
+      <tr *ngFor="let service of tableSource">
+        <td
+          [attr.rowspan]="service.mainCategory.rowSpan"
+          *ngIf="
+            service && service.mainCategory && service.mainCategory.rowSpan
+          "
+        >
+          {{ service.mainCategory.value }}
+        </td>
+        <td
+          [attr.rowspan]="service.subclass.rowSpan"
+          *ngIf="service && service.subclass && service.subclass.rowSpan"
+        >
+          {{ service.subclass.value }}
+        </td>
         <td style="min-width: 50px; text-align: center">
           <mat-checkbox></mat-checkbox>
         </td>
 
-        <td>{{ service.technology }}</td>
+        <td>{{ service.technology.value }}</td>
       </tr>
     </table>
   </div>

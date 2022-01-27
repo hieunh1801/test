@@ -308,9 +308,13 @@ pre {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: var(--primary--color);
+    background-color: var(--primary-a--color);
     color: white;
-    font-weight: bold;
+    border: 1px solid #ddd;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-weight: 400;
+
+    opacity: 1;
   }
 
   tr {
