@@ -1,0 +1,71 @@
+.overlay-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100vw;
+
+  background-color: transparent;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  .overlay-wrapper {
+    border-bottom: none;
+    width: 50%;
+    max-width: 500px;
+    padding: 16px 16px 0 16px;
+    background-color: #fff;
+    border: solid 1px rgba(9, 30, 66, 0.25);
+    border-bottom: none;
+
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  }
+
+  .title {
+    .total {
+      font-weight: bold;
+      font-size: 1.125em;
+      margin-right: 4px;
+      color: var(--primary-a--color);
+    }
+  }
+
+  .header {
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .list-container {
+    border-top: solid 2px rgba($color: #000000, $alpha: 0.2);
+    height: 124px;
+    overflow-y: scroll;
+  }
+
+  .list-item {
+    padding-top: 4px;
+  }
+  .list-item:first-child {
+    padding-top: 8px;
+  }
+  .list-item:last-child {
+    padding-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overlay-container {
+    .overlay-wrapper {
+      width: 90%;
+    }
+  }
+}

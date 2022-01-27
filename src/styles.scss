@@ -325,3 +325,39 @@ pre {
     visibility: hidden;
   }
 }
+
+.spmed-sticky-header-table {
+  table {
+    position: relative;
+  }
+
+  th {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: -1px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+}
+
+.spmed-small-scrollbar {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(#000000, 0.3);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(#000000, 0.7);
+  }
+}

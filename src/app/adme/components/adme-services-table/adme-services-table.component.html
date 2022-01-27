@@ -7,44 +7,54 @@
         else admeServiceTableTemplate
       "
     ></ng-template>
-
-    <table
-      *ngIf="tableSource && tableSource.length > 0"
-      class="spmed-merge-table"
-      #tableRef
-    >
-      <tr>
-        <th *ngFor="let header of tableHeaderList">{{ header }}</th>
-      </tr>
-      <tr *ngFor="let service of tableSource">
-        <td
-          [attr.rowspan]="service.mainCategory.rowSpan"
-          *ngIf="
-            service && service.mainCategory && service.mainCategory.rowSpan
-          "
-        >
-          {{ service.mainCategory.value }}
-        </td>
-        <td
-          [attr.rowspan]="service.subclass.rowSpan"
-          *ngIf="service && service.subclass && service.subclass.rowSpan"
-        >
-          {{ service.subclass.value }}
-        </td>
-        <td style="min-width: 50px; text-align: center">
-          <mat-checkbox></mat-checkbox>
-        </td>
-
-        <td>{{ service.technology.value }}</td>
-      </tr>
-    </table>
   </div>
 </div>
 
-<ng-template #admeServiceTableTemplate> </ng-template>
+<ng-template #admeServiceTableTemplate>
+  <table
+    *ngIf="tableSource && tableSource.length > 0"
+    class="spmed-merge-table spmed-sticky-header-table adme-service-table"
+  >
+    <tr>
+      <!-- <th *ngFor="let header of tableHeaderList">{{ header }}</th> -->
+      <th class="main-category-cell">Main Category</th>
+      <th class="subclass-cell">Subclass</th>
+      <th class="select-cell" style="min-width: 50px; text-align: center">
+        <!-- <mat-checkbox (change)="toggleAll($event)"></mat-checkbox> -->
+      </th>
+
+      <th class="technology-cell">Technology</th>
+    </tr>
+    <tr *ngFor="let service of tableSource">
+      <td
+        class="main-category-cell"
+        [attr.rowspan]="service.mainCategory.rowSpan"
+        *ngIf="service && service.mainCategory && service.mainCategory.rowSpan"
+      >
+        {{ service.mainCategory.value }}
+      </td>
+      <td
+        class="subclass-cell"
+        [attr.rowspan]="service.subclass.rowSpan"
+        *ngIf="service && service.subclass && service.subclass.rowSpan"
+      >
+        {{ service.subclass.value }}
+      </td>
+      <td class="select-cell" style="min-width: 50px; text-align: center">
+        <mat-checkbox (change)="toggleSelectId(service)"></mat-checkbox>
+      </td>
+
+      <td class="technology-cell">{{ service.technology.value }}</td>
+    </tr>
+  </table>
+</ng-template>
 
 <ng-template #admeServiceLoadingTemplate>
   <div class="loading-container">
     <app-spinner></app-spinner>
   </div>
 </ng-template>
+
+<app-selected-adme-service-list-modal
+  [selectedServiceList$]="selectedServiceList$"
+></app-selected-adme-service-list-modal>

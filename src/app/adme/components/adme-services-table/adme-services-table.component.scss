@@ -5,3 +5,31 @@
   width: 100%;
   margin-left: -60px;
 }
+
+.adme-service-table-wrapper {
+  table {
+    transition: all 2s ease-in-out;
+
+    th {
+      background-color: #f2f2f2;
+      color: var(--primary-a--color);
+      font-weight: bold;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .adme-service-table-wrapper {
+    .main-category-cell {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .adme-service-table-wrapper {
+    .subclass-cell {
+      display: none;
+    }
+  }
+}

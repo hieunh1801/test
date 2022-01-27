@@ -11,6 +11,7 @@ import { OverviewSectionWhenComponent } from './components/overview/components/o
 import { OverviewSectionProcedureComponent } from './components/overview/components/overview-section-procedure/overview-section-procedure.component';
 import { OverviewSectionServicesComponent } from './components/overview/components/overview-section-services/overview-section-services.component';
 import { AdmeServicesTableComponent } from './components/adme-services-table/adme-services-table.component';
+import { SelectedAdmeServiceListModalComponent } from './components/adme-services-table/components/selected-adme-service-list-modal/selected-adme-service-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AdmeServicesTableComponent } from './components/adme-services-table/adm
     OverviewSectionProcedureComponent,
     OverviewSectionServicesComponent,
     AdmeServicesTableComponent,
+    SelectedAdmeServiceListModalComponent,
   ],
   imports: [CommonModule, AdmeRoutingModule, SharedModule],
 })

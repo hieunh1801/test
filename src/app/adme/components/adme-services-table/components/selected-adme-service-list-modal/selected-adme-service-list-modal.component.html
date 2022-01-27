@@ -1,0 +1,28 @@
+<div
+  class="overlay-container"
+  @overlayOpenClose
+  *ngIf="serviceList?.length > 0"
+>
+  <div
+    class="overlay-wrapper spmed-small-scrollbar"
+    *ngIf="serviceList?.length > 0"
+  >
+    <div class="header">
+      <div class="title">
+        <span class="total">{{ serviceList?.length }}</span>
+        <span>services selected</span>
+      </div>
+      <div class="actions">
+        <button mat-button color="accent" (click)="showAll = !showAll">
+          {{ showAll ? "Hide" : "Show" }}
+        </button>
+        <button mat-flat-button color="primary">Request</button>
+      </div>
+    </div>
+    <div class="full-content list-container" *ngIf="showAll" @listOpenClose>
+      <div *ngFor="let service of serviceList" class="list-item" @listOpenClose>
+        • {{ service.technology }}
+      </div>
+    </div>
+  </div>
+</div>
