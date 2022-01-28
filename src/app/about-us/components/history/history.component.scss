@@ -38,7 +38,7 @@
     .content {
       display: inline-block;
 
-      transition: all 0.2s cubic-bezier(0.56, 0.21, 0.43, 0.93);
+      transition: all 0.2s ease-in-out;
     }
   }
 

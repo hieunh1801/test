@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { finalize, retry } from 'rxjs/operators';
 import { Hospital } from '../products/services/product.service';
 import {
   AffiliatedHospital,
@@ -15,6 +16,7 @@ import {
 })
 export class AffiliatedHospitalComponent implements OnInit, OnDestroy {
   hospitalList: AffiliatedHospital[] = [];
+  hospitalListLoading: boolean = false;
 
   dataSource: AffiliatedHospital[] = [];
 
@@ -96,11 +98,18 @@ export class AffiliatedHospitalComponent implements OnInit, OnDestroy {
   }
 
   loadAffiliatedHospital(): void {
+    this.hospitalListLoading = true;
     this.affiliatedHospitalDataService
       .getAffiliatedHospital()
+      .pipe(
+        retry(3),
+        finalize(() => {
+          this.hospitalListLoading = false;
+          console.log('success', this.hospitalListLoading);
+        })
+      )
       .subscribe((hospitalList) => {
         this.hospitalList = hospitalList;
-
         this.reloadDataSource();
       });
   }

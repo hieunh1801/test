@@ -1,128 +1,146 @@
 <div class="affiliated-hospital-wrapper">
   <div class="affiliated-hospital">
-    <h2 class="spmed-h2-with-icon">
-      <mat-icon>label_important</mat-icon>
-      {{ "PDSS__AFFILIATED_HOSPITALL__TITLE__AFFILIATED_HOSPITAL" | translate }}
-    </h2>
-    <div class="affiliated-hospital-content">
-      <div class="search-form spmed-form">
-        <form [formGroup]="searchForm">
-          <div fxLayout="row" fxLayoutGap="10px">
-            <mat-form-field appearance="outline" style="max-width: 20%">
-              <mat-select formControlName="product">
-                <mat-option
-                  *ngFor="let product of productOptions"
-                  [value]="product.value"
-                >
-                  {{ product.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <input
-                matInput
-                [placeholder]="
-                  'PDSS__AFFILIATED_HOSPITALL__SEARCH_FORM_PLACEHOLDER__ENTER_HOSPITAL_NAME'
-                    | translate
-                "
-                formControlName="keyword"
-              />
-              <button
-                mat-icon-button
-                matSuffix
-                *ngIf="searchForm?.value?.keyword"
-                (click)="resetKeyword()"
-              >
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-form-field>
-          </div>
-        </form>
-      </div>
-      <div class="affiliated-hospital-table-wrapper">
-        <table
-          mat-table
-          [dataSource]="dataSource"
-          class="affiliated-hospital-table"
-        >
-          <ng-container matColumnDef="rowIndex">
-            <th mat-header-cell *matHeaderCellDef>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__#"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element; let i = index">
-              {{ i + 1 }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__NAME"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="telephone">
-            <th mat-header-cell *matHeaderCellDef>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__TELEPHONE"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element">{{ element.telephone }}</td>
-          </ng-container>
-          <ng-container matColumnDef="department">
-            <th mat-header-cell *matHeaderCellDef fxHide.lt-md>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__DEPARTMENT"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element" fxHide.lt-md>
-              {{ element.department }}
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="products">
-            <th mat-header-cell *matHeaderCellDef>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__PRODUCTS"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element">
-              <div class="product-list" *ngIf="element.products?.length > 0">
-                <div
-                  class="product-list-item"
-                  *ngFor="let product of element.products"
-                >
-                  {{ product }}
-                </div>
-              </div>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="addressDetails">
-            <th mat-header-cell *matHeaderCellDef>
-              {{
-                "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__ADDRESS_DETAILS"
-                  | translate
-              }}
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.addressDetails }}
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-      </div>
-    </div>
+    <ng-template
+      *ngIf="
+        hospitalListLoading;
+        then hospitalListLoadingTemplate;
+        else hospitalTableTemplate
+      "
+    ></ng-template>
   </div>
 </div>
+
+<!-- hospital list -->
+<ng-template #hospitalTableTemplate>
+  <h2 class="spmed-h2-with-icon">
+    <mat-icon>label_important</mat-icon>
+    {{ "PDSS__AFFILIATED_HOSPITALL__TITLE__AFFILIATED_HOSPITAL" | translate }}
+  </h2>
+  <div class="affiliated-hospital-content">
+    <div class="search-form spmed-form">
+      <form [formGroup]="searchForm">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field appearance="outline" style="max-width: 20%">
+            <mat-select formControlName="product">
+              <mat-option
+                *ngFor="let product of productOptions"
+                [value]="product.value"
+              >
+                {{ product.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [placeholder]="
+                'PDSS__AFFILIATED_HOSPITALL__SEARCH_FORM_PLACEHOLDER__ENTER_HOSPITAL_NAME'
+                  | translate
+              "
+              formControlName="keyword"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              *ngIf="searchForm?.value?.keyword"
+              (click)="resetKeyword()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div class="affiliated-hospital-table-wrapper">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="affiliated-hospital-table"
+      >
+        <ng-container matColumnDef="rowIndex">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__#"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__NAME"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telephone">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__TELEPHONE"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.telephone }}</td>
+        </ng-container>
+        <ng-container matColumnDef="department">
+          <th mat-header-cell *matHeaderCellDef fxHide.lt-md>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__DEPARTMENT"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element" fxHide.lt-md>
+            {{ element.department }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="products">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__PRODUCTS"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="product-list" *ngIf="element.products?.length > 0">
+              <div
+                class="product-list-item"
+                *ngFor="let product of element.products"
+              >
+                {{ product }}
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="addressDetails">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "PDSS__AFFILIATED_HOSPITAL__AFFILIATED_HOSPITAL_TABLE__HEADERS__ADDRESS_DETAILS"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.addressDetails }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</ng-template>
+
+<!-- loading template -->
+<ng-template #hospitalListLoadingTemplate>
+  <div class="loading-container">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
