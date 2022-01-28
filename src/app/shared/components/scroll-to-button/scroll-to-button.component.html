@@ -1,0 +1,9 @@
+<div
+  @flyInOut
+  *ngIf="isShow"
+  class="container"
+  #scrollButton
+  (click)="scrollTo()"
+>
+  {{ buttonName }}
+</div>

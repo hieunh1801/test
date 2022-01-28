@@ -38,6 +38,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ScrollUpButtonComponent } from './components/scroll-up-button/scroll-up-button.component';
 import { AnimationModule } from '@animation/animation.module';
+import { ScrollToButtonComponent } from './components/scroll-to-button/scroll-to-button.component';
+
 const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
@@ -80,6 +82,7 @@ const httpInterceptorProviders = [
     SafeHtmlPipe,
     LoaderComponent,
     ScrollUpButtonComponent,
+    ScrollToButtonComponent,
   ],
   providers: [httpInterceptorProviders, AuthGuard],
   imports: [
@@ -114,6 +117,7 @@ const httpInterceptorProviders = [
     SafeHtmlPipe,
     LoaderComponent,
     ScrollUpButtonComponent,
+    ScrollToButtonComponent,
   ],
 })
 export class SharedModule {}

@@ -60,8 +60,8 @@ export class AnimateAfterAppearDirective implements OnInit {
       this.player = animation.create(this.el.nativeElement);
       this.player.init();
 
-      const callback = this.startAnimating.bind(this);
-      this._observer.addTarget(this.el.nativeElement, callback);
+      const callbackInViewPort = this.startAnimating.bind(this);
+      this._observer.addTarget(this.el.nativeElement, callbackInViewPort);
     }
   }
 

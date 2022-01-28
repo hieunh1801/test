@@ -10,10 +10,14 @@ export type CallbackType = (inViewport?: boolean, element?: Element) => void;
 
 export interface WatchedItem {
   element: Element;
-  callback: CallbackType;
+  removeAfterIntersect?: boolean;
+  callbackInViewPort: CallbackType; // callback when element is in viewport
+  callbackNotInViewPort?: CallbackType; // callback when element is not in viewport
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class IntersectionObserverService {
   options: IntersectionObserverServiceConfig = {
     rootMargin: '0px',
@@ -56,16 +60,21 @@ export class IntersectionObserverService {
       });
 
       if (entry.isIntersecting) {
-        // un observe after intersecting
-        this.observer?.unobserve(entry.target);
-
         // callback
-        target?.callback(true, entry.target);
+        target?.callbackInViewPort(true, entry.target);
 
-        // remove item in watching list
-        this.watching = this.watching.filter(
-          (element) => element.element !== entry.target
-        );
+        if (target?.removeAfterIntersect) {
+          // un observe after intersecting
+          this.observer?.unobserve(entry.target);
+
+          // remove item in watching list
+          this.watching = this.watching.filter(
+            (element) => element.element !== entry.target
+          );
+        }
+      } else {
+        // callback if not intersecting
+        target?.callbackNotInViewPort(true, entry.target);
       }
     });
   }
@@ -73,15 +82,24 @@ export class IntersectionObserverService {
   /**
    * Adds the target to our array so we can call its
    * call back when it enters the viewport
-   * @param {Element} element
-   * @param {CallbackType} callback
+   * @param element: element to intersect
+   * @param callbackInViewPort: callback when element is in viewport
+   * @param callbackNotInViewPort: callback when element is not in viewport
+   * @param removeAfterIntersect: remove element if element intersects after callbackInViewPortCall
    */
-  addTarget(element: Element, callback: CallbackType): void {
+  addTarget(
+    element: Element,
+    callbackInViewPort: CallbackType,
+    callbackNotInViewPort: CallbackType = null,
+    removeAfterIntersect: boolean = true
+  ): void {
     this.observer?.observe(element);
 
     this.watching.push({
       element: element,
-      callback: callback,
+      callbackInViewPort: callbackInViewPort,
+      callbackNotInViewPort: callbackNotInViewPort,
+      removeAfterIntersect: removeAfterIntersect,
     });
   }
 

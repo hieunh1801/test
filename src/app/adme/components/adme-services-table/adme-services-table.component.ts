@@ -2,7 +2,7 @@ import {
   AdmeService,
   AdmeServiceDataService,
 } from '@adme/services/adme-service-data.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize, retry } from 'rxjs/operators';
@@ -18,13 +18,17 @@ export class AdmeServicesTableComponent implements OnInit, OnDestroy {
 
   subscriptions = new Subscription();
 
-  tableSource: AdmeServiceRow[] = [];
+  tableSource$ = new BehaviorSubject<AdmeServiceRow[]>(null);
 
   tableHeaderList = ['Main Category', 'Subclass', '', 'Technology'];
 
-  selectedServiceList$ = new BehaviorSubject<AdmeService[]>(null);
+  showButtonScrollToServicesTable: boolean = false;
+  checkAll: boolean = false;
 
-  constructor(private admeServiceDataService: AdmeServiceDataService) {}
+  constructor(
+    private admeServiceDataService: AdmeServiceDataService,
+    private el: ElementRef
+  ) {}
 
   ngOnInit(): void {
     this.subscribeAdmeServiceList$();
@@ -118,40 +122,34 @@ export class AdmeServicesTableComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.tableSource = tableSource;
-    console.log('tableSource', this.tableSource);
+    this.tableSource$.next(tableSource);
   }
 
-  toggleSelectId(tableRow: AdmeServiceRow): void {
-    const selectedService: AdmeService[] =
-      this.selectedServiceList$?.getValue() || [];
-    const indexOfId = selectedService.findIndex(
-      (service) => service.id === tableRow.id
-    );
-    if (indexOfId === -1) {
-      selectedService.push({
-        id: tableRow.id,
-        mainCategory: tableRow.mainCategory.value,
-        subclass: tableRow.subclass.value,
-        technology: tableRow.technology.value,
-      });
-    } else {
-      selectedService.splice(indexOfId, 1);
+  toggleSelectItem($event: MatCheckboxChange, tableRow: AdmeServiceRow): void {
+    if (!$event.checked) {
+      this.checkAll = false;
     }
 
-    this.selectedServiceList$.next(selectedService);
+    const tableSource = this.tableSource$?.getValue().map((row) => {
+      return row.id === tableRow.id
+        ? { ...row, selected: $event.checked }
+        : row;
+    });
+
+    this.tableSource$.next(tableSource);
   }
 
   toggleAll($event: MatCheckboxChange): void {
-    const admeServiceList = $event.checked
-      ? this.admeServiceList$?.getValue() || []
-      : [];
-
-    this.selectedServiceList$.next(admeServiceList);
+    this.checkAll = $event.checked;
+    const tableSource = this.tableSource$?.getValue().map((row) => ({
+      ...row,
+      selected: $event.checked,
+    }));
+    this.tableSource$.next(tableSource);
   }
 }
 
-interface AdmeServiceRow {
+export interface AdmeServiceRow {
   id: number;
   mainCategory: CellMetadata<string>;
   subclass: CellMetadata<string>;
@@ -159,7 +157,7 @@ interface AdmeServiceRow {
   selected?: boolean;
 }
 
-interface CellMetadata<T> {
+export interface CellMetadata<T> {
   value: T;
   rowSpan: number;
 }

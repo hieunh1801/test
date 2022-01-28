@@ -4,7 +4,10 @@
   <app-overview-section-when></app-overview-section-when>
   <app-overview-section-procedure></app-overview-section-procedure>
   <app-overview-section-services></app-overview-section-services>
-  <div class="section-wrapper section-services-table-wrapper">
+  <div
+    class="section-wrapper section-services-table-wrapper"
+    #admeServiceListElementRef
+  >
     <div class="section">
       <h2 class="spmed-h2-with-icon">
         <mat-icon>label_important</mat-icon>
@@ -14,3 +17,8 @@
     </div>
   </div>
 </div>
+
+<app-scroll-to-button
+  [elementRef]="admeServiceListElementRef"
+  [buttonName]="'ADME__OVERVIEW__BUTTONS__SCROLL_TO_SERVICES' | translate"
+></app-scroll-to-button>
