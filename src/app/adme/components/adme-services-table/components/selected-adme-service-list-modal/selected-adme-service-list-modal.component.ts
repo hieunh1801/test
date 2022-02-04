@@ -86,9 +86,7 @@ export class SelectedAdmeServiceListModalComponent {
       ?.filter((service) => service.selected)
       ?.map((row) => ({
         id: row.id,
-        mainCategory: row.mainCategory?.value,
-        subclass: row.subclass?.value,
-        technology: row.technology?.value,
+        title: row.technology.value,
       }));
   }
 }

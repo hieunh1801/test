@@ -1,6 +1,7 @@
 import {
   AdmeService,
   AdmeServiceDataService,
+  AdmeServiceMainCategory,
 } from '@adme/services/adme-service-data.service';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -13,8 +14,10 @@ import { finalize, retry } from 'rxjs/operators';
   styleUrls: ['./adme-services-table.component.scss'],
 })
 export class AdmeServicesTableComponent implements OnInit, OnDestroy {
-  admeServiceList$ = new BehaviorSubject<AdmeService[]>(null);
-  admeServiceListLoading: boolean = false;
+  admeServiceMainCategoryList$ = new BehaviorSubject<AdmeServiceMainCategory[]>(
+    null
+  );
+  admeServiceMainCategoryLoading: boolean = false;
 
   subscriptions = new Subscription();
 
@@ -31,41 +34,56 @@ export class AdmeServicesTableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscribeAdmeServiceList$();
-
-    this.loadAdmeServiceList$();
+    this.subscribeAdmeServiceMainCategoryList$();
+    this.loadAdmeServiceMainCategoryList$();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
-  subscribeAdmeServiceList$(): void {
+  subscribeAdmeServiceMainCategoryList$(): void {
     this.subscriptions.add(
-      this.admeServiceList$.subscribe(() => {
+      this.admeServiceMainCategoryList$.subscribe(() => {
         this.reloadTableSource();
       })
     );
   }
 
-  loadAdmeServiceList$(): void {
-    this.admeServiceListLoading = true;
+  loadAdmeServiceMainCategoryList$(): void {
+    this.admeServiceMainCategoryLoading = true;
     this.admeServiceDataService
-      .getAllAdmeService()
+      .getAllAdmeServiceMainCategory()
       .pipe(
         retry(3),
         finalize(() => {
-          this.admeServiceListLoading = false;
+          this.admeServiceMainCategoryLoading = false;
         })
       )
       .subscribe((response) => {
         const data = response?.data?.items || null;
-        this.admeServiceList$.next(data);
+        this.admeServiceMainCategoryList$.next(data);
       });
   }
 
   reloadTableSource(): void {
-    const admeServiceList = this.admeServiceList$?.getValue();
+    const admeServiceMainCategoryList =
+      this.admeServiceMainCategoryList$?.getValue() || [];
+    const admeServiceList: AdmeServiceRowNormalize[] = [];
+    for (const mainCategory of admeServiceMainCategoryList) {
+      for (const subCategory of mainCategory.subCategories || []) {
+        for (const admeService of subCategory.admeServices || []) {
+          const normalizeData: AdmeServiceRowNormalize = {
+            id: admeService.id,
+            mainCategory: mainCategory.title,
+            subclass: subCategory.title,
+            technology: admeService.title,
+          };
+          admeServiceList.push(normalizeData);
+        }
+      }
+    }
+
     let tableSource: AdmeServiceRow[] = [];
 
     if (admeServiceList) {
@@ -147,6 +165,13 @@ export class AdmeServicesTableComponent implements OnInit, OnDestroy {
     }));
     this.tableSource$.next(tableSource);
   }
+}
+
+interface AdmeServiceRowNormalize {
+  id: number;
+  mainCategory: string;
+  subclass: string;
+  technology: string;
 }
 
 export interface AdmeServiceRow {
