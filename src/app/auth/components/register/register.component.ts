@@ -3,7 +3,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { finalize, distinctUntilChanged } from 'rxjs/operators';
+import {
+  finalize,
+  distinctUntilChanged,
+  startWith,
+  debounceTime,
+  tap,
+} from 'rxjs/operators';
 
 import {
   AuthService,
@@ -26,6 +32,7 @@ import {
 } from './components/register-success-dialog/register-success-dialog.component';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { MustMatch } from '@shared/validators/must-match.validator';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-register',
@@ -70,7 +77,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   currentStep = 1;
 
   signUpForm1 = this.formBuilder.group({
-    // add form 1 information here
     totalAgree: [''],
     termsAgree: ['', Validators.requiredTrue],
     privacyAgree: ['', Validators.requiredTrue],
@@ -78,7 +84,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   signUpForm2 = this.formBuilder.group(
     {
-      // TODO add form 2 information here
       fusername: ['', Validators.required],
       fpassword: ['', [Validators.required, Validators.minLength(4)]],
       repassword: ['', Validators.required],
@@ -102,8 +107,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
         ),
       ],
     ],
-    fgender: ['', Validators.required],
-    femail: ['', Validators.required],
+    fgender: [0, Validators.required],
+    femail: ['', [Validators.required, Validators.email]],
     fphone: ['', Validators.required],
   });
 
@@ -111,10 +116,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     termsAgree: ['', Validators.requiredTrue],
     privacyAgree: ['', Validators.requiredTrue],
     fusername: ['', Validators.required],
-    fpassword: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(12)],
-    ],
+    fpassword: ['', [Validators.required, Validators.minLength(4)]],
     fsurname: ['', Validators.required],
     fgivenname: ['', Validators.required],
     // validates date format yyyy-mm-dd
@@ -132,6 +134,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
     fphone: ['', Validators.required],
   });
 
+  stepList = [
+    {
+      stepNumber: 1,
+      title: marker('LAYOUT__AUTH__REGISTER__STEP1__TITLE'),
+      subTitle: marker('LAYOUT__AUTH__REGISTER__STEP1__SUBTITLE'),
+    },
+    {
+      stepNumber: 2,
+      title: marker('LAYOUT__AUTH__REGISTER__STEP2__TITLE'),
+      subTitle: marker('LAYOUT__AUTH__REGISTER__STEP2__SUBTITLE'),
+    },
+    {
+      stepNumber: 3,
+      title: marker('LAYOUT__AUTH__REGISTER__STEP3__TITLE'),
+      subTitle: marker('LAYOUT__AUTH__REGISTER__STEP3__SUBTITLE'),
+    },
+  ];
   private subscription$ = new Subscription();
 
   constructor(
@@ -157,10 +176,43 @@ export class RegisterComponent implements OnInit, OnDestroy {
     //   .subscribe((term) => {
     //     this.checkId = true;
     //   });
+
+    this.subscribeF2UsernameChange();
+    this.subscribeF3EmailChange();
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
+  }
+
+  subscribeF2UsernameChange() {
+    const sub = this.f2.fusername.valueChanges
+      .pipe(startWith(''), distinctUntilChanged(), debounceTime(300))
+      .subscribe((value) => {
+        this.onCheckId();
+      });
+    this.subscription$.add(sub);
+  }
+
+  subscribeF3EmailChange() {
+    const sub = this.f3.femail.valueChanges
+      .pipe(startWith(''), distinctUntilChanged(), debounceTime(300))
+      .subscribe((value) => {
+        this.onCheckEmail();
+      });
+    this.subscription$.add(sub);
+  }
+
+  get f1() {
+    return this.signUpForm1.controls;
+  }
+
+  get f2() {
+    return this.signUpForm2.controls;
+  }
+
+  get f3() {
+    return this.signUpForm3.controls;
   }
 
   updateCheck(): void {
@@ -176,6 +228,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onStep2(): void {
     this.signUpForm1.markAsDirty();
+    this.signUpForm1.markAllAsTouched();
     if (this.signUpForm1.valid) {
       this.currentStep = 2;
     }
@@ -183,6 +236,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onStep3(): void {
     this.signUpForm2.markAsDirty();
+    this.signUpForm2.markAllAsTouched();
     if (this.signUpForm2.valid) {
       this.currentStep = 3;
     }
@@ -190,6 +244,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.signUpForm3.markAsDirty();
+    this.signUpForm3.markAllAsTouched();
+
     const form1Value = this.signUpForm1.value;
     const form2Value = this.signUpForm2.value;
     const form3Value = this.signUpForm3.value;
@@ -288,6 +344,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const checkUserNameRequest: CheckUserNameRequest = {
       username: username,
     };
+
+    // check other validator
+    const usernameControl = this.f2.fusername;
+    if (usernameControl.errors) {
+      // user name still error so no need to check duplicate
+      return;
+    }
+
     this.isCheckingId = true;
     this.authService
       .getID(checkUserNameRequest)
@@ -304,10 +368,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
           } else {
             this.isValidID = checkUserNameResponse.isValid;
             this.checkId = null;
+
+            if (!checkUserNameResponse?.isValid) {
+              usernameControl.setErrors({
+                duplicate: true,
+              });
+            } else {
+              usernameControl.setErrors(null);
+            }
           }
-        },
-        complete: () => {
-          console.log('this.authService.Check ID done!!!');
         },
         error: (error) => {
           console.log(error.response);
@@ -324,6 +393,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const checkEmailRequest: CheckEmailRequest = {
       email: femail,
     };
+
+    const emailControl = this.f3.femail;
+    if (emailControl.errors) {
+      // email still error so no need to check duplicate
+      return;
+    }
+
     this.isCheckingEmail = true;
     this.authService
       .getEmail(checkEmailRequest)
@@ -339,6 +415,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
           if (checkEmailResponse == null) {
           } else {
             this.isValidEmail = checkEmailResponse.isValid;
+            if (!checkEmailResponse?.isValid) {
+              emailControl.setErrors({
+                duplicate: true,
+              });
+            } else {
+              emailControl.setErrors(null);
+            }
           }
         },
         complete: () => {

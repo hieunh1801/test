@@ -1,0 +1,8 @@
+GET http://localhost:61127/portal/v1.0/en/adme-services
+
+###
+GET http://localhost:61127/portal/v1.0/en/admin/adme-services/main-categories
+
+
+###
+GET http://localhost:61127/portal/v1.0/en/adme-services/main-categories

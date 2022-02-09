@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AuthService,
@@ -41,6 +46,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
+  }
 
   login(): void {
     this.loginForm.markAllAsTouched();

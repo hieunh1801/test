@@ -1,207 +1,190 @@
-#register {
-  width: 100%;
-
-  font-style: normal;
-  font-weight: normal;
-  color: #000000;
-
-  padding: 10px;
-
-  h1 {
+.register-page {
+  background-color: white;
+  border: solid 1px rgba($color: #000000, $alpha: 0.2);
+  border-radius: 2px;
+  padding: 32px 16px;
+  h2 {
     text-align: center;
-    font-size: 30px;
-    line-height: 28px;
-    padding: 20px 0px;
-    font-weight: 500;
+  }
+  .page-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  mat-card {
-    // width: 70%;
-    margin: auto;
+  .step-by-step-container {
+    padding: 0 16px;
+    border-right: solid 1px rgba($color: #000000, $alpha: 0.2);
+    width: 370px;
   }
 
-  mat-progress-spinner {
-    width: 24px;
+  .form-container {
+    padding: 0 16px;
+    width: 370px;
   }
 
-  .step-container {
-    border-right: 1px solid rgba(0, 0, 0, 0.5);
-    width: 770px;
+  .step {
+    padding: 16px;
+    border: solid 1px rgba($color: #000000, $alpha: 0.2);
+    border-left: 4px solid rgba($color: #000000, $alpha: 0.2);
+    border-radius: 0 1px 1px 0;
+
+    opacity: 0.8;
+
+    .step-title {
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  .step:not(:last-child) {
+    margin-bottom: 16px;
   }
 
-  .selected-step-box {
-    width: 90%;
-    height: 57px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    border-radius: 3px;
-    margin: 5px auto;
+  .step-active {
+    .step-title {
+      font-weight: bold;
+    }
+
+    animation: stepActiveKeyframes 0.2s ease-in-out forwards;
   }
 
-  .selected-step-title {
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 19px;
-    padding: 5px 5px 0px 5px;
-    color: #003f9e;
+  @keyframes stepActiveKeyframes {
+    100% {
+      box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.2);
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      opacity: 1;
+      z-index: 999;
+      background-color: transparent;
+      border-left: solid var(--primary--color) 4px;
+    }
   }
 
-  .selected-step-comment {
-    padding: 5px 5px 0px 5px;
-    font-size: 12px;
-    line-height: 14px;
-    color: rgba(0, 0, 0, 0.5);
-    opacity: 0.4;
-  }
-
-  .step-box {
-    width: 90%;
-    height: 57px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-    border-radius: 3px;
-    margin: 5px auto;
-  }
-
-  .step-title {
-    font-size: 16px;
-    line-height: 19px;
-    padding: 5px 5px 0px 5px;
-  }
-
-  .step-comment {
-    padding: 5px 5px 0px 5px;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 12px;
-    line-height: 14px;
-  }
-
-  .agreement-container {
-    padding: 10px 20px 10px 40px;
-    font-size: 12px;
-    min-width: 360px;
-  }
-  .agreement-total {
-    width: 90%;
-    height: 40px;
-  }
-
-  .agreement-box-mobile {
-    border: 1px solid #ddd;
-    height: 80px;
-    overflow-x: auto;
-    overflow-y: auto;
-    padding: 0px 5px;
-    background-color: #f2f2f2;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #111;
-  }
-
-  .agreement-button-mobile {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .input-full-width {
-    width: 100%;
-  }
-
-  .signup-title {
-    font-size: 14px;
-    line-height: 16px;
-  }
-
-  .signup-comment {
-    font-size: 12px;
-    line-height: 14px;
-    color: rgba(0, 0, 0, 0.5);
-  }
-
-  .example-radio-group {
+  .step-1-form {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    row-gap: 8px;
+
+    .term-content {
+      width: calc(100% - 20px);
+      height: 100px;
+      overflow: auto;
+      background-color: #e7e7e7;
+      border: solid 1px rgba($color: #000000, $alpha: 0.2);
+      padding: 8px;
+      margin-top: 4px;
+    }
+
+    .privacy-content {
+      width: calc(100% - 20px);
+      height: 100px;
+      overflow: auto;
+      background-color: #e7e7e7;
+      padding: 8px;
+      margin-top: 4px;
+      border: solid 1px rgba($color: #000000, $alpha: 0.2);
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 8px;
+    }
+
+    .submit-button {
+      background-color: var(--primary--color);
+      color: white;
+      border-radius: 1px;
+    }
   }
 
-  .example-radio-button {
-    margin: 5px;
+  .step-2-form {
+    .form2-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 8px;
+    }
+
+    .group-button {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+    }
+
+    .or {
+      font-weight: 500;
+    }
+
+    .mat-stroked-button {
+      width: 100%;
+      border-radius: 1px;
+    }
+
+    .submit-button {
+      background-color: var(--primary--color);
+      color: white;
+      border-radius: 1px;
+    }
   }
 
-  .agree-div {
-    height: 130px;
-    margin: 10px 0px;
-  }
+  .step-3-form {
+    .name-input-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 4fr 6fr;
+      column-gap: 8px;
+    }
+    .surname {
+      width: 144px;
+    }
 
-  .username-div {
-    width: 90%;
-    height: 34px;
-  }
+    .gender-radio-group {
+      display: flex;
+      column-gap: 16px;
+      padding: 4px 0;
+      padding-bottom: 1.34375em;
+    }
 
-  .margin10 {
-    margin: 10px 0px;
+    .submit-button {
+      background-color: var(--primary--color);
+      color: white;
+      border-radius: 1px;
+      width: 100%;
+    }
   }
+}
 
-  .pwd-height {
-    height: 90px;
+@media screen and(max-width: 800px) {
+  #register-page-wrapper {
+    padding: 16px;
   }
+  .register-page {
+    .page-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
 
-  .or-div {
-    width: 90%;
-    margin: 20px auto 20px auto;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 16px;
-  }
+    .step-by-step-container {
+      display: none;
+    }
 
-  .kakao-button {
-    margin-top: 0px;
-    margin-right: 5px;
+    .form-container {
+      width: 50vw;
+    }
   }
+}
 
-  .naver-button {
-    margin-top: 15px;
-    margin-right: 5px;
+@media screen and(max-width: 800px) {
+  #register-page-wrapper {
+    padding: 16px;
   }
-
-  .step3-div {
-    width: 100%;
-    margin: 10x;
-    padding: 10px;
-  }
-
-  .psinfo-div {
-    width: 100%;
-    margin: 10x;
-    padding: 10px;
-  }
-
-  .warning-color {
-    color: red;
-    font-size: 75%;
-    margin-left: 10px;
-  }
-
-  .mat-success {
-    color: green;
-  }
-  .mat-cancel {
-    color: red;
-  }
-  mat-form-field {
-    width: 95%;
-  }
-
-  .is-loading {
-    position: absolute;
-    top: 25.5%;
-    right: 8%;
-  }
-
-  .is-loading2 {
-    position: relative;
-    top: -55px;
-    left: 90%;
+  .register-page {
+    .form-container {
+      width: calc(80vw - 32px);
+    }
   }
 }

@@ -1,83 +1,81 @@
-<div fxLayout="column" fxLayoutAlign="center center" id="login">
-  <form class="login-form spmed-form" [formGroup]="loginForm">
-    <mat-card>
-      <mat-card-title>
-        <span translate>AUTH__LOGIN__SPMED_LOGIN</span>
-      </mat-card-title>
+<div id="login">
+  <form class="spmed-small-form login-form" [formGroup]="loginForm">
+    <h2>{{ "AUTH__LOGIN__SPMED_LOGIN" | translate }}</h2>
+    <div>
+      <mat-label>{{ "LAYOUT__AUTH__REGISTER__ID" | translate }} </mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="f.username.touched && f.username.errors">
+          <ng-container *ngIf="f.username?.errors?.required">
+            {{ "LAYOUT__AUTH__REGISTER__ID_REQUIRED" | translate }}
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-label>
+        {{ "LAYOUT__AUTH__REGISTER__PASSWORD" | translate }}
+      </mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="f.password.touched && f.password.errors">
+          <ng-container *ngIf="f.password?.errors?.required">
+            {{ "LAYOUT__AUTH__REGISTER__PASSWORD_REQUIRED" | translate }}
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="remember-forgot-password-wrapper">
+      <div>
+        <mat-checkbox formControlName="rememberMe">
+          {{ "LAYOUT__AUTH__LOGIN__REMEMBER_ME" | translate }}
+        </mat-checkbox>
+      </div>
+      <div class="forgot-password">
+        <a routerLink="/auth/reset-password">
+          {{ "LAYOUT__AUTH__LOGIN__FORGOT_PASSWORD" | translate }}
+        </a>
+      </div>
+    </div>
+    <div class="actions">
+      <!-- actions main: login -->
+      <button
+        mat-stroked-button
+        color="primary"
+        class="login-button"
+        (click)="login()"
+      >
+        {{ "LAYOUT__AUTH__LOGIN__LOGIN" | translate }}
+      </button>
 
-      <mat-card-content>
-        <mat-label>{{ "LAYOUT__AUTH__REGISTER__ID" | translate }}</mat-label>
-        <mat-form-field class="login-full-width" appearance="outline">
-          <input matInput formControlName="username" />
-        </mat-form-field>
-        <mat-label>
-          {{ "LAYOUT__AUTH__REGISTER__PASSWORD" | translate }}
-        </mat-label>
-        <mat-form-field class="login-full-width" appearance="outline">
-          <input matInput formControlName="password" type="password" />
-        </mat-form-field>
-        <div fxLayout="row" class="login-comment">
-          <div fxFlex="50">
-            <mat-checkbox formControlName="rememberMe"
-              ><span translate
-                >LAYOUT__AUTH__LOGIN__REMEMBER_ME</span
-              ></mat-checkbox
-            >
-          </div>
-          <div fxFlex class="forgot-password">
-            <a routerLink="/auth/reset-password"
-              ><span translate>LAYOUT__AUTH__LOGIN__FORGOT_PASSWORD</span></a
-            >
-          </div>
-        </div>
-        <div
-          class="actions"
-          fxLayout="column"
-          fxLayoutGap="10px"
-          fxLayoutAlign="space-around center"
+      <!-- or -->
+      <b>or</b>
+
+      <!-- actions: other -->
+      <div class="other-actions">
+        <button
+          mat-stroked-button
+          class="kakao-button"
+          (click)="loginWithKakaoTalk(); $event.preventDefault()"
         >
-          <!-- actions main: login -->
-          <button
-            mat-stroked-button
-            color="primary"
-            class="login-button"
-            (click)="login()"
-          >
-            <span translate>LAYOUT__AUTH__LOGIN__LOGIN</span>
-          </button>
-
-          <!-- or -->
-          <b>or</b>
-
-          <!-- actions: other -->
-          <div class="other-actions" fxLayout="column" fxLayoutGap="8px">
-            <button
-              mat-stroked-button
-              class="kakao-button"
-              (click)="loginWithKakaoTalk()"
-            >
-              <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK</span>
-            </button>
-            <button
-              mat-stroked-button
-              class="naver-button"
-              (click)="loginWithNaver()"
-            >
-              <span translate>LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER</span>
-            </button>
-            <div class="login-register">
-              <span translate
-                >LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT</span
-              >
-              <a routerLink="/auth/register"
-                ><span class="register-link" translate
-                  >LAYOUT__AUTH__LOGIN__REGISTER</span
-                ></a
-              >
-            </div>
-          </div>
+          {{ "LAYOUT__AUTH__LOGIN__LOGIN_WITH_KAKAOTALK" | translate }}
+        </button>
+        <button
+          mat-stroked-button
+          class="naver-button"
+          (click)="loginWithNaver(); $event.preventDefault()"
+        >
+          {{ "LAYOUT__AUTH__LOGIN__LOGIN_WITH_NAVER" | translate }}
+        </button>
+        <div class="login-register">
+          <span>
+            {{ "LAYOUT__AUTH__LOGIN__YOU_DONT_HAVE_ANY_ACCOUNT" | translate }}
+          </span>
+          <a routerLink="/auth/register" class="register-link">
+            {{ "LAYOUT__AUTH__LOGIN__REGISTER" | translate }}
+          </a>
         </div>
-      </mat-card-content>
-    </mat-card>
+      </div>
+    </div>
   </form>
 </div>
