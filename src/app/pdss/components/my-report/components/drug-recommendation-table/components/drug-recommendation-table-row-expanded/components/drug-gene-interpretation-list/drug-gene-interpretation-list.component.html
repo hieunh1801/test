@@ -27,10 +27,6 @@
           </a>
         </app-joyride-wrapper>
 
-        <a [routerLink]="['/pdss/gene', gene.symbol, 'detail']" target="_blank"
-          >{{ gene.symbol }}
-        </a>
-
         <ng-container *ngIf="gene.rsid">
           &nbsp;&nbsp; {{ gene.rsid }}
         </ng-container>
