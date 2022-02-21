@@ -24,11 +24,12 @@ export class DrugGeneInterpretationListComponent implements OnInit {
 
   showReferences(drugRecommendation?: Gene): void {
     const dialogInputData: ReferenceListDialogInputData = {
-      interpretationId: drugRecommendation?.id,
+      interpretationId: drugRecommendation?.interpretationIdRef,
     };
 
     const dialogRef = this.matDialog.open(ReferenceListDialogComponent, {
       data: dialogInputData,
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {

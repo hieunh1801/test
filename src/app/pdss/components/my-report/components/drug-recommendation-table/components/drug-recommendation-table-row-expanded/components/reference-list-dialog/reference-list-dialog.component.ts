@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   PdssInterpretationService,
   Roe,
 } from '@pdss/components/my-report/services/pdss-interpretation.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reference-list-dialog',
@@ -13,7 +13,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./reference-list-dialog.component.scss'],
 })
 export class ReferenceListDialogComponent implements OnInit {
-  roeList$ = new Observable<Roe[]>(null);
+  roeListLoading = false;
+  roeList: Roe[] = null;
 
   constructor(
     public dialogRef: MatDialogRef<ReferenceListDialogComponent>,
@@ -24,9 +25,25 @@ export class ReferenceListDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const interpretationId = this.dialogInputData.interpretationId;
-    this.roeList$ = this.pdssInterpretationService
+    this.loadRoeList(interpretationId);
+  }
+
+  loadRoeList(interpretationId: number): void {
+    if (!interpretationId) {
+      return;
+    }
+    this.roeListLoading = true;
+    this.pdssInterpretationService
       .getInterpretationRoes(interpretationId)
-      .pipe(map((response) => response?.data?.items || []));
+      .pipe(
+        finalize(() => {
+          this.roeListLoading = false;
+        })
+      )
+      .subscribe((response) => {
+        const items = response?.data?.items || [];
+        this.roeList = items;
+      });
   }
 
   onClose(): void {

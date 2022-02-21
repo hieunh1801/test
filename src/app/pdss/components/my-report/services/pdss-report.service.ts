@@ -60,7 +60,7 @@ export interface Gene {
   recommendation: string;
   drugRecommendationId: number;
   referenceOfEvidence?: string;
-  interpretationIdRef?: string;
+  interpretationIdRef?: number;
 }
 
 export interface DrugRecommendationKr {

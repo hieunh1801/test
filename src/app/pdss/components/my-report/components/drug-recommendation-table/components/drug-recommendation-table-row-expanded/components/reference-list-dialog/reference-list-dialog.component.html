@@ -8,15 +8,23 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <div class="content" *ngIf="roeList$ | async as roeList; else empty">
-    <pre *ngFor="let roe of roeList">
-        {{ roe?.title }}
-      </pre
-    >
-  </div>
-  <ng-template #empty>
-    {{
-      "PDSS__MY_REPORT__DRUG_TABLE__REFERENCE_LIST_DIALOG__EMPTY" | translate
-    }}
-  </ng-template>
+  <ng-container
+    *ngIf="roeListLoading; then loadingTemplate; else dataTemplate"
+  ></ng-container>
 </div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-template-container">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  </div>
+</ng-template>
+
+<ng-template #dataTemplate>
+  <ng-container *ngIf="roeList?.length > 0; else emptyTemplate">
+    <pre *ngFor="let roe of roeList">{{ roe?.title }}</pre>
+  </ng-container>
+</ng-template>
+
+<ng-template #emptyTemplate>
+  {{ "PDSS__MY_REPORT__DRUG_TABLE__REFERENCE_LIST_DIALOG__EMPTY" | translate }}
+</ng-template>
