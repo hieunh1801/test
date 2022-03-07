@@ -11,6 +11,8 @@
     "build": "ng build --prod --aot --buildOptimizer",
     "build:staging": "ng build --configuration staging",
     "build:prod": "ng build --prod --aot --buildOptimizer",
+    "build:test": "ng build  --aot --buildOptimizer --configuration test",
+    "deploy:test": "aws s3 sync ./dist/spmed-portal-desktop s3://dev-home.spmed.kr --profile=spmed",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
